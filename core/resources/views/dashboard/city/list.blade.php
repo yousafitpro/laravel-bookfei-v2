@@ -8,7 +8,7 @@
                 <h3>{{ __('backend.adsBanners') }}</h3>
                 <small>
                     <a href="{{ route('adminHome') }}">{{ __('backend.home') }}</a> /
-                    <a href="">{{ __('backend.adsBanners') }}</a>
+                    <a href="javascript:void">{{ __('backend.cities') }}</a>
                 </small>
             </div>
 {{--            @if($list->total() >0)--}}
