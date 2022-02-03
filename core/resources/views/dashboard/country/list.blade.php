@@ -5,19 +5,19 @@
     <div class="padding">
         <div class="card" style="padding: 4px">
             <div class="box-header ">
-                <h3>{{ __('backend.cities') }}</h3>
+                <h3>{{ __('backend.countries') }}</h3>
                 <small>
                     <a href="{{ route('adminHome') }}">{{ __('backend.home') }}</a> /
-                    <a href="javascript:void">{{ __('backend.cities') }}</a>
+                    <a href="javascript:void">{{ __('backend.countries') }}</a>
                 </small>
                 <br>
                 <div>
                     <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                        href="{{route("admin.city.list")}}">All Cities</a>
+                        href="{{route("admin.country.list")}}">All Countries</a>
                     <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.city.list")."?status=1"}}">Active Cities</a>
+                       href="{{route("admin.country.list")."?status=1"}}">Active Countries</a>
                     <a class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.city.list")."?status=0"}}">Unactive Cities</a>
+                       href="{{route("admin.country.list")."?status=0"}}">Unactive Countries</a>
                 </div>
             </div>
 
@@ -68,7 +68,7 @@
 {{--                            </th>--}}
                             <th class="text-center width50">{{ __('backend.image') }}</th>
                             <th class="text-center width50">{{ __('backend.name') }}</th>
-                            <th class="text-center width50">{{ __('backend.country') }}</th>
+                            <th class="text-center width50">{{ __('backend.area') }}</th>
                             <th class="text-center width50">{{ __('backend.status') }}</th>
                             <th class="text-center width200">{{ __('backend.options') }}</th>
                         </tr>
@@ -101,8 +101,9 @@
                                     <label>{{$Banner->name}}</label>
                                </td>
                                 <td class="text-center">
-                                    <label>{{$Banner->country->name}}</label>
+                                    <label>{{$Banner->area->name}}</label>
                                 </td>
+
                                 <td class="text-center">
                                     <i class="fa {{ ($Banner->status==1) ? "fa-check text-success":"fa-times text-danger" }} inline"></i>
                                 </td>
@@ -128,7 +129,7 @@
                             </tr>
                             <div id="u-{{$Banner->id}}" class="modal fade" data-backdrop="true">
                                 <div class="modal-dialog" id="animate">
-                                    <form method="post" action="{{route('admin.city.update',$Banner->id)}}" enctype="multipart/form-data">
+                                    <form method="post" action="{{route('admin.country.update',$Banner->id)}}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -162,13 +163,13 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <label>Country</label><br>
+                                                            <label>Area</label><br>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <select name="country_id" class="form-control js-select-basic-single" required>
+                                                            <select name="area_id" class="form-control js-select-basic-single" required>
 
-                                                                <option value="{{$Banner->country->id}}">{{$Banner->country->name}}</option>
-                                                                @foreach(\App\Helpers\Helper::Countries() as $c)
+                                                                <option value="{{$Banner->area->id}}">{{$Banner->area->name}}</option>
+                                                                @foreach(\App\Helpers\Helper::Areas() as $c)
                                                                     <option value="{{$c->id}}">{{$c->name}}</option>
                                                                 @endforeach
                                                             </select>
@@ -222,7 +223,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn dark-white p-x-md"
                                                     data-dismiss="modal">{{ __('backend.no') }}</button>
-                                            <a href="{{ route("admin.city.delete",["id"=>$Banner->id]) }}"
+                                            <a href="{{ route("admin.country.delete",["id"=>$Banner->id]) }}"
                                                class="btn danger p-x-md">{{ __('backend.yes') }}</a>
                                         </div>
                                     </div><!-- /.modal-content -->
@@ -297,9 +298,9 @@
 
         </div>
     </div>
-    <div id="m-add" class="modal fade" data-backdrop="true">
+    <div id="m-add-country" class="modal fade" data-backdrop="true">
         <div class="modal-dialog" id="animate">
-            <form method="post" action="{{route('admin.city.create')}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('admin.country.create')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -333,12 +334,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label>Country</label><br>
+                                    <label>Area</label><br>
                                 </div>
                                 <div class="col-md-8">
-                                    <select name="country_id" class="form-control js-select-basic-single" style="width: 100px" required>
+                                    <select name="area_id" class="form-control js-select-basic-single" style="width: 100px" required>
 
-                                       @foreach(\App\Helpers\Helper::Countries() as $c)
+                                       @foreach(\App\Helpers\Helper::Areas() as $c)
                                             <option value="{{$c->id}}">{{$c->name}}</option>
                                         @endforeach
                                     </select>

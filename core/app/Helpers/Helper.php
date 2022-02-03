@@ -50,9 +50,14 @@ class Helper
         $list=Country::all();
         return $list;
     }
-    static function get_Country($id)
+    static function Areas()
     {
-        $res=Country::find($id);
+        $list=App\Models\area::all();
+        return $list;
+    }
+    static function get_Area($id)
+    {
+        $res=App\Models\area::find($id);
         return $res;
     }
     // Get Events Alerts

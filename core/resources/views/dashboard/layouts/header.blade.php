@@ -193,13 +193,38 @@
                                         &nbsp;{{ __('backend.adsBanners') }}</a>
                                 @endif
                                     @if(@Auth::user()->permissionsGroup->banners_status)
-                                        <a class="dropdown-item" href="{{route("Banners")}}"
+                                        <a class="dropdown-item" href="javascript:void"
                                            data-toggle="modal"
                                            data-target="#m-add" ui-toggle-class="bounce"
                                            ui-target="#animate"
                                         ><i class="fa fa-plus-circle" aria-hidden="true"></i>
                                             &nbsp;{{ __('backend.addCity') }}</a>
                                     @endif
+                                    @if(@Auth::user()->permissionsGroup->banners_status)
+                                        <a class="dropdown-item" href="javascript:void"
+                                           data-toggle="modal"
+                                           data-target="#m-add-area" ui-toggle-class="bounce"
+                                           ui-target="#animate"
+                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            &nbsp;{{ __('backend.addArea') }}</a>
+                                    @endif
+                                    @if(@Auth::user()->permissionsGroup->banners_status)
+                                        <a class="dropdown-item" href="javascript:void"
+                                           data-toggle="modal"
+                                           data-target="#m-add-country" ui-toggle-class="bounce"
+                                           ui-target="#animate"
+                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            &nbsp;{{ __('backend.addCountry') }}</a>
+                                    @endif
+                                    @if(@Auth::user()->permissionsGroup->banners_status)
+                                        <a class="dropdown-item" href="javascript:void"
+                                           data-toggle="modal"
+                                           data-target="#m-add-currency" ui-toggle-class="bounce"
+                                           ui-target="#animate"
+                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            &nbsp;{{ __('backend.addCurrency') }}</a>
+                                    @endif
+
                                 <div class="dropdown-divider"></div>
 
                                 @if(Helper::GeneralWebmasterSettings("newsletter_status"))

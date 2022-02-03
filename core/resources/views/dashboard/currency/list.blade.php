@@ -5,19 +5,19 @@
     <div class="padding">
         <div class="card" style="padding: 4px">
             <div class="box-header ">
-                <h3>{{ __('backend.cities') }}</h3>
+                <h3>{{ __('backend.currencies') }}</h3>
                 <small>
                     <a href="{{ route('adminHome') }}">{{ __('backend.home') }}</a> /
-                    <a href="javascript:void">{{ __('backend.cities') }}</a>
+                    <a href="javascript:void">{{ __('backend.currencies') }}</a>
                 </small>
                 <br>
                 <div>
                     <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                        href="{{route("admin.city.list")}}">All Cities</a>
+                        href="{{route("admin.country.list")}}">{{ __('backend.all') }} {{ __('backend.currencies') }}</a>
                     <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.city.list")."?status=1"}}">Active Cities</a>
+                       href="{{route("admin.country.list")."?status=1"}}">{{ __('backend.active') }} {{ __('backend.currencies') }}</a>
                     <a class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.city.list")."?status=0"}}">Unactive Cities</a>
+                       href="{{route("admin.country.list")."?status=0"}}">{{ __('backend.unactive') }} {{ __('backend.currencies') }}</a>
                 </div>
             </div>
 
@@ -66,9 +66,10 @@
 {{--                                    <input id="checkAll" type="checkbox"><i></i>--}}
 {{--                                </label>--}}
 {{--                            </th>--}}
-                            <th class="text-center width50">{{ __('backend.image') }}</th>
+
                             <th class="text-center width50">{{ __('backend.name') }}</th>
-                            <th class="text-center width50">{{ __('backend.country') }}</th>
+                            <th class="text-center width50">{{ __('backend.exchangeRate') }}</th>
+                            <th class="text-center width50">{{ __('backend.base') }}</th>
                             <th class="text-center width50">{{ __('backend.status') }}</th>
                             <th class="text-center width200">{{ __('backend.options') }}</th>
                         </tr>
@@ -94,15 +95,17 @@
 {{--                                        {!! Form::hidden('row_ids[]',$Banner->id, array('class' => 'form-control row_no')) !!}--}}
 {{--                                    </label>--}}
 {{--                                </td>--}}
-                                <td class="text-center">
-                                 <img src=" {{$Banner->image}}" style="height: 50px">
-                                </td>
+
                                 <td class="text-center">
                                     <label>{{$Banner->name}}</label>
                                </td>
                                 <td class="text-center">
-                                    <label>{{$Banner->country->name}}</label>
+                                    <label>{{$Banner->exchange_rate}}</label>
                                 </td>
+                                <td class="text-center">
+                                    <label>{{$Banner->base}}</label>
+                                </td>
+
                                 <td class="text-center">
                                     <i class="fa {{ ($Banner->status==1) ? "fa-check text-success":"fa-times text-danger" }} inline"></i>
                                 </td>
@@ -128,7 +131,7 @@
                             </tr>
                             <div id="u-{{$Banner->id}}" class="modal fade" data-backdrop="true">
                                 <div class="modal-dialog" id="animate">
-                                    <form method="post" action="{{route('admin.city.update',$Banner->id)}}" enctype="multipart/form-data">
+                                    <form method="post" action="{{route('admin.currency.update',$Banner->id)}}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -146,34 +149,25 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <label>English Name</label><br>
+                                                            <label>Exchange Rate</label><br>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input name="english_name" value="{{$Banner->english_name}}" required class="form-control"><br>
+                                                            <input name="exchange_rate" value="{{$Banner->exchange_rate}}" required class="form-control"><br>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <label>Image</label><br>
+                                                            <label>base</label><br>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input name="file"  type="file"  class="form-control"><br>
+                                                           <select class="form-control"  name="base">
+                                                               <option value="{{$Banner->base}}">{{$Banner->base}}</option>
+                                                               <option value="NO">NO</option>
+                                                               <option value="Yes">Yes</option>
+                                                           </select>
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label>Country</label><br>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <select name="country_id" class="form-control js-select-basic-single" required>
 
-                                                                <option value="{{$Banner->country->id}}">{{$Banner->country->name}}</option>
-                                                                @foreach(\App\Helpers\Helper::Countries() as $c)
-                                                                    <option value="{{$c->id}}">{{$c->name}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
                                                     <br>
                                                     <div class="row">
                                                         <div class="col-md-4">
@@ -222,7 +216,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn dark-white p-x-md"
                                                     data-dismiss="modal">{{ __('backend.no') }}</button>
-                                            <a href="{{ route("admin.city.delete",["id"=>$Banner->id]) }}"
+                                            <a href="{{ route("admin.country.delete",["id"=>$Banner->id]) }}"
                                                class="btn danger p-x-md">{{ __('backend.yes') }}</a>
                                         </div>
                                     </div><!-- /.modal-content -->
@@ -297,9 +291,9 @@
 
         </div>
     </div>
-    <div id="m-add" class="modal fade" data-backdrop="true">
+    <div id="m-add-currency" class="modal fade" data-backdrop="true">
         <div class="modal-dialog" id="animate">
-            <form method="post" action="{{route('admin.city.create')}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('admin.currency.create')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -317,30 +311,20 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label>English Name</label><br>
+                                    <label>Exchange Rate</label><br>
                                 </div>
                                 <div class="col-md-8">
-                                    <input name="english_name" required class="form-control"><br>
+                                    <input name="exchange_rate"  required class="form-control"><br>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label>Image</label><br>
+                                    <label>base</label><br>
                                 </div>
                                 <div class="col-md-8">
-                                    <input name="file"  type="file" required class="form-control"><br>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label>Country</label><br>
-                                </div>
-                                <div class="col-md-8">
-                                    <select name="country_id" class="form-control js-select-basic-single" style="width: 100px" required>
-
-                                       @foreach(\App\Helpers\Helper::Countries() as $c)
-                                            <option value="{{$c->id}}">{{$c->name}}</option>
-                                        @endforeach
+                                    <select class="form-control"  name="base">
+                                        <option value="NO">NO</option>
+                                        <option value="Yes">Yes</option>
                                     </select>
                                 </div>
                             </div>

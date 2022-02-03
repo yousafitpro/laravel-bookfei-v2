@@ -23,6 +23,7 @@ class CityController extends Controller
             $list=$list->where('status',$request->status);
         }
         $list=$list->with('country')->get();
+
    foreach ($list as $l)
    {
        $l->image=asset("core/public/".$l->image);
