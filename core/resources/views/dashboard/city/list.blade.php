@@ -1,6 +1,7 @@
 @extends('dashboard.layouts.master')
 @section('title', $title)
 @section('content')
+
     <div class="padding">
         <div class="box">
             <div class="box-header dker">
@@ -154,7 +155,7 @@
                                                             <label>Country</label><br>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <select name="country_id" class="form-control" required>
+                                                            <select name="country_id" class="form-control js-select-basic-single" required>
                                                                 <?php
                                                                 $country=App\Helpers\Helper::get_Country($Banner->id);
                                                                 ?>
@@ -327,7 +328,7 @@
                                     <label>Country</label><br>
                                 </div>
                                 <div class="col-md-8">
-                                    <select name="country_id" class="form-control" required>
+                                    <select name="country_id" class="form-control js-select-basic-single" style="width: 100px" required>
 
                                        @foreach(\App\Helpers\Helper::Countries() as $c)
                                             <option value="{{$c->id}}">{{$c->title_en}}</option>
@@ -363,7 +364,9 @@
 
 @endsection
 @push("after-scripts")
+
     <script type="text/javascript">
+
         $("#checkAll").click(function () {
             $('input:checkbox').not(this).prop('checked', this.checked);
         });
