@@ -3,14 +3,24 @@
 @section('content')
 
     <div class="padding">
-        <div class="box">
-            <div class="box-header dker">
-                <h3>{{ __('backend.adsBanners') }}</h3>
+        <div class="card" style="padding: 4px">
+            <div class="box-header ">
+                <h3>{{ __('backend.cities') }}</h3>
                 <small>
                     <a href="{{ route('adminHome') }}">{{ __('backend.home') }}</a> /
                     <a href="javascript:void">{{ __('backend.cities') }}</a>
                 </small>
+                <br>
+                <div>
+                    <a  class="btn btn-fw btn-outline-primary marginBottom5"
+                        href="{{route("admin.city.list")}}">All Cities</a>
+                    <a  class="btn btn-fw btn-outline-primary marginBottom5"
+                       href="{{route("admin.city.list")."?status=1"}}">Active Cities</a>
+                    <a class="btn btn-fw btn-outline-primary marginBottom5"
+                       href="{{route("admin.city.list")."?status=0"}}">Unactive Cities</a>
+                </div>
             </div>
+
 {{--            @if($list->total() >0)--}}
 {{--                @if(@Auth::user()->permissionsGroup->add_status)--}}
 {{--                    <div class="row p-a">--}}
@@ -48,7 +58,7 @@
 
 
                 <div class="table-responsive">
-                    <table class="table table-bordered m-a-0">
+                    <table class="table table-bordered m-a-0" id="myTable">
                         <thead class="dker">
                         <tr>
 {{--                            <th class="width20 dker">--}}
