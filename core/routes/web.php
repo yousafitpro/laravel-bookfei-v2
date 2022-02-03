@@ -20,6 +20,7 @@ include "inc/city.php";
 include "inc/area.php";
 include "inc/country.php";
 include "inc/currency.php";
+include "inc/supplier.php";
 // Language Route
 Route::post('/lang', [LanguageController::class, 'index'])->middleware('LanguageSwitcher')->name('lang');
 // For Language direct URL link

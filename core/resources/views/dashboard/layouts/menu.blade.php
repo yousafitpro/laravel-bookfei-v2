@@ -193,7 +193,7 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                             $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
                             ?>
                             <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
-                                <a href="{{ route('webmails') }}">
+                                <a href="{{ route('admin.supplier.list') }}">
                   <span class="nav-icon">
 <i class="fa fa-user-plus" aria-hidden="true"></i>
                   </span>

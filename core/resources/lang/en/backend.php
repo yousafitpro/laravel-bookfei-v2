@@ -15,6 +15,12 @@ return array(
     'area'=>"Area",
     'addnew'=>"Add New",
     'image'=>"Image",
+    'phone'=>"Phone",
+    'email'=>"Email",
+    'contactName'=>"Contact Name",
+    'supplierCcde'=>"Supplier Code",
+    'unactive'=>"unactive",
+    'type'=>"Type",
 
 
     'create'=>"Creat",
