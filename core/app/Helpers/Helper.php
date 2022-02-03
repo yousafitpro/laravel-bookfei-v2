@@ -45,7 +45,16 @@ class Helper
         }
         return @$_Loader_Web_Settings->$var;
     }
-
+    static function Countries()
+    {
+        $list=Country::all();
+        return $list;
+    }
+    static function get_Country($id)
+    {
+        $res=Country::find($id);
+        return $res;
+    }
     // Get Events Alerts
     static function eventsAlerts()
     {

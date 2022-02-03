@@ -143,55 +143,63 @@
                             $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                             ?>
                             @if(@Auth::user()->permissionsGroup->add_status)
-                                @foreach($GeneralWebmasterSections as $headerWebmasterSection)
-                                    @if(in_array($headerWebmasterSection->id,$data_sections_arr))
-                                        <?php
-                                        if ($headerWebmasterSection->$mnu_title_var != "") {
-                                            $GeneralWebmasterSectionTitle = $headerWebmasterSection->$mnu_title_var;
-                                        } else {
-                                            $GeneralWebmasterSectionTitle = $headerWebmasterSection->$mnu_title_var2;
-                                        }
-                                        $LiIcon = "&#xe2c8;";
-                                        if ($headerWebmasterSection->type == 3) {
-                                            $LiIcon = "&#xe050;";
-                                        }
-                                        if ($headerWebmasterSection->type == 2) {
-                                            $LiIcon = "&#xe63a;";
-                                        }
-                                        if ($headerWebmasterSection->type == 1) {
-                                            $LiIcon = "&#xe251;";
-                                        }
-                                        if ($headerWebmasterSection->type == 0) {
-                                            $LiIcon = "&#xe2c8;";
-                                        }
-                                        if ($headerWebmasterSection->id == 1) {
-                                            $LiIcon = "&#xe3e8;";
-                                        }
-                                        if ($headerWebmasterSection->id == 7) {
-                                            $LiIcon = "&#xe02f;";
-                                        }
-                                        if ($headerWebmasterSection->id == 2) {
-                                            $LiIcon = "&#xe540;";
-                                        }
-                                        if ($headerWebmasterSection->id == 3) {
-                                            $LiIcon = "&#xe307;";
-                                        }
-                                        if ($headerWebmasterSection->id == 8) {
-                                            $LiIcon = "&#xe8f6;";
-                                        }
+{{--                                @foreach($GeneralWebmasterSections as $headerWebmasterSection)--}}
+{{--                                    @if(in_array($headerWebmasterSection->id,$data_sections_arr))--}}
+{{--                                        <?php--}}
+{{--                                        if ($headerWebmasterSection->$mnu_title_var != "") {--}}
+{{--                                            $GeneralWebmasterSectionTitle = $headerWebmasterSection->$mnu_title_var;--}}
+{{--                                        } else {--}}
+{{--                                            $GeneralWebmasterSectionTitle = $headerWebmasterSection->$mnu_title_var2;--}}
+{{--                                        }--}}
+{{--                                        $LiIcon = "&#xe2c8;";--}}
+{{--                                        if ($headerWebmasterSection->type == 3) {--}}
+{{--                                            $LiIcon = "&#xe050;";--}}
+{{--                                        }--}}
+{{--                                        if ($headerWebmasterSection->type == 2) {--}}
+{{--                                            $LiIcon = "&#xe63a;";--}}
+{{--                                        }--}}
+{{--                                        if ($headerWebmasterSection->type == 1) {--}}
+{{--                                            $LiIcon = "&#xe251;";--}}
+{{--                                        }--}}
+{{--                                        if ($headerWebmasterSection->type == 0) {--}}
+{{--                                            $LiIcon = "&#xe2c8;";--}}
+{{--                                        }--}}
+{{--                                        if ($headerWebmasterSection->id == 1) {--}}
+{{--                                            $LiIcon = "&#xe3e8;";--}}
+{{--                                        }--}}
+{{--                                        if ($headerWebmasterSection->id == 7) {--}}
+{{--                                            $LiIcon = "&#xe02f;";--}}
+{{--                                        }--}}
+{{--                                        if ($headerWebmasterSection->id == 2) {--}}
+{{--                                            $LiIcon = "&#xe540;";--}}
+{{--                                        }--}}
+{{--                                        if ($headerWebmasterSection->id == 3) {--}}
+{{--                                            $LiIcon = "&#xe307;";--}}
+{{--                                        }--}}
+{{--                                        if ($headerWebmasterSection->id == 8) {--}}
+{{--                                            $LiIcon = "&#xe8f6;";--}}
+{{--                                        }--}}
 
-                                        ?>
-                                        <a class="dropdown-item"
-                                           href="{{route("topicsCreate",$headerWebmasterSection->id)}}"><span><i
-                                                    class="material-icons">{!! $LiIcon !!}</i> &nbsp;{!! $GeneralWebmasterSectionTitle !!}</span></a>
-                                    @endif
-                                @endforeach
+{{--                                        ?>--}}
+{{--                                        <a class="dropdown-item"--}}
+{{--                                           href="{{route("topicsCreate",$headerWebmasterSection->id)}}"><span><i--}}
+{{--                                                    class="material-icons">{!! $LiIcon !!}</i> &nbsp;{!! $GeneralWebmasterSectionTitle !!}</span></a>--}}
+{{--                                    @endif--}}
+{{--                                @endforeach--}}
 
                                 @if(@Auth::user()->permissionsGroup->banners_status)
                                     <a class="dropdown-item" href="{{route("Banners")}}"><i class="material-icons">
                                             &#xe433;</i>
                                         &nbsp;{{ __('backend.adsBanners') }}</a>
                                 @endif
+                                    @if(@Auth::user()->permissionsGroup->banners_status)
+                                        <a class="dropdown-item" href="{{route("Banners")}}"
+                                           data-toggle="modal"
+                                           data-target="#m-add" ui-toggle-class="bounce"
+                                           ui-target="#animate"
+                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            &nbsp;{{ __('backend.addCity') }}</a>
+                                    @endif
                                 <div class="dropdown-divider"></div>
 
                                 @if(Helper::GeneralWebmasterSettings("newsletter_status"))

@@ -193,6 +193,90 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                             $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
                             ?>
                             <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                <a href="{{ route('admin.city.list') }}">
+                  <span class="nav-icon">
+                    <i class="material-icons">&#xe156;</i>
+                  </span>
+                                    <span class="nav-text">{{ __('backend.cities') }}
+                                        @if( @$webmailsNewCount >0)
+                                            <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
+                                        @endif
+                                    </span>
+
+                                </a>
+                            </li>
+                        @endif
+                    @endif
+                    @if(Helper::GeneralWebmasterSettings("inbox_status"))
+                        @if(@Auth::user()->permissionsGroup->inbox_status)
+                            <?php
+                            $currentFolder = "webmails"; // Put folder name here
+                            $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
+                            ?>
+                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                <a href="{{ route('webmails') }}">
+                  <span class="nav-icon">
+     <i class="fa fa-area-chart" aria-hidden="true"></i>
+                  </span>
+                                    <span class="nav-text">{{ __('backend.areas') }}
+                                        @if( @$webmailsNewCount >0)
+                                            <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
+                                        @endif
+                                    </span>
+
+                                </a>
+                            </li>
+                        @endif
+                    @endif
+                    @if(Helper::GeneralWebmasterSettings("inbox_status"))
+                        @if(@Auth::user()->permissionsGroup->inbox_status)
+                            <?php
+                            $currentFolder = "webmails"; // Put folder name here
+                            $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
+                            ?>
+                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                <a href="{{ route('webmails') }}">
+                  <span class="nav-icon">
+                <i class="fa fa-usd" aria-hidden="true"></i>
+                  </span>
+                                    <span class="nav-text">{{ __('backend.currencies') }}
+                                        @if( @$webmailsNewCount >0)
+                                            <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
+                                        @endif
+                                    </span>
+
+                                </a>
+                            </li>
+                        @endif
+                    @endif
+                    @if(Helper::GeneralWebmasterSettings("inbox_status"))
+                        @if(@Auth::user()->permissionsGroup->inbox_status)
+                            <?php
+                            $currentFolder = "webmails"; // Put folder name here
+                            $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
+                            ?>
+                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                <a href="{{ route('webmails') }}">
+                  <span class="nav-icon">
+<i class="fa fa-user-plus" aria-hidden="true"></i>
+                  </span>
+                                    <span class="nav-text">{{ __('backend.suppliers') }}
+                                        @if( @$webmailsNewCount >0)
+                                            <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
+                                        @endif
+                                    </span>
+
+                                </a>
+                            </li>
+                        @endif
+                    @endif
+                    @if(Helper::GeneralWebmasterSettings("inbox_status"))
+                        @if(@Auth::user()->permissionsGroup->inbox_status)
+                            <?php
+                            $currentFolder = "webmails"; // Put folder name here
+                            $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
+                            ?>
+                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
                                 <a href="{{ route('webmails') }}">
                   <span class="nav-icon">
                     <i class="material-icons">&#xe156;</i>
@@ -231,103 +315,103 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                     <?php
                     $data_sections_arr = explode(",", Auth::user()->permissionsGroup->data_sections);
                     ?>
-                    @foreach($GeneralWebmasterSections as $GeneralWebmasterSection)
-                        @if(in_array($GeneralWebmasterSection->id,$data_sections_arr))
-                            <?php
-                            if ($GeneralWebmasterSection->$mnu_title_var != "") {
-                                $GeneralWebmasterSectionTitle = $GeneralWebmasterSection->$mnu_title_var;
-                            } else {
-                                $GeneralWebmasterSectionTitle = $GeneralWebmasterSection->$mnu_title_var2;
-                            }
+{{--                    @foreach($GeneralWebmasterSections as $GeneralWebmasterSection)--}}
+{{--                        @if(in_array($GeneralWebmasterSection->id,$data_sections_arr))--}}
+{{--                            <?php--}}
+{{--                            if ($GeneralWebmasterSection->$mnu_title_var != "") {--}}
+{{--                                $GeneralWebmasterSectionTitle = $GeneralWebmasterSection->$mnu_title_var;--}}
+{{--                            } else {--}}
+{{--                                $GeneralWebmasterSectionTitle = $GeneralWebmasterSection->$mnu_title_var2;--}}
+{{--                            }--}}
 
-                            $LiIcon = "&#xe2c8;";
-                            if ($GeneralWebmasterSection->type == 3) {
-                                $LiIcon = "&#xe050;";
-                            }
-                            if ($GeneralWebmasterSection->type == 2) {
-                                $LiIcon = "&#xe63a;";
-                            }
-                            if ($GeneralWebmasterSection->type == 1) {
-                                $LiIcon = "&#xe251;";
-                            }
-                            if ($GeneralWebmasterSection->type == 0) {
-                                $LiIcon = "&#xe2c8;";
-                            }
-                            if ($GeneralWebmasterSection->id == 1) {
-                                $LiIcon = "&#xe3e8;";
-                            }
-                            if ($GeneralWebmasterSection->id == 7) {
-                                $LiIcon = "&#xe02f;";
-                            }
-                            if ($GeneralWebmasterSection->id == 2) {
-                                $LiIcon = "&#xe540;";
-                            }
-                            if ($GeneralWebmasterSection->id == 3) {
-                                $LiIcon = "&#xe307;";
-                            }
-                            if ($GeneralWebmasterSection->id == 8) {
-                                $LiIcon = "&#xe8f6;";
-                            }
+{{--                            $LiIcon = "&#xe2c8;";--}}
+{{--                            if ($GeneralWebmasterSection->type == 3) {--}}
+{{--                                $LiIcon = "&#xe050;";--}}
+{{--                            }--}}
+{{--                            if ($GeneralWebmasterSection->type == 2) {--}}
+{{--                                $LiIcon = "&#xe63a;";--}}
+{{--                            }--}}
+{{--                            if ($GeneralWebmasterSection->type == 1) {--}}
+{{--                                $LiIcon = "&#xe251;";--}}
+{{--                            }--}}
+{{--                            if ($GeneralWebmasterSection->type == 0) {--}}
+{{--                                $LiIcon = "&#xe2c8;";--}}
+{{--                            }--}}
+{{--                            if ($GeneralWebmasterSection->id == 1) {--}}
+{{--                                $LiIcon = "&#xe3e8;";--}}
+{{--                            }--}}
+{{--                            if ($GeneralWebmasterSection->id == 7) {--}}
+{{--                                $LiIcon = "&#xe02f;";--}}
+{{--                            }--}}
+{{--                            if ($GeneralWebmasterSection->id == 2) {--}}
+{{--                                $LiIcon = "&#xe540;";--}}
+{{--                            }--}}
+{{--                            if ($GeneralWebmasterSection->id == 3) {--}}
+{{--                                $LiIcon = "&#xe307;";--}}
+{{--                            }--}}
+{{--                            if ($GeneralWebmasterSection->id == 8) {--}}
+{{--                                $LiIcon = "&#xe8f6;";--}}
+{{--                            }--}}
 
-                            // get 9 char after root url to check if is "webmaster"
-                            $is_webmaster = substr($urlAfterRoot, 0, 9);
-                            ?>
-                            @if($GeneralWebmasterSection->sections_status > 0 && @Auth::user()->permissionsGroup->view_status == 0)
-                                <li {{ ($GeneralWebmasterSection->id == @$WebmasterSection->id && $is_webmaster != "webmaster") ? 'class=active' : '' }}>
-                                    <a>
-                  <span class="nav-caret">
-                    <i class="fa fa-caret-down"></i>
-                  </span>
-                                        <span class="nav-icon">
-                    <i class="material-icons">{!! $LiIcon !!}</i>
-                  </span>
-                                        <span
-                                            class="nav-text">{!! $GeneralWebmasterSectionTitle !!}</span>
-                                    </a>
-                                    <ul class="nav-sub">
-                                        @if($GeneralWebmasterSection->sections_status > 0)
+{{--                            // get 9 char after root url to check if is "webmaster"--}}
+{{--                            $is_webmaster = substr($urlAfterRoot, 0, 9);--}}
+{{--                            ?>--}}
+{{--                            @if($GeneralWebmasterSection->sections_status > 0 && @Auth::user()->permissionsGroup->view_status == 0)--}}
+{{--                                <li {{ ($GeneralWebmasterSection->id == @$WebmasterSection->id && $is_webmaster != "webmaster") ? 'class=active' : '' }}>--}}
+{{--                                    <a>--}}
+{{--                  <span class="nav-caret">--}}
+{{--                    <i class="fa fa-caret-down"></i>--}}
+{{--                  </span>--}}
+{{--                                        <span class="nav-icon">--}}
+{{--                    <i class="material-icons">{!! $LiIcon !!}</i>--}}
+{{--                  </span>--}}
+{{--                                        <span--}}
+{{--                                            class="nav-text">{!! $GeneralWebmasterSectionTitle !!}</span>--}}
+{{--                                    </a>--}}
+{{--                                    <ul class="nav-sub">--}}
+{{--                                        @if($GeneralWebmasterSection->sections_status > 0)--}}
 
-                                            <?php
-                                            $currentFolder = "categories"; // Put folder name here
-                                            $PathCurrentFolder = substr($urlAfterRoot,
-                                                (strlen($GeneralWebmasterSection->id) + 1), strlen($currentFolder));
-                                            ?>
-                                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }} >
-                                                <a href="{{ route('categories',$GeneralWebmasterSection->id) }}">
-                                                    <span
-                                                        class="nav-text">{{ __('backend.sectionsOf') }} {{ $GeneralWebmasterSectionTitle }}</span>
-                                                </a>
-                                            </li>
-                                        @endif
+{{--                                            <?php--}}
+{{--                                            $currentFolder = "categories"; // Put folder name here--}}
+{{--                                            $PathCurrentFolder = substr($urlAfterRoot,--}}
+{{--                                                (strlen($GeneralWebmasterSection->id) + 1), strlen($currentFolder));--}}
+{{--                                            ?>--}}
+{{--                                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }} >--}}
+{{--                                                <a href="{{ route('categories',$GeneralWebmasterSection->id) }}">--}}
+{{--                                                    <span--}}
+{{--                                                        class="nav-text">{{ __('backend.sectionsOf') }} {{ $GeneralWebmasterSectionTitle }}</span>--}}
+{{--                                                </a>--}}
+{{--                                            </li>--}}
+{{--                                        @endif--}}
 
-                                        <?php
-                                        $currentFolder = "topics"; // Put folder name here
-                                        $PathCurrentFolder = substr($urlAfterRoot,
-                                            (strlen($GeneralWebmasterSection->id) + 1), strlen($currentFolder));
-                                        ?>
-                                        <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }} >
-                                            <a href="{{ route('topics',$GeneralWebmasterSection->id) }}">
-                                                <span
-                                                    class="nav-text">{!! $GeneralWebmasterSectionTitle !!}</span>
-                                            </a>
-                                        </li>
+{{--                                        <?php--}}
+{{--                                        $currentFolder = "topics"; // Put folder name here--}}
+{{--                                        $PathCurrentFolder = substr($urlAfterRoot,--}}
+{{--                                            (strlen($GeneralWebmasterSection->id) + 1), strlen($currentFolder));--}}
+{{--                                        ?>--}}
+{{--                                        <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }} >--}}
+{{--                                            <a href="{{ route('topics',$GeneralWebmasterSection->id) }}">--}}
+{{--                                                <span--}}
+{{--                                                    class="nav-text">{!! $GeneralWebmasterSectionTitle !!}</span>--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
 
-                                    </ul>
-                                </li>
+{{--                                    </ul>--}}
+{{--                                </li>--}}
 
-                            @else
-                                <li {{ ($GeneralWebmasterSection->id== @$WebmasterSection->id) ? 'class=active' : '' }}>
-                                    <a href="{{ route('topics',$GeneralWebmasterSection->id) }}">
-                  <span class="nav-icon">
-                    <i class="material-icons">{!! $LiIcon !!}</i>
-                  </span>
-                                        <span
-                                            class="nav-text">{!! $GeneralWebmasterSectionTitle !!}</span>
-                                    </a>
-                                </li>
-                            @endif
-                        @endif
-                    @endforeach
+{{--                            @else--}}
+{{--                                <li {{ ($GeneralWebmasterSection->id== @$WebmasterSection->id) ? 'class=active' : '' }}>--}}
+{{--                                    <a href="{{ route('topics',$GeneralWebmasterSection->id) }}">--}}
+{{--                  <span class="nav-icon">--}}
+{{--                    <i class="material-icons">{!! $LiIcon !!}</i>--}}
+{{--                  </span>--}}
+{{--                                        <span--}}
+{{--                                            class="nav-text">{!! $GeneralWebmasterSectionTitle !!}</span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            @endif--}}
+{{--                        @endif--}}
+{{--                    @endforeach--}}
 
 
 

@@ -1,6 +1,17 @@
 <?php
 
 return array(
+    'cities' => 'Cities',
+    'suppliers' => 'Suppliers',
+    'currencies' => 'Currencies',
+    'areas' => 'Areas',
+    'addCity'=>"Add city",
+    'name'=>"Name",
+    'addnew'=>"Add New",
+    'image'=>"Image",
+
+
+    'create'=>"Creat",
     'home' => 'Home',
     'main' => 'Main',
     'siteData' => 'Site Data',
