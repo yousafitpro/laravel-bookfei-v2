@@ -192,7 +192,7 @@
                                             &#xe433;</i>
                                         &nbsp;{{ __('backend.adsBanners') }}</a>
                                 @endif
-                                    @if(@Auth::user()->permissionsGroup->banners_status)
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.supplier.list')
                                         <a class="dropdown-item" href="javascript:void"
                                            data-toggle="modal"
                                            data-target="#m-add-supplier" ui-toggle-class="bounce"
@@ -200,7 +200,7 @@
                                         ><i class="fa fa-plus-circle" aria-hidden="true"></i>
                                             &nbsp;{{ __('backend.addSupplier') }}</a>
                                     @endif
-                                    @if(@Auth::user()->permissionsGroup->banners_status)
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.city.list')
                                         <a class="dropdown-item" href="javascript:void"
                                            data-toggle="modal"
                                            data-target="#m-add" ui-toggle-class="bounce"
@@ -208,7 +208,7 @@
                                         ><i class="fa fa-plus-circle" aria-hidden="true"></i>
                                             &nbsp;{{ __('backend.addCity') }}</a>
                                     @endif
-                                    @if(@Auth::user()->permissionsGroup->banners_status)
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.area.list')
                                         <a class="dropdown-item" href="javascript:void"
                                            data-toggle="modal"
                                            data-target="#m-add-area" ui-toggle-class="bounce"
@@ -216,7 +216,7 @@
                                         ><i class="fa fa-plus-circle" aria-hidden="true"></i>
                                             &nbsp;{{ __('backend.addArea') }}</a>
                                     @endif
-                                    @if(@Auth::user()->permissionsGroup->banners_status)
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.country.list')
                                         <a class="dropdown-item" href="javascript:void"
                                            data-toggle="modal"
                                            data-target="#m-add-country" ui-toggle-class="bounce"
@@ -224,7 +224,7 @@
                                         ><i class="fa fa-plus-circle" aria-hidden="true"></i>
                                             &nbsp;{{ __('backend.addCountry') }}</a>
                                     @endif
-                                    @if(@Auth::user()->permissionsGroup->banners_status)
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.currency.list')
                                         <a class="dropdown-item" href="javascript:void"
                                            data-toggle="modal"
                                            data-target="#m-add-currency" ui-toggle-class="bounce"
