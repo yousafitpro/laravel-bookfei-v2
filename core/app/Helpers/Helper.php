@@ -47,12 +47,12 @@ class Helper
     }
     static function Countries()
     {
-        $list=Country::all();
+        $list=Country::where('deleted_at',null)->get();
         return $list;
     }
     static function Areas()
     {
-        $list=App\Models\area::all();
+        $list=App\Models\area::where('deleted_at',null)->get();
         return $list;
     }
     static function get_Area($id)
@@ -60,6 +60,37 @@ class Helper
         $res=App\Models\area::find($id);
         return $res;
     }
+    static function Currencies()
+    {
+        $list=App\Models\currency::where('deleted_at',null)->get();
+        return $list;
+    }
+    static function get_Currency($id)
+    {
+        $res=App\Models\currency::find($id);
+        return $res;
+    }
+    static function Suppliers()
+    {
+        $list=App\Models\supplier::where('deleted_at',null)->get();
+        return $list;
+    }
+    static function get_Supplier($id)
+    {
+        $res=App\Models\supplier::find($id);
+        return $res;
+    }
+    static function Tours()
+    {
+        $list=App\Models\tour::where('deleted_at',null)->get();
+        return $list;
+    }
+    static function get_Tour($id)
+    {
+        $res=App\Models\tour::find($id);
+        return $res;
+    }
+
     // Get Events Alerts
     static function eventsAlerts()
     {

@@ -43,6 +43,12 @@
 <script src="//cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
 <script>
 
+//    $(".mytoggle").on("click",function (e)
+//    {
+//        // $('#'+e.target.id).prop("checked", true);
+//        // alert($('#'+e.target.id).attr("checked"))
+//
+//    })
     $(document).ready(function() {
 
             $('#myTable').DataTable();

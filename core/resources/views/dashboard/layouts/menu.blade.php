@@ -185,7 +185,27 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                             </li>
                         @endif
                     @endif
+                    @if(Helper::GeneralWebmasterSettings("inbox_status"))
+                        @if(@Auth::user()->permissionsGroup->inbox_status)
+                            <?php
+                            $currentFolder = "webmails"; // Put folder name here
+                            $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
+                            ?>
+                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                <a href="{{ route('admin.tour.list') }}">
+                  <span class="nav-icon">
+<i class="fa fa-user-plus" aria-hidden="true"></i>
+                  </span>
+                                    <span class="nav-text">{{ __('backend.tours') }}
+                                        @if( @$webmailsNewCount >0)
+                                            <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
+                                        @endif
+                                    </span>
 
+                                </a>
+                            </li>
+                        @endif
+                    @endif
                     @if(Helper::GeneralWebmasterSettings("inbox_status"))
                         @if(@Auth::user()->permissionsGroup->inbox_status)
                             <?php

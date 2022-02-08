@@ -216,6 +216,14 @@
                                         ><i class="fa fa-plus-circle" aria-hidden="true"></i>
                                             &nbsp;{{ __('backend.addArea') }}</a>
                                     @endif
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.tour.list')
+                                        <a class="dropdown-item" href="javascript:void"
+                                           data-toggle="modal"
+                                           data-target="#m-add-tour" ui-toggle-class="bounce"
+                                           ui-target="#animate"
+                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            &nbsp;{{ __('backend.addTour') }}</a>
+                                    @endif
                                     @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.country.list')
                                         <a class="dropdown-item" href="javascript:void"
                                            data-toggle="modal"
