@@ -17,7 +17,7 @@ class CreateAirlinesTable extends Migration
             $table->id();
             $table->string("name");
             $table->string("english_name");
-            $table->bigInteger("logo");
+            $table->string("logo");
             $table->string("code");
             $table->string("status");
             $table->softDeletes();

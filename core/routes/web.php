@@ -22,6 +22,10 @@ include "inc/country.php";
 include "inc/currency.php";
 include "inc/supplier.php";
 include "inc/tour.php";
+include "inc/tourRateTable.php";
+include "inc/airline.php";
+include "inc/airport.php";
+include "inc/cruiseline.php";
 // Language Route
 Route::post('/lang', [LanguageController::class, 'index'])->middleware('LanguageSwitcher')->name('lang');
 // For Language direct URL link
