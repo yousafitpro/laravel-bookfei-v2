@@ -34,6 +34,17 @@ return array(
     'unactive'=>"unactive",
     'type'=>"Type",
     'updateDone'=>"Changes Successfully Saved.",
+    'table'=>"Table",
+    'tourRateTable'=>"Tour Rate Table",
+    'tourRateTables'=>"Tour Rate Tables",
+    'addTourTable'=>"Append Tour Table",
+    'quickSetup'=>"Quick Setup",
+    'apply'=>"Apply",
+    'statusUpdated'=>"Status Updated",
+
+
+
+
 
     'create'=>"Creat",
     'home' => 'Home',

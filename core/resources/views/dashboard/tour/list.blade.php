@@ -122,6 +122,14 @@
                                             </small>
                                         </a>
                                     @endif
+                                        @if(@Auth::user()->permissionsGroup->delete_status)
+                                            <a href="{{route('admin.tourRate.list',$Banner->id)}}">
+                                                <button class="btn btn-sm warning" >
+                                                    <small><i class="fa fa-table" aria-hidden="true"></i> {{ __('backend.table') }}
+                                                    </small>
+                                                </button>
+                                            </a>
+                                        @endif
                                     @if(@Auth::user()->permissionsGroup->delete_status)
                                         <button class="btn btn-sm warning" data-toggle="modal"
                                                 data-target="#m-{{ $Banner->id }}" ui-toggle-class="bounce"
@@ -469,7 +477,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn dark-white p-x-md"
                                                     data-dismiss="modal">{{ __('backend.no') }}</button>
-                                            <a href="{{ route("admin.area.delete",["id"=>$Banner->id]) }}"
+                                            <a href="{{ route("admin.tour.delete",["id"=>$Banner->id]) }}"
                                                class="btn danger p-x-md">{{ __('backend.yes') }}</a>
                                         </div>
                                     </div><!-- /.modal-content -->

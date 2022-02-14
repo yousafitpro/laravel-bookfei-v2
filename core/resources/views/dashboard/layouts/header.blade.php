@@ -256,6 +256,15 @@
                                         ><i class="fa fa-plus-circle" aria-hidden="true"></i>
                                             &nbsp;{{ __('backend.addAirline') }}</a>
                                     @endif
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.tourRate.list')
+                                        <a class="dropdown-item" href="javascript:void"
+                                           data-toggle="modal"
+                                           data-target="#m-add-tourRate" ui-toggle-class="bounce"
+                                           ui-target="#animate"
+                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            &nbsp;{{ __('backend.addTourTable') }}</a>
+                                    @endif
+
                                     @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.airport.list')
                                         <a class="dropdown-item" href="javascript:void"
                                            data-toggle="modal"

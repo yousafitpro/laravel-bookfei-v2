@@ -17,6 +17,7 @@ class CreateTourRatesTable extends Migration
             $table->id();
             $table->bigInteger("tour_id");
             $table->string("day")->default('0');
+            $table->string("date")->default('0');
             $table->string("adult")->default('0');
             $table->string("child")->default('0');
             $table->string("toddler")->default('0');
