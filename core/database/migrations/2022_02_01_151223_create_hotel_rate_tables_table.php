@@ -15,19 +15,25 @@ class CreateHotelRateTablesTable extends Migration
     {
         Schema::create('hotel_rate_tables', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->default('');
-            $table->string('code')->default('');
-            $table->bigInteger('hotel_id');
-            $table->bigInteger('currency_id');
-            $table->bigInteger('supplier_id');
-            $table->timestamp('effective_start_date');
-            $table->timestamp('effective_end_date');
-            $table->string('early_bird')->default('0');
-            $table->string('bonus_nights')->default('0');
-            $table->integer('early_bird_before_check_in_date')->default(0);
-            $table->integer('buy_x_nights')->default(0);
-            $table->integer('get_y_free_nights')->default(0);
-            $table->string('status')->default('0');
+            $table->string("name");
+            $table->string("code");
+            $table->bigInteger("hotel_id");
+            $table->bigInteger("currency_id");
+            $table->bigInteger("supplier_id");
+            $table->date("effective_start_date");
+            $table->date("effective_end_date");
+            $table->boolean("early_bird")->default(false);
+            $table->boolean("bonus_night")->default(false);
+            $table->string("bonus_night_type");
+            $table->string("min_nights")->default(1);
+            $table->string("max_nights")->default(1);
+            $table->string("x_nights")->default(1);
+            $table->string("y_nights")->default(1);
+            $table->integer("early_bird_before_departure_date")->default(0);
+
+
+
+            $table->string("status")->default('1');
             $table->softDeletes();
             $table->timestamps();
         });

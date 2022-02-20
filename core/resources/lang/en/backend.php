@@ -41,9 +41,21 @@ return array(
     'quickSetup'=>"Quick Setup",
     'apply'=>"Apply",
     'statusUpdated'=>"Status Updated",
-
-
-
+    'hotels'=>"Hotels",
+    'rooms'=>"Rooms",
+    'default_guest'=>"Default Guest",
+    'max_guest'=>"Max Guest",
+    'rateTable'=>"Rate Table",
+    'cruiseLine'=>"Cruise Line",
+    'ship'=>"Ship",
+    'ships'=>"Ships",
+    'hotel'=>"Hotel",
+    'hotels'=>"Hotels",
+    'tables'=>"Tables",
+    'addRateTable'=>"add Rate Table",
+    'addHotel'=>"Add Hotel",
+    'addCruiseShip'=>"Add Cruise Ship",
+    'backend.cruiseLines'=>"Cruise Lines",
 
 
     'create'=>"Creat",

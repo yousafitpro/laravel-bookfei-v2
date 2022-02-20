@@ -26,6 +26,10 @@ include "inc/tourRateTable.php";
 include "inc/airline.php";
 include "inc/airport.php";
 include "inc/cruiseline.php";
+include "inc/hotel.php";
+include "inc/hotelRoom.php";
+include "inc/hotel-rate-table.php";
+include "inc/cruise_ship.php";
 // Language Route
 Route::post('/lang', [LanguageController::class, 'index'])->middleware('LanguageSwitcher')->name('lang');
 // For Language direct URL link

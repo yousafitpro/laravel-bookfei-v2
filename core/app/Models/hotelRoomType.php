@@ -8,4 +8,30 @@ use Illuminate\Database\Eloquent\Model;
 class hotelRoomType extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'hotel_id',
+        'name',
+        'status',
+        'default_guest',
+        'max_guest',
+        'max_extra_bed',
+        'max_extra_no_bed',
+
+        'adult_age_start',
+        'adult_age_end',
+
+        'is_adult',
+        'child_age_start',
+        'child_age_end',
+        'is_child',
+        'toddler_age_start',
+        'toddler_age_end',
+        'is_toddler',
+        'infant_age_start',
+        'infant_age_end',
+        'is_infant',
+        'senior_age_start',
+        'senior_age_end',
+        'is_senior',
+    ];
 }

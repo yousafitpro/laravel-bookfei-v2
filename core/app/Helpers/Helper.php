@@ -60,6 +60,16 @@ class Helper
         $res=App\Models\area::find($id);
         return $res;
     }
+    static function Cities()
+    {
+        $list=App\Models\city::where('deleted_at',null)->get();
+        return $list;
+    }
+    static function get_City($id)
+    {
+        $res=App\Models\city::find($id);
+        return $res;
+    }
     static function Currencies()
     {
         $list=App\Models\currency::where('deleted_at',null)->get();

@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class tour extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'code',
+    protected $fillable = [
+        'name',
+        'code',
         'currency_id',
         'supplier_id',
         'effective_start_date',

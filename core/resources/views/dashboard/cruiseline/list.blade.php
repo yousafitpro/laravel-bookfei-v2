@@ -104,6 +104,14 @@
                                     <i class="fa {{ ($Banner->status==1) ? "fa-check text-success":"fa-times text-danger" }} inline"></i>
                                 </td>
                                 <td class="text-center">
+                                    @if(@Auth::user()->permissionsGroup->delete_status)
+                                        <a href="{{route('admin.cruiseShip.list',$Banner->id)}}">
+                                            <button class="btn btn-sm warning" >
+                                                <small><i class="fa fa-table" aria-hidden="true"></i> {{ __('backend.ships') }}
+                                                </small>
+                                            </button>
+                                        </a>
+                                    @endif
                                     @if(@Auth::user()->permissionsGroup->edit_status)
                                         <a class="btn btn-sm success" data-toggle="modal"
                                            data-target="#u-{{ $Banner->id }}" ui-toggle-class="bounce"

@@ -256,15 +256,23 @@
                                         ><i class="fa fa-plus-circle" aria-hidden="true"></i>
                                             &nbsp;{{ __('backend.addAirline') }}</a>
                                     @endif
-                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.tourRate.list')
+{{--                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.tourRate.list')--}}
+{{--                                        <a class="dropdown-item" href="javascript:void"--}}
+{{--                                           data-toggle="modal"--}}
+{{--                                           data-target="#m-add-tourRate" ui-toggle-class="bounce"--}}
+{{--                                           ui-target="#animate"--}}
+{{--                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>--}}
+{{--                                            &nbsp;{{ __('backend.addTourTable') }}</a>--}}
+{{--                                    @endif--}}
+
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.cruiseShip.list')
                                         <a class="dropdown-item" href="javascript:void"
                                            data-toggle="modal"
-                                           data-target="#m-add-tourRate" ui-toggle-class="bounce"
+                                           data-target="#m-add-cruise-ship" ui-toggle-class="bounce"
                                            ui-target="#animate"
                                         ><i class="fa fa-plus-circle" aria-hidden="true"></i>
-                                            &nbsp;{{ __('backend.addTourTable') }}</a>
+                                            &nbsp;{{ __('backend.addCruiseShip') }}</a>
                                     @endif
-
                                     @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.airport.list')
                                         <a class="dropdown-item" href="javascript:void"
                                            data-toggle="modal"
@@ -272,6 +280,30 @@
                                            ui-target="#animate"
                                         ><i class="fa fa-plus-circle" aria-hidden="true"></i>
                                             &nbsp;{{ __('backend.addAirport') }}</a>
+                                    @endif
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.hotelRateTable.list')
+                                        <a class="dropdown-item" href="javascript:void"
+                                           data-toggle="modal"
+                                           data-target="#m-add-hotel-rate-table" ui-toggle-class="bounce"
+                                           ui-target="#animate"
+                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            &nbsp;{{ __('backend.addRateTable') }}</a>
+                                    @endif
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.hotel.list')
+                                        <a class="dropdown-item" href="javascript:void"
+                                           data-toggle="modal"
+                                           data-target="#m-add-hotel" ui-toggle-class="bounce"
+                                           ui-target="#animate"
+                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            &nbsp;{{ __('backend.addHotel') }}</a>
+                                    @endif
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.hotelRoom.list')
+                                        <a class="dropdown-item" href="javascript:void"
+                                           data-toggle="modal"
+                                           data-target="#m-add-room" ui-toggle-class="bounce"
+                                           ui-target="#animate"
+                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            &nbsp;{{ __('backend.addRoom') }}</a>
                                     @endif
 
                                     <div class="dropdown-divider"></div>

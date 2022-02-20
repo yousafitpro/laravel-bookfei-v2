@@ -7,7 +7,151 @@
     }
 </style>
     <div class="padding">
+        <div class="box box-body">
+            <form method="post" action="{{route('admin.tourRate.create')}}" enctype="multipart/form-data">
+                @csrf
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="container-fluid">
+                            <input style="display: none" name="tour_id" value="{{$tour->id}}">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <small>From</small><br>
+                                    <input type="date" name="start" value="{{$tour->effective_start_date}}" readonly class="form-control input-sm">
+                                </div>
+                                <div class="col-md-4">
+                                    <small>To</small><br>
+                                    <input type="date" name="end" value="{{$tour->effective_end_date}}" readonly class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <small>Date</small><br>
+                                    <input type="date" name="date" required   class="form-control">
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                        <input class="pull-left" value="SUN" name="day" type="radio" style="zoom: 1.4">
+                                        <small class="pull-left " style="margin-left: 5px">SUN</small>
+                                    </div>
+                                    <div class="pull-left" style="margin-left: 10px">
+                                        <input class="pull-left" value="MON" name="day" type="radio" style="zoom: 1.4">
+                                        <small class="pull-left " style="margin-left: 5px">MON</small>
+                                    </div>
+                                    <div class="pull-left" style="margin-left: 10px">
+                                        <input class="pull-left" value="TUE" name="day" type="radio" style="zoom: 1.4">
+                                        <small class="pull-left " style="margin-left: 5px">TUE</small>
+                                    </div>
+                                    <div class="pull-left" style="margin-left: 10px">
+                                        <input class="pull-left" value="WED" name="day" type="radio" style="zoom: 1.4">
+                                        <small class="pull-left " style="margin-left: 5px">WED</small>
+                                    </div>
+                                    <div class="pull-left" style="margin-left: 10px">
+                                        <input class="pull-left" value="THU" name="day" type="radio" style="zoom: 1.4">
+                                        <small class="pull-left " style="margin-left: 5px">THU</small>
+                                    </div>
+                                    <div class="pull-left" style="margin-left: 10px">
+                                        <input class="pull-left" value="FRI" name="day" type="radio" style="zoom: 1.4">
+                                        <small class="pull-left " style="margin-left: 5px">FRI</small>
+                                    </div>
+                                    <div class="pull-left" style="margin-left: 10px">
+                                        <input class="pull-left" value="SAT" name="day" type="radio" style="zoom: 1.4">
+                                        <small class="pull-left " style="margin-left: 5px">SAT</small>
+                                    </div>
+                                </div>
+
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <small>Tax Percentage % </small><br>
+                                    <input type="number" name="tax_percentage" required value="0"  class="form-control input-sm">
+                                </div>
+                                <div class="col-md-4">
+                                    <small>Tax Amount</small><br>
+                                    <input type="number" name="tax_amount" required value="0"  class="form-control">
+                                </div>
+
+                                <div class="col-md-4"></div>
+                            </div><br><br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pull-left">
+                                        <input class="pull-left" value="SUN" name="is_disabled" type="checkbox" style="zoom: 1.4">
+                                        <small class="pull-left " style="margin-left: 5px">Disabled</small>
+                                    </div>
+                                    <br><br>
+                                    <button type="submit" style="width: 200px"
+                                            class="btn primary p-x-md">{{ __('backend.apply') }}</button>
+                                </div>
+                            </div><br>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+
+                        <div class="container-fluid">
+                            <h6 class="text-center">Price</h6><br>
+                            <div class="row">
+                                <div class="col-md-6"><input readonly value="Age Group" class="form-control"></div>
+                                <div class="col-md-6"><input readonly   value="Price" class="form-control"></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6"><input readonly value="Adult {{$tour->adult_age_start}}-{{$tour->adult_age_end}}" class="form-control"></div>
+                                <div class="col-md-6"><input {{$tour->is_adult=="0"?"readonly":""}}  type="number" required value="0" name="adult" class="form-control"></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6"><input readonly value="Child {{$tour->child_age_start}}-{{$tour->child_age_end}}" class="form-control"></div>
+                                <div class="col-md-6"><input {{$tour->is_child=="0"?"readonly":""}}  type="number" required value="0" name="child" class="form-control"></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6"><input readonly value="Toddler {{$tour->toddler_age_start}}-{{$tour->toddler_age_end}}" class="form-control"></div>
+                                <div class="col-md-6"><input  type="number" {{$tour->toddler=="0"?"readonly":""}} required value="0" name="toddler" class="form-control"></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6"><input readonly value="Infant {{$tour->infant_age_start}}-{{$tour->infant_age_end}}" class="form-control"></div>
+                                <div class="col-md-6"><input  type="number" {{$tour->is_infant=="0"?"readonly":""}} required value="0" name="infant" class="form-control"></div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6"><input readonly value="Senior {{$tour->senior_age_start}}-{{$tour->senior_age_end}}" class="form-control"></div>
+                                <div class="col-md-6"><input  type="number" {{$tour->is_senior=="0"?"readonly":""}} required value="0" name="senior" class="form-control"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </form>
+
+        </div>
         <div class="table-responsive box box-body">
+            <div class="container-fluid">
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-left">
+                            @if($sdate)
+                            <small>{{$sdate}}</small>
+                            @else
+                                <small>All Records</small>
+                                @endif
+                        </div>
+                        <div class="pull-right">
+                            <form method="post">
+                                @csrf
+                                <input value="{{$sdate?$sdate:''}}" onchange="this.form.submit()" type="month" name="month">
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
             @foreach($list as $l)
                 <div class="">
                     <table class="table ">

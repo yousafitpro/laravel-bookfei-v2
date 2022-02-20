@@ -33,16 +33,26 @@ class TourRateController extends Controller
     }
     public function list(Request $request,$id)
     {
+
+        $list=tourRate::where("deleted_at",null);
         $tour=tour::find($id);
-        $list=tourRate::where("deleted_at",null)->where('tour_id',$id);
+        if ($request->has("month"))
+        {
+
+            $date=Carbon::parse($request->month);
+            $list=$list->whereMonth('created_at',$date->month)->whereYear('created_at',$date->year);
+
+        }
+        $list=$list->where('tour_id',$id);
         if($request->has("status"))
         {
             $list=$list->where('status',$request->status);
         }
         $list=$list->get();
+
         $list=$list->chunk(7);
 
-        return view('dashboard.tourRate.list')->with(['list'=>$list,'tour'=>$tour]);
+        return view('dashboard.tourRate.list')->with(['list'=>$list,'tour'=>$tour,'sdate'=>$request->month]);
     }
     public function delete($id)
     {

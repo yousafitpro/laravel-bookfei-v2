@@ -18,10 +18,31 @@ class CreateCruiseShipsTable extends Migration
             $table->string("name")->nullable();
             $table->string("english_name")->nullable();
             $table->bigInteger('cruise_line_id');
-            $table->integer('phone');
-            $table->integer('email');
-            $table->string('age_group');
+            $table->string('phone');
+            $table->string('email');
             $table->longText('images');
+
+            $table->string("adult_age_start")->nullable();
+            $table->string("adult_age_end")->nullable();
+            $table->string("is_adult")->default('1');
+
+            $table->string("child_age_start")->nullable();
+            $table->string("child_age_end")->nullable();
+            $table->string("is_child")->default('1');
+
+            $table->string("toddler_age_start")->nullable();
+            $table->string("toddler_age_end")->nullable();
+            $table->string("is_toddler")->default('1');
+
+            $table->string("infant_age_start")->nullable();
+            $table->string("infant_age_end")->nullable();
+            $table->string("is_infant")->default('1');
+
+            $table->string("senior_age_start")->nullable();
+            $table->string("senior_age_end")->nullable();
+            $table->string("is_senior")->default('1');
+
+
             $table->string('status')->default('0');
             $table->softDeletes();
             $table->timestamps();
