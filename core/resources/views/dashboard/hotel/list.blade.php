@@ -168,7 +168,7 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label>English Name</label><br>
-                                                            <input name="english_name" value="{{$Banner->english_name}}" required class="form-control">
+                                                            <input name="english_name" value="{{$Banner->english_name}}" class="form-control">
                                                         </div>
                                                     </div>
 
@@ -185,17 +185,17 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label>Address</label><br>
-                                                            <input name="address" value="{{$Banner->address}}" required class="form-control">
+                                                            <input name="address" value="{{$Banner->address}}"  class="form-control">
                                                         </div>
                                                     </div><br>
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <label>Contact tel</label><br>
-                                                            <input name="phone" value="{{$Banner->phone}}"   required class="form-control">
+                                                            <input name="phone" value="{{$Banner->phone}}"    class="form-control">
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label>Email</label><br>
-                                                            <input name="email" value="{{$Banner->email}}"  required type="email" class="form-control">
+                                                            <input name="email" value="{{$Banner->email}}"  type="email" class="form-control">
                                                         </div>
                                                     </div>
 
@@ -546,7 +546,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label>English Name</label><br>
-                                    <input name="english_name" value="{{old('code')}}" required class="form-control">
+                                    <input name="english_name" value="{{old('english_name')}}" class="form-control">
                                 </div>
                             </div>
 
@@ -562,17 +562,17 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label>Address</label><br>
-                                    <input name="address" value="{{old('code')}}" required class="form-control">
+                                    <input name="address" value="{{old('code')}}"  class="form-control">
                                 </div>
                             </div><br>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Contact tel</label><br>
-                                    <input name="phone"   required class="form-control">
+                                    <input name="phone"    class="form-control">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Email</label><br>
-                                    <input name="email"  required type="email" class="form-control">
+                                    <input name="email"   type="email" class="form-control">
                                 </div>
                             </div>
 
@@ -604,7 +604,7 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="adult_age_start" value="{{old('adult_age_start')}}" class="form-control">
+                                                                        <select id="adult_age_start" name="adult_age_start" onchange="inputChange('adult_age_start')" value="{{old('adult_age_start')}}" class="form-control">
                                                                             <?php
                                                                             $i=1
                                                                             ?>
@@ -616,7 +616,7 @@
                                                                             @endwhile
                                                                         </select>                                          </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="adult_age_end" class="form-control" value="{{old('adult_age_end')}}">
+                                                                        <select id="adult_age_end" name="adult_age_end" onchange="inputChange('adult_age_end')" class="form-control" value="{{old('adult_age_end')}}">
                                                                             <?php
                                                                             $i=1
                                                                             ?>
@@ -638,7 +638,7 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="child_age_start" value="{{old('child_age_start')}}" class="form-control">
+                                                                        <select id="child_age_start" onchange="inputChange('child_age_start')" name="child_age_start" value="{{old('child_age_start')}}" class="form-control">
                                                                             <?php
                                                                             $i=1
                                                                             ?>
@@ -650,7 +650,7 @@
                                                                             @endwhile
                                                                         </select>                                          </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="child_age_end" value="{{old('child_age_end')}}" class="form-control">
+                                                                        <select id="child_age_end" onchange="inputChange('child_age_end')" name="child_age_end" value="{{old('child_age_end')}}" class="form-control">
                                                                             <?php
                                                                             $i=1
                                                                             ?>
@@ -672,7 +672,7 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="toddler_age_start" value="{{old('toddler_age_start')}}" class="form-control">
+                                                                        <select id="toddler_age_start" onchange="inputChange('toddler_age_start')" name="toddler_age_start" value="{{old('toddler_age_start')}}" class="form-control">
                                                                             <?php
                                                                             $i=1
                                                                             ?>
@@ -684,7 +684,7 @@
                                                                             @endwhile
                                                                         </select>                                          </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="toddler_age_end" value="{{old('toddler_age_end')}}" class="form-control">
+                                                                        <select id="toddler_age_end" onchange="inputChange('toddler_age_end')" name="toddler_age_end" value="{{old('toddler_age_end')}}" class="form-control">
                                                                             <?php
                                                                             $i=1
                                                                             ?>
@@ -706,9 +706,9 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="infant_age_start" value="{{old('infant_age_start')}}" class="form-control">
+                                                                        <select onchange="inputChange('infant_age_start')" id="infant_age_start" name="infant_age_start" value="{{old('infant_age_start')}}" class="form-control">
                                                                             <?php
-                                                                            $i=1
+                                                                            $i=1;
                                                                             ?>
                                                                             @while($i!=100)
                                                                                 <option value="{{$i}}">{{$i}}</option>
@@ -718,9 +718,9 @@
                                                                             @endwhile
                                                                         </select>                                          </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="infant_age_end" value="{{old('infant_age_end')}}" class="form-control">
+                                                                        <select id="infant_age_end" onchange="inputChange('infant_age_end')" name="infant_age_end" value="{{old('infant_age_end')}}" class="form-control">
                                                                             <?php
-                                                                            $i=1
+                                                                            $i=1;
                                                                             ?>
                                                                             @while($i!=100)
                                                                                 <option value="{{$i}}">{{$i}}</option>
@@ -740,7 +740,7 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="senior_age_start" value="{{old('senior_age_start')}}" class="form-control">
+                                                                        <select id="senior_age_start" onchange="inputChange('senior_age_start')" name="senior_age_start" value="{{old('senior_age_start')}}" class="form-control">
                                                                             <?php
                                                                             $i=1
                                                                             ?>
@@ -752,7 +752,7 @@
                                                                             @endwhile
                                                                         </select>                                          </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="senior_age_end" value="{{old('senior_age_end')}}" class="form-control">
+                                                                        <select id="senior_age_end" name="senior_age_end" onchange="inputChange('senior_age_end')" value="{{old('senior_age_end')}}" class="form-control">
                                                                             <?php
                                                                             $i=1
                                                                             ?>
@@ -793,10 +793,106 @@
             </form>
         </div>
     </div>
-
+<div id="sampleList">
+    <?php
+    $i=1
+    ?>
+    @while($i!=100)
+        <option value="{{$i}}">{{$i}}</option>
+        <?php
+        $i=$i+1;
+        ?>
+    @endwhile
+</div>
 @endsection
 @push("after-scripts")
+<script>
+function inputChange(item)
+{
 
+
+//infant
+
+    if (item=='infant_age_end')
+    {
+
+        var me="#infant_age_end";
+        if(($(me).val()<$("#infant_age_start").val()))
+        {
+
+            alert("please Select Correctly")
+            $(me).empty()
+            $(me).append($("#sampleList").html())
+        }
+        return;
+
+    }
+// toddler
+
+    if (item=='toddler_age_end')
+    {
+
+        var me="#toddler_age_end";
+        if(($(me).val()<$("#toddler_age_start").val()))
+        {
+
+            alert("please Select Correctly")
+            $(me).empty()
+            $(me).append($("#sampleList").html())
+        }
+        return;
+
+    }
+
+    // child
+    if (item=='child_age_end')
+    {
+
+        var me="#child_age_end";
+        if(($(me).val()<$("#child_age_start").val()))
+        {
+
+            alert("please Select Correctly")
+            $(me).empty()
+            $(me).append($("#sampleList").html())
+        }
+        return;
+
+    }
+
+    // adult
+    if (item=='adult_age_end')
+    {
+        var me="#adult_age_end";
+        if(($(me).val()<$("#adult_age_start").val()))
+        {
+
+            alert("please Select Correctly")
+            $(me).empty()
+            $(me).append($("#sampleList").html())
+        }
+        return;
+
+    }
+
+    // senior
+
+    if (item=='senior_age_end')
+    {
+        var me="#senior_age_end";
+        if(($(me).val()<$("#senior_age_start").val()))
+        {
+
+            alert("please Select Correctly")
+            $(me).empty()
+            $(me).append($("#sampleList").html())
+        }
+        return;
+
+    }
+
+}
+</script>
     <script type="text/javascript">
 
         $("#checkAll").click(function () {

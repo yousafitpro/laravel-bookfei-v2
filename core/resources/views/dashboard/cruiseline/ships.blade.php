@@ -121,9 +121,17 @@
                                         </a>
                                     @endif
                                         @if(@Auth::user()->permissionsGroup->delete_status)
-                                            <a href="{{route('admin.tourRate.list',$Banner->id)}}">
+                                            <a href="{{route('admin.cruiseRateTable.list',$Banner->id)}}">
                                                 <button class="btn btn-sm warning" >
                                                     <small><i class="fa fa-table" aria-hidden="true"></i> {{ __('backend.table') }}
+                                                    </small>
+                                                </button>
+                                            </a>
+
+
+                                            <a href="{{route('admin.shipRoom.list',$Banner->id)}}">
+                                                <button class="btn btn-sm warning" >
+                                                    <small><i class="fa fa-home" aria-hidden="true"></i> {{ __('backend.rooms') }}
                                                     </small>
                                                 </button>
                                             </a>
@@ -438,61 +446,7 @@
 
                 </div>
 
-{{--                <footer class="dker p-a">--}}
-{{--                    <div class="row">--}}
-{{--                        <div class="col-sm-3 hidden-xs">--}}
-{{--                            <!-- .modal -->--}}
-{{--                            <div id="m-all" class="modal fade" data-backdrop="true">--}}
-{{--                                <div class="modal-dialog" id="animate">--}}
-{{--                                    <div class="modal-content">--}}
-{{--                                        <div class="modal-header">--}}
-{{--                                            <h5 class="modal-title">{{ __('backend.confirmation') }}</h5>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="modal-body text-center p-lg">--}}
-{{--                                            <p>--}}
-{{--                                                {{ __('backend.confirmationDeleteMsg') }}--}}
-{{--                                            </p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="modal-footer">--}}
-{{--                                            <button type="button" class="btn dark-white p-x-md"--}}
-{{--                                                    data-dismiss="modal">{{ __('backend.no') }}</button>--}}
-{{--                                            <button type="submit"--}}
-{{--                                                    class="btn danger p-x-md">{{ __('backend.yes') }}</button>--}}
-{{--                                        </div>--}}
-{{--                                    </div><!-- /.modal-content -->--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <!-- / .modal -->--}}
-{{--                            @if(@Auth::user()->permissionsGroup->edit_status)--}}
-{{--                                <select name="action" id="action" class="form-control c-select w-sm inline v-middle"--}}
-{{--                                        required>--}}
-{{--                                    <option value="">{{ __('backend.bulkAction') }}</option>--}}
-{{--                                    <option value="order">{{ __('backend.saveOrder') }}</option>--}}
-{{--                                    <option value="activate">{{ __('backend.activeSelected') }}</option>--}}
-{{--                                    <option value="block">{{ __('backend.blockSelected') }}</option>--}}
-{{--                                    @if(@Auth::user()->permissionsGroup->delete_status)--}}
-{{--                                        <option value="delete">{{ __('backend.deleteSelected') }}</option>--}}
-{{--                                    @endif--}}
-{{--                                </select>--}}
-{{--                                <button type="submit" id="submit_all"--}}
-{{--                                        class="btn white">{{ __('backend.apply') }}</button>--}}
-{{--                                <button id="submit_show_msg" class="btn white displayNone" data-toggle="modal"--}}
-{{--                                        data-target="#m-all" ui-toggle-class="bounce"--}}
-{{--                                        ui-target="#animate">{{ __('backend.apply') }}--}}
-{{--                                </button>--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
 
-{{--                        <div class="col-sm-3 text-center">--}}
-{{--                            <small class="text-muted inline m-t-sm m-b-sm">{{ __('backend.showing') }} {{ $Banners->firstItem() }}--}}
-{{--                                -{{ $Banners->lastItem() }} {{ __('backend.of') }}--}}
-{{--                                <strong>{{ $Banners->total()  }}</strong> {{ __('backend.records') }}</small>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-sm-6 text-right text-center-xs">--}}
-{{--                            {!! $Banners->links() !!}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </footer>--}}
 
 
         </div>

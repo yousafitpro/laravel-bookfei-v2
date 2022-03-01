@@ -8,7 +8,8 @@
                 <h3>{{ __('backend.table') }}</h3>
                 <small>
                     <a href="{{ route('adminHome') }}">{{ __('backend.home') }}</a> /
-                    <a href="{{route('admin.hotel.list')}}">{{ __('backend.hotels') }}</a> /
+                    <a href="{{route('admin.cruiseLine.list')}}">{{ __('backend.cruiseLines') }}</a> /
+                    <a href="{{route('admin.cruiseShip.list',$id)}}">{{ __('backend.ships') }}</a> /
                     <a href="javascript:void">{{ __('backend.table') }}</a>
                 </small>
                 <br>
@@ -104,21 +105,21 @@
                         </tr>
                         <div id="u-{{$Banner->id}}" class="modal fade" data-backdrop="true">
                             <div class="modal-dialog modal-lg" id="animate">
-                                <form method="post" action="{{route('admin.hotelRateTable.update',$Banner->id)}}" enctype="multipart/form-data">
+                                <form method="post" action="{{route('admin.cruiseRateTable.update',$Banner->id)}}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">{{ __('backend.addnew') }}</h5>
+                                            <h5 class="modal-title">{{ __('backend.update') }}</h5>
                                         </div>
                                         <div class="modal-body  p-lg">
                                             <div class="container-fluid">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <label>Rate Table Name</label><br>
+                                                        <label>Table Name</label><br>
                                                         <input name="name" value="{{$Banner->name}}" required class="form-control">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label>Rate Table Code</label><br>
+                                                        <label>Table Code</label><br>
                                                         <input name="code" value="{{$Banner->code}}" required class="form-control">
                                                     </div>
                                                 </div>
@@ -194,13 +195,9 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
 
-                                                        <label>Bonus Night Type</label><br>
-                                                        <option value="{{$Banner->bonus_night_type}}">{{$Banner->bonus_night_type}}</option>
+                                                        <label>Nights</label><br>
+                                                        <input name="nights" value="{{$Banner->nights}}" required type="number" class="form-control">
 
-                                                        <select class="form-control" name="bonus_night_type" required>
-                                                            <option value="Accumulated / Once">Accumulated / Once</option>
-
-                                                        </select>
 
                                                     </div>
                                                     <div class="col-md-2">
@@ -267,7 +264,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn dark-white p-x-md"
                                                 data-dismiss="modal">{{ __('backend.no') }}</button>
-                                        <a href="{{ route("admin.hotelRateTable.delete",["id"=>$Banner->id]) }}"
+                                        <a href="{{ route("admin.cruiseRateTable.delete",["id"=>$Banner->id]) }}"
                                            class="btn danger p-x-md">{{ __('backend.yes') }}</a>
                                     </div>
                                 </div><!-- /.modal-content -->
@@ -287,10 +284,12 @@
 
         </div>
     </div>
-    <div id="m-add-hotel-rate-table" class="modal fade" data-backdrop="true">
+    <div id="m-add-cruise-rate-table" class="modal fade" data-backdrop="true">
         <div class="modal-dialog modal-lg" id="animate">
-            <form method="post" action="{{route('admin.hotelRateTable.create')}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('admin.cruiseRateTable.create')}}" enctype="multipart/form-data">
                 @csrf
+                <input name="cruise_ship_id" type="number" hidden value="{{$id}}" required class="form-control">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">{{ __('backend.addnew') }}</h5>
@@ -299,11 +298,11 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Rate Table Name</label><br>
+                                    <label>Table Name</label><br>
                                     <input name="name" value="{{old('name')}}" required class="form-control">
                                 </div>
                                 <div class="col-md-6">
-                                    <label>Rate Table Code</label><br>
+                                    <label>Table Code</label><br>
                                     <input name="code" value="{{old('code')}}" required class="form-control">
                                 </div>
                             </div>
@@ -374,22 +373,20 @@
                             <div class="row">
                                 <div class="col-md-4">
 
-                                    <label>Bonus Night Type</label><br>
-                                    <select class="form-control" name="bonus_night_type" required>
-                                        <option value="Accumulated / Once">Accumulated / Once</option>
+                                    <label>Nights</label><br>
 
-                                    </select>
+                                    <input name="nights" value="{{old('nights')}}" required type="number" class="form-control">
 
                                 </div>
                                 <div class="col-md-2">
                                 </div>
                                 <div class="col-md-3">
                                     <label>Buy X Nights</label><br>
-                                    <input name="x_nights" value="{{old('early_bird_before_departure_date')}}" required type="number" class="form-control">
+                                    <input name="x_nights" value="{{old('x_nights')}}" required type="number" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <label>Get Y Free Nights</label><br>
-                                    <input name="y_nights" value="{{old('early_bird_before_departure_date')}}" required type="number" class="form-control">
+                                    <input name="y_nights" value="{{old('y_nights')}}" required type="number" class="form-control">
                                 </div>
 
                             </div>
@@ -403,11 +400,11 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>Minimum Nights</label><br>
-                                    <input name="min_nights" value="{{old('early_bird_before_departure_date')}}" required type="number" class="form-control">
+                                    <input name="min_nights" value="{{old('min_nights')}}" required type="number" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <label>Maximum Nights</label><br>
-                                    <input name="max_nights" value="{{old('early_bird_before_departure_date')}}" required type="number" class="form-control">
+                                    <input name="max_nights" value="{{old('max_nights')}}" required type="number" class="form-control">
                                 </div>
 
                             </div>

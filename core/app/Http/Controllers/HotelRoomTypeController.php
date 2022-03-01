@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
 use App\Models\area;
+use App\Models\hotel;
 use App\Models\hotelRoomType;
 use App\Models\tour;
 use Carbon\Carbon;
@@ -26,7 +27,7 @@ class HotelRoomTypeController extends Controller
             $list=$list->where('status',$request->status);
         }
         $list=$list->get();
-        return view('dashboard.hotel-room.list')->with(['list'=>$list,'id'=>$id]);
+        return view('dashboard.hotel-room.list')->with(['list'=>$list,'id'=>$id,'NBanner'=>hotel::find($id)]);
     }
     public function delete($id)
     {

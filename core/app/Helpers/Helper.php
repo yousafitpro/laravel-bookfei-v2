@@ -45,6 +45,11 @@ class Helper
         }
         return @$_Loader_Web_Settings->$var;
     }
+    static function get_Hotel($id)
+    {
+        $list=App\Models\hotel::find($id);
+        return $list;
+    }
     static function Countries()
     {
         $list=Country::where('deleted_at',null)->get();

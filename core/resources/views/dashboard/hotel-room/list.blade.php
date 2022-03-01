@@ -224,32 +224,11 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="adult_age_start" value="{{$Banner->adult_age_start}}" class="form-control">
-                                                                            <option value="{{$Banner->adult_age_start}}">{{$Banner->adult_age_start}}</option>
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
+                                                                        <input class="form-control" readonly style="background-color: white" name="adult_age_start" value="{{$Banner->adult_age_start}}">
+                                                                    </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="adult_age_end" class="form-control" value="{{old('adult_age_end')}}">
-                                                                            <option value="{{$Banner->adult_age_end}}">{{$Banner->adult_age_end}}</option>
-
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
+                                                                        <input class="form-control" readonly style="background-color: white" name="adult_age_end" value="{{$Banner->adult_age_end}}">
+                                                                    </div>
                                                                     <div class="col-md-3 myflex" style="padding: 10px" >
 
                                                                         <input name="is_adult" {{$Banner->is_adult=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
@@ -261,33 +240,11 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="child_age_start" value="{{old('child_age_start')}}" class="form-control">
-                                                                            <option value="{{$Banner->child_age_start}}">{{$Banner->child_age_start}}</option>
-
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
+                                                                        <input class="form-control" readonly style="background-color: white" name="child_age_start" value="{{$Banner->child_age_start}}">
+                                                                    </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="child_age_end" value="{{old('child_age_end')}}" class="form-control">
-                                                                            <option value="{{$Banner->child_age_end}}">{{$Banner->child_age_end}}</option>
-
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
+                                                                        <input class="form-control" readonly style="background-color: white" name="child_age_end" value="{{$Banner->child_age_end}}">
+                                                                    </div>
                                                                     <div class="col-md-3 myflex" style="padding: 10px" >
 
                                                                         <input name="is_child" {{$Banner->is_child=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
@@ -299,33 +256,11 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="toddler_age_start" value="{{old('toddler_age_start')}}" class="form-control">
-                                                                            <option value="{{$Banner->toddler_age_start}}">{{$Banner->toddler_age_start}}</option>
-
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
+                                                                        <input class="form-control" readonly style="background-color: white" name="toddler_age_start" value="{{$Banner->toddler_age_start}}">
+                                                                    </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="toddler_age_end" value="{{old('toddler_age_end')}}" class="form-control">
-                                                                            <option value="{{$Banner->toddler_age_end}}">{{$Banner->toddler_age_end}}</option>
-
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
+                                                                        <input class="form-control" readonly style="background-color: white" name="toddler_age_end" value="{{$Banner->toddler_age_end}}">
+                                                                    </div>
                                                                     <div class="col-md-3 myflex" style="padding: 10px" >
 
                                                                         <input name="is_toddler" {{$Banner->is_toddler=="1"?'checked':""}}  type="checkbox" style="zoom:1.6">
@@ -337,33 +272,11 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="infant_age_start" value="{{old('infant_age_start')}}" class="form-control">
-                                                                            <option value="{{$Banner->infant_age_start}}">{{$Banner->infant_age_start}}</option>
-
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
+                                                                        <input class="form-control" readonly style="background-color: white" name="infant_age_start" value="{{$Banner->infant_age_start}}">
+                                                                    </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="infant_age_end" value="{{old('infant_age_end')}}" class="form-control">
-                                                                            <option value="{{$Banner->infant_age_end}}">{{$Banner->infant_age_end}}</option>
-
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
+                                                                        <input class="form-control" readonly style="background-color: white" name="infant_age_end" value="{{$Banner->infant_age_end}}">
+                                                                    </div>
                                                                     <div class="col-md-3 myflex" style="padding: 10px" >
 
                                                                         <input name="is_infant" {{$Banner->is_infant=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
@@ -375,33 +288,12 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="senior_age_start" value="{{old('senior_age_start')}}" class="form-control">
-                                                                            <option value="{{$Banner->senior_age_start}}">{{$Banner->senior_age_start}}</option>
-
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
+                                                                        <input class="form-control" name="senior_age_start" readonly style="background-color: white" value="{{$Banner->senior_age_start}}">
+                                                                    </div>
                                                                     <div class="col-md-3">
-                                                                        <select name="senior_age_end" value="{{old('senior_age_end')}}" class="form-control">
-                                                                            <option value="{{$Banner->senior_age_end}}">{{$Banner->senior_age_end}}</option>
+                                                                        <input class="form-control" name="senior_age_end" readonly style="background-color: white" value="{{$Banner->senior_age_end}}">
 
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
+                                                                    </div>
                                                                     <div class="col-md-3 myflex" style="padding: 10px" >
 
                                                                         <input id="12w"  name="is_senior" {{$Banner->is_senior=="1"?'checked':""}}  class="mytoggle"  type="checkbox" style="zoom:1.6">
@@ -483,6 +375,13 @@
                     <div class="modal-body  p-lg">
                         <div class="container-fluid">
                             <div class="row">
+                                <div class="col-md-6 offset-md-3 text-center">
+                                    <h3>{{\App\Helpers\Helper::get_Hotel($id)->name}}</h3>
+                                    <hr>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label>Room Name</label><br>
                                     <input name="name" value="{{old('name')}}" required class="form-control">
@@ -532,195 +431,118 @@
                             <div class="row">
                                 <div class="col-md-9 box box-body ">
 
-                                                <div class="container-fluid">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <input class="form-control" readonly value="Age Group">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input class="form-control" readonly value="Age From">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input class="form-control" readonly value="Age To">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input class="form-control" readonly value="Status">
-                                                        </div>
-                                                    </div>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly value="Age Group">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly value="Age From">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly value="Age To">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly value="Status">
+                                            </div>
+                                        </div>
 
-                                                                <div class="row " style="margin-top: 5px">
-                                                                    <div class="col-md-3">
-                                                                        <input class="form-control" readonly value="Adult">
+                                        <div class="row " style="margin-top: 5px">
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly value="Adult">
 
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <select name="adult_age_start" value="{{old('adult_age_start')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
-                                                                    <div class="col-md-3">
-                                                                        <select name="adult_age_end" class="form-control" value="{{old('adult_age_end')}}">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
-                                                                    <div class="col-md-3 myflex" style="padding: 10px" >
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly  style="background-color: white" name="adult_age_start" value="{{$NBanner->adult_age_start}}">
 
-                                                                        <input name="is_adult"  checked  type="checkbox" style="zoom:1.6">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row" style="margin-top: 5px">
-                                                                    <div class="col-md-3">
-                                                                        <input class="form-control" readonly value="Child">
+                                            </div>
 
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <select name="child_age_start" value="{{old('child_age_start')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
-                                                                    <div class="col-md-3">
-                                                                        <select name="child_age_end" value="{{old('child_age_end')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
-                                                                    <div class="col-md-3 myflex" style="padding: 10px" >
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly style="background-color: white" name="adult_age_end" value="{{$NBanner->adult_age_end}}">
 
-                                                                        <input name="is_child" checked   type="checkbox" style="zoom:1.6">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row" style="margin-top: 5px">
-                                                                    <div class="col-md-3">
-                                                                        <input class="form-control" readonly value="Toddler">
 
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <select name="toddler_age_start" value="{{old('toddler_age_start')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
-                                                                    <div class="col-md-3">
-                                                                        <select name="toddler_age_end" value="{{old('toddler_age_end')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
-                                                                    <div class="col-md-3 myflex" style="padding: 10px" >
+                                            </div>
+                                            <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                                        <input name="is_toddler" checked  type="checkbox" style="zoom:1.6">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row" style="margin-top: 5px">
-                                                                    <div class="col-md-3">
-                                                                        <input class="form-control"  readonly value="Infant">
+                                                <input name="is_adult" {{$NBanner->is_adult=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 5px">
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly value="Child">
 
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <select name="infant_age_start" value="{{old('infant_age_start')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
-                                                                    <div class="col-md-3">
-                                                                        <select name="infant_age_end" value="{{old('infant_age_end')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
-                                                                    <div class="col-md-3 myflex" style="padding: 10px" >
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly style="background-color: white" name="child_age_start" value="{{$NBanner->child_age_start}}">
 
-                                                                        <input name="is_infant" checked  type="checkbox" style="zoom:1.6">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row" style="margin-top: 5px">
-                                                                    <div class="col-md-3">
-                                                                        <input class="form-control" readonly value="Senior">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly style="background-color: white" name="child_age_end" value="{{$NBanner->child_age_end}}">
 
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <select name="senior_age_start" value="{{old('senior_age_start')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
-                                                                    <div class="col-md-3">
-                                                                        <select name="senior_age_end" value="{{old('senior_age_end')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
-                                                                    <div class="col-md-3 myflex" style="padding: 10px" >
+                                            </div>
+                                            <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                                        <input id="12w"  name="is_senior" checked class="mytoggle"  type="checkbox" style="zoom:1.6">
-                                                                    </div>
-                                                                </div>
-                                                                <br>
+                                                <input name="is_child" {{$NBanner->is_child=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 5px">
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly value="Toddler">
 
-                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly style="background-color: white" name="toddler_age_start" value="{{$NBanner->toddler_age_start}}">
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly style="background-color: white" name="toddler_age_end" value="{{$NBanner->toddler_age_end}}">
+
+                                            </div>
+                                            <div class="col-md-3 myflex" style="padding: 10px" >
+
+                                                <input name="is_toddler" {{$NBanner->is_toddler=="1"?'checked':""}}  type="checkbox" style="zoom:1.6">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 5px">
+                                            <div class="col-md-3">
+                                                <input class="form-control"  readonly value="Infant">
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly style="background-color: white" name="infant_age_start" value="{{$NBanner->infant_age_start}}">
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly style="background-color: white" name="infant_age_end" value="{{$NBanner->infant_age_end}}">
+
+                                            </div>
+                                            <div class="col-md-3 myflex" style="padding: 10px" >
+
+                                                <input name="is_infant" {{$NBanner->is_infant=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 5px">
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly value="Senior">
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly style="background-color: white" name="senior_age_start" value="{{$NBanner->senior_age_start}}">
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input class="form-control" readonly style="background-color: white" name="senior_age_end" value="{{$NBanner->senior_age_end}}">
+
+                                            </div>
+                                            <div class="col-md-3 myflex" style="padding: 10px" >
+
+                                                <input id="12w"  name="is_senior" {{$NBanner->is_senior=="1"?'checked':""}}  class="mytoggle"  type="checkbox" style="zoom:1.6">
+                                            </div>
+                                        </div>
+
+                                        <br>
+
+                                    </div>
 
 
                                 </div>
@@ -728,6 +550,7 @@
 
 
                             </div>
+
 
 
 

@@ -265,10 +265,27 @@
 {{--                                            &nbsp;{{ __('backend.addTourTable') }}</a>--}}
 {{--                                    @endif--}}
 
+
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.cruiseRateTable.list')
+                                        <a class="dropdown-item" href="javascript:void"
+                                           data-toggle="modal"
+                                           data-target="#m-add-cruise-rate-table" ui-toggle-class="bounce"
+                                           ui-target="#animate"
+                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            &nbsp;{{ __('backend.addRateTable') }}</a>
+                                    @endif
                                     @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.cruiseShip.list')
                                         <a class="dropdown-item" href="javascript:void"
                                            data-toggle="modal"
                                            data-target="#m-add-cruise-ship" ui-toggle-class="bounce"
+                                           ui-target="#animate"
+                                        ><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                                            &nbsp;{{ __('backend.addRateTable') }}</a>
+                                    @endif
+                                    @if(@Auth::user()->permissionsGroup->banners_status && Route::currentRouteName() == 'admin.shipRoom.list')
+                                        <a class="dropdown-item" href="javascript:void"
+                                           data-toggle="modal"
+                                           data-target="#m-add-ship-room" ui-toggle-class="bounce"
                                            ui-target="#animate"
                                         ><i class="fa fa-plus-circle" aria-hidden="true"></i>
                                             &nbsp;{{ __('backend.addCruiseShip') }}</a>

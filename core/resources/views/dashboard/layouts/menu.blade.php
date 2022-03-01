@@ -598,6 +598,12 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                                             <span class="nav-text">{{ __('backend.generalSettings') }}</span>
                                         </a>
                                     </li>
+                                        <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                            <a href="{{ route('admin.config.index') }}"
+                                               onclick="location.href='{{ route('admin.config.index') }}'">
+                                                <span class="nav-text">{{ __('backend.configs') }}</span>
+                                            </a>
+                                        </li>
                                     <?php
                                     $currentFolder = "menus"; // Put folder name here
                                     $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
