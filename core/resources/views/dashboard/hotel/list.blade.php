@@ -13,11 +13,11 @@
                 <br>
                 <div>
                     <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                        href="{{route("admin.tour.list")}}">{{ __('backend.all') }} {{ __('backend.hotels') }}</a>
+                        href="{{route("admin.hotel.list")}}">{{ __('backend.all') }} {{ __('backend.hotels') }}</a>
                     <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.tour.list")."?status=1"}}">{{ __('backend.active') }} {{ __('backend.hotels') }}</a>
+                       href="{{route("admin.hotel.list")."?status=1"}}">{{ __('backend.active') }} {{ __('backend.hotels') }}</a>
                     <a class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.tour.list")."?status=0"}}">{{ __('backend.unactive') }} {{ __('backend.hotels') }}</a>
+                       href="{{route("admin.hotel.list")."?status=0"}}">{{ __('backend.unactive') }} {{ __('backend.hotels') }}</a>
                 </div>
             </div>
 
@@ -454,7 +454,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn dark-white p-x-md"
                                                     data-dismiss="modal">{{ __('backend.no') }}</button>
-                                            <a href="{{ route("admin.tour.delete",["id"=>$Banner->id]) }}"
+                                            <a href="{{ route("admin.hotel.delete",["id"=>$Banner->id]) }}"
                                                class="btn danger p-x-md">{{ __('backend.yes') }}</a>
                                         </div>
                                     </div><!-- /.modal-content -->
