@@ -1,0 +1,48 @@
+/*Tabs*/
+/* Style the tab */
+.mtab {
+    overflow: hidden;
+    /*border: 1px solid #ccc;*/
+    background-color:white;
+
+}
+
+
+
+/* Style the tab content */
+.mtabcontent {
+    display: none;
+    padding: 6px 12px;
+
+    border-top: none;
+}
+.mtabActive
+{
+    display: block;
+}
+
+/* Style the buttons that are used to open the tab content */
+.mtab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    color: darkgrey;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Change background color of buttons on hover */
+.mtab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.mtab button.active {
+    color: grey;
+    border-bottom: solid 1px grey;
+}

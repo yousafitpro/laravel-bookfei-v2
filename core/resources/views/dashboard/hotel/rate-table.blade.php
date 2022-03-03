@@ -1,26 +1,4 @@
-@extends('dashboard.layouts.master')
-@section('title', $title)
-@section('content')
 
-    <div class="padding">
-        <div class="card" style="padding: 4px">
-            <div class="box-header ">
-                <h3>{{ __('backend.table') }}</h3>
-                <small>
-                    <a href="{{ route('adminHome') }}">{{ __('backend.home') }}</a> /
-                    <a href="{{route('admin.hotel.list')}}">{{ __('backend.hotels') }}</a> /
-                    <a href="javascript:void">{{ __('backend.table') }}</a>
-                </small>
-                <br>
-                <div>
-                    <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                        href="{{route("admin.tour.list")}}">{{ __('backend.all') }} {{ __('backend.tables') }}</a>
-                    <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                        href="{{route("admin.tour.list")."?status=1"}}">{{ __('backend.active') }} {{ __('backend.tables') }}</a>
-                    <a class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.tour.list")."?status=0"}}">{{ __('backend.unactive') }} {{ __('backend.tables') }}</a>
-                </div>
-            </div>
 
 
 
@@ -48,7 +26,7 @@
                     $title_var = "title_" . @Helper::currentLanguage()->code;
                     $title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                     ?>
-                    @foreach($list as $Banner)
+                    @foreach($rateTables as $Banner)
                         <?php
                         if ($Banner->$title_var != "") {
                             $title = $Banner->$title_var;
@@ -83,9 +61,7 @@
                             </td>
                             <td class="text-center">
                                 @if(@Auth::user()->permissionsGroup->edit_status)
-                                    <a class="btn btn-sm success" data-toggle="modal"
-                                       data-target="#u-{{ $Banner->id }}" ui-toggle-class="bounce"
-                                       ui-target="#animate">
+                                    <a class="btn btn-sm success" href="{{route('admin.hotelRateTable.editOrCreate',$hotel_id).'?tab=Basic&table_id='.$Banner->id}}">
                                         <small><i class="material-icons">&#xe3c9;</i> {{ __('backend.edit') }}
                                         </small>
                                     </a>
@@ -150,8 +126,8 @@
                                                         <input name="effective_start_date" type="date" value="{{$Banner->effective_start_date}}" required class="form-control">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label>Effective Date (start)</label><br>
-                                                        <input name="effective_end_date" value="{{$Banner->effective_end_date}}" required type="date" class="form-control">
+                                                        <label>Effective Date (end)</label><br>
+                                                        <input name="effective_end_date" value="{{$Banner->effective_end_date}}" required  type="date" class="form-control">
                                                     </div>
                                                 </div>
                                                 <br>
@@ -170,7 +146,7 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label>Early Bird Before Chek in Date</label><br>
-                                                        <input name="early_bird_before_departure_date" value="{{$Banner->early_bird_before_departure_date}}" required type="number" class="form-control">
+                                                        <input name="early_bird_before_departure_date" value="{{$Banner->early_bird_before_departure_date}}"  type="number" class="form-control">
                                                     </div>
                                                     <div class="col-md-4">
 
@@ -197,7 +173,7 @@
                                                         <label>Bonus Night Type</label><br>
                                                         <option value="{{$Banner->bonus_night_type}}">{{$Banner->bonus_night_type}}</option>
 
-                                                        <select class="form-control" name="bonus_night_type" required>
+                                                        <select class="form-control" name="bonus_night_type" >
                                                             <option value="Accumulated / Once">Accumulated / Once</option>
 
                                                         </select>
@@ -207,11 +183,11 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>Buy X Nights</label><br>
-                                                        <input name="x_nights" value="{{$Banner->x_nights}}" required type="number" class="form-control">
+                                                        <input name="x_nights" value="{{$Banner->x_nights}}"  type="number" class="form-control">
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>Get Y Free Nights</label><br>
-                                                        <input name="y_nights" value="{{$Banner->y_nights}}" required type="number" class="form-control">
+                                                        <input name="y_nights" value="{{$Banner->y_nights}}"  type="number" class="form-control">
                                                     </div>
 
                                                 </div>
@@ -225,11 +201,11 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>Minimum Nights</label><br>
-                                                        <input name="min_nights"  value="{{$Banner->min_nights}}" required type="number" class="form-control">
+                                                        <input name="min_nights"  value="{{$Banner->min_nights}}"  type="number" class="form-control">
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>Maximum Nights</label><br>
-                                                        <input name="max_nights" value="{{$Banner->max_nights}}" required type="number" class="form-control">
+                                                        <input name="max_nights" value="{{$Banner->max_nights}}"  type="number" class="form-control">
                                                     </div>
 
                                                 </div>
@@ -285,8 +261,7 @@
 
 
 
-        </div>
-    </div>
+
     <div id="m-add-hotel-rate-table" class="modal fade" data-backdrop="true">
         <div class="modal-dialog modal-lg" id="animate">
             <form method="post" action="{{route('admin.hotelRateTable.create')}}" enctype="multipart/form-data">
@@ -334,7 +309,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label>Effective Date (start)</label><br>
-                                    <input name="effective_end_date" value="{{old('effective_end_date')}}" required type="date" class="form-control">
+                                    <input name="effective_end_date" value="{{old('effective_end_date')}}" required  type="date" class="form-control">
                                 </div>
                             </div>
                             <br>
@@ -355,7 +330,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label>Early Bird Before Chek in Date</label><br>
-                                    <input name="early_bird_before_departure_date" value="{{old('early_bird_before_departure_date')}}" required type="number" class="form-control">
+                                    <input name="early_bird_before_departure_date" value="{{old('early_bird_before_departure_date')}}" type="number" class="form-control">
                                 </div>
                                 <div class="col-md-4">
 
@@ -375,7 +350,7 @@
                                 <div class="col-md-4">
 
                                     <label>Bonus Night Type</label><br>
-                                    <select class="form-control" name="bonus_night_type" required>
+                                    <select class="form-control" name="bonus_night_type" >
                                         <option value="Accumulated / Once">Accumulated / Once</option>
 
                                     </select>
@@ -385,11 +360,11 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>Buy X Nights</label><br>
-                                    <input name="x_nights" value="{{old('early_bird_before_departure_date')}}" required type="number" class="form-control">
+                                    <input name="x_nights" value="{{old('early_bird_before_departure_date')}}"  type="number" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <label>Get Y Free Nights</label><br>
-                                    <input name="y_nights" value="{{old('early_bird_before_departure_date')}}" required type="number" class="form-control">
+                                    <input name="y_nights" value="{{old('early_bird_before_departure_date')}}"  type="number" class="form-control">
                                 </div>
 
                             </div>
@@ -403,11 +378,11 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label>Minimum Nights</label><br>
-                                    <input name="min_nights" value="{{old('early_bird_before_departure_date')}}" required type="number" class="form-control">
+                                    <input name="min_nights" value="{{old('early_bird_before_departure_date')}}"  type="number" class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <label>Maximum Nights</label><br>
-                                    <input name="max_nights" value="{{old('early_bird_before_departure_date')}}" required type="number" class="form-control">
+                                    <input name="max_nights" value="{{old('early_bird_before_departure_date')}}"  type="number" class="form-control">
                                 </div>
 
                             </div>
@@ -423,25 +398,6 @@
                     </div><!-- /.modal-content -->
                 </div>
             </form>
+
         </div>
     </div>
-
-@endsection
-@push("after-scripts")
-
-    <script type="text/javascript">
-
-        $("#checkAll").click(function () {
-            $('input:checkbox').not(this).prop('checked', this.checked);
-        });
-        $("#action").change(function () {
-            if (this.value == "delete") {
-                $("#submit_all").css("display", "none");
-                $("#submit_show_msg").css("display", "inline-block");
-            } else {
-                $("#submit_all").css("display", "inline-block");
-                $("#submit_show_msg").css("display", "none");
-            }
-        });
-    </script>
-@endpush

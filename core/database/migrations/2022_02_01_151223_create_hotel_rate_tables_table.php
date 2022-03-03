@@ -21,15 +21,15 @@ class CreateHotelRateTablesTable extends Migration
             $table->bigInteger("currency_id");
             $table->bigInteger("supplier_id");
             $table->date("effective_start_date");
-            $table->date("effective_end_date");
-            $table->boolean("early_bird")->default(false);
-            $table->boolean("bonus_night")->default(false);
-            $table->string("bonus_night_type");
-            $table->string("min_nights")->default(1);
-            $table->string("max_nights")->default(1);
-            $table->string("x_nights")->default(1);
-            $table->string("y_nights")->default(1);
-            $table->integer("early_bird_before_departure_date")->default(0);
+            $table->date("effective_end_date")->nullable();
+            $table->boolean("early_bird")->nullable()->default(false);
+            $table->boolean("bonus_night")->nullable()->default(false);
+            $table->string("bonus_night_type")->nullable();
+            $table->string("min_nights")->nullable()->default(1);
+            $table->string("max_nights")->nullable()->default(1);
+            $table->string("x_nights")->nullable()->default(1);
+            $table->string("y_nights")->nullable()->default(1);
+            $table->integer("early_bird_before_departure_date")->nullable()->default(0);
 
 
 

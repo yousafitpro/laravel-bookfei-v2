@@ -18,6 +18,7 @@ class CreateHotelRoomTypesTable extends Migration
             $table->string('name')->default('');
             $table->string('code')->default('');
             $table->bigInteger('hotel_id');
+            $table->bigInteger('hotel_rate_table_id')->nullable();
             $table->string('default_guest')->default('0');
             $table->string('max_guest')->default('0');
             $table->string('max_extra_bed')->default('1');

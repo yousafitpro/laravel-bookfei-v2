@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css"/>
 <style>
     .select2-container {
         width: 100% !important;
@@ -41,6 +42,7 @@
         align-items: center;
         height: 100%;
     }
+
 </style>
 @if( @Helper::currentLanguage()->direction=="rtl")
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/bootstrap-rtl/dist/bootstrap-rtl.css') }}">

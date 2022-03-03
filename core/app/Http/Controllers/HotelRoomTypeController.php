@@ -7,6 +7,7 @@ use App\Models\area;
 use App\Models\hotel;
 use App\Models\hotelRoomType;
 use App\Models\tour;
+use App\Models\tourRate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -171,6 +172,81 @@ class HotelRoomTypeController extends Controller
         }
 
         $city= hotelRoomType::create($data);
+
+        if($request->hasFile('file'))
+        {
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            Storage::disk('public')->delete($city->image);
+            $path = $request->file('file')->storeAs($this->uploadPath,$city->id.'.'.$extension);
+
+            $city->image= $path;
+
+            $city->save();
+        }
+        return redirect()->back()->with('doneMessage', __('backend.addDone'));
+    }
+    public function createLink(Request $request,$id,$table_id)
+    {
+
+        hotelRoomType::where('id',$id)->update(['hotel_rate_table_id'=>$table_id]);
+        return redirect()->back();
+    }
+    public function rateTable(Request $request,$id)
+    {
+        $list=tourRate::where("deleted_at",null);
+        $roomType=hotelRoomType::find($id);
+        $hotel=hotel::find($roomType->hotel_id);
+        $rateTable=hotel::find($roomType->hotel_rate_table_id);
+        if ($request->has("month"))
+        {
+
+            $date=Carbon::parse($request->month);
+            $list=$list->whereMonth('created_at',$date->month)->whereYear('created_at',$date->year);
+
+        }
+        $list=$list->where('tour_id',$id);
+        if($request->has("status"))
+        {
+            $list=$list->where('status',$request->status);
+        }
+        $list=$list->get();
+
+        $list=$list->chunk(7);
+       $data=null;
+       $data['hotel']=$hotel;
+       $data['roomType']=$roomType;
+       $data['rateTable']=$rateTable;
+       $data['list']=$list;
+       $data['sdate']=$rateTable;
+        return view('dashboard.hotel.room-rate',$data);
+    }
+    public function createRateTable(Request $request)
+    {
+
+        $this->validate($request, [
+            'day' => 'required',
+            'date' => 'required|date|after_or_equal:start',
+            'date' => 'required|date|before_or_equal:end',
+        ],[
+            'day.required'=>"Error! Please Select a Day"
+        ]);
+
+        $data=$request->except('file');
+
+        if (!$request->has("is_disabled"))
+        {
+
+            $data['is_disabled']=0;
+
+        }
+        else
+        {
+            $data['is_disabled']=1;
+        }
+
+
+        $city= tourRate::create($data);
 
         if($request->hasFile('file'))
         {

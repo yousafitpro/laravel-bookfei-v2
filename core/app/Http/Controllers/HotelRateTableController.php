@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
 use App\Models\area;
+use App\Models\hotel;
 use App\Models\hotelRateTable;
+use App\Models\hotelRoomType;
 use App\Models\tour;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -84,6 +86,25 @@ class HotelRateTableController extends Controller
         }
         return redirect()->back()->with('doneMessage', __('backend.updateDone'));
     }
+    public function editOrCreate(Request $request,$id)
+    {
+        if ($id==0 && $request->tab!="Basic")
+        {
+            return redirect()->back()->with('errorMessage', "Please Create a Hotel first");
+        }
+        $data['hotel_id']=$id;
+        $data['table_id']=$_GET['table_id'];
+        if ($id!=0)
+        {
+            $data['rateTables']=hotelRateTable::where("deleted_at",null)->get();
+            $data['roomTypes']=hotelRoomType::where("deleted_at",null)->where("hotel_id",$id)->get();
+            $data['hotel']=hotel::find($id);
+            $data['table']=hotelRateTable::find($_GET['table_id']);
+        }
+
+
+        return view('dashboard.hotel.rate-table-tabs',$data);
+    }
     public function create(Request $request)
     {
 
@@ -126,6 +147,7 @@ class HotelRateTableController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.addDone'));
+        return redirect(route('admin.hotelRateTable.editOrCreate',$city->id).'?tab=RoomType')->with('doneMessage', __('backend.addDone'));
+
     }
 }

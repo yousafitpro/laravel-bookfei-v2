@@ -1,76 +1,10 @@
-@extends('dashboard.layouts.master')
-@section('title', $title)
-@section('content')
-
-    <?php
-
-
-    ?>
-    <div class="padding">
-        <div class="card" style="padding: 4px">
-            <div class="box-header ">
-                <h3>{{ __('backend.room') }}</h3>
-                <small>
-                    <a href="{{ route('adminHome') }}">{{ __('backend.home') }}</a> /
-                    <a href="{{route('admin.hotel.list')}}">{{ __('backend.hotels') }}</a> /
-                    <a href="javascript:void">{{ __('backend.rooms') }}</a>
-                </small>
-                <br>
-                <div>
-                    <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                        href="{{route("admin.hotel.list")}}">{{ __('backend.all') }} {{ __('backend.rooms') }}</a>
-                    <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.hotel.list")."?status=1"}}">{{ __('backend.active') }} {{ __('backend.rooms') }}</a>
-                    <a class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.hotel.list")."?status=0"}}">{{ __('backend.unactive') }} {{ __('backend.rooms') }}</a>
-                </div>
-            </div>
-
-{{--            @if($list->total() >0)--}}
-{{--                @if(@Auth::user()->permissionsGroup->add_status)--}}
-{{--                    <div class="row p-a">--}}
-{{--                        <div class="col-sm-12">--}}
-{{--                            @foreach($WebmasterBanners as $WebmasterBanner)--}}
-{{--                                <a class="btn btn-fw primary marginBottom5"--}}
-{{--                                   href="{{route("BannersCreate",$WebmasterBanner->id)}}">--}}
-{{--                                    <i class="material-icons">&#xe02e;</i>--}}
-{{--                                    &nbsp; {!! $WebmasterBanner->{'title_'.@Helper::currentLanguage()->code} !!}</a>--}}
-{{--                            @endforeach--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-{{--            @endif--}}
-{{--            @if($Banners->total() == 0)--}}
-{{--                <div class="row p-a">--}}
-{{--                    <div class="col-sm-12">--}}
-{{--                        <div class=" p-a text-center ">--}}
-{{--                            {{ __('backend.noData') }}--}}
-{{--                            <br>--}}
-{{--                            <br>--}}
-{{--                            @if(@Auth::user()->permissionsGroup->add_status)--}}
-{{--                                @foreach($WebmasterBanners as $WebmasterBanner)--}}
-{{--                                    <a class="btn btn-fw primary marginBottom5"--}}
-{{--                                       href="{{route("BannersCreate",$WebmasterBanner->id)}}">--}}
-{{--                                        <i class="material-icons">&#xe02e;</i>--}}
-{{--                                        &nbsp; {!! $WebmasterBanner->{'title_'.@Helper::currentLanguage()->code} !!}</a>--}}
-{{--                                @endforeach--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @endif--}}
-
 
 
                 <div class="table-responsive">
                     <table class="table table-bordered m-a-0" id="myTable">
                         <thead class="dker">
                         <tr>
-{{--                            <th class="width20 dker">--}}
-{{--                                <label class="ui-check m-a-0">--}}
-{{--                                    <input id="checkAll" type="checkbox"><i></i>--}}
-{{--                                </label>--}}
-{{--                            </th>--}}
+
 
                             <th class="text-center width50">{{ __('backend.name') }}</th>
                             <th class="text-center width50">{{ __('backend.default_guest') }}</th>
@@ -84,7 +18,7 @@
                         $title_var = "title_" . @Helper::currentLanguage()->code;
                         $title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                         ?>
-                        @foreach($list as $Banner)
+                        @foreach($roomTypes as $Banner)
                             <?php
                             if ($Banner->$title_var != "") {
                                 $title = $Banner->$title_var;
@@ -121,14 +55,7 @@
                                             </small>
                                         </a>
                                     @endif
-                                        @if(@Auth::user()->permissionsGroup->delete_status)
-                                            <a href="{{route('admin.hotelRoom.list',$Banner->id)}}">
-                                                <button class="btn btn-sm warning" >
-                                                    <small><i class="fa fa-table" aria-hidden="true"></i> {{ __('backend.table') }}
-                                                    </small>
-                                                </button>
-                                            </a>
-                                        @endif
+
                                     @if(@Auth::user()->permissionsGroup->delete_status)
                                         <button class="btn btn-sm warning" data-toggle="modal"
                                                 data-target="#m-{{ $Banner->id }}" ui-toggle-class="bounce"
@@ -361,26 +288,25 @@
 
 
 
-        </div>
-    </div>
+
     <div id="m-add-room" class="modal fade" data-backdrop="true">
         <div class="modal-dialog modal-lg" id="animate">
             <form method="post" action="{{route('admin.hotelRoom.create')}}" enctype="multipart/form-data">
                 @csrf
-                <input hidden name="hotel_id" value="{{$id}}">
+                <input hidden name="hotel_id" value="{{$hotel_id}}">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">{{ __('backend.addnew') }}</h5>
                     </div>
                     <div class="modal-body  p-lg">
                         <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-6 offset-md-3 text-center">
-                                    <h3>{{\App\Helpers\Helper::get_Hotel($id)->name}}</h3>
-                                    <hr>
-                                    <br>
-                                </div>
-                            </div>
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-6 offset-md-3 text-center">--}}
+{{--                                    <h3>{{\App\Helpers\Helper::get_Hotel($hotel_id)->name}}</h3>--}}
+{{--                                    <hr>--}}
+{{--                                    <br>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="row">
                                 <div class="col-md-4">
                                     <label>Room Name</label><br>
@@ -453,18 +379,18 @@
 
                                             </div>
                                             <div class="col-md-3">
-                                                <input class="form-control" readonly  style="background-color: white" name="adult_age_start" value="{{$NBanner->adult_age_start}}">
+                                                <input class="form-control" readonly  style="background-color: white" name="adult_age_start" value="{{$hotel->adult_age_start}}">
 
                                             </div>
 
                                             <div class="col-md-3">
-                                                <input class="form-control" readonly style="background-color: white" name="adult_age_end" value="{{$NBanner->adult_age_end}}">
+                                                <input class="form-control" readonly style="background-color: white" name="adult_age_end" value="{{$hotel->adult_age_end}}">
 
 
                                             </div>
                                             <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                <input name="is_adult" {{$NBanner->is_adult=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
+                                                <input name="is_adult" {{$hotel->is_adult=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
                                             </div>
                                         </div>
                                         <div class="row" style="margin-top: 5px">
@@ -473,16 +399,16 @@
 
                                             </div>
                                             <div class="col-md-3">
-                                                <input class="form-control" readonly style="background-color: white" name="child_age_start" value="{{$NBanner->child_age_start}}">
+                                                <input class="form-control" readonly style="background-color: white" name="child_age_start" value="{{$hotel->child_age_start}}">
 
                                             </div>
                                             <div class="col-md-3">
-                                                <input class="form-control" readonly style="background-color: white" name="child_age_end" value="{{$NBanner->child_age_end}}">
+                                                <input class="form-control" readonly style="background-color: white" name="child_age_end" value="{{$hotel->child_age_end}}">
 
                                             </div>
                                             <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                <input name="is_child" {{$NBanner->is_child=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
+                                                <input name="is_child" {{$hotel->is_child=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
                                             </div>
                                         </div>
                                         <div class="row" style="margin-top: 5px">
@@ -491,16 +417,16 @@
 
                                             </div>
                                             <div class="col-md-3">
-                                                <input class="form-control" readonly style="background-color: white" name="toddler_age_start" value="{{$NBanner->toddler_age_start}}">
+                                                <input class="form-control" readonly style="background-color: white" name="toddler_age_start" value="{{$hotel->toddler_age_start}}">
 
                                             </div>
                                             <div class="col-md-3">
-                                                <input class="form-control" readonly style="background-color: white" name="toddler_age_end" value="{{$NBanner->toddler_age_end}}">
+                                                <input class="form-control" readonly style="background-color: white" name="toddler_age_end" value="{{$hotel->toddler_age_end}}">
 
                                             </div>
                                             <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                <input name="is_toddler" {{$NBanner->is_toddler=="1"?'checked':""}}  type="checkbox" style="zoom:1.6">
+                                                <input name="is_toddler" {{$hotel->is_toddler=="1"?'checked':""}}  type="checkbox" style="zoom:1.6">
                                             </div>
                                         </div>
                                         <div class="row" style="margin-top: 5px">
@@ -509,16 +435,16 @@
 
                                             </div>
                                             <div class="col-md-3">
-                                                <input class="form-control" readonly style="background-color: white" name="infant_age_start" value="{{$NBanner->infant_age_start}}">
+                                                <input class="form-control" readonly style="background-color: white" name="infant_age_start" value="{{$hotel->infant_age_start}}">
 
                                             </div>
                                             <div class="col-md-3">
-                                                <input class="form-control" readonly style="background-color: white" name="infant_age_end" value="{{$NBanner->infant_age_end}}">
+                                                <input class="form-control" readonly style="background-color: white" name="infant_age_end" value="{{$hotel->infant_age_end}}">
 
                                             </div>
                                             <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                <input name="is_infant" {{$NBanner->is_infant=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
+                                                <input name="is_infant" {{$hotel->is_infant=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
                                             </div>
                                         </div>
                                         <div class="row" style="margin-top: 5px">
@@ -527,16 +453,16 @@
 
                                             </div>
                                             <div class="col-md-3">
-                                                <input class="form-control" readonly style="background-color: white" name="senior_age_start" value="{{$NBanner->senior_age_start}}">
+                                                <input class="form-control" readonly style="background-color: white" name="senior_age_start" value="{{$hotel->senior_age_start}}">
 
                                             </div>
                                             <div class="col-md-3">
-                                                <input class="form-control" readonly style="background-color: white" name="senior_age_end" value="{{$NBanner->senior_age_end}}">
+                                                <input class="form-control" readonly style="background-color: white" name="senior_age_end" value="{{$hotel->senior_age_end}}">
 
                                             </div>
                                             <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                <input id="12w"  name="is_senior" {{$NBanner->is_senior=="1"?'checked':""}}  class="mytoggle"  type="checkbox" style="zoom:1.6">
+                                                <input id="12w"  name="is_senior" {{$hotel->is_senior=="1"?'checked':""}}  class="mytoggle"  type="checkbox" style="zoom:1.6">
                                             </div>
                                         </div>
 
@@ -566,23 +492,3 @@
             </form>
         </div>
     </div>
-
-@endsection
-@push("after-scripts")
-
-    <script type="text/javascript">
-
-        $("#checkAll").click(function () {
-            $('input:checkbox').not(this).prop('checked', this.checked);
-        });
-        $("#action").change(function () {
-            if (this.value == "delete") {
-                $("#submit_all").css("display", "none");
-                $("#submit_show_msg").css("display", "inline-block");
-            } else {
-                $("#submit_all").css("display", "inline-block");
-                $("#submit_show_msg").css("display", "none");
-            }
-        });
-    </script>
-@endpush

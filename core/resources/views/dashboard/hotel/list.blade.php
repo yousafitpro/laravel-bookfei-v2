@@ -5,6 +5,9 @@
     <div class="padding">
         <div class="card" style="padding: 4px">
             <div class="box-header ">
+                <a href="{{route('admin.hotel.editOrCreate',0).'?tab=Basic'}}">
+                <button class="btn btn-dark pull-right">Add New Hotel</button>
+                </a>
                 <h3>{{ __('backend.hotel') }}</h3>
                 <small>
                     <a href="{{ route('adminHome') }}">{{ __('backend.home') }}</a> /
@@ -19,6 +22,7 @@
                     <a class="btn btn-fw btn-outline-primary marginBottom5"
                        href="{{route("admin.hotel.list")."?status=0"}}">{{ __('backend.unactive') }} {{ __('backend.hotels') }}</a>
                 </div>
+
             </div>
 
 {{--            @if($list->total() >0)--}}
@@ -113,31 +117,15 @@
                                 </td>
                                 <td class="text-center">
                                     @if(@Auth::user()->permissionsGroup->edit_status)
-                                        <a class="btn btn-sm success" data-toggle="modal"
-                                           data-target="#u-{{ $Banner->id }}" ui-toggle-class="bounce"
-                                           ui-target="#animate">
-                                            <small><i class="material-icons">&#xe3c9;</i> {{ __('backend.edit') }}
-                                            </small>
+
+                                        <a href="{{route('admin.hotel.editOrCreate',$Banner->id).'?tab=Basic'}}">
+
+                                            <button class="btn btn-sm warning" >
+                                                <small><i class="fa fa-edit" aria-hidden="true"></i> {{ __('backend.edit') }}
+                                                </small>
+                                            </button>
                                         </a>
                                     @endif
-                                        @if(@Auth::user()->permissionsGroup->delete_status)
-                                            <a href="{{route('admin.hotelRoom.list',$Banner->id)}}">
-                                                <button class="btn btn-sm warning" >
-                                                    <small><i class="fa fa-home" aria-hidden="true"></i> {{ __('backend.rooms') }}
-                                                    </small>
-                                                </button>
-                                            </a>
-                                        @endif
-                                        <br><br>
-                                        @if(@Auth::user()->permissionsGroup->delete_status)
-
-                                            <a href="{{route('admin.hotelRateTable.list',$Banner->id)}}">
-                                                <button class="btn btn-sm warning" >
-                                                    <small><i class="fa fa-table" aria-hidden="true"></i> {{ __('backend.rateTable') }}
-                                                    </small>
-                                                </button>
-                                            </a>
-                                        @endif
 
 
                                     @if(@Auth::user()->permissionsGroup->delete_status)
@@ -470,329 +458,12 @@
 
                 </div>
 
-{{--                <footer class="dker p-a">--}}
-{{--                    <div class="row">--}}
-{{--                        <div class="col-sm-3 hidden-xs">--}}
-{{--                            <!-- .modal -->--}}
-{{--                            <div id="m-all" class="modal fade" data-backdrop="true">--}}
-{{--                                <div class="modal-dialog" id="animate">--}}
-{{--                                    <div class="modal-content">--}}
-{{--                                        <div class="modal-header">--}}
-{{--                                            <h5 class="modal-title">{{ __('backend.confirmation') }}</h5>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="modal-body text-center p-lg">--}}
-{{--                                            <p>--}}
-{{--                                                {{ __('backend.confirmationDeleteMsg') }}--}}
-{{--                                            </p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="modal-footer">--}}
-{{--                                            <button type="button" class="btn dark-white p-x-md"--}}
-{{--                                                    data-dismiss="modal">{{ __('backend.no') }}</button>--}}
-{{--                                            <button type="submit"--}}
-{{--                                                    class="btn danger p-x-md">{{ __('backend.yes') }}</button>--}}
-{{--                                        </div>--}}
-{{--                                    </div><!-- /.modal-content -->--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <!-- / .modal -->--}}
-{{--                            @if(@Auth::user()->permissionsGroup->edit_status)--}}
-{{--                                <select name="action" id="action" class="form-control c-select w-sm inline v-middle"--}}
-{{--                                        required>--}}
-{{--                                    <option value="">{{ __('backend.bulkAction') }}</option>--}}
-{{--                                    <option value="order">{{ __('backend.saveOrder') }}</option>--}}
-{{--                                    <option value="activate">{{ __('backend.activeSelected') }}</option>--}}
-{{--                                    <option value="block">{{ __('backend.blockSelected') }}</option>--}}
-{{--                                    @if(@Auth::user()->permissionsGroup->delete_status)--}}
-{{--                                        <option value="delete">{{ __('backend.deleteSelected') }}</option>--}}
-{{--                                    @endif--}}
-{{--                                </select>--}}
-{{--                                <button type="submit" id="submit_all"--}}
-{{--                                        class="btn white">{{ __('backend.apply') }}</button>--}}
-{{--                                <button id="submit_show_msg" class="btn white displayNone" data-toggle="modal"--}}
-{{--                                        data-target="#m-all" ui-toggle-class="bounce"--}}
-{{--                                        ui-target="#animate">{{ __('backend.apply') }}--}}
-{{--                                </button>--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
 
-{{--                        <div class="col-sm-3 text-center">--}}
-{{--                            <small class="text-muted inline m-t-sm m-b-sm">{{ __('backend.showing') }} {{ $Banners->firstItem() }}--}}
-{{--                                -{{ $Banners->lastItem() }} {{ __('backend.of') }}--}}
-{{--                                <strong>{{ $Banners->total()  }}</strong> {{ __('backend.records') }}</small>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-sm-6 text-right text-center-xs">--}}
-{{--                            {!! $Banners->links() !!}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </footer>--}}
 
 
         </div>
     </div>
-    <div id="m-add-hotel" class="modal fade" data-backdrop="true">
-        <div class="modal-dialog modal-lg" id="animate">
-            <form method="post" action="{{route('admin.hotel.create')}}" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">{{ __('backend.addnew') }}</h5>
-                    </div>
-                    <div class="modal-body  p-lg">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Hotel Name</label><br>
-                                    <input name="name" value="{{old('name')}}" required class="form-control">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>English Name</label><br>
-                                    <input name="english_name" value="{{old('english_name')}}" class="form-control">
-                                </div>
-                            </div>
 
-                            <br>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>City</label><br>
-                                   <select class="form-control" name="city_id">
-                                       @foreach(\App\Helpers\Helper::Cities() as $c)
-                                           <option value="{{$c->id}}" >{{$c->name}}</option>
-                                       @endforeach
-                                   </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Address</label><br>
-                                    <input name="address" value="{{old('code')}}"  class="form-control">
-                                </div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Contact tel</label><br>
-                                    <input name="phone"    class="form-control">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Email</label><br>
-                                    <input name="email"   type="email" class="form-control">
-                                </div>
-                            </div>
-
-
-                            <br>
-
-                            <div class="row">
-                                <div class="col-md-9 box box-body ">
-
-                                                <div class="container-fluid">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <input class="form-control" readonly value="Age Group">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input class="form-control" readonly value="Age From">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input class="form-control" readonly value="Age To">
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input class="form-control" readonly value="Status">
-                                                        </div>
-                                                    </div>
-
-                                                                <div class="row " style="margin-top: 5px">
-                                                                    <div class="col-md-3">
-                                                                        <input class="form-control" readonly value="Adult">
-
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <select id="adult_age_start" name="adult_age_start" onchange="inputChange('adult_age_start')" value="{{old('adult_age_start')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
-                                                                    <div class="col-md-3">
-                                                                        <select id="adult_age_end" name="adult_age_end" onchange="inputChange('adult_age_end')" class="form-control" value="{{old('adult_age_end')}}">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
-                                                                    <div class="col-md-3 myflex" style="padding: 10px" >
-
-                                                                        <input name="is_adult"  checked  type="checkbox" style="zoom:1.6">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row" style="margin-top: 5px">
-                                                                    <div class="col-md-3">
-                                                                        <input class="form-control" readonly value="Child">
-
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <select id="child_age_start" onchange="inputChange('child_age_start')" name="child_age_start" value="{{old('child_age_start')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
-                                                                    <div class="col-md-3">
-                                                                        <select id="child_age_end" onchange="inputChange('child_age_end')" name="child_age_end" value="{{old('child_age_end')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
-                                                                    <div class="col-md-3 myflex" style="padding: 10px" >
-
-                                                                        <input name="is_child" checked   type="checkbox" style="zoom:1.6">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row" style="margin-top: 5px">
-                                                                    <div class="col-md-3">
-                                                                        <input class="form-control" readonly value="Toddler">
-
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <select id="toddler_age_start" onchange="inputChange('toddler_age_start')" name="toddler_age_start" value="{{old('toddler_age_start')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
-                                                                    <div class="col-md-3">
-                                                                        <select id="toddler_age_end" onchange="inputChange('toddler_age_end')" name="toddler_age_end" value="{{old('toddler_age_end')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
-                                                                    <div class="col-md-3 myflex" style="padding: 10px" >
-
-                                                                        <input name="is_toddler" checked  type="checkbox" style="zoom:1.6">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row" style="margin-top: 5px">
-                                                                    <div class="col-md-3">
-                                                                        <input class="form-control"  readonly value="Infant">
-
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <select onchange="inputChange('infant_age_start')" id="infant_age_start" name="infant_age_start" value="{{old('infant_age_start')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1;
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
-                                                                    <div class="col-md-3">
-                                                                        <select id="infant_age_end" onchange="inputChange('infant_age_end')" name="infant_age_end" value="{{old('infant_age_end')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1;
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
-                                                                    <div class="col-md-3 myflex" style="padding: 10px" >
-
-                                                                        <input name="is_infant" checked  type="checkbox" style="zoom:1.6">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row" style="margin-top: 5px">
-                                                                    <div class="col-md-3">
-                                                                        <input class="form-control" readonly value="Senior">
-
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <select id="senior_age_start" onchange="inputChange('senior_age_start')" name="senior_age_start" value="{{old('senior_age_start')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                          </div>
-                                                                    <div class="col-md-3">
-                                                                        <select id="senior_age_end" name="senior_age_end" onchange="inputChange('senior_age_end')" value="{{old('senior_age_end')}}" class="form-control">
-                                                                            <?php
-                                                                            $i=1
-                                                                            ?>
-                                                                            @while($i!=100)
-                                                                                <option value="{{$i}}">{{$i}}</option>
-                                                                                <?php
-                                                                                $i=$i+1;
-                                                                                ?>
-                                                                            @endwhile
-                                                                        </select>                                             </div>
-                                                                    <div class="col-md-3 myflex" style="padding: 10px" >
-
-                                                                        <input id="12w"  name="is_senior" checked class="mytoggle"  type="checkbox" style="zoom:1.6">
-                                                                    </div>
-                                                                </div>
-                                                                <br>
-
-                                                </div>
-
-
-                                </div>
-
-
-
-                            </div>
-
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn dark-white p-x-md"
-                                    data-dismiss="modal">{{ __('backend.cancel') }}</button>
-                            <button type="submit"
-                               class="btn success p-x-md">{{ __('backend.create') }}</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div>
-            </form>
-        </div>
-    </div>
 <div id="sampleList">
     <?php
     $i=1
