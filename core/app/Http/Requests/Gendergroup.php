@@ -37,4 +37,13 @@ class Gendergroup extends FormRequest
             'senior_age_start'=>'required|in:'.($request->adult_age_end+1).'',
         ];
     }
+    public function messages()
+    {
+        return [
+        'senior_age_start.in'=>"Senior Age From Must be Greater than Adult Age To",
+        'infant_age_end.in'=>"Infant Age To Must be Less  than Toddler Age From",
+        'child_age_end.in'=>"Child Age To Must be Less  than Adult Age From",
+        'toddler_age_end.in'=>"Toddler Age To Must be Less  than Child Age From",
+        ];
+    }
 }

@@ -1,6 +1,7 @@
 
 <form method="post" action="{{route('admin.hotelRateTable.update',$table->id)}}" enctype="multipart/form-data">
     @csrf
+    <input hidden  name="hotel_id" value="{{$hotel_id}}">
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4">
