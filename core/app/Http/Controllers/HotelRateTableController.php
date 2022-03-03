@@ -6,8 +6,10 @@ use App\Helpers\Helper;
 use App\Models\area;
 use App\Models\hotel;
 use App\Models\hotelRateTable;
+use App\Models\hotelRoomRate;
 use App\Models\hotelRoomType;
 use App\Models\tour;
+use App\Models\tourRate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -155,5 +157,27 @@ class HotelRateTableController extends Controller
         }
         return redirect(route('admin.hotelRateTable.editOrCreate',$request->hotel_id).'?tab=RoomType&table_id='.$city->id)->with('doneMessage', __('backend.addDone'));
 
+    }
+    public function toggle(Request $request,$id)
+    {
+        $t=hotelRoomRate::find($id);
+        if ($t->is_disabled)
+        {
+            $t->is_disabled=false;
+        }
+        else
+        {
+            $t->is_disabled=true;
+        }
+        $t->save();
+
+        return "ok";
+
+    }
+    public function updateColumn(Request $request,$id)
+    {
+        $t=hotelRoomRate::where('id',$id)->update([
+            $request->column=>$request->val
+        ]);
     }
 }

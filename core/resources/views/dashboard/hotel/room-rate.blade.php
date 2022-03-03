@@ -239,7 +239,7 @@
                         <tr>
                             <td style="background: lightgrey;">Tax Amount</td>
                             @foreach($l as $i)
-                                <td><input class="form-control" value="{{$i->tax_amount}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_amount',event)" class="form-control" value="{{$i->tax_amount}}"></td>
                             @endforeach
                         </tr>
                         <tr>
@@ -274,11 +274,26 @@
          {
              $.ajax({
                  type:'post',
-                 url:'admin/tourRateTable/toggle/'+id,
+                 url:'admin/hotel-rate-table/toggle/'+id,
                  data:{"_token":"{{ csrf_token() }}"},
                  success:function(data){
                    // window.location.reload()
                  }})
+         }
+         function updateMe(id,col,me)
+         {
+             if (me.target.value!="")
+             {
+                 $.ajax({
+                     type:'post',
+                     url:'admin/hotel-rate-table/updateColumn/'+id,
+                     data:{"_token":"{{ csrf_token() }}",'column':col,'val':me.target.value},
+                     success:function(data){
+                         // window.location.reload()
+                     }})
+             }
+
+
          }
 
 
