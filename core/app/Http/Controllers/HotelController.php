@@ -42,7 +42,7 @@ class HotelController extends Controller
         $data['roomTypes']=[];
         if ($id!=0)
         {
-            $data['rateTables']=hotelRateTable::where("deleted_at",null)->get();
+            $data['rateTables']=hotelRateTable::where("deleted_at",null)->where("hotel_id",$id)->get();
             $data['roomTypes']=hotelRoomType::where("deleted_at",null)->where("hotel_id",$id)->get();
             $data['hotel']=hotel::find($id);
         }
