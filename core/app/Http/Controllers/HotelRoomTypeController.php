@@ -192,7 +192,7 @@ class HotelRoomTypeController extends Controller
     {
 
         hotelRoomType::where('id',$id)->update(['hotel_rate_table_id'=>$table_id]);
-        return redirect()->back();
+        return redirect(route('admin.hotelRoom.rateTable',$id));
     }
     public function rateTable(Request $request,$id)
     {
@@ -212,9 +212,10 @@ class HotelRoomTypeController extends Controller
         {
             $list=$list->where('status',$request->status);
         }
-        $list=$list->get();
+        $list=$list->orderBy('date')->get();
 
         $list=$list->chunk(7);
+
        $data=null;
        $data['hotel']=$hotel;
        $data['roomType']=$roomType;
@@ -230,11 +231,20 @@ class HotelRoomTypeController extends Controller
 
         $this->validate($request, [
             'day' => 'required',
-            'date' => 'required|date|after_or_equal:start',
+            'date' => 'required|date|after:start',
             'date' => 'required|date|before_or_equal:end',
+            'date'=>'unique:hotel_room_rates,date',
         ],[
             'day.required'=>"Error! Please Select a Day"
         ]);
+        if (Carbon::parse($request->date)<Carbon::parse($request->start))
+        {
+            return redirect()->back()->with('errorMessage',"Date Must be after or Equal From Date")->withInput();
+        }
+        if (Carbon::parse($request->date)>Carbon::parse($request->end))
+        {
+            return redirect()->back()->with('errorMessage',"Date Must be Less than or Equal to 'To' Date")->withInput();
+        }
 
         $data=$request->except('file');
 

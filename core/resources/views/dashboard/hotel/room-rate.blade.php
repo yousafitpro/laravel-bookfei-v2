@@ -16,6 +16,12 @@
                     </a>
                 </small>
             </div>
+            <div class="box-header">
+                <label>Hotel:{{$hotel->name}}</label>
+                <br>
+                <small style="color: grey">({{$hotel->name}}-{{$roomType->name}}-{{$rateTable->name}})</small>
+
+            </div>
             <form method="post" action="{{route('admin.hotelRoom.createRateTable')}}" >
                 @csrf
             <div class="container-fluid">
@@ -25,7 +31,7 @@
                             <input style="display: none" name="hotel_room_type_id" value="{{$roomType->id}}">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <small>From {{$rateTable->effective_start_date}}</small><br>
+                                    <small>From </small><br>
                                     <input type="date" name="start" value="{{$rateTable->effective_start_date}}" readonly class="form-control input-sm">
                                 </div>
                                 <div class="col-md-4">
@@ -34,7 +40,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <small>Date</small><br>
-                                    <input type="date" name="date" required   class="form-control">
+                                    <input type="date" value="{{old('date')}}" name="date" required   class="form-control">
                                 </div>
                                 <div class="col-md-4"></div>
                             </div><br><br>
@@ -105,7 +111,7 @@
                                 <div class="col-md-6"><input readonly   value="Price" class="form-control"></div>
                             </div>
                             <br>
-                            @if($roomType->is_adult!="0")
+                            @if($roomType->is_adult!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Adult {{$roomType->adult_age_start}}-{{$roomType->adult_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input {{$roomType->is_adult=="0"?"readonly":""}}  type="number" required value="0" name="adult" class="form-control"></div>
@@ -113,27 +119,27 @@
                                 <br>
                             @endif
 
-                            @if($roomType->is_child!="0")
+                            @if($roomType->is_child!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Child {{$roomType->child_age_start}}-{{$roomType->child_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input {{$roomType->is_child=="0"?"readonly":""}}  type="number" required value="0" name="child" class="form-control"></div>
                             </div>
                             <br>@endif
-                                @if($roomType->toddler!="0")
+                                @if($roomType->toddler!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Toddler {{$roomType->toddler_age_start}}-{{$roomType->toddler_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input  type="number" {{$roomType->toddler=="0"?"readonly":""}} required value="0" name="toddler" class="form-control"></div>
                             </div>
                             <br>
                                 @endif
-                                    @if($roomType->is_infant!="0")
+                                    @if($roomType->is_infant!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Infant {{$roomType->infant_age_start}}-{{$roomType->infant_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input  type="number" {{$roomType->is_infant=="0"?"readonly":""}} required value="0" name="infant" class="form-control"></div>
                             </div>
                             <br>
                                     @endif
-                                        @if($roomType->is_senior!="0")
+                                        @if($roomType->is_senior!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Senior {{$roomType->senior_age_start}}-{{$roomType->senior_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input  type="number" {{$roomType->is_senior=="0"?"readonly":""}} required value="0" name="senior" class="form-control"></div>
@@ -170,6 +176,7 @@
                 <br>
             </div>
             @foreach($list as $l)
+
                 <div class="">
                     <table class="table ">
                         <thead>
@@ -179,36 +186,48 @@
                         @endforeach
                         </thead>
                         <tbody>
+                        @if($roomType->is_adult!=0)
                         <tr>
                             <td style="background: lightgrey;">Adult {{$roomType->adult_age_start}}-{{$roomType->adult_age_end}}</td>
                             @foreach($l as $i)
                                 <td>{{$i->adult}}</td>
                             @endforeach
                         </tr>
+                        @endif
+                        @if($roomType->is_child!=0)
                         <tr>
                             <td style="background: lightgrey;">Child {{$roomType->child_age_start}}-{{$roomType->child_age_end}}</td>
                             @foreach($l as $i)
                                 <td>{{$i->child}}</td>
                             @endforeach
                         </tr>
+                        @endif
+                        @if($roomType->is_toddler!=0)
+
                         <tr>
                             <td style="background: lightgrey;">Toddler {{$roomType->toddler_age_start}}-{{$roomType->toddler_age_end}}</td>
                             @foreach($l as $i)
+
                                 <td>{{$i->toddler}}</td>
                             @endforeach
                         </tr>
+                        @endif
+                        @if($roomType->is_infant!=0)
                         <tr>
                             <td style="background: lightgrey;">Infant {{$roomType->infant_age_start}}-{{$roomType->infant_age_end}}</td>
                             @foreach($l as $i)
                                 <td>{{$i->infant}}</td>
                             @endforeach
                         </tr>
+                        @endif
+                        @if($roomType->is_senior!=0)
                         <tr>
                             <td style="background: lightgrey;">Senior {{$roomType->senior_age_start}}-{{$roomType->senior_age_end}}</td>
                             @foreach($l as $i)
                                 <td>{{$i->senior}}</td>
                             @endforeach
                         </tr>
+                        @endif
                         <tr>
                             <td style="background: lightgrey;">Tax Percentage</td>
                             @foreach($l as $i)
