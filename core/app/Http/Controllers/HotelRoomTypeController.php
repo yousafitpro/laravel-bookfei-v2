@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Helpers\Helper;
 use App\Models\area;
 use App\Models\hotel;
+use App\Models\hotelRateTable;
+use App\Models\hotelRoomRate;
 use App\Models\hotelRoomType;
 use App\Models\tour;
 use App\Models\tourRate;
@@ -194,10 +196,10 @@ class HotelRoomTypeController extends Controller
     }
     public function rateTable(Request $request,$id)
     {
-        $list=tourRate::where("deleted_at",null);
+        $list=hotelRoomRate::where("deleted_at",null);
         $roomType=hotelRoomType::find($id);
         $hotel=hotel::find($roomType->hotel_id);
-        $rateTable=hotel::find($roomType->hotel_rate_table_id);
+        $rateTable=hotelRateTable::find($roomType->hotel_rate_table_id);
         if ($request->has("month"))
         {
 
@@ -205,7 +207,7 @@ class HotelRoomTypeController extends Controller
             $list=$list->whereMonth('created_at',$date->month)->whereYear('created_at',$date->year);
 
         }
-        $list=$list->where('tour_id',$id);
+        $list=$list->where('hotel_room_type_id',$id);
         if($request->has("status"))
         {
             $list=$list->where('status',$request->status);
@@ -218,7 +220,9 @@ class HotelRoomTypeController extends Controller
        $data['roomType']=$roomType;
        $data['rateTable']=$rateTable;
        $data['list']=$list;
-       $data['sdate']=$rateTable;
+
+
+       $data['sdate']=$request->month;
         return view('dashboard.hotel.room-rate',$data);
     }
     public function createRateTable(Request $request)
@@ -246,7 +250,7 @@ class HotelRoomTypeController extends Controller
         }
 
 
-        $city= tourRate::create($data);
+        $city= hotelRoomRate::create($data);
 
         if($request->hasFile('file'))
         {
