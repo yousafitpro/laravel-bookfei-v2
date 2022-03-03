@@ -192,7 +192,7 @@
                         <tr>
                             <td style="background: lightgrey;">Adult {{$roomType->adult_age_start}}-{{$roomType->adult_age_end}}</td>
                             @foreach($l as $i)
-                                <td>{{$i->adult}}</td>
+                                <td><input class="form-control" value="{{$i->adult}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -200,7 +200,7 @@
                         <tr>
                             <td style="background: lightgrey;">Child {{$roomType->child_age_start}}-{{$roomType->child_age_end}}</td>
                             @foreach($l as $i)
-                                <td>{{$i->child}}</td>
+                                <td><input class="form-control" value="{{$i->child}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -210,7 +210,7 @@
                             <td style="background: lightgrey;">Toddler {{$roomType->toddler_age_start}}-{{$roomType->toddler_age_end}}</td>
                             @foreach($l as $i)
 
-                                <td>{{$i->toddler}}</td>
+                                <td><input class="form-control" value="{{$i->toddler}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -218,7 +218,7 @@
                         <tr>
                             <td style="background: lightgrey;">Infant {{$roomType->infant_age_start}}-{{$roomType->infant_age_end}}</td>
                             @foreach($l as $i)
-                                <td>{{$i->infant}}</td>
+                                <td><input class="form-control" value="{{$i->infant}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -226,20 +226,20 @@
                         <tr>
                             <td style="background: lightgrey;">Senior {{$roomType->senior_age_start}}-{{$roomType->senior_age_end}}</td>
                             @foreach($l as $i)
-                                <td>{{$i->senior}}</td>
+                                <td><input class="form-control" value="{{$i->senior}}"></td>
                             @endforeach
                         </tr>
                         @endif
                         <tr>
                             <td style="background: lightgrey;">Tax Percentage</td>
                             @foreach($l as $i)
-                                <td>{{$i->tax_percentage}}</td>
+                                <td><input class="form-control" value="{{$i->tax_percentage}}"></td>
                             @endforeach
                         </tr>
                         <tr>
                             <td style="background: lightgrey;">Tax Amount</td>
                             @foreach($l as $i)
-                                <td>{{$i->tax_amount}}</td>
+                                <td><input class="form-control" value="{{$i->tax_amount}}"></td>
                             @endforeach
                         </tr>
                         <tr>
