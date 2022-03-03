@@ -121,11 +121,13 @@
 
                             @if($roomType->is_child!=0)
                             <div class="row">
+
                                 <div class="col-md-6"><input readonly value="Child {{$roomType->child_age_start}}-{{$roomType->child_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input {{$roomType->is_child=="0"?"readonly":""}}  type="number" required value="0" name="child" class="form-control"></div>
                             </div>
                             <br>@endif
-                                @if($roomType->toddler!=0)
+
+                                @if($roomType->is_toddler!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Toddler {{$roomType->toddler_age_start}}-{{$roomType->toddler_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input  type="number" {{$roomType->toddler=="0"?"readonly":""}} required value="0" name="toddler" class="form-control"></div>

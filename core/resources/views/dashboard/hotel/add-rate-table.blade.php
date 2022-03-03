@@ -1,3 +1,6 @@
+
+
+
 <form method="post" action="{{route('admin.hotelRateTable.create')}}" enctype="multipart/form-data">
     @csrf
 

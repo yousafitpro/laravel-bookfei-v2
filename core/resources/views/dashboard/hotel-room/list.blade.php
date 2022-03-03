@@ -88,21 +88,21 @@
                                                         <div class="col-md-3">
                                                             <label>Default Guest</label><br>
 
-                                                            <input name="default_guest" value="{{$Banner->default_guest}}" required class="form-control">
+                                                            <input type="number" name="default_guest" value="{{$Banner->default_guest}}" required class="form-control">
                                                         </div>
                                                         <div class="col-md-3">
                                                             <label>Maximum Guest</label><br>
-                                                            <input name="max_guest" value="{{$Banner->max_guest}}" required class="form-control">
+                                                            <input type="number" name="max_guest" value="{{$Banner->max_guest}}" required class="form-control">
                                                         </div>
                                                     </div><br>
                                                     <div class="row">
                                                         <div class="col-md-2">
                                                             <label>Maximum Extra Bed</label><br>
-                                                            <input name="max_extra_bed" value="{{$Banner->max_extra_bed}}" required class="form-control">
+                                                            <input type="number" name="max_extra_bed" value="{{$Banner->max_extra_bed}}" required class="form-control">
                                                         </div>
                                                         <div class="col-md-2">
                                                             <label>Maximum Extra No Bed</label><br>
-                                                            <input name="max_extra_no_bed" value="{{$Banner->max_extra_no_bed}}" required class="form-control">
+                                                            <input type="number" name="max_extra_no_bed" value="{{$Banner->max_extra_no_bed}}" required class="form-control">
                                                         </div>
                                                         <div class="col-md-2">
                                                         </div>
@@ -317,21 +317,21 @@
                                 <div class="col-md-3">
                                     <label>Default Guest</label><br>
 
-                                    <input name="default_guest" value="{{old('code')}}" required class="form-control">
+                                    <input type="number" name="default_guest" value="{{old('code')}}" required class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <label>Maximum Guest</label><br>
-                                    <input name="max_guest" value="{{old('code')}}" required class="form-control">
+                                    <input type="number" name="max_guest" value="{{old('code')}}" required class="form-control">
                                 </div>
                             </div><br>
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>Maximum Extra Bed</label><br>
-                                    <input name="max_extra_bed" value="{{old('name')}}" required class="form-control">
+                                    <input type="number" name="max_extra_bed" value="{{old('name')}}" required class="form-control">
                                 </div>
                                 <div class="col-md-2">
                                     <label>Maximum Extra No Bed</label><br>
-                                    <input name="max_extra_no_bed" value="{{old('name')}}" required class="form-control">
+                                    <input type="number" name="max_extra_no_bed" value="{{old('name')}}" required class="form-control">
                                 </div>
                                 <div class="col-md-2">
                                 </div>

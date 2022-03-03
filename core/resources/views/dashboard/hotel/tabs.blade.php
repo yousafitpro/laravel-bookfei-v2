@@ -60,12 +60,15 @@
             </div>
 
             <div id="RoomType" class="mtabcontent {{$_GET['tab']=="RoomType"?'mtabActive':''}}">
+                @if($hotel_id!=0)
              @include('dashboard.hotel-room.list')
-
+                   @endif
             </div>
 
             <div id="RateTable" class="mtabcontent {{$_GET['tab']=="RateTable"?'mtabActive':''}}">
+                @if($hotel_id!=0)
            @include('dashboard.hotel.rate-table')
+                @endif
             </div>
 
         </div>

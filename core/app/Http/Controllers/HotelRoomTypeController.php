@@ -224,6 +224,7 @@ class HotelRoomTypeController extends Controller
 
 
        $data['sdate']=$request->month;
+
         return view('dashboard.hotel.room-rate',$data);
     }
     public function createRateTable(Request $request)
@@ -233,10 +234,15 @@ class HotelRoomTypeController extends Controller
             'day' => 'required',
             'date' => 'required|date|after:start',
             'date' => 'required|date|before_or_equal:end',
-            'date'=>'unique:hotel_room_rates,date',
+
         ],[
             'day.required'=>"Error! Please Select a Day"
         ]);
+        if (hotelRoomRate::where("hotel_room_type_id",$request->hotel_room_type_id)->where("date",$request->date)->exists())
+        {
+            return redirect()->back()->with('errorMessage',"Date already Selected")->withInput();
+
+        }
         if (Carbon::parse($request->date)<Carbon::parse($request->start))
         {
             return redirect()->back()->with('errorMessage',"Date Must be after or Equal From Date")->withInput();

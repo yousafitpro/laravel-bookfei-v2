@@ -73,14 +73,7 @@
 
                                     @endif
 
-                                    @if(@Auth::user()->permissionsGroup->delete_status)
-                                        <button class="btn btn-sm warning" data-toggle="modal"
-                                                data-target="#m-{{ $Banner->id }}" ui-toggle-class="bounce"
-                                                ui-target="#animate">
-                                            <small><i class="material-icons">&#xe872;</i> {{ __('backend.delete') }}
-                                            </small>
-                                        </button>
-                                    @endif
+
 
                                 </td>
                             </tr>

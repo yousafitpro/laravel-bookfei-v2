@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Helper;
+use App\Http\Requests\Gendergroup;
 use App\Models\area;
 use App\Models\hotel;
 use App\Models\hotelRateTable;
@@ -37,6 +38,8 @@ class HotelController extends Controller
             return redirect()->back()->with('errorMessage', "Please Create a Hotel first");
         }
         $data['hotel_id']=$id;
+        $data['rateTables']=[];
+        $data['roomTypes']=[];
         if ($id!=0)
         {
             $data['rateTables']=hotelRateTable::where("deleted_at",null)->get();
@@ -56,13 +59,14 @@ class HotelController extends Controller
             return redirect()->back()->with('doneMessage', __('backend.deleteDone'));
         }
     }
-    public function update(Request $request,$id)
+    public function update(Gendergroup $request,$id)
     {
 
 
 
         $this->validate($request, [
-            'effective_end_date' => 'after_or_equal:effective_start_date'
+            'effective_end_date' => 'after_or_equal:effective_start_date',
+
         ]);
         $data=$request->except(['file','_token']);
 
@@ -134,7 +138,7 @@ class HotelController extends Controller
         return redirect(route('admin.hotel.editOrCreate',$id).'?tab=RoomType')->with('doneMessage', __('backend.updateDone'));
 
     }
-    public function create(Request $request)
+    public function create(Gendergroup $request)
     {
 
 

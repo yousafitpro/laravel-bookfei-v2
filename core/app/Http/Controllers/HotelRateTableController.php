@@ -45,7 +45,8 @@ class HotelRateTableController extends Controller
 
 
         $this->validate($request, [
-            'effective_end_date' => 'after_or_equal:effective_start_date'
+            'effective_end_date' => 'after_or_equal:effective_start_date',
+            'code'=>'unique:hotel_rate_tables,code'
         ]);
         $data=$request->except(['file','_token']);
 
@@ -109,7 +110,8 @@ class HotelRateTableController extends Controller
     {
 
         $this->validate($request, [
-            'effective_end_date' => 'after_or_equal:effective_start_date'
+            'effective_end_date' => 'after_or_equal:effective_start_date',
+            'code'=>'unique:hotel_rate_tables,code'
         ]);
         $data=$request->except('file');
 
@@ -147,7 +149,7 @@ class HotelRateTableController extends Controller
 
             $city->save();
         }
-        return redirect(route('admin.hotelRateTable.editOrCreate',$city->id).'?tab=RoomType')->with('doneMessage', __('backend.addDone'));
+        return redirect(route('admin.hotelRateTable.editOrCreate',$city->id).'?tab=RoomType&table_id='.$city->id)->with('doneMessage', __('backend.addDone'));
 
     }
 }
