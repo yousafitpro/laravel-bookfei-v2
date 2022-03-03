@@ -215,7 +215,7 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                             <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
                                 <a href="{{ route('admin.hotel.list') }}">
                   <span class="nav-icon">
-<i class="fa fa-car" aria-hidden="true"></i>
+<i class="fa fa-home" aria-hidden="true"></i>
                   </span>
                                     <span class="nav-text">{{ __('backend.hotels') }}
                                         @if( @$webmailsNewCount >0)
