@@ -62,7 +62,7 @@
 
         <br>
 
-        <div class="row">
+        <div class="row p-l-1">
             <div class="col-md-7 box box-body ">
 
                 <div class="container-fluid">
