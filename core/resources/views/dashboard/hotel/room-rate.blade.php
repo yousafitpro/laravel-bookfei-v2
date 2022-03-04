@@ -78,13 +78,22 @@
 
                             </div><br><br>
                             <div class="row">
+                                <div class="col-md-7">
+                                    <small>Room Price (HKD$) </small><br>
+                                    <input type="number"  name="room_price"    max="100" class="form-control input-sm">
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
                                 <div class="col-md-4">
                                     <small>Tax Percentage  % </small><br>
-                                    <input type="number"  name="tax_percentage" required value="1" min="0"  max="100" class="form-control input-sm">
+                                    <input type="number"  name="tax_percentage"    max="100" class="form-control input-sm">
+
                                 </div>
                                 <div class="col-md-4">
                                     <small>Tax Amount</small><br>
-                                    <input type="number" name="tax_amount" required value="0"  class="form-control">
+                                    <input type="number" name="tax_amount"  max="100" class="form-control">
                                 </div>
 
                                 <div class="col-md-4"></div>
@@ -105,7 +114,7 @@
                     <div class="col-md-4">
 
                         <div class="container-fluid">
-                            <h6 class="text-center">Price</h6><br>
+                            <h6 class="text-left">Extra Bed</h6><br>
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Age Group" class="form-control"></div>
                                 <div class="col-md-6"><input readonly   value="Price" class="form-control"></div>
@@ -188,9 +197,17 @@
                         @endforeach
                         </thead>
                         <tbody>
+
+                            <tr>
+                                <td style="background: lightgrey; min-width: 180px">Room Price (HKD$)</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','room_price',event)" class="form-control" value="{{$i->room_price}}"></td>
+                                @endforeach
+                            </tr>
+
                         @if($roomType->is_adult!=0)
                         <tr>
-                            <td style="background: lightgrey;">Adult {{$hotel->adult_age_start}}-{{$hotel->adult_age_end}}</td>
+                            <td style="background: lightgrey; min-width: 180px">Extra Bed Adult {{$hotel->adult_age_start}}-{{$hotel->adult_age_end}}</td>
                             @foreach($l as $i)
                                 <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" class="form-control" value="{{$i->adult}}"></td>
                             @endforeach
@@ -198,7 +215,7 @@
                         @endif
                         @if($roomType->is_child!=0)
                         <tr>
-                            <td style="background: lightgrey;">Child {{$hotel->child_age_start}}-{{$hotel->child_age_end}}</td>
+                            <td style="background: lightgrey;">Extra Bed Child {{$hotel->child_age_start}}-{{$hotel->child_age_end}}</td>
                             @foreach($l as $i)
                                 <td><input onkeyup="updateMe('{{$i->id}}','child',event)" class="form-control" value="{{$i->child}}"></td>
                             @endforeach
@@ -207,7 +224,7 @@
                         @if($roomType->is_toddler!=0)
 
                         <tr>
-                            <td style="background: lightgrey;">Toddler {{$hotel->toddler_age_start}}-{{$hotel->toddler_age_end}}</td>
+                            <td style="background: lightgrey;">Extra Bed Toddler {{$hotel->toddler_age_start}}-{{$hotel->toddler_age_end}}</td>
                             @foreach($l as $i)
 
                                 <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" class="form-control" value="{{$i->toddler}}"></td>
@@ -216,7 +233,7 @@
                         @endif
                         @if($roomType->is_infant!=0)
                         <tr>
-                            <td style="background: lightgrey;">Infant {{$hotel->infant_age_start}}-{{$hotel->infant_age_end}}</td>
+                            <td style="background: lightgrey;">Extra Bed Infant {{$hotel->infant_age_start}}-{{$hotel->infant_age_end}}</td>
                             @foreach($l as $i)
                                 <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" class="form-control" value="{{$i->infant}}"></td>
                             @endforeach
@@ -224,7 +241,7 @@
                         @endif
                         @if($roomType->is_senior!=0)
                         <tr>
-                            <td style="background: lightgrey;">Senior {{$hotel->senior_age_start}}-{{$hotel->senior_age_end}}</td>
+                            <td style="background: lightgrey;">Extra Bed Senior {{$hotel->senior_age_start}}-{{$hotel->senior_age_end}}</td>
                             @foreach($l as $i)
                                 <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" class="form-control" value="{{$i->senior}}"></td>
                             @endforeach

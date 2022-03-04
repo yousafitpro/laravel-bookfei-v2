@@ -12,6 +12,7 @@ class hotelRoomRate extends Model
         'hotel_room_type_id',
         'tax_percentage',
         'tax_amount',
+        'room_price',
         'day',
         'adult',
         'child',

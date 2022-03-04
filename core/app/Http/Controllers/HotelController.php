@@ -237,7 +237,8 @@ class HotelController extends Controller
 
             $city->save();
         }
-        return redirect(route('admin.hotel.editOrCreate',$id).'?tab=RoomType')->with('doneMessage', __('backend.updateDone'));
+
+        return redirect(route('admin.hotel.editOrCreate',$id).'?tab=Basic')->with('doneMessage', __('backend.updateDone'));
 
     }
     public function create(Request $request)
@@ -418,7 +419,7 @@ class HotelController extends Controller
             $city->save();
         }
 
-        return redirect(route('admin.hotel.editOrCreate',$city->id).'?tab=RoomType')->with('doneMessage', __('backend.addDone'));
+        return redirect(route('admin.hotel.editOrCreate',$city->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
 
     }
 }

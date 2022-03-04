@@ -70,7 +70,7 @@
                                 <?php
                                 $i=0
                                 ?>
-                                @while($i!=100)
+                                @while($i!=101)
                                     <option value="{{$i}}">{{$i}}</option>
                                     <?php
                                     $i=$i+1;
@@ -82,7 +82,7 @@
                                 <?php
                                 $i=0
                                 ?>
-                                @while($i!=100)
+                                @while($i!=101)
                                     <option value="{{$i}}">{{$i}}</option>
                                     <?php
                                     $i=$i+1;
@@ -104,7 +104,7 @@
                                 <?php
                                 $i=0
                                 ?>
-                                @while($i!=100)
+                                @while($i!=101)
                                     <option value="{{$i}}">{{$i}}</option>
                                     <?php
                                     $i=$i+1;
@@ -116,7 +116,7 @@
                                 <?php
                                 $i=0
                                 ?>
-                                @while($i!=100)
+                                @while($i!=101)
                                     <option value="{{$i}}">{{$i}}</option>
                                     <?php
                                     $i=$i+1;
@@ -138,7 +138,7 @@
                                 <?php
                                 $i=0
                                 ?>
-                                @while($i!=100)
+                                @while($i!=101)
                                     <option value="{{$i}}">{{$i}}</option>
                                     <?php
                                     $i=$i+1;
@@ -150,7 +150,7 @@
                                 <?php
                                 $i=0
                                 ?>
-                                @while($i!=100)
+                                @while($i!=101)
                                     <option value="{{$i}}">{{$i}}</option>
                                     <?php
                                     $i=$i+1;
@@ -172,7 +172,7 @@
                                 <?php
                                 $i=0;
                                 ?>
-                                @while($i!=100)
+                                @while($i!=101)
                                     <option value="{{$i}}">{{$i}}</option>
                                     <?php
                                     $i=$i+1;
@@ -184,7 +184,7 @@
                                 <?php
                                 $i=0;
                                 ?>
-                                @while($i!=100)
+                                @while($i!=101)
                                     <option value="{{$i}}">{{$i}}</option>
                                     <?php
                                     $i=$i+1;
@@ -206,7 +206,7 @@
                                 <?php
                                 $i=0
                                 ?>
-                                @while($i!=100)
+                                @while($i!=101)
                                     <option value="{{$i}}">{{$i}}</option>
                                     <?php
                                     $i=$i+1;
@@ -218,7 +218,7 @@
                                 <?php
                                 $i=0
                                 ?>
-                                @while($i!=100)
+                                @while($i!=101)
                                     <option value="{{$i}}">{{$i}}</option>
                                     <?php
                                     $i=$i+1;
@@ -236,13 +236,22 @@
 
 
             </div>
+            <div class="col-md-3">
+                <label>Status</label><br>
+                <select  class="form-control" name="status" required>
+
+                    <option value="1">active</option>
+                    <option value="0">unactive</option>
+                </select>
+            </div>
 
 
 
         </div>
 
         <button type="submit"
-                class="btn success p-x-md pull-right">Save & Next</button>
+                class="btn dark p-x-md pull-right">{{ __('backend.update') }}</button>
+
 
 
     </div>

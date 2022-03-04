@@ -23,8 +23,9 @@ class HotelRoomRate extends Migration
             $table->string("toddler")->default(null);
             $table->string("infant")->default(null);
             $table->string("senior")->default(null);
-            $table->string("tax_percentage")->default(null);
-            $table->string("tax_amount")->default(null);
+            $table->string("tax_percentage")->default('');
+            $table->string("tax_amount")->default('');
+            $table->string("room_price")->default('');
             $table->string("is_disabled")->default('1');
             $table->softDeletes();
             $table->timestamps();

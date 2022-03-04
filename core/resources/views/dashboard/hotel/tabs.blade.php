@@ -6,10 +6,8 @@
     <br>
     <div class="row box-header">
         @if($_GET['tab']=="RoomType")
-        <a href="#">
-            <button href="javascript:void"
-                    data-toggle="modal"
-                    data-target="#m-add-room" ui-toggle-class="bounce" class="btn btn-dark pull-right">Add Room Type</button>
+        <a href="{{route('admin.hotelRoom.createView',$hotel->id)}}">
+            <button  class="btn btn-dark pull-right">Add Room Type</button>
         </a>
         @endif
             @if($_GET['tab']=="RateTable")

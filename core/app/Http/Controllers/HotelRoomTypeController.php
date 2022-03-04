@@ -41,6 +41,18 @@ class HotelRoomTypeController extends Controller
             return redirect()->back()->with('doneMessage', __('backend.deleteDone'));
         }
     }
+    public function updateView($id)
+    {
+
+        $data['Banner']=hotelRoomType::find($id);
+        $data['hotel']=hotel::find($data['Banner']->hotel_id);
+        return view('dashboard.hotel-room.edit',$data);
+    }
+    public function createView($id)
+    {
+        $data['hotel']=hotel::find($id);
+        return view('dashboard.hotel-room.add',$data);
+    }
     public function update(Request $request,$id)
     {
 
@@ -102,7 +114,8 @@ class HotelRoomTypeController extends Controller
         }
 
         hotelRoomType::where('id',$id)->update($data);
-        return redirect()->back()->with('doneMessage', __('backend.updateDone'));
+
+        return redirect(route('admin.hotel.editOrCreate',hotelRoomType::find($id)->hotel_id).'?tab=RoomType')->with('doneMessage', __('backend.updateDone'));
     }
     public function create(Request $request)
     {
@@ -188,7 +201,9 @@ class HotelRoomTypeController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.addDone'));
+
+        return redirect(route('admin.hotel.editOrCreate',$request->hotel_id).'?tab=RoomType')->with('doneMessage', __('backend.updateDone'));
+
     }
     public function createLink(Request $request,$id,$table_id)
     {
@@ -281,6 +296,7 @@ class HotelRoomTypeController extends Controller
 
             $city->save();
         }
+
         return redirect()->back()->with('doneMessage', __('backend.addDone'));
     }
 }

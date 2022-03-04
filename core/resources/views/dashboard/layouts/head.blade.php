@@ -32,6 +32,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ asset('assets/css/myfile-uploader.css') }}" type="text/css"/>
 <style>
     .select2-container {
         width: 100% !important;

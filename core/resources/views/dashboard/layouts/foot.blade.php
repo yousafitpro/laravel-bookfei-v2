@@ -42,6 +42,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
 <script src="//cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
 <script src="{{ asset('assets/js/script.js') }}" ></script>
+<script src="{{ asset('assets/js/myfile-uploader.js') }}" ></script>
 <script>
 
 //    $(".mytoggle").on("click",function (e)

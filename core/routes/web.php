@@ -33,6 +33,7 @@ include "inc/cruise_ship.php";
 include "inc/cruiseRoom.php";
 include "inc/cruise-rate-table.php";
 include "inc/config.php";
+include "inc/myfile-uploader.php";
 // Language Route
 Route::post('/lang', [LanguageController::class, 'index'])->middleware('LanguageSwitcher')->name('lang');
 // For Language direct URL link
