@@ -60,7 +60,7 @@ class HotelRoomTypeController extends Controller
         $this->validate($request, [
             'effective_end_date' => 'after_or_equal:effective_start_date'
         ]);
-        $data=$request->except(['file','_token']);
+        $data=$request->except(['file','_token','myImage']);
 
 
         if (!$request->has("is_adult"))
@@ -126,7 +126,7 @@ class HotelRoomTypeController extends Controller
             'effective_end_date' => 'after_or_equal:effective_start_date',
             'max_guest' => 'required|gt:default_guest'
         ]);
-        $data=$request->except(['file','_token']);
+        $data=$request->except(['file','_token','myImage']);
 
         if (!$request->has("early_bird"))
         {
