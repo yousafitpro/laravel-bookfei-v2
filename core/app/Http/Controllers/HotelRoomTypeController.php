@@ -106,6 +106,7 @@ class HotelRoomTypeController extends Controller
     }
     public function create(Request $request)
     {
+        ///asdasd
 
         $this->validate($request, [
             'effective_end_date' => 'after_or_equal:effective_start_date',
