@@ -79,8 +79,8 @@
                             </div><br><br>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <small>Tax Percentage % </small><br>
-                                    <input type="number" name="tax_percentage" required value="0"  class="form-control input-sm">
+                                    <small>Tax Percentage  % </small><br>
+                                    <input type="number"  name="tax_percentage" required value="1" min="0"  max="100" class="form-control input-sm">
                                 </div>
                                 <div class="col-md-4">
                                     <small>Tax Amount</small><br>
