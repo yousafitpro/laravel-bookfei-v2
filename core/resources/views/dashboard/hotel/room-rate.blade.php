@@ -79,7 +79,7 @@
                             </div><br><br>
                             <div class="row">
                                 <div class="col-md-7">
-                                    <small>Room Price (HKD$) </small><br>
+                                    <small>Room Price ({{\App\Helpers\Helper::get_Currency($rateTable->currency_id)->name}}) </small><br>
                                     <input type="number"  name="room_price"    max="100" class="form-control input-sm">
 
                                 </div>
@@ -199,7 +199,7 @@
                         <tbody>
 
                             <tr>
-                                <td style="background: lightgrey; min-width: 180px">Room Price (HKD$)</td>
+                                <td style="background: lightgrey; min-width: 180px">Room Price ({{\App\Helpers\Helper::get_Currency($rateTable->currency_id)->name}})</td>
                                 @foreach($l as $i)
                                     <td><input onkeyup="updateMe('{{$i->id}}','room_price',event)" class="form-control" value="{{$i->room_price}}"></td>
                                 @endforeach
