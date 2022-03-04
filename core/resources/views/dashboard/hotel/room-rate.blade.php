@@ -106,7 +106,7 @@
                                     </div>
                                     <br><br>
                                     <button type="submit" style="width: 200px"
-                                            class="btn primary p-x-md">{{ __('backend.apply') }}</button>
+                                            class="btn dark p-x-md">{{ __('backend.apply') }}</button>
                                 </div>
                             </div><br>
                         </div>

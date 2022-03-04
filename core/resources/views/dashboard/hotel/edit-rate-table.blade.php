@@ -142,7 +142,7 @@
     <div class="row">
         <div class="col-md-12">
             <button type="submit"
-                    class="btn success p-x-md pull-right">{{ __('backend.update') }}</button>
+                    class="btn dark p-x-md pull-right">{{ __('backend.update') }}</button>
         </div>
     </div>
 

@@ -271,6 +271,6 @@
 
 
         <button type="submit"
-                class="btn success p-x-md pull-right">{{ __('backend.update') }}</button>
+                class="btn dark p-x-md pull-right">{{ __('backend.update') }}</button>
     </div>
 </form>
