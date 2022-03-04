@@ -8,7 +8,7 @@
         <div class="card ">
             <div class="box-header">
                 <small>
-                    <a href="{{route('admin.hotel.list')}}">
+                    <a href="{{route('admin.hotel.editOrCreate',$hotel->id).'?tab=RoomType'}}">
                         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                         Go Back
                     </a>
