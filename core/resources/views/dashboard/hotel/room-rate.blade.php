@@ -201,7 +201,7 @@
                             <tr>
                                 <td style="background: lightgrey; min-width: 180px">Room Price ({{\App\Helpers\Helper::get_Currency($rateTable->currency_id)->name}})</td>
                                 @foreach($l as $i)
-                                    <td><input onkeyup="updateMe('{{$i->id}}','room_price',event)" class="form-control" value="{{$i->room_price}}"></td>
+                                    <td><input onkeyup="updateMe('{{$i->id}}','room_price',event)" type="number" class="form-control" value="{{$i->room_price}}"></td>
                                 @endforeach
                             </tr>
 
@@ -209,7 +209,7 @@
                         <tr>
                             <td style="background: lightgrey; min-width: 180px">Extra Bed Adult {{$hotel->adult_age_start}}-{{$hotel->adult_age_end}}</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" class="form-control" value="{{$i->adult}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" class="form-control" type="number" value="{{$i->adult}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -217,7 +217,7 @@
                         <tr>
                             <td style="background: lightgrey;">Extra Bed Child {{$hotel->child_age_start}}-{{$hotel->child_age_end}}</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','child',event)" class="form-control" value="{{$i->child}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','child',event)" class="form-control" type="number" value="{{$i->child}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -227,7 +227,7 @@
                             <td style="background: lightgrey;">Extra Bed Toddler {{$hotel->toddler_age_start}}-{{$hotel->toddler_age_end}}</td>
                             @foreach($l as $i)
 
-                                <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" class="form-control" value="{{$i->toddler}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" class="form-control" type="number" value="{{$i->toddler}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -235,7 +235,7 @@
                         <tr>
                             <td style="background: lightgrey;">Extra Bed Infant {{$hotel->infant_age_start}}-{{$hotel->infant_age_end}}</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" class="form-control" value="{{$i->infant}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" class="form-control" type="number" value="{{$i->infant}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -243,20 +243,20 @@
                         <tr>
                             <td style="background: lightgrey;">Extra Bed Senior {{$hotel->senior_age_start}}-{{$hotel->senior_age_end}}</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" class="form-control" value="{{$i->senior}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" class="form-control" type="number" value="{{$i->senior}}"></td>
                             @endforeach
                         </tr>
                         @endif
                         <tr>
                             <td style="background: lightgrey;">Tax Percentage</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" class="form-control" value="{{$i->tax_percentage}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
                             @endforeach
                         </tr>
                         <tr>
                             <td style="background: lightgrey;">Tax Amount</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','tax_amount',event)" class="form-control" value="{{$i->tax_amount}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_amount',event)" class="form-control" type="number" value="{{$i->tax_amount}}"></td>
                             @endforeach
                         </tr>
                         <tr>
