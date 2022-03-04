@@ -3,7 +3,7 @@
 <div class="myfileUploaderImageBox box">
 
 <div style="position: absolute">
-    <img style="width: 100%" src="{{$item->image}}">
+    <img style="width:100px" src="{{$item->image}}">
 </div >
     <div onclick="removeImage('{{$item->id}}')" class="btn " style="position: absolute; color: red; margin-right: -15px; margin-top: -15px; right: 0">X</div>
 </div>
