@@ -8,6 +8,7 @@ use App\Models\hotel;
 use App\Models\hotelRateTable;
 use App\Models\hotelRoomRate;
 use App\Models\hotelRoomType;
+use App\Models\myfile;
 use App\Models\tour;
 use App\Models\tourRate;
 use Carbon\Carbon;
@@ -189,7 +190,9 @@ class HotelRoomTypeController extends Controller
         }
 
         $city= hotelRoomType::create($data);
-
+        myfile::where('type','roomType')->where('item_id','temp')->update([
+            'item_id'=>$city->id
+        ]);
         if($request->hasFile('file'))
         {
             $file = $request->file('file');

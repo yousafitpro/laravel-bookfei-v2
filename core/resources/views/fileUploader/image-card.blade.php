@@ -8,7 +8,7 @@
                       <label for="myImage" id="uploadBtn"  class="btn btn-primary" style="height: 100%; padding: 20px;  width:100%; font-size: 12px; font-weight: bold">
 
                           Upload Image</label>
-                      <input hidden id="myImage" onchange="myfile_uploader_upload(event,'{{route('myfileUploader.upload')}}','{{ csrf_token() }}','{{$type}}','{{$item_id}}')" name="myImage" type="file">
+                      <input  hidden id="myImage" accept="image/*" onchange="myfile_uploader_upload(event,'{{route('myfileUploader.upload')}}','{{ csrf_token() }}','{{$type}}','{{$item_id}}')" name="myImage" type="file">
                   </div>
                   <div id="mainFileUploadContainer" >
 

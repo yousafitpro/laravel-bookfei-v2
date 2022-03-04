@@ -70,7 +70,7 @@
         <br>
 
         <div class="row p-l-1">
-            <div class="col-md-9 box box-body  ">
+            <div class="col-md-7 box box-body  ">
 
                 <div class="container-fluid">
                     <div class="row">
@@ -187,6 +187,9 @@
                 </div>
 
 
+            </div>
+            <div class="col-md-5">
+                @include('fileUploader.image-card',['type'=>'roomType','item_id'=>"temp"])
             </div>
 
 
