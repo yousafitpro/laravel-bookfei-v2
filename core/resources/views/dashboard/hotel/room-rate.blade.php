@@ -113,7 +113,7 @@
                             <br>
                             @if($roomType->is_adult!=0)
                             <div class="row">
-                                <div class="col-md-6"><input readonly value="Adult {{$roomType->adult_age_start}}-{{$roomType->adult_age_end}}" class="form-control"></div>
+                                <div class="col-md-6"><input readonly value="Adult {{$hotel->adult_age_start}}-{{$hotel->adult_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input {{$roomType->is_adult=="0"?"readonly":""}}  type="number" required value="0" name="adult" class="form-control"></div>
                             </div>
                                 <br>
@@ -122,28 +122,28 @@
                             @if($roomType->is_child!=0)
                             <div class="row">
 
-                                <div class="col-md-6"><input readonly value="Child {{$roomType->child_age_start}}-{{$roomType->child_age_end}}" class="form-control"></div>
+                                <div class="col-md-6"><input readonly value="Child {{$hotel->child_age_start}}-{{$hotel->child_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input {{$roomType->is_child=="0"?"readonly":""}}  type="number" required value="0" name="child" class="form-control"></div>
                             </div>
                             <br>@endif
 
                                 @if($roomType->is_toddler!=0)
                             <div class="row">
-                                <div class="col-md-6"><input readonly value="Toddler {{$roomType->toddler_age_start}}-{{$roomType->toddler_age_end}}" class="form-control"></div>
+                                <div class="col-md-6"><input readonly value="Toddler {{$hotel->toddler_age_start}}-{{$hotel->toddler_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input  type="number" {{$roomType->toddler=="0"?"readonly":""}} required value="0" name="toddler" class="form-control"></div>
                             </div>
                             <br>
                                 @endif
                                     @if($roomType->is_infant!=0)
                             <div class="row">
-                                <div class="col-md-6"><input readonly value="Infant {{$roomType->infant_age_start}}-{{$roomType->infant_age_end}}" class="form-control"></div>
+                                <div class="col-md-6"><input readonly value="Infant {{$hotel->infant_age_start}}-{{$hotel->infant_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input  type="number" {{$roomType->is_infant=="0"?"readonly":""}} required value="0" name="infant" class="form-control"></div>
                             </div>
                             <br>
                                     @endif
                                         @if($roomType->is_senior!=0)
                             <div class="row">
-                                <div class="col-md-6"><input readonly value="Senior {{$roomType->senior_age_start}}-{{$roomType->senior_age_end}}" class="form-control"></div>
+                                <div class="col-md-6"><input readonly value="Senior {{$hotel->senior_age_start}}-{{$hotel->senior_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input  type="number" {{$roomType->is_senior=="0"?"readonly":""}} required value="0" name="senior" class="form-control"></div>
                             </div>
                                 @endif
@@ -190,7 +190,7 @@
                         <tbody>
                         @if($roomType->is_adult!=0)
                         <tr>
-                            <td style="background: lightgrey;">Adult {{$roomType->adult_age_start}}-{{$roomType->adult_age_end}}</td>
+                            <td style="background: lightgrey;">Adult {{$hotel->adult_age_start}}-{{$hotel->adult_age_end}}</td>
                             @foreach($l as $i)
                                 <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" class="form-control" value="{{$i->adult}}"></td>
                             @endforeach
@@ -198,7 +198,7 @@
                         @endif
                         @if($roomType->is_child!=0)
                         <tr>
-                            <td style="background: lightgrey;">Child {{$roomType->child_age_start}}-{{$roomType->child_age_end}}</td>
+                            <td style="background: lightgrey;">Child {{$hotel->child_age_start}}-{{$hotel->child_age_end}}</td>
                             @foreach($l as $i)
                                 <td><input onkeyup="updateMe('{{$i->id}}','child',event)" class="form-control" value="{{$i->child}}"></td>
                             @endforeach
@@ -207,7 +207,7 @@
                         @if($roomType->is_toddler!=0)
 
                         <tr>
-                            <td style="background: lightgrey;">Toddler {{$roomType->toddler_age_start}}-{{$roomType->toddler_age_end}}</td>
+                            <td style="background: lightgrey;">Toddler {{$hotel->toddler_age_start}}-{{$hotel->toddler_age_end}}</td>
                             @foreach($l as $i)
 
                                 <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" class="form-control" value="{{$i->toddler}}"></td>
@@ -216,7 +216,7 @@
                         @endif
                         @if($roomType->is_infant!=0)
                         <tr>
-                            <td style="background: lightgrey;">Infant {{$roomType->infant_age_start}}-{{$roomType->infant_age_end}}</td>
+                            <td style="background: lightgrey;">Infant {{$hotel->infant_age_start}}-{{$hotel->infant_age_end}}</td>
                             @foreach($l as $i)
                                 <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" class="form-control" value="{{$i->infant}}"></td>
                             @endforeach
@@ -224,7 +224,7 @@
                         @endif
                         @if($roomType->is_senior!=0)
                         <tr>
-                            <td style="background: lightgrey;">Senior {{$roomType->senior_age_start}}-{{$roomType->senior_age_end}}</td>
+                            <td style="background: lightgrey;">Senior {{$hotel->senior_age_start}}-{{$hotel->senior_age_end}}</td>
                             @foreach($l as $i)
                                 <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" class="form-control" value="{{$i->senior}}"></td>
                             @endforeach

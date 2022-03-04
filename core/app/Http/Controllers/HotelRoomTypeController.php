@@ -108,7 +108,8 @@ class HotelRoomTypeController extends Controller
     {
 
         $this->validate($request, [
-            'effective_end_date' => 'after_or_equal:effective_start_date'
+            'effective_end_date' => 'after_or_equal:effective_start_date',
+            'max_guest' => 'required|gt:default_guest'
         ]);
         $data=$request->except(['file','_token']);
 

@@ -68,7 +68,7 @@
                         <div class="col-md-3">
                             <select id="adult_age_start" name="adult_age_start" onchange="inputChange('adult_age_start')" value="{{old('adult_age_start')}}" class="form-control">
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -80,7 +80,7 @@
                         <div class="col-md-3">
                             <select id="adult_age_end" name="adult_age_end" onchange="inputChange('adult_age_end')" class="form-control" value="{{old('adult_age_end')}}">
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -102,7 +102,7 @@
                         <div class="col-md-3">
                             <select id="child_age_start" onchange="inputChange('child_age_start')" name="child_age_start" value="{{old('child_age_start')}}" class="form-control">
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -114,7 +114,7 @@
                         <div class="col-md-3">
                             <select id="child_age_end" onchange="inputChange('child_age_end')" name="child_age_end" value="{{old('child_age_end')}}" class="form-control">
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -136,7 +136,7 @@
                         <div class="col-md-3">
                             <select id="toddler_age_start" onchange="inputChange('toddler_age_start')" name="toddler_age_start" value="{{old('toddler_age_start')}}" class="form-control">
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -148,7 +148,7 @@
                         <div class="col-md-3">
                             <select id="toddler_age_end" onchange="inputChange('toddler_age_end')" name="toddler_age_end" value="{{old('toddler_age_end')}}" class="form-control">
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -170,7 +170,7 @@
                         <div class="col-md-3">
                             <select onchange="inputChange('infant_age_start')" id="infant_age_start" name="infant_age_start" value="{{old('infant_age_start')}}" class="form-control">
                                 <?php
-                                $i=1;
+                                $i=0;
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -182,7 +182,7 @@
                         <div class="col-md-3">
                             <select id="infant_age_end" onchange="inputChange('infant_age_end')" name="infant_age_end" value="{{old('infant_age_end')}}" class="form-control">
                                 <?php
-                                $i=1;
+                                $i=0;
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -204,7 +204,7 @@
                         <div class="col-md-3">
                             <select id="senior_age_start" onchange="inputChange('senior_age_start')" name="senior_age_start" value="{{old('senior_age_start')}}" class="form-control">
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -216,7 +216,7 @@
                         <div class="col-md-3">
                             <select id="senior_age_end" name="senior_age_end" onchange="inputChange('senior_age_end')" value="{{old('senior_age_end')}}" class="form-control">
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>

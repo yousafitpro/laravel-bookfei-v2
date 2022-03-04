@@ -158,7 +158,7 @@
                                                                     </div>
                                                                     <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                                        <input name="is_adult" {{$Banner->is_adult=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
+                                                                        <input name="is_adult" {{$hotel->is_adult=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
                                                                     </div>
                                                                 </div>
                                                                 <div class="row" style="margin-top: 5px">
@@ -167,14 +167,14 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <input class="form-control" readonly style="background-color: white" name="child_age_start" value="{{$Banner->child_age_start}}">
+                                                                        <input class="form-control" readonly style="background-color: white" name="child_age_start" value="{{$hotel->child_age_start}}">
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <input class="form-control" readonly style="background-color: white" name="child_age_end" value="{{$Banner->child_age_end}}">
+                                                                        <input class="form-control" readonly style="background-color: white" name="child_age_end" value="{{$hotel->child_age_end}}">
                                                                     </div>
                                                                     <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                                        <input name="is_child" {{$Banner->is_child=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
+                                                                        <input name="is_child" {{$hotel->is_child=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
                                                                     </div>
                                                                 </div>
                                                                 <div class="row" style="margin-top: 5px">
@@ -183,14 +183,14 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <input class="form-control" readonly style="background-color: white" name="toddler_age_start" value="{{$Banner->toddler_age_start}}">
+                                                                        <input class="form-control" readonly style="background-color: white" name="toddler_age_start" value="{{$hotel->toddler_age_start}}">
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <input class="form-control" readonly style="background-color: white" name="toddler_age_end" value="{{$Banner->toddler_age_end}}">
+                                                                        <input class="form-control" readonly style="background-color: white" name="toddler_age_end" value="{{$hotel->toddler_age_end}}">
                                                                     </div>
                                                                     <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                                        <input name="is_toddler" {{$Banner->is_toddler=="1"?'checked':""}}  type="checkbox" style="zoom:1.6">
+                                                                        <input name="is_toddler" {{$hotel->is_toddler=="1"?'checked':""}}  type="checkbox" style="zoom:1.6">
                                                                     </div>
                                                                 </div>
                                                                 <div class="row" style="margin-top: 5px">
@@ -199,14 +199,14 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <input class="form-control" readonly style="background-color: white" name="infant_age_start" value="{{$Banner->infant_age_start}}">
+                                                                        <input class="form-control" readonly style="background-color: white" name="infant_age_start" value="{{$hotel->infant_age_start}}">
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <input class="form-control" readonly style="background-color: white" name="infant_age_end" value="{{$Banner->infant_age_end}}">
+                                                                        <input class="form-control" readonly style="background-color: white" name="infant_age_end" value="{{$hotel->infant_age_end}}">
                                                                     </div>
                                                                     <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                                        <input name="is_infant" {{$Banner->is_infant=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
+                                                                        <input name="is_infant" {{$hotel->is_infant=="1"?'checked':""}}   type="checkbox" style="zoom:1.6">
                                                                     </div>
                                                                 </div>
                                                                 <div class="row" style="margin-top: 5px">
@@ -215,15 +215,15 @@
 
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <input class="form-control" name="senior_age_start" readonly style="background-color: white" value="{{$Banner->senior_age_start}}">
+                                                                        <input class="form-control" name="senior_age_start" readonly style="background-color: white" value="{{$hotel->senior_age_start}}">
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <input class="form-control" name="senior_age_end" readonly style="background-color: white" value="{{$Banner->senior_age_end}}">
+                                                                        <input class="form-control" name="senior_age_end" readonly style="background-color: white" value="{{$hotel->senior_age_end}}">
 
                                                                     </div>
                                                                     <div class="col-md-3 myflex" style="padding: 10px" >
 
-                                                                        <input id="12w"  name="is_senior" {{$Banner->is_senior=="1"?'checked':""}}  class="mytoggle"  type="checkbox" style="zoom:1.6">
+                                                                        <input id="12w"  name="is_senior" {{$hotel->is_senior=="1"?'checked':""}}  class="mytoggle"  type="checkbox" style="zoom:1.6">
                                                                     </div>
                                                                 </div>
 

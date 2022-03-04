@@ -69,7 +69,7 @@
                             <select name="adult_age_start" value="{{$hotel->adult_age_start}}" class="form-control">
                                 <option value="{{$hotel->adult_age_start}}">{{$hotel->adult_age_start}}</option>
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -83,7 +83,7 @@
                                 <option value="{{$hotel->adult_age_end}}">{{$hotel->adult_age_end}}</option>
 
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -107,7 +107,7 @@
                                 <option value="{{$hotel->child_age_start}}">{{$hotel->child_age_start}}</option>
 
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -121,7 +121,7 @@
                                 <option value="{{$hotel->child_age_end}}">{{$hotel->child_age_end}}</option>
 
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -145,7 +145,7 @@
                                 <option value="{{$hotel->toddler_age_start}}">{{$hotel->toddler_age_start}}</option>
 
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -159,7 +159,7 @@
                                 <option value="{{$hotel->toddler_age_end}}">{{$hotel->toddler_age_end}}</option>
 
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -183,7 +183,7 @@
                                 <option value="{{$hotel->infant_age_start}}">{{$hotel->infant_age_start}}</option>
 
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -197,7 +197,7 @@
                                 <option value="{{$hotel->infant_age_end}}">{{$hotel->infant_age_end}}</option>
 
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -221,7 +221,7 @@
                                 <option value="{{$hotel->senior_age_start}}">{{$hotel->senior_age_start}}</option>
 
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -235,7 +235,7 @@
                                 <option value="{{$hotel->senior_age_end}}">{{$hotel->senior_age_end}}</option>
 
                                 <?php
-                                $i=1
+                                $i=0
                                 ?>
                                 @while($i!=100)
                                     <option value="{{$i}}">{{$i}}</option>

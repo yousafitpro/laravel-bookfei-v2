@@ -169,10 +169,7 @@ class HotelController extends Controller
             }
 
         }
-        $this->validate($request, [
-            'effective_end_date' => 'after_or_equal:effective_start_date',
 
-        ]);
         $data=$request->except(['file','_token']);
 
 
@@ -243,9 +240,116 @@ class HotelController extends Controller
         return redirect(route('admin.hotel.editOrCreate',$id).'?tab=RoomType')->with('doneMessage', __('backend.updateDone'));
 
     }
-    public function create(Gendergroup $request)
+    public function create(Request $request)
     {
 
+        if ($request->has("is_adult"))
+        {
+            $this->validate($request, [
+                'adult_age_end'=>'required|gt:adult_age_start'
+            ]);
+        }
+        if ($request->has("is_child"))
+        {
+            $this->validate($request, [
+                'child_age_end'=>'required|gt:child_age_start'
+            ]);
+        }
+        if ($request->has("is_toddler"))
+        {
+            $this->validate($request, [
+                'toddler_age_end'=>'required|gt:toddler_age_start'
+            ]);
+        }
+        if ($request->has("is_infant"))
+        {
+            $this->validate($request, [
+                'infant_age_end'=>'required|gt:infant_age_start'
+            ]);
+        }
+
+
+        if ($request->has("is_senior"))
+        {
+            $this->validate($request, [
+                'senior_age_end'=>'required|gt:senior_age_start'
+            ]);
+        }
+        if ($request->has("is_child") && $request->has("is_adult"))
+        {
+            $this->validate($request, [
+                'child_age_end'=>'required|in:'.($request->adult_age_start-1).'',
+                'adult_age_start'=>'required|gt:child_age_end',
+            ]);
+        }
+        if ($request->has("is_toddler") && $request->has("is_child"))
+        {
+            $this->validate($request, [
+                'toddler_age_end'=>'required|in:'.($request->child_age_start-1).'',
+                'child_age_start'=>'required|gt:toddler_age_end',
+            ]);
+        }
+        if ($request->has("is_infant") && $request->has("is_toddler"))
+        {
+            $this->validate($request, [
+                'infant_age_end'=>'required|in:'.($request->toddler_age_start-1).'',
+                'toddler_age_start'=>'required|gt:infant_age_end',
+            ]);
+        }
+        if ($request->has("is_senior") && $request->has("is_adult"))
+        {
+            $this->validate($request, [
+                'senior_age_start'=>'required|in:'.($request->adult_age_end+1).'',
+            ]);
+        }
+        if ($request->has("is_adult"))
+        {
+            if ($request->has("is_child"))
+            {
+                $this->validate($request, [
+                    'adult_age_start'=>'required|gt:child_age_end',
+                ]);
+            }
+            if ($request->has("is_toddler"))
+            {
+                $this->validate($request, [
+                    'adult_age_start'=>'required|gt:toddler_age_end',
+                ]);
+            }
+            if ($request->has("is_infant"))
+            {
+                $this->validate($request, [
+                    'adult_age_start'=>'required|gt:infant_age_end',
+                ]);
+            }
+
+        }
+        if ($request->has("is_child"))
+        {
+            if ($request->has("is_toddler"))
+            {
+                $this->validate($request, [
+                    'child_age_start'=>'required|gt:toddler_age_end',
+                ]);
+            }
+            if ($request->has("is_infant"))
+            {
+                $this->validate($request, [
+                    'child_age_start'=>'required|gt:infant_age_end',
+                ]);
+            }
+
+        }
+        if ($request->has("is_toddler"))
+        {
+            if ($request->has("is_infant"))
+            {
+                $this->validate($request, [
+                    'toddler_age_start'=>'required|gt:infant_age_end',
+                ]);
+            }
+
+        }
 
         $data=$request->except('file');
 
