@@ -120,7 +120,7 @@
 
                                         <a href="{{route('admin.hotel.editOrCreate',$Banner->id).'?tab=Basic'}}">
 
-                                            <button class="btn btn-sm warning" >
+                                            <button class="btn btn-sm success" >
                                                 <small><i class="fa fa-edit" aria-hidden="true"></i> {{ __('backend.edit') }}
                                                 </small>
                                             </button>
