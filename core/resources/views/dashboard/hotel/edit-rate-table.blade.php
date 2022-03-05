@@ -1,5 +1,5 @@
 
-<form method="post" action="{{route('admin.hotelRateTable.update',$table->id)}}" enctype="multipart/form-data">
+<form method="post" id="editRateTable" action="{{route('admin.hotelRateTable.update',$table->id)}}" enctype="multipart/form-data">
     @csrf
     <input hidden  name="hotel_id" value="{{$hotel_id}}">
 <div class="container-fluid">
@@ -143,8 +143,7 @@
     <br>
     <div class="row">
         <div class="col-md-12">
-            <button type="submit"
-                    class="btn dark p-x-md pull-right">{{ __('backend.update') }}</button>
+
         </div>
     </div>
 

@@ -1,4 +1,4 @@
-<form method="post" action="{{route('admin.hotel.create')}}" enctype="multipart/form-data">
+<form method="post" id="addHotel" action="{{route('admin.hotel.create')}}" enctype="multipart/form-data">
     @csrf
     <div class="container-fluid">
         <div class="row">
@@ -249,8 +249,7 @@
 
         </div>
 
-        <button type="submit"
-                class="btn dark p-x-md pull-right">{{ __('backend.update') }}</button>
+
 
 
 

@@ -7,12 +7,20 @@
     <div class="padding">
         <div class="card ">
             <div class="box-header">
+                <button type="submit"
+                        class="btn dark p-x-md pull-right">{{ __('backend.create') }}</button>
                 <small>
                     <a href="{{route('admin.hotel.editOrCreate',$hotel->id).'?tab=RoomType'}}">
                         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                         Go Back
                     </a>
                 </small>
+                <br>
+                        <h6 style="color: grey">
+                            <label>Hotel:  {{$hotel->name}}</label><small></small>
+
+                        </h6>
+
             </div>
     <div class="container-fluid">
         {{--                            <div class="row">--}}
@@ -51,15 +59,16 @@
             <div class="col-md-2">
             </div>
             <div class="col-md-3">
-            </div>
-            <div class="col-md-3">
-
-
                 <label>Status</label><br>
                 <select class="form-control" name="status" required>
                     <option value="1">active</option>
                     <option value="0">unactive</option>
                 </select>
+            </div>
+            <div class="col-md-3">
+
+
+
 
 
             </div>
@@ -199,8 +208,7 @@
 <br>
         <div class="row">
             <div class="col-md-12">
-                <button type="submit"
-                        class="btn dark p-x-md pull-right">{{ __('backend.create') }}</button>
+
             </div>
         </div>
         <br><br>

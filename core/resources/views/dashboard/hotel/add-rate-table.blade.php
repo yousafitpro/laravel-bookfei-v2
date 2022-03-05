@@ -1,7 +1,7 @@
 
 
 
-<form method="post" action="{{route('admin.hotelRateTable.create')}}" enctype="multipart/form-data">
+<form method="post" id="addRateTable" action="{{route('admin.hotelRateTable.create')}}" enctype="multipart/form-data">
     @csrf
 <input hidden  name="hotel_id" value="{{$hotel_id}}">
             <div class="container-fluid">
@@ -127,11 +127,13 @@
                 <br>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="submit"
-                                class="btn dark p-x-md pull-right">Save & Next</button>
+
                     </div>
                 </div>
 
             </div>
 
 </form>
+<script>
+
+</script>

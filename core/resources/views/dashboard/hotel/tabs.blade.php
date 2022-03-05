@@ -5,6 +5,14 @@
 <div class="container-fluid">
     <br>
     <div class="row box-header">
+        @if($_GET['tab']=="Basic" && $hotel_id==0 )
+            <button onclick="document.getElementById('addHotel').submit()"
+                    class="btn dark p-x-md pull-right">{{ __('backend.save') }}</button>
+        @endif
+            @if($_GET['tab']=="Basic" && $hotel_id!=0 )
+                <button onclick="document.getElementById('editHotel').submit()"
+                        class="btn dark p-x-md pull-right">{{ __('backend.update') }}</button>
+            @endif
         @if($_GET['tab']=="RoomType")
         <a href="{{route('admin.hotelRoom.createView',$hotel->id)}}">
             <button  class="btn btn-dark pull-right">Add Room Type</button>

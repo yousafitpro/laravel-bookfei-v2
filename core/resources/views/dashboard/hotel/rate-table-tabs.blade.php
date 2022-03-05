@@ -5,7 +5,14 @@
             <div class="container-fluid">
                 <br>
                 <div class="row box-header">
-
+                    @if($_GET['tab']=="Basic" && $table_id==0 )
+                    <button onclick="document.getElementById('addRateTable').submit()"
+                            class="btn dark p-x-md pull-right">{{ __('backend.save') }}</button>
+                    @endif
+                        @if($_GET['tab']=="Basic" && $table_id!=0)
+                            <button onclick="document.getElementById('editRateTable').submit()"
+                                    class="btn dark p-x-md pull-right">{{ __('backend.update') }}</button>
+                        @endif
                     <div class="col-md-12">
                         <small>
 
@@ -64,5 +71,11 @@
 
         </div>
     </div>
+    <script>
+        function addRateTable() {
+            alert("ok")
+            document.getElementById('addRateTable').submit();
+        }
+    </script>
 @endsection
 
