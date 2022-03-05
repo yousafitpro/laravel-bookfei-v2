@@ -160,7 +160,7 @@
                         </div>
                         <div class="col-md-3 myflex" style="padding: 10px" >
 
-                            <input name="is_infant" {{$hotel->is_infant=="1"?'checked':""}} {{$hotel->infant=="0"?'disabled':""}}  type="checkbox" style="zoom:1.6">
+                            <input name="is_infant" {{$hotel->is_infant=="1"?'checked':""}} {{$hotel->is_infant=="0"?'disabled':""}}  type="checkbox" style="zoom:1.6">
                         </div>
                     </div>
                     <div class="row" style="margin-top: 5px">
