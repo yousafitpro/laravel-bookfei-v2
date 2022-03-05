@@ -94,11 +94,13 @@
     <div class="row">
         <div class="col-md-4">
 
-            <label>Bonus Night Type</label><br>
-            <option value="{{$table->bonus_night_type}}">{{$table->bonus_night_type}}</option>
+            <label>Bonus Night Type </label><br>
+
 
             <select class="form-control" name="bonus_night_type" >
-                <option value="Accumulated / Once">Accumulated / Once</option>
+                <option value="{{$table->bonus_night_type}}">{{$table->bonus_night_type}}</option>
+                <option value="Accumulated">Accumulated</option>
+                <option value="Once">Once</option>
 
             </select>
 

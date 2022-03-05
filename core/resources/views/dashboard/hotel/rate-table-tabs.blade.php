@@ -15,13 +15,16 @@
                         </small>
                     </div>
                 </div>
-                @if($table_id!=0)
+
                     <div class="row">
                         <div class="col-md-12 p-l-2">
-                            <h6 style="color: grey">{{$table->name}}</h6>
+                            <h6 style="color: grey">
+                                <label>Hotel: </label><small> {{$hotel->name}}</small>
+
+                            </h6>
                         </div>
                     </div>
-                @endif
+
 
                 <div class="row">
                     <div class="col-md-12">

@@ -16,17 +16,17 @@ class HotelRoomRate extends Migration
         Schema::create('hotel_room_rates', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("hotel_room_type_id");
-            $table->string("day")->default(null);
-            $table->string("date")->default(null);
-            $table->string("adult")->default(null);
-            $table->string("child")->default(null);
-            $table->string("toddler")->default(null);
-            $table->string("infant")->default(null);
-            $table->string("senior")->default(null);
-            $table->string("tax_percentage")->default('');
-            $table->string("tax_amount")->default('');
-            $table->string("room_price")->default('');
-            $table->string("is_disabled")->default('1');
+            $table->string("day")->nullable()->default(null);
+            $table->string("date")->nullable()->default(null);
+            $table->string("adult")->nullable()->default(null);
+            $table->string("child")->nullable()->default(null);
+            $table->string("toddler")->nullable()->default(null);
+            $table->string("infant")->nullable()->default(null);
+            $table->string("senior")->nullable()->default(null);
+            $table->string("tax_percentage")->nullable()->default('');
+            $table->string("tax_amount")->nullable()->default('');
+            $table->string("room_price")->nullable()->default('');
+            $table->string("is_disabled")->nullable()->default('1');
             $table->softDeletes();
             $table->timestamps();
         });

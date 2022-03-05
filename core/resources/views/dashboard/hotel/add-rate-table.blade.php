@@ -87,7 +87,8 @@
 
                         <label>Bonus Night Type</label><br>
                         <select class="form-control" name="bonus_night_type" >
-                            <option value="Accumulated / Once">Accumulated / Once</option>
+                            <option value="Accumulated">Accumulated</option>
+                            <option value="Once">Once</option>
 
                         </select>
                         <br>
