@@ -10,5 +10,7 @@ Route::middleware('auth')
         Route::get("delete/{id}",[App\Http\Controllers\HotelRateTableController::class,'delete'])->name('admin.hotelRateTable.delete');
         Route::post("toggle/{id}",[App\Http\Controllers\HotelRateTableController::class,'toggle'])->name('admin.tourRate.toggle');
         Route::post("updateColumn/{id}",[App\Http\Controllers\HotelRateTableController::class,'updateColumn'])->name('admin.tourRate.toggle');
+        Route::post("deleteBulk",[App\Http\Controllers\HotelRateTableController::class,'deleteBulk'])->name('admin.hotelRateTable.deleteBulk');
+        Route::post("cloneBulk",[App\Http\Controllers\HotelRateTableController::class,'cloneBulk'])->name('admin.hotelRateTable.cloneBulk');
 
     });

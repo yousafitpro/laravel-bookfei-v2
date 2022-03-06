@@ -1,7 +1,7 @@
 
 
                 <div class="table-responsive">
-                    <table class="table table-bordered m-a-0" id="myTable">
+                    <table class="table table-bordered m-a-0" >
                         <thead class="dker">
                         <tr>
                             <th class=" width50"></th>
@@ -37,7 +37,7 @@
 {{--                                </td>--}}
 
                                 <td class="text-center">
-                                    <input id="checkBox" type="checkbox" style="zoom: 1.2">
+                                    <input id="roomTypeCheckBox" data-id="{{$Banner->id}}" type="checkbox" style="zoom: 1.2">
                                 </td>
                                 <td class="">
                                     <label>{{$Banner->name}}</label>
@@ -104,7 +104,35 @@
                     </table>
 
                 </div>
+<script>
+    function roomTypeBulkDelete() {
+        var checkboxes = document.querySelectorAll('input[id="roomTypeCheckBox"]');
+        var tempArray=[];
+        for (var checkbox of checkboxes) {
 
+            if (checkbox.checked)
+            {
+                tempArray.push(checkbox.getAttribute('data-id'))
+            }
+
+        }
+
+        console.log(tempArray)
+        if (tempArray.length>0)
+        {
+            $("#btnRoomTypeRemove").text("Removing...")
+            $.ajax({
+                type:'post',
+                url:'{{route('admin.hotelRoom.deleteBulk')}}',
+                data:{"_token":"{{ csrf_token() }}",'data':tempArray},
+                success:function(data){
+                    console.log(data)
+                    window.location.reload()
+                }})
+        }
+    }
+
+</script>
 
 
 

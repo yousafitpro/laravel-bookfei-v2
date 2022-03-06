@@ -9,7 +9,7 @@
                 <button class="btn dark pull-left">Add New Hotel</button>
                 </a>
                 <a href="javascrip:void" onclick="hotelBulkDelete()">
-                    <button class="btn danger pull-right" id="btnHotelRemove">Remove</button>
+                    <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>
                 </a>
 
 
@@ -54,10 +54,33 @@
 {{--                </div>--}}
 {{--            @endif--}}
 
+<div class="container-fluid">
+  <form method="get" action="{{route('admin.hotel.list')}}">
+      <div class="row">
+          <div class="col-md-2">
+              <input name="searchWord" class="form-control" value="{{session('searchWord','')}}">
+          </div>
+          <div class="col-md-2">
+              <select name="city" class="form-control" >
+                  <option value="{{session('city_id','none')}}">{{session('city_name','City')}}</option>
+                  @foreach(\App\Helpers\Helper::Cities() as $c)
+                      <option value="none">All</option>
+                      <option value="{{$c->id}}">{{$c->name}}</option>
+                  @endforeach
 
+              </select>
+          </div>
+          <div class="col-md-2">
+              <button type="submit" class="btn dark btn-block">Filter</button>
+          </div>
+      </div>
+  </form>
+    <br>
+</div>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered m-a-0" id="myTable">
+
+                    <table class="table table-bordered m-a-0">
                         <thead class="dker">
                         <tr>
 {{--                            <th class="width20 dker">--}}
@@ -207,7 +230,7 @@
          console.log(tempArray)
          if (tempArray.length>0)
          {
-             $("#btnHotelRemove").text("Deleting...")
+             $("#btnHotelRemove").text("Removing...")
              $.ajax({
                  type:'post',
                  url:'{{route('admin.hotel.deleteBulk')}}',

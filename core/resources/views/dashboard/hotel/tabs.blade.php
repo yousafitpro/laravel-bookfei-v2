@@ -49,8 +49,8 @@
             <br>
             <div>
                 @if($_GET['tab']=="RoomType")
-                    <a href="{{route('admin.hotelRoom.createView',$hotel->id)}}" >
-                        <button  class="btn danger pull-right m-r-1">Remove</button>
+                    <a href="javascript:void" >
+                        <button id="btnRoomTypeRemove" onclick="roomTypeBulkDelete()"  class="btn btn-danger pull-right m-r-1">Remove</button>
                     </a>
                     <a href="{{route('admin.hotelRoom.createView',$hotel->id)}}">
                         <button  class="btn dark pull-left m-l-1">Add Room Type</button>
@@ -60,11 +60,11 @@
                         <a href="{{route('admin.hotelRateTable.editOrCreate',$hotel_id).'?tab=Basic&table_id=0'}}">
                             <button class="btn dark pull-left m-l-1" >Add Rate Table</button>
                         </a>
-                        <a href="{{route('admin.hotelRateTable.editOrCreate',$hotel_id).'?tab=Basic&table_id=0'}}">
-                            <button class="btn dark pull-left m-l-1" >Clone Rate Table</button>
+                        <a href="javascript:void">
+                            <button class="btn dark pull-left m-l-1" onclick="rateTableBulkClone()" id="btnRateTableClone" >Clone Rate Table</button>
                         </a>
-                        <a href="{{route('admin.hotelRateTable.editOrCreate',$hotel_id).'?tab=Basic&table_id=0'}}">
-                            <button class="btn danger pull-right m-r-1" >remove</button>
+                        <a href="javascript:void">
+                            <button onclick="rateTableBulkDelete()" id="btnRateTableRemove" class="btn btn-danger pull-right m-r-1" >Remove</button>
                         </a>
                     @endif
 

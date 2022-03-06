@@ -32,6 +32,31 @@ class HotelRateTableController extends Controller
         $list=$list->get();
         return view('dashboard.hotel.rate-table')->with(['list'=>$list]);
     }
+    public function deleteBulk(Request $request)
+    {
+        hotelRateTable::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+        if(Request::capture()->expectsJson())
+        {
+            return response()->json(['message'=>"Operation Successful"]);
+        }
+    }
+    public function cloneBulk(Request $request)
+    {
+        foreach ($request->data as $d)
+        {
+          $tb= hotelRateTable::find($d);
+          $ntb=$tb->replicate();
+            $ntb->created_at = Carbon::now();
+            $ntb->save();
+
+        }
+
+        if(Request::capture()->expectsJson())
+        {
+            return response()->json(['message'=>"Operation Successful"]);
+        }
+    }
     public function delete($id)
     {
         $city=hotelRateTable::find($id);

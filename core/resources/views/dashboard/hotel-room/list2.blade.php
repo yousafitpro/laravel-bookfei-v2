@@ -1,7 +1,7 @@
 
 
                 <div class="table-responsive">
-                    <table class="table table-bordered m-a-0" id="myTable">
+                    <table class="table table-bordered m-a-0" >
                         <thead class="dker">
                         <tr>
 

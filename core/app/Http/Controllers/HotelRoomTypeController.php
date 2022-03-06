@@ -233,10 +233,15 @@ class HotelRoomTypeController extends Controller
             $list=$list->where('status',$request->status);
         }
         $list=$list->orderBy('date')->get();
+        foreach ($list as $l)
+        {
+            $l->day_name=Carbon::parse($l->date)->dayName;
+       }
 
         $list=$list->chunk(7);
 
        $data=null;
+
        $data['hotel']=$hotel;
        $data['roomType']=$roomType;
        $data['rateTable']=$rateTable;
@@ -250,56 +255,131 @@ class HotelRoomTypeController extends Controller
     public function createRateTable(Request $request)
     {
 
-        $this->validate($request, [
-            'day' => 'required',
-            'date' => 'required|date|after:start',
-            'date' => 'required|date|before_or_equal:end',
-
-        ],[
-            'day.required'=>"Error! Please Select a Day"
-        ]);
-        if (hotelRoomRate::where("hotel_room_type_id",$request->hotel_room_type_id)->where("date",$request->date)->exists())
+        if (!$request->has('sun') &&
+        !$request->has('mon') &&
+            !$request->has('tue') &&
+            !$request->has('wed') &&
+            !$request->has('thu') &&
+            !$request->has('fri') &&
+            !$request->has('sat')
+        )
         {
-            return redirect()->back()->with('errorMessage',"Date already Selected")->withInput();
-
-        }
-        if (Carbon::parse($request->date)<Carbon::parse($request->start))
-        {
-            return redirect()->back()->with('errorMessage',"Date Must be after or Equal From Date")->withInput();
-        }
-        if (Carbon::parse($request->date)>Carbon::parse($request->end))
-        {
-            return redirect()->back()->with('errorMessage',"Date Must be Less than or Equal to 'To' Date")->withInput();
-        }
-
-        $data=$request->except('file');
-
-        if (!$request->has("is_disabled"))
-        {
-
-            $data['is_disabled']=0;
-
+            return redirect()->back()->with('errorMessage',"Please Select At least One Day")->withInput();
         }
         else
         {
-            $data['is_disabled']=1;
+            $data=$request->except('file');
+
+            if (!$request->has("is_disabled"))
+            {
+
+                $data['is_disabled']=0;
+
+            }
+            else
+            {
+                $data['is_disabled']=1;
+            }
+
+            if ($request->has('sun'))
+            {
+                $list= self::getDateForSpecificDayBetweenDates($request->start,$request->end,$request->sun);
+                foreach ($list as $l)
+                {
+                    $data['date']=$l;
+                    self::createRateTableEntry($data);
+                }
+            }
+            if ($request->has('mon'))
+            {
+                $list= self::getDateForSpecificDayBetweenDates($request->start,$request->end,$request->mon);
+                foreach ($list as $l)
+                {
+                    $data['date']=$l;
+                    self::createRateTableEntry($data);
+                }
+            }
+            if ($request->has('tue'))
+            {
+                $list= self::getDateForSpecificDayBetweenDates($request->start,$request->end,$request->tue);
+                foreach ($list as $l)
+                {
+                    $data['date']=$l;
+                    self::createRateTableEntry($data);
+                }
+            }
+            if ($request->has('wed'))
+            {
+                $list= self::getDateForSpecificDayBetweenDates($request->start,$request->end,$request->wed);
+                foreach ($list as $l)
+                {
+                    $data['date']=$l;
+                    self::createRateTableEntry($data);
+                }
+            }
+            if ($request->has('thu'))
+            {
+                $list= self::getDateForSpecificDayBetweenDates($request->start,$request->end,$request->thu);
+                foreach ($list as $l)
+                {
+                    $data['date']=$l;
+                    self::createRateTableEntry($data);
+                }
+            }
+            if ($request->has('fri'))
+            {
+                $list= self::getDateForSpecificDayBetweenDates($request->start,$request->end,$request->fri);
+                foreach ($list as $l)
+                {
+                    $data['date']=$l;
+                    self::createRateTableEntry($data);
+                }
+            }
+            if ($request->has('sat'))
+            {
+                $list= self::getDateForSpecificDayBetweenDates($request->start,$request->end,$request->sat);
+                foreach ($list as $l)
+                {
+                    $data['date']=$l;
+                    self::createRateTableEntry($data);
+                }
+            }
         }
+//        if (hotelRoomRate::where("hotel_room_type_id",$request->hotel_room_type_id)->where("date",$request->date)->exists())
+//        {
+//            return redirect()->back()->with('errorMessage',"Date already Selected")->withInput();
+//
+//        }
 
 
-        $city= hotelRoomRate::create($data);
 
-        if($request->hasFile('file'))
-        {
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension();
-            Storage::disk('public')->delete($city->image);
-            $path = $request->file('file')->storeAs($this->uploadPath,$city->id.'.'.$extension);
 
-            $city->image= $path;
 
-            $city->save();
-        }
+
+
+
 
         return redirect()->back()->with('doneMessage', __('backend.addDone'));
+    }
+    public function getDateForSpecificDayBetweenDates($startDate,$endDate,$day_number){
+        $endDate = strtotime($endDate);
+        $days=array('1'=>'Monday','2' => 'Tuesday','3' => 'Wednesday','4'=>'Thursday','5' =>'Friday','6' => 'Saturday','7'=>'Sunday');
+        for($i = strtotime($days[$day_number], strtotime($startDate)); $i <= $endDate; $i = strtotime('+1 week', $i))
+            $date_array[]=date('Y-m-d',$i);
+
+        return $date_array;
+    }
+    public function deleteBulk(Request $request)
+    {
+        hotelRoomType::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+        if(Request::capture()->expectsJson())
+        {
+            return response()->json(['message'=>"Operation Successful"]);
+        }
+    }
+    public function createRateTableEntry($data)
+    {
+        hotelRoomRate::create($data);
     }
 }

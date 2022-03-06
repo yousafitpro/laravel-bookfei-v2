@@ -4,7 +4,7 @@
 
 
             <div class="table-responsive">
-                <table class="table table-bordered m-a-0" id="myTable">
+                <table class="table table-bordered m-a-0" >
                     <thead class="dker">
                     <tr>
                         {{--                            <th class="width20 dker">--}}
@@ -46,7 +46,7 @@
                             {{--                                    </label>--}}
                             {{--                                </td>--}}
                             <td class="text-center" style="zoom:1.3">
-                                <input type="checkbox">
+                                <input type="checkbox" id="hotelRateTableCheckBox" data-id="{{$Banner->id}}">
                             </td>
                             <td class="">
                                 <label>{{$Banner->name}}</label>
@@ -269,3 +269,57 @@
 
         </div>
     </div>
+<script>
+    function rateTableBulkDelete() {
+        var checkboxes = document.querySelectorAll('input[id="hotelRateTableCheckBox"]');
+        var tempArray=[];
+        for (var checkbox of checkboxes) {
+
+            if (checkbox.checked)
+            {
+                tempArray.push(checkbox.getAttribute('data-id'))
+            }
+
+        }
+
+        console.log(tempArray)
+        if (tempArray.length>0)
+        {
+            $("#btnRateTableRemove").text("Removing...")
+            $.ajax({
+                type:'post',
+                url:'{{route('admin.hotelRateTable.deleteBulk')}}',
+                data:{"_token":"{{ csrf_token() }}",'data':tempArray},
+                success:function(data){
+                    console.log(data)
+                    window.location.reload()
+                }})
+        }
+    }
+    function rateTableBulkClone() {
+        var checkboxes = document.querySelectorAll('input[id="hotelRateTableCheckBox"]');
+        var tempArray=[];
+        for (var checkbox of checkboxes) {
+
+            if (checkbox.checked)
+            {
+                tempArray.push(checkbox.getAttribute('data-id'))
+            }
+
+        }
+
+        console.log(tempArray)
+        if (tempArray.length>0)
+        {
+            $("#btnRateTableClone").text("Cloning...")
+            $.ajax({
+                type:'post',
+                url:'{{route('admin.hotelRateTable.cloneBulk')}}',
+                data:{"_token":"{{ csrf_token() }}",'data':tempArray},
+                success:function(data){
+                    console.log(data)
+                    window.location.reload()
+                }})
+        }
+    }
+</script>

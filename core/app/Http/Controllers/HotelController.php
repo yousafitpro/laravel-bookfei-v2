@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Helpers\Helper;
 use App\Http\Requests\Gendergroup;
 use App\Models\area;
+use App\Models\city;
 use App\Models\hotel;
 use App\Models\hotelRateTable;
 use App\Models\hotelRoomType;
 use App\Models\tour;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class HotelController extends Controller
@@ -23,10 +25,32 @@ class HotelController extends Controller
     }
     public function list(Request $request)
     {
+
         $list=hotel::where("deleted_at",null);
         if($request->has("status"))
         {
             $list=$list->where('status',$request->status);
+        }
+        if ($request->has('city') && $request->city!="none")
+        {
+            $city= city::find($request->city);
+            Session::put('city_id',$city->id);
+            Session::put('city_name',$city->name);
+            $list=$list->where('city_id',$city->id);
+        }
+        else
+        {
+            Session::put('city_id','none');
+            Session::put('city_name',"All");
+        }
+        if ($request->has('searchWord') && $request->searchWord!="")
+        {
+            $list=$list->where('name', 'LIKE',"%{$request->searchWord}%");
+            Session::put('searchWord',$request->searchWord);
+        }
+        else
+        {
+            Session::put('searchWord','');
         }
         $list=$list->get();
         return view('dashboard.hotel.list')->with(['list'=>$list]);

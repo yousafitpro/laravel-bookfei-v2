@@ -39,39 +39,38 @@
                                     <input type="date" name="end" value="{{$rateTable->effective_end_date}}" readonly class="form-control">
                                 </div>
                                 <div class="col-md-4">
-                                    <small>Date</small><br>
-                                    <input type="date" value="{{old('date')}}" name="date" required   class="form-control">
+
                                 </div>
                                 <div class="col-md-4"></div>
                             </div><br><br>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="pull-left">
-                                        <input class="pull-left" value="SUN" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="7" name="sun" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">SUN</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="MON" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="1" name="mon" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">MON</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="TUE" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="2" name="tue" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">TUE</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="WED" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="3" name="wed" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">WED</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="THU" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="4" name="thu" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">THU</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="FRI" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="5" name="fri" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">FRI</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="SAT" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="6" name="sat" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">SAT</small>
                                     </div>
                                 </div>
@@ -193,7 +192,7 @@
                         <thead>
                         <th style="background:darkgrey;">Date</th>
                         @foreach($l as $i)
-                            <th style="background:darkgrey;">{{\Carbon\Carbon::parse($i->date)->format("y-m-d")}} {{$i->day}}</th>
+                            <th style="background:darkgrey;">{{\Carbon\Carbon::parse($i->date)->format("y-m-d")}} {{$i->day_name}}</th>
                         @endforeach
                         </thead>
                         <tbody>
