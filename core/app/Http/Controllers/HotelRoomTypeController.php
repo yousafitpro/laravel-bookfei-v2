@@ -232,6 +232,7 @@ class HotelRoomTypeController extends Controller
         {
             $list=$list->where('status',$request->status);
         }
+        $days=$list->select('day')->get()->unique('day');
         $list=$list->orderBy('date')->get();
         foreach ($list as $l)
         {
@@ -246,6 +247,7 @@ class HotelRoomTypeController extends Controller
        $data['roomType']=$roomType;
        $data['rateTable']=$rateTable;
        $data['list']=$list;
+       $data['days']=$days;
 
 
        $data['sdate']=$request->month;
@@ -380,6 +382,8 @@ class HotelRoomTypeController extends Controller
     }
     public function createRateTableEntry($data)
     {
+
+        $data['day']=Carbon::parse($data['date'])->dayName;
         hotelRoomRate::create($data);
     }
 }

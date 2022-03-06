@@ -22,7 +22,7 @@
                 <small style="color: grey">({{$hotel->name}}-{{$roomType->name}}-{{$rateTable->name}})</small>
 
             </div>
-            <form method="post" action="{{route('admin.hotelRoom.createRateTable')}}" >
+            <form method="post" id="myForm" action="{{route('admin.hotelRoom.createRateTable')}}" >
                 @csrf
             <div class="container-fluid">
                 <div class="row">
@@ -46,31 +46,31 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="pull-left">
-                                        <input class="pull-left" value="7" name="sun" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="7" name="sun" id="sunday" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">SUN</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="1" name="mon" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="1" name="mon" id="monday" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">MON</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="2" name="tue" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="2" name="tue" id="tuesday" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">TUE</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="3" name="wed" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="3" name="wed" id="wednesday" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">WED</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="4" name="thu" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="4" name="thu" id="thursday" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">THU</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="5" name="fri" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="5" name="fri" id="friday" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">FRI</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="6" name="sat" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="6" name="sat" id="saturday" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">SAT</small>
                                     </div>
                                 </div>
@@ -104,8 +104,8 @@
                                         <small class="pull-left " style="margin-left: 5px">Disabled</small>
                                     </div>
                                     <br><br>
-                                    <button type="submit" style="width: 200px"
-                                            class="btn dark p-x-md">{{ __('backend.apply') }}</button>
+                                    <label onclick="checkApply()"   style="width: 200px"
+                                            class="btn dark p-x-md">{{ __('backend.apply') }}</label>
                                 </div>
                             </div><br>
                         </div>
@@ -281,11 +281,119 @@
 
         </div>
     </div>
+<!-- .modal -->
+<div id="ApplyDiv" class="modal fade" data-backdrop="true">
+    <div class="modal-dialog" id="animate">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ __('backend.confirmation') }}</h5>
+            </div>
+            <div class="modal-body text-center p-lg">
 
+                    <strong> Data is Already Existed Are you want to Override ? </strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default p-x-md"
+                        data-dismiss="modal">{{ __('backend.no') }}</button>
+                <a onclick="$('#myForm').submit()"
+                   class="btn dark " style="color: white">{{ __('backend.yes') }}</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+<!-- / .modal -->
 @endsection
 @push("after-scripts")
 
     <script type="text/javascript">
+     function checkApply()
+     {
+               var is_true=false;
+         var days = @json($days);
+         days =Object.values(days);
+
+         console.log(days)
+         var sunday = document.querySelectorAll('input[id="sunday"]');
+         if (sunday[0].checked)
+         {
+             days.forEach(function (el){
+                 if (el.day=="Sunday")
+                 {
+                    is_true=true;
+                 }
+             })
+         }
+         var monday = document.querySelectorAll('input[id="monday"]');
+         if (monday[0].checked)
+         {
+             days.forEach(function (el){
+                 if (el.day=="Monday")
+                 {
+                     is_true=true;
+                 }
+             })
+         }
+         var tuesday = document.querySelectorAll('input[id="tuesday"]');
+         if (tuesday[0].checked)
+         {
+             days.forEach(function (el){
+                 if (el.day=="Tuesday")
+                 {
+                     is_true=true;
+                 }
+             })
+         }
+         var wednesday = document.querySelectorAll('input[id="wednesday"]');
+         if (wednesday[0].checked)
+         {
+             days.forEach(function (el){
+                 if (el.day=="Wednesday")
+                 {
+                     is_true=true;
+                 }
+             })
+         }
+         var thursday = document.querySelectorAll('input[id="thursday"]');
+         if (thursday[0].checked)
+         {
+             days.forEach(function (el){
+                 if (el.day=="Thursday")
+                 {
+                     is_true=true;
+                 }
+             })
+         }
+         var friday = document.querySelectorAll('input[id="friday"]');
+         if (friday[0].checked)
+         {
+             days.forEach(function (el){
+                 if (el.day=="Friday")
+                 {
+                     is_true=true;
+                 }
+             })
+         }
+         var saturday = document.querySelectorAll('input[id="saturday"]');
+         if (saturday[0].checked)
+         {
+             days.forEach(function (el){
+                 if (el.day=="Saturday")
+                 {
+                     is_true=true;
+                 }
+             })
+         }
+
+         if (is_true)
+         {
+               $("#ApplyDiv").modal();
+         }
+         else
+         {
+             $("#myForm").submit()
+         }
+     }
          function toggleMe(id)
          {
              $.ajax({
