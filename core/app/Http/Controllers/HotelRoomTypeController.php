@@ -273,7 +273,7 @@ class HotelRoomTypeController extends Controller
         }
         else
         {
-            $data=$request->except('file');
+            $data=$request->except('file','_token','start','end','sun','mon','tue','wed','thu','fri','sat');
 
             if (!$request->has("is_disabled"))
             {
@@ -387,6 +387,15 @@ class HotelRoomTypeController extends Controller
     {
 
         $data['day']=Carbon::parse($data['date'])->dayName;
-        hotelRoomRate::create($data);
+        if (hotelRoomRate::where('hotel_room_type_id',$data['hotel_room_type_id'])->where('date',$data['date'])->exists())
+        {
+            hotelRoomRate::where('hotel_room_type_id',$data['hotel_room_type_id'])->where('date',$data['date'])->update($data);
+
+        }
+        else
+        {
+            hotelRoomRate::create($data);
+        }
+
     }
 }
