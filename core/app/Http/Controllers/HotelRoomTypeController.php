@@ -232,7 +232,9 @@ class HotelRoomTypeController extends Controller
         {
             $list=$list->where('status',$request->status);
         }
-        $days=$list->select('day')->get()->unique('day');
+        $list2=$list;
+
+//        $days=$list->select('day')->get()->unique('day');
         $list=$list->orderBy('date')->get();
         foreach ($list as $l)
         {
@@ -247,6 +249,7 @@ class HotelRoomTypeController extends Controller
        $data['roomType']=$roomType;
        $data['rateTable']=$rateTable;
        $data['list']=$list;
+        $days=$list2->select('day')->get()->unique('day');
        $data['days']=$days;
 
 
