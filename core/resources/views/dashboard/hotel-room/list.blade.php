@@ -4,11 +4,12 @@
                     <table class="table table-bordered m-a-0" id="myTable">
                         <thead class="dker">
                         <tr>
+                            <th class=" width50"></th>
 
-
-                            <th class="text-center width50">{{ __('backend.name') }}</th>
+                            <th class=" width50">{{ __('backend.name') }}</th>
                             <th class="text-center width50">{{ __('backend.default_guest') }}</th>
                             <th class="text-center width50">{{ __('backend.max_guest') }}</th>
+                            <th class="text-center width50">Maximum Extra Bed</th>
                             <th class="text-center width50">{{ __('backend.status') }}</th>
                             <th class="text-center width200">{{ __('backend.options') }}</th>
                         </tr>
@@ -36,12 +37,17 @@
 {{--                                </td>--}}
 
                                 <td class="text-center">
+                                    <input id="checkBox" type="checkbox" style="zoom: 1.2">
+                                </td>
+                                <td class="">
                                     <label>{{$Banner->name}}</label>
                                </td>
                                 <td class="text-center">
                                     {{$Banner->default_guest}}                                </td>
                                 <td class="text-center">
                                     {{$Banner->max_guest}}                                </td>
+                                <td class="text-center">
+                                    {{$Banner->max_extra_bed}}                                </td>
 
                                 <td class="text-center">
                                     <i class="fa {{ ($Banner->status==1) ? "fa-check text-success":"fa-times text-danger" }} inline"></i>

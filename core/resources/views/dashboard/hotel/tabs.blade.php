@@ -13,16 +13,8 @@
                 <button onclick="document.getElementById('editHotel').submit()"
                         class="btn dark p-x-md pull-right">{{ __('backend.update') }}</button>
             @endif
-        @if($_GET['tab']=="RoomType")
-        <a href="{{route('admin.hotelRoom.createView',$hotel->id)}}">
-            <button  class="btn btn-dark pull-right">Add Room Type</button>
-        </a>
-        @endif
-            @if($_GET['tab']=="RateTable")
-                <a href="{{route('admin.hotelRateTable.editOrCreate',$hotel_id).'?tab=Basic&table_id=0'}}">
-                    <button class="btn btn-dark pull-right" >Add Rate Table</button>
-                </a>
-            @endif
+
+
         <div class="col-md-12">
             <small>
                 <a href="{{route('admin.hotel.list')}}">
@@ -54,6 +46,30 @@
                     <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Rate Table</button>
                 </a>
             </div>
+            <br>
+            <div>
+                @if($_GET['tab']=="RoomType")
+                    <a href="{{route('admin.hotelRoom.createView',$hotel->id)}}" >
+                        <button  class="btn danger pull-right m-r-1">Remove</button>
+                    </a>
+                    <a href="{{route('admin.hotelRoom.createView',$hotel->id)}}">
+                        <button  class="btn dark pull-left m-l-1">Add Room Type</button>
+                    </a>
+                @endif
+                    @if($_GET['tab']=="RateTable")
+                        <a href="{{route('admin.hotelRateTable.editOrCreate',$hotel_id).'?tab=Basic&table_id=0'}}">
+                            <button class="btn dark pull-left m-l-1" >Add Rate Table</button>
+                        </a>
+                        <a href="{{route('admin.hotelRateTable.editOrCreate',$hotel_id).'?tab=Basic&table_id=0'}}">
+                            <button class="btn dark pull-left m-l-1" >Clone Rate Table</button>
+                        </a>
+                        <a href="{{route('admin.hotelRateTable.editOrCreate',$hotel_id).'?tab=Basic&table_id=0'}}">
+                            <button class="btn danger pull-right m-r-1" >remove</button>
+                        </a>
+                    @endif
+
+            </div>
+            <br>
 <br>
             <!-- Tab content -->
             <div id="Basic" class="mtabcontent {{$_GET['tab']=="Basic"?'mtabActive':''}}">

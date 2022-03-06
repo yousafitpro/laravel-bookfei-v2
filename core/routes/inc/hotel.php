@@ -7,5 +7,6 @@ Route::middleware('auth')
 
         Route::post("create",[App\Http\Controllers\HotelController::class,'create'])->name('admin.hotel.create');
         Route::post("update/{id}",[App\Http\Controllers\HotelController::class,'update'])->name('admin.hotel.update');
+        Route::post("deleteBulk",[App\Http\Controllers\HotelController::class,'deleteBulk'])->name('admin.hotel.deleteBulk');
         Route::get("delete/{id}",[App\Http\Controllers\HotelController::class,'delete'])->name('admin.hotel.delete');
     });

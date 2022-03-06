@@ -39,11 +39,11 @@
                 </div><br>
                 <div class="row">
                     <div class="col-md-3">
-                        <label>Effective Date (start)</label><br>
+                        <label>Effective Date (Start)</label><br>
                         <input name="effective_start_date" type="date" value="{{old('effective_start_date')}}" required class="form-control">
                     </div>
                     <div class="col-md-3">
-                        <label>Effective Date (start)</label><br>
+                        <label>Effective date (End)</label><br>
                         <input name="effective_end_date" value="{{old('effective_end_date')}}" required  type="date" class="form-control">
                     </div>
                     <div class="col-md-3">

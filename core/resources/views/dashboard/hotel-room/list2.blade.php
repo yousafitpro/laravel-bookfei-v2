@@ -6,7 +6,7 @@
                         <tr>
 
 
-                            <th class="text-center width50">{{ __('backend.name') }}</th>
+                            <th class=" width50">{{ __('backend.name') }}</th>
                             <th class="text-center width50">{{ __('backend.default_guest') }}</th>
                             <th class="text-center width50">{{ __('backend.max_guest') }}</th>
                             <th class="text-center width50">{{ __('backend.status') }}</th>
@@ -35,7 +35,7 @@
 {{--                                    </label>--}}
 {{--                                </td>--}}
 
-                                <td class="text-center">
+                                <td class="">
                                     <label>{{$Banner->name}}</label>
                                </td>
                                 <td class="text-center">

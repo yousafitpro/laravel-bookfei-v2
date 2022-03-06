@@ -6,24 +6,19 @@
         <div class="card" style="padding: 4px">
             <div class="box-header ">
                 <a href="{{route('admin.hotel.editOrCreate',0).'?tab=Basic'}}">
-                <button class="btn btn-dark pull-right">Add New Hotel</button>
+                <button class="btn dark pull-left">Add New Hotel</button>
                 </a>
-                <h3>{{ __('backend.hotel') }}</h3>
-                <small>
-                    <a href="{{ route('adminHome') }}">{{ __('backend.home') }}</a> /
-                    <a href="javascript:void">{{ __('backend.hotels') }}</a>
-                </small>
-                <br>
-                <div>
-                    <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                        href="{{route("admin.hotel.list")}}">{{ __('backend.all') }} {{ __('backend.hotels') }}</a>
-                    <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.hotel.list")."?status=1"}}">{{ __('backend.active') }} {{ __('backend.hotels') }}</a>
-                    <a class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.hotel.list")."?status=0"}}">{{ __('backend.unactive') }} {{ __('backend.hotels') }}</a>
-                </div>
+                <a href="javascrip:void" onclick="hotelBulkDelete()">
+                    <button class="btn danger pull-right" id="btnHotelRemove">Remove</button>
+                </a>
+
+
+
 
             </div>
+            <br>
+            <br>
+            <br>
 
 {{--            @if($list->total() >0)--}}
 {{--                @if(@Auth::user()->permissionsGroup->add_status)--}}
@@ -70,13 +65,13 @@
 {{--                                    <input id="checkAll" type="checkbox"><i></i>--}}
 {{--                                </label>--}}
 {{--                            </th>--}}
-
-                            <th class="text-center width50">{{ __('backend.name') }}</th>
-                            <th class="text-center width50">{{ __('backend.phone') }}</th>
-                            <th class="text-center width50">{{ __('backend.email') }}</th>
-                            <th class="text-center width50">{{ __('backend.city') }}</th>
+                            <th class=" width50"></th>
+                            <th class=" width50">{{ __('backend.name') }}</th>
+                            <th class=" width50">{{ __('backend.phone') }}</th>
+                            <th class=" width50">{{ __('backend.email') }}</th>
+                            <th class=" width50">{{ __('backend.city') }}</th>
                             <th class="text-center width50">{{ __('backend.status') }}</th>
-                            <th class="text-center width200">{{ __('backend.options') }}</th>
+                            <th class=" width200">{{ __('backend.options') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -100,16 +95,18 @@
 {{--                                        {!! Form::hidden('row_ids[]',$Banner->id, array('class' => 'form-control row_no')) !!}--}}
 {{--                                    </label>--}}
 {{--                                </td>--}}
-
-                                <td class="text-center">
+                                <td class="">
+                                    <input type="checkbox"  data-id="{{$Banner->id}}" id="hotelCheckBox" style="zoom:1.2">
+                                </td>
+                                <td class="">
                                     <label>{{$Banner->name}}</label>
                                </td>
-                                <td class="text-center">
+                                <td class="">
                                     <label>{{$Banner->phone}}</label>
                                 </td>
-                                <td class="text-center">
+                                <td class="">
                                     <label>{{$Banner->email}}</label>                                </td>
-                                <td class="text-center">
+                                <td class="">
                                     <label>{{\App\Helpers\Helper::get_City($Banner->city_id)->name}}</label>                                </td>
 
                                 <td class="text-center">
@@ -195,17 +192,43 @@
 
     <script type="text/javascript">
 
-        $("#checkAll").click(function () {
-            $('input:checkbox').not(this).prop('checked', this.checked);
-        });
-        $("#action").change(function () {
-            if (this.value == "delete") {
-                $("#submit_all").css("display", "none");
-                $("#submit_show_msg").css("display", "inline-block");
-            } else {
-                $("#submit_all").css("display", "inline-block");
-                $("#submit_show_msg").css("display", "none");
+     function hotelBulkDelete() {
+            var checkboxes = document.querySelectorAll('input[id="hotelCheckBox"]');
+         var tempArray=[];
+            for (var checkbox of checkboxes) {
+
+                if (checkbox.checked)
+                {
+                    tempArray.push(checkbox.getAttribute('data-id'))
+                }
+
             }
-        });
+
+         console.log(tempArray)
+         if (tempArray.length>0)
+         {
+             $("#btnHotelRemove").text("Deleting...")
+             $.ajax({
+                 type:'post',
+                 url:'{{route('admin.hotel.deleteBulk')}}',
+                 data:{"_token":"{{ csrf_token() }}",'data':tempArray},
+                 success:function(data){
+                     console.log(data)
+                     window.location.reload()
+                 }})
+         }
+        }
+        // $("#checkAll").click(function () {
+        //     $('input:checkbox').not(this).prop('checked', this.checked);
+        // });
+        // $("#action").change(function () {
+        //     if (this.value == "delete") {
+        //         $("#submit_all").css("display", "none");
+        //         $("#submit_show_msg").css("display", "inline-block");
+        //     } else {
+        //         $("#submit_all").css("display", "inline-block");
+        //         $("#submit_show_msg").css("display", "none");
+        //     }
+        // });
     </script>
 @endpush

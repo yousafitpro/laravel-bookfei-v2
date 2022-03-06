@@ -422,4 +422,13 @@ class HotelController extends Controller
         return redirect(route('admin.hotel.editOrCreate',$city->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
 
     }
+    public function deleteBulk(Request $request)
+    {
+        hotel::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+        if(Request::capture()->expectsJson())
+        {
+            return response()->json(['message'=>"Operation Successful"]);
+        }
+    }
 }

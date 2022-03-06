@@ -41,11 +41,11 @@
     </div><br>
     <div class="row">
         <div class="col-md-3 " >
-            <label> effective date (start)</label><br>
+            <label> Effective date (Start)</label><br>
             <input name="effective_start_date" style="background-color: gray; color: white" type="date" value="{{$table->effective_start_date}}" required class="form-control">
         </div>
         <div class="col-md-3">
-            <label> effective date (end)</label><br>
+            <label> Effective date (End)</label><br>
             <input name="effective_end_date" style="background-color: gray; color: white" value="{{$table->effective_end_date}}" required  type="date" class="form-control">
         </div>
         <div class="col-md-3">

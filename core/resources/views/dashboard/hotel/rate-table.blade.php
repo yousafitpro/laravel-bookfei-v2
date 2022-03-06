@@ -12,13 +12,16 @@
                         {{--                                    <input id="checkAll" type="checkbox"><i></i>--}}
                         {{--                                </label>--}}
                         {{--                            </th>--}}
-
-                        <th class="text-center width50">{{ __('backend.name') }}</th>
-                        <th class="text-center width50">{{ __('backend.code') }}</th>
-                        <th class="text-center width50">{{ __('backend.currency') }}</th>
-                        <th class="text-center width50">{{ __('backend.supplier') }}</th>
-                        <th class="text-center width50">{{ __('backend.status') }}</th>
-                        <th class="text-center width200">{{ __('backend.options') }}</th>
+                        <th class=" width50"></th>
+                        <th class=" width50">Rate Table Name</th>
+                        <th class=" width50">{{ __('backend.code') }}</th>
+                        <th class=" width50">{{ __('backend.currency') }}</th>
+                        <th class=" width50">{{ __('backend.supplier') }}</th>
+                        <th class="text-center  width50">{{ __('backend.status') }}</th>
+                        <th class=" width50">Effective From</th>
+                        <th class=" width50">Effective To</th>
+                        <th class=" width50">Special Offer</th>
+                        <th class=" width200">{{ __('backend.options') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,22 +45,34 @@
                             {{--                                        {!! Form::hidden('row_ids[]',$Banner->id, array('class' => 'form-control row_no')) !!}--}}
                             {{--                                    </label>--}}
                             {{--                                </td>--}}
-
-                            <td class="text-center">
+                            <td class="text-center" style="zoom:1.3">
+                                <input type="checkbox">
+                            </td>
+                            <td class="">
                                 <label>{{$Banner->name}}</label>
                             </td>
-                            <td class="text-center">
+                            <td class="">
                                 <label>{{$Banner->code}}</label>
                             </td>
-                            <td class="text-center">
+                            <td class="">
                                 <label>{{\App\Helpers\Helper::get_Currency($Banner->currency_id)->name}}</label>
                             </td>
-                            <td class="text-center">
+                            <td class="">
                                 <label>{{\App\Helpers\Helper::get_Supplier($Banner->supplier_id)->name}}</label>
                             </td>
 
+
                             <td class="text-center">
                                 <i class="fa {{ ($Banner->status==1) ? "fa-check text-success":"fa-times text-danger" }} inline"></i>
+                            </td>
+                            <td class="">
+                                <label>{{$Banner->effective_start_date}}</label>
+                            </td>
+                            <td class="">
+                                <label>{{$Banner->effective_end_date}}</label>
+                            </td>
+                            <td class="">
+
                             </td>
                             <td class="text-center">
                                 @if(@Auth::user()->permissionsGroup->edit_status)
@@ -78,153 +93,6 @@
 
                             </td>
                         </tr>
-                        <div id="u-{{$Banner->id}}" class="modal fade" data-backdrop="true">
-                            <div class="modal-dialog modal-lg" id="animate">
-                                <form method="post" action="{{route('admin.hotelRateTable.update',$Banner->id)}}" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">{{ __('backend.addnew') }}</h5>
-                                        </div>
-                                        <div class="modal-body  p-lg">
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Rate Table Name</label><br>
-                                                        <input name="name" value="{{$Banner->name}}" required class="form-control">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Rate Table Code</label><br>
-                                                        <input name="code" value="{{$Banner->code}}" required class="form-control">
-                                                    </div>
-                                                </div>
-
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Currency</label><br>
-                                                        <select class="form-control" name="currency_id">
-                                                            <option value="{{\App\Helpers\Helper::get_Currency($Banner->currency_id)->id}}" >{{\App\Helpers\Helper::get_Currency($Banner->currency_id)->name}}</option>
-                                                            @foreach(\App\Helpers\Helper::Currencies() as $c)
-                                                                <option value="{{$c->id}}" >{{$c->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Supplier</label><br>
-                                                        <select class="form-control" name="supplier_id">
-                                                            <option value="{{\App\Helpers\Helper::get_Supplier($Banner->supplier_id)->id}}" >{{\App\Helpers\Helper::get_Supplier($Banner->supplier_id)->name}}</option>
-                                                            @foreach(\App\Helpers\Helper::Suppliers() as $c)
-                                                                <option value="{{$c->id}}" >{{$c->name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div><br>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <label>Effective Date (start)</label><br>
-                                                        <input name="effective_start_date" type="date" value="{{$Banner->effective_start_date}}" required class="form-control">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Effective Date (end)</label><br>
-                                                        <input name="effective_end_date" value="{{$Banner->effective_end_date}}" required  type="date" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <small>Special Offer Type</small><br>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <div class="pull-left m-l-2">
-                                                        <input {{$Banner->early_bird=="1"?'checked':""}} name="early_bird" type="checkbox" style="zoom:1"   >
-                                                        <label>Early Bird</label>
-                                                        </div>
-                                                        <div class="pull-left m-l-2">
-                                                            <input {{$Banner->bonus_night=="1"?'checked':""}} name="bonus_night" type="checkbox" style="zoom:1"   >
-                                                            <label>Bonus Night</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label>Early Bird Before Chek in Date</label><br>
-                                                        <input name="early_bird_before_departure_date" value="{{$Banner->early_bird_before_departure_date}}"  type="number" class="form-control">
-                                                    </div>
-                                                    <div class="col-md-4">
-
-                                                        <label>Status</label><br>
-                                                        <select class="form-control" name="status" required>
-                                                            @if($Banner->status=="1")
-                                                                <option value="1">active</option>
-                                                            @else
-                                                                <option value="0">unactive</option>
-                                                            @endif
-                                                            <option value="1">active</option>
-                                                            <option value="0">unactive</option>
-                                                        </select>
-
-                                                    </div>
-
-                                                </div>
-
-
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-
-                                                        <label>Bonus Night Type</label><br>
-                                                        <option value="{{$Banner->bonus_night_type}}">{{$Banner->bonus_night_type}}</option>
-
-                                                        <select class="form-control" name="bonus_night_type" >
-                                                            <option value="Accumulated / Once">Accumulated / Once</option>
-
-                                                        </select>
-
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Buy X Nights</label><br>
-                                                        <input name="x_nights" value="{{$Banner->x_nights}}"  type="number" class="form-control">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Get Y Free Nights</label><br>
-                                                        <input name="y_nights" value="{{$Banner->y_nights}}"  type="number" class="form-control">
-                                                    </div>
-
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-
-
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Minimum Nights</label><br>
-                                                        <input name="min_nights"  value="{{$Banner->min_nights}}"  type="number" class="form-control">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Maximum Nights</label><br>
-                                                        <input name="max_nights" value="{{$Banner->max_nights}}"  type="number" class="form-control">
-                                                    </div>
-
-                                                </div>
-                                                <br>
-
-
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn dark-white p-x-md"
-                                                        data-dismiss="modal">{{ __('backend.cancel') }}</button>
-                                                <button type="submit"
-                                                        class="btn success p-x-md">{{ __('backend.update') }}</button>
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
 
                         <!-- .modal -->
                         <div id="m-{{ $Banner->id }}" class="modal fade" data-backdrop="true">
