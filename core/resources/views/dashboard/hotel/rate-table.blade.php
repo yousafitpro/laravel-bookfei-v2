@@ -13,7 +13,7 @@
                         {{--                                </label>--}}
                         {{--                            </th>--}}
                         <th class=" width50"></th>
-                        <th class=" width50">Rate Table Name</th>
+                        <th  style="width: 120px">Rate Table Name</th>
                         <th class=" width50">{{ __('backend.code') }}</th>
                         <th class=" width50">{{ __('backend.currency') }}</th>
                         <th class=" width50">{{ __('backend.supplier') }}</th>
