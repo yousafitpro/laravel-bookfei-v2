@@ -97,10 +97,10 @@
             <label>Bonus Night Type </label><br>
 
 
-            <select class="form-control" name="bonus_night_type" >
-                <option value="{{$table->bonus_night_type}}">{{$table->bonus_night_type}}</option>
-                <option value="Accumulated">Accumulated</option>
-                <option value="Once">Once</option>
+            <select class="form-control" name="bonus_night_type"  >
+{{--                <option value="{{$table->bonus_night_type}}">{{$table->bonus_night_type}}</option>--}}
+                <option value="Accumulated" {{$table->bonus_night_type=="Accumulated"?'selected':''}}>Accumulated</option>
+                <option value="Once" {{$table->bonus_night_type=="Once"?'selected':''}}>Once</option>
 
             </select>
 
