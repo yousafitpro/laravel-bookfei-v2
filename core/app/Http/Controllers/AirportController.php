@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\airline;
 use App\Models\airport;
 use App\Models\area;
 use Carbon\Carbon;
@@ -23,6 +24,7 @@ class AirportController extends Controller
             $list=$list->where('status',$request->status);
         }
         $list=$list->get();
+
         return view('dashboard.airport.list')->with(['list'=>$list]);
     }
     public function delete($id)
@@ -52,7 +54,7 @@ class AirportController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.update'));
+        return redirect(route('admin.airport.list'))->with('doneMessage', __('backend.update'));
     }
     public function create(Request $request)
     {
@@ -72,6 +74,24 @@ class AirportController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.addDone'));
+        return redirect(route('admin.airport.list'))->with('doneMessage', __('backend.addDone'));
+    }
+    public function deleteBulk(Request $request)
+    {
+        airport::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+        if(Request::capture()->expectsJson())
+        {
+            return response()->json(['message'=>"Operation Successful"]);
+        }
+    }
+    public function addView(Request $request)
+    {
+        return view('dashboard.airport.add');
+    }
+    public function updateView(Request $request,$id)
+    {
+        $data['Banner']=airport::find($id);
+        return view('dashboard.airport.edit',$data);
     }
 }

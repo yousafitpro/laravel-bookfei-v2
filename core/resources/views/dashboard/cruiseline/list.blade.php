@@ -5,371 +5,187 @@
     <div class="padding">
         <div class="card" style="padding: 4px">
             <div class="box-header ">
-                <h3>{{ __('backend.cruiselines') }}</h3>
-                <small>
-                    <a href="{{ route('adminHome') }}">{{ __('backend.home') }}</a> /
-                    <a href="javascript:void">{{ __('backend.cruiselines') }}</a>
-                </small>
+                <a href="{{route('admin.cruiseLine.addView')}}">
+                    <button class="btn dark pull-left">Add New Cruise line</button>
+                </a>
+                <a href="javascrip:void" onclick="hotelBulkDelete()">
+                    <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>
+                </a>
+
+
+
+
+            </div>
+            <br>
+            <br>
+            <br>
+
+
+
+            <div class="container-fluid">
+                <form method="get" action="{{route('admin.cruiseLine.list')}}">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <input name="searchWord" placeholder="Cruise Name" class="form-control" value="{{session('searchWord','')}}">
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="submit" class="btn dark btn-block">Filter</button>
+                        </div>
+                    </div>
+                </form>
                 <br>
-                <div>
-                    <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                        href="{{route("admin.cruiseLine.list")}}">{{ __('backend.all') }} {{ __('backend.cruiselines') }}</a>
-                    <a  class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.cruiseLine.list")."?status=1"}}">{{ __('backend.active') }} {{ __('backend.cruiselines') }}</a>
-                    <a class="btn btn-fw btn-outline-primary marginBottom5"
-                       href="{{route("admin.cruiseLine.list")."?status=0"}}">{{ __('backend.unactive') }} {{ __('backend.cruiselines') }}</a>
-                </div>
             </div>
 
-{{--            @if($list->total() >0)--}}
-{{--                @if(@Auth::user()->permissionsGroup->add_status)--}}
-{{--                    <div class="row p-a">--}}
-{{--                        <div class="col-sm-12">--}}
-{{--                            @foreach($WebmasterBanners as $WebmasterBanner)--}}
-{{--                                <a class="btn btn-fw primary marginBottom5"--}}
-{{--                                   href="{{route("BannersCreate",$WebmasterBanner->id)}}">--}}
-{{--                                    <i class="material-icons">&#xe02e;</i>--}}
-{{--                                    &nbsp; {!! $WebmasterBanner->{'title_'.@Helper::currentLanguage()->code} !!}</a>--}}
-{{--                            @endforeach--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-{{--            @endif--}}
-{{--            @if($Banners->total() == 0)--}}
-{{--                <div class="row p-a">--}}
-{{--                    <div class="col-sm-12">--}}
-{{--                        <div class=" p-a text-center ">--}}
-{{--                            {{ __('backend.noData') }}--}}
-{{--                            <br>--}}
-{{--                            <br>--}}
-{{--                            @if(@Auth::user()->permissionsGroup->add_status)--}}
-{{--                                @foreach($WebmasterBanners as $WebmasterBanner)--}}
-{{--                                    <a class="btn btn-fw primary marginBottom5"--}}
-{{--                                       href="{{route("BannersCreate",$WebmasterBanner->id)}}">--}}
-{{--                                        <i class="material-icons">&#xe02e;</i>--}}
-{{--                                        &nbsp; {!! $WebmasterBanner->{'title_'.@Helper::currentLanguage()->code} !!}</a>--}}
-{{--                                @endforeach--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @endif--}}
+            <div class="table-responsive">
 
+                <table class="table table-bordered m-a-0">
+                    <thead class="dker">
+                    <tr>
 
+                        <th class=" width50"></th>
+                        <th class="text-center width50">{{ __('backend.image') }}</th>
+                        <th class=" width50">{{ __('backend.name') }}</th>
 
-                <div class="table-responsive">
-                    <table class="table table-bordered m-a-0" id="myTable">
-                        <thead class="dker">
-                        <tr>
-{{--                            <th class="width20 dker">--}}
-{{--                                <label class="ui-check m-a-0">--}}
-{{--                                    <input id="checkAll" type="checkbox"><i></i>--}}
-{{--                                </label>--}}
-{{--                            </th>--}}
-                            <th class="text-center width50">{{ __('backend.image') }}</th>
-                            <th class="text-center width50">{{ __('backend.name') }}</th>
-                            <th class="text-center width50">{{ __('backend.status') }}</th>
-                            <th class="text-center width200">{{ __('backend.options') }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+{{--                        <th class="text-center width50">{{ __('backend.currency') }}</th>--}}
+{{--                        <th class="text-center width50">{{ __('backend.supplier') }}</th>--}}
+                        <th class="text-center width50">{{ __('backend.status') }}</th>
+                        <th class="text-center width200">{{ __('backend.action') }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $title_var = "title_" . @Helper::currentLanguage()->code;
+                    $title_var2 = "title_" . env('DEFAULT_LANGUAGE');
+                    ?>
+                    @foreach($list as $Banner)
                         <?php
-                        $title_var = "title_" . @Helper::currentLanguage()->code;
-                        $title_var2 = "title_" . env('DEFAULT_LANGUAGE');
+                        if ($Banner->$title_var != "") {
+                            $title = $Banner->$title_var;
+                        } else {
+                            $title = $Banner->$title_var2;
+                        }
                         ?>
-                        @foreach($list as $Banner)
-                            <?php
-                            if ($Banner->$title_var != "") {
-                                $title = $Banner->$title_var;
-                            } else {
-                                $title = $Banner->$title_var2;
-                            }
-                            ?>
-                            <tr>
-{{--                                <td class="dker">--}}
-{{--                                    <label class="ui-check m-a-0">--}}
-{{--                                        <input type="checkbox" name="ids[]" value="{{ $Banner->id }}"><i--}}
-{{--                                            class="dark-white"></i>--}}
-{{--                                        {!! Form::hidden('row_ids[]',$Banner->id, array('class' => 'form-control row_no')) !!}--}}
-{{--                                    </label>--}}
-{{--                                </td>--}}
-                                <td class="text-center">
-                                   <img src="{{$Banner->image}}" style="width: 40px">
-                                </td>
-                                <td class="text-center">
-                                    <label>{{$Banner->name}}</label>
-                               </td>
+                        <tr>
 
-                                <td class="text-center">
-                                    <i class="fa {{ ($Banner->status==1) ? "fa-check text-success":"fa-times text-danger" }} inline"></i>
-                                </td>
-                                <td class="text-center">
-                                    @if(@Auth::user()->permissionsGroup->delete_status)
-                                        <a href="{{route('admin.cruiseShip.list',$Banner->id)}}">
-                                            <button class="btn btn-sm warning" >
-                                                <small><i class="fa fa-table" aria-hidden="true"></i> {{ __('backend.ships') }}
+                            <td class="">
+                                <input type="checkbox"  data-id="{{$Banner->id}}" id="hotelCheckBox" style="zoom:1.2">
+                            </td>
+                            <td class="text-center">
+                                <img src="{{$Banner->image}}" style="width: 40px">
+                            </td>
+                            <td >
+                                <label>{{$Banner->name}}</label>
+                            </td>
+
+
+                            <td class="text-center">
+                                <i class="fa {{ ($Banner->status==1) ? "fa-check text-success":"fa-times text-danger" }} inline"></i>
+                            </td>
+                            <td class="text-center">
+                                @if(@Auth::user()->permissionsGroup->edit_status)
+
+                                    <a href="{{route('admin.cruiseLine.updateView',$Banner->id)}}">
+
+                                        <button class="btn btn-sm success" >
+                                            <small><i class="fa fa-edit" aria-hidden="true"></i> {{ __('backend.edit') }}
+                                            </small>
+                                        </button>
+                                    </a>
+                                @endif
+
+                                        <a href="{{route('admin.cruiseLine.updateView',$Banner->id)}}">
+
+                                            <button class="btn btn-sm success" >
+                                                <small><i class="fa fa-ship" aria-hidden="true"></i> Ships
                                                 </small>
                                             </button>
                                         </a>
-                                    @endif
-                                    @if(@Auth::user()->permissionsGroup->edit_status)
-                                        <a class="btn btn-sm success" data-toggle="modal"
-                                           data-target="#u-{{ $Banner->id }}" ui-toggle-class="bounce"
-                                           ui-target="#animate">
-                                            <small><i class="material-icons">&#xe3c9;</i> {{ __('backend.edit') }}
-                                            </small>
-                                        </a>
-                                    @endif
-                                    @if(@Auth::user()->permissionsGroup->delete_status)
-                                        <button class="btn btn-sm warning" data-toggle="modal"
-                                                data-target="#m-{{ $Banner->id }}" ui-toggle-class="bounce"
-                                                ui-target="#animate">
-                                            <small><i class="material-icons">&#xe872;</i> {{ __('backend.delete') }}
-                                            </small>
-                                        </button>
-                                    @endif
 
-                                </td>
-                            </tr>
-                            <div id="u-{{$Banner->id}}" class="modal fade" data-backdrop="true">
-                                <div class="modal-dialog" id="animate">
-                                    <form method="post" action="{{route('admin.cruiseLine.update',$Banner->id)}}" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">{{ __('backend.update') }}</h5>
-                                            </div>
-                                            <div class="modal-body text-center p-lg">
-                                                <div class="container-fluid">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label>Name</label><br>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <input name="name" value="{{$Banner->name}}" required class="form-control"><br>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label>English Name</label><br>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <input name="english_name" value="{{$Banner->english_name}}" required class="form-control"><br>
-                                                        </div>
-                                                    </div>
 
-                                                    <br>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label>Image</label><br>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <input name="file" type="file" value="{{$Banner->name}}" required class="form-control"><br>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <label>Status</label><br>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <select class="form-control" name="status" required>
-                                                                @if($Banner->status=="1")
-                                                                <option value="1">active</option>
-                                                                @else
-                                                                <option value="0">unactive</option>
-                                                                    @endif
-                                                                    <option value="1">active</option>
-                                                                    <option value="0">unactive</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn dark-white p-x-md"
-                                                            data-dismiss="modal">{{ __('backend.cancel') }}</button>
-                                                    <button type="submit"
-                                                            class="btn success p-x-md">{{ __('backend.update') }}</button>
-                                                </div>
-                                            </div><!-- /.modal-content -->
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                                @if(@Auth::user()->permissionsGroup->delete_status)
+                                    <button class="btn btn-sm warning" data-toggle="modal"
+                                            data-target="#m-{{ $Banner->id }}" ui-toggle-class="bounce"
+                                            ui-target="#animate">
+                                        <small><i class="material-icons">&#xe872;</i> {{ __('backend.delete') }}
+                                        </small>
+                                    </button>
+                                @endif
 
-                            <!-- .modal -->
-                            <div id="m-{{ $Banner->id }}" class="modal fade" data-backdrop="true">
-                                <div class="modal-dialog" id="animate">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">{{ __('backend.confirmation') }}</h5>
-                                        </div>
-                                        <div class="modal-body text-center p-lg">
-                                            <p>
-                                                {{ __('backend.confirmationDeleteMsg') }}
-                                                <br>
-                                                <strong> {{ $Banner->name }} </strong>
-                                            </p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn dark-white p-x-md"
-                                                    data-dismiss="modal">{{ __('backend.no') }}</button>
-                                            <a href="{{ route("admin.cruiseLine.delete",["id"=>$Banner->id]) }}"
-                                               class="btn danger p-x-md">{{ __('backend.yes') }}</a>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div>
-                            </div>
-                            <!-- / .modal -->
-                        @endforeach
+                            </td>
+                        </tr>
+
                         <!-- .modal -->
-
+                        <div id="m-{{ $Banner->id }}" class="modal fade" data-backdrop="true">
+                            <div class="modal-dialog" id="animate">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">{{ __('backend.confirmation') }}</h5>
+                                    </div>
+                                    <div class="modal-body text-center p-lg">
+                                        <p>
+                                            {{ __('backend.confirmationDeleteMsg') }}
+                                            <br>
+                                            <strong> {{ $Banner->name }} </strong>
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn dark-white p-x-md"
+                                                data-dismiss="modal">{{ __('backend.no') }}</button>
+                                        <a href="{{ route("admin.cruiseLine.delete",["id"=>$Banner->id]) }}"
+                                           class="btn danger p-x-md">{{ __('backend.yes') }}</a>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div>
+                        </div>
                         <!-- / .modal -->
-                        </tbody>
-                    </table>
+                    @endforeach
+                    <!-- .modal -->
 
-                </div>
+                    <!-- / .modal -->
+                    </tbody>
+                </table>
 
-{{--                <footer class="dker p-a">--}}
-{{--                    <div class="row">--}}
-{{--                        <div class="col-sm-3 hidden-xs">--}}
-{{--                            <!-- .modal -->--}}
-{{--                            <div id="m-all" class="modal fade" data-backdrop="true">--}}
-{{--                                <div class="modal-dialog" id="animate">--}}
-{{--                                    <div class="modal-content">--}}
-{{--                                        <div class="modal-header">--}}
-{{--                                            <h5 class="modal-title">{{ __('backend.confirmation') }}</h5>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="modal-body text-center p-lg">--}}
-{{--                                            <p>--}}
-{{--                                                {{ __('backend.confirmationDeleteMsg') }}--}}
-{{--                                            </p>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="modal-footer">--}}
-{{--                                            <button type="button" class="btn dark-white p-x-md"--}}
-{{--                                                    data-dismiss="modal">{{ __('backend.no') }}</button>--}}
-{{--                                            <button type="submit"--}}
-{{--                                                    class="btn danger p-x-md">{{ __('backend.yes') }}</button>--}}
-{{--                                        </div>--}}
-{{--                                    </div><!-- /.modal-content -->--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <!-- / .modal -->--}}
-{{--                            @if(@Auth::user()->permissionsGroup->edit_status)--}}
-{{--                                <select name="action" id="action" class="form-control c-select w-sm inline v-middle"--}}
-{{--                                        required>--}}
-{{--                                    <option value="">{{ __('backend.bulkAction') }}</option>--}}
-{{--                                    <option value="order">{{ __('backend.saveOrder') }}</option>--}}
-{{--                                    <option value="activate">{{ __('backend.activeSelected') }}</option>--}}
-{{--                                    <option value="block">{{ __('backend.blockSelected') }}</option>--}}
-{{--                                    @if(@Auth::user()->permissionsGroup->delete_status)--}}
-{{--                                        <option value="delete">{{ __('backend.deleteSelected') }}</option>--}}
-{{--                                    @endif--}}
-{{--                                </select>--}}
-{{--                                <button type="submit" id="submit_all"--}}
-{{--                                        class="btn white">{{ __('backend.apply') }}</button>--}}
-{{--                                <button id="submit_show_msg" class="btn white displayNone" data-toggle="modal"--}}
-{{--                                        data-target="#m-all" ui-toggle-class="bounce"--}}
-{{--                                        ui-target="#animate">{{ __('backend.apply') }}--}}
-{{--                                </button>--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
+            </div>
 
-{{--                        <div class="col-sm-3 text-center">--}}
-{{--                            <small class="text-muted inline m-t-sm m-b-sm">{{ __('backend.showing') }} {{ $Banners->firstItem() }}--}}
-{{--                                -{{ $Banners->lastItem() }} {{ __('backend.of') }}--}}
-{{--                                <strong>{{ $Banners->total()  }}</strong> {{ __('backend.records') }}</small>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-sm-6 text-right text-center-xs">--}}
-{{--                            {!! $Banners->links() !!}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </footer>--}}
+
 
 
         </div>
     </div>
-    <div id="m-add-cruiseLine" class="modal fade" data-backdrop="true">
-        <div class="modal-dialog" id="animate">
-            <form method="post" action="{{route('admin.cruiseLine.create')}}" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">{{ __('backend.addnew') }}</h5>
-                    </div>
-                    <div class="modal-body text-center p-lg">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label>Name</label><br>
-                                </div>
-                                <div class="col-md-8">
-                                    <input name="name" required class="form-control"><br>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label>English Name</label><br>
-                                </div>
-                                <div class="col-md-8">
-                                    <input name="english_name" required class="form-control"><br>
-                                </div>
-                            </div>
-
-
-                            <br>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label>Image</label><br>
-                                </div>
-                                <div class="col-md-8">
-                                    <input name="file" type="file" required class="form-control"><br>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label>Status</label><br>
-                                </div>
-                                <div class="col-md-8">
-                                    <select class="form-control" name="status" required>
-                                        <option value="1">active</option>
-                                        <option value="0">unactive</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn dark-white p-x-md"
-                                    data-dismiss="modal">{{ __('backend.cancel') }}</button>
-                            <button type="submit"
-                               class="btn success p-x-md">{{ __('backend.create') }}</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div>
-            </form>
-        </div>
-    </div>
 
 @endsection
 @push("after-scripts")
 
     <script type="text/javascript">
 
-        $("#checkAll").click(function () {
-            $('input:checkbox').not(this).prop('checked', this.checked);
-        });
-        $("#action").change(function () {
-            if (this.value == "delete") {
-                $("#submit_all").css("display", "none");
-                $("#submit_show_msg").css("display", "inline-block");
-            } else {
-                $("#submit_all").css("display", "inline-block");
-                $("#submit_show_msg").css("display", "none");
+        function hotelBulkDelete() {
+            var checkboxes = document.querySelectorAll('input[id="hotelCheckBox"]');
+            var tempArray=[];
+            for (var checkbox of checkboxes) {
+
+                if (checkbox.checked)
+                {
+                    tempArray.push(checkbox.getAttribute('data-id'))
+                }
+
             }
-        });
+
+            console.log(tempArray)
+            if (tempArray.length>0)
+            {
+                $("#btnHotelRemove").text("Removing...")
+                $.ajax({
+                    type:'post',
+                    url:'{{route('admin.cruiseLine.deleteBulk')}}',
+                    data:{"_token":"{{ csrf_token() }}",'data':tempArray},
+                    success:function(data){
+                        console.log(data)
+                        window.location.reload()
+                    }})
+            }
+        }
+
     </script>
 @endpush

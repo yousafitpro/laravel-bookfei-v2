@@ -171,13 +171,13 @@
                         <div class="pull-left">
                             <a onclick="reloadMe()"><small>All Records</small></a>
                             @if($sdate)
-                            <small>( {{$sdate}} )</small>
+                            <small>( {{$sdateName}} )</small>
                                 @endif
                         </div>
                         <div class="pull-right">
                             <form method="post">
                                 @csrf
-                                <input value="{{$sdate?$sdate:''}}" onchange="this.form.submit()" type="month" name="month">
+                                <input style="height: 40px; width: 200px" value="{{$sdate?$sdate:''}}" onchange="this.form.submit()" type="month" name="month">
                             </form>
 
                         </div>

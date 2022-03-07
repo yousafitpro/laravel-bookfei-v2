@@ -254,6 +254,7 @@ class HotelRoomTypeController extends Controller
 
 
        $data['sdate']=$request->month;
+       $data['sdateName']=Carbon::parse($request->month)->format('M Y');
 
         return view('dashboard.hotel.room-rate',$data);
     }

@@ -33,7 +33,10 @@ class TourRateController extends Controller
     }
     public function list(Request $request,$id)
     {
-
+if ($id==0)
+{
+    return redirect()->back()->with('errorMessage',"Please Create Tour First");
+}
         $list=tourRate::where("deleted_at",null);
         $tour=tour::find($id);
         if ($request->has("month"))

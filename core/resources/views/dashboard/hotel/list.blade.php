@@ -20,45 +20,13 @@
             <br>
             <br>
 
-{{--            @if($list->total() >0)--}}
-{{--                @if(@Auth::user()->permissionsGroup->add_status)--}}
-{{--                    <div class="row p-a">--}}
-{{--                        <div class="col-sm-12">--}}
-{{--                            @foreach($WebmasterBanners as $WebmasterBanner)--}}
-{{--                                <a class="btn btn-fw primary marginBottom5"--}}
-{{--                                   href="{{route("BannersCreate",$WebmasterBanner->id)}}">--}}
-{{--                                    <i class="material-icons">&#xe02e;</i>--}}
-{{--                                    &nbsp; {!! $WebmasterBanner->{'title_'.@Helper::currentLanguage()->code} !!}</a>--}}
-{{--                            @endforeach--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                @endif--}}
-{{--            @endif--}}
-{{--            @if($Banners->total() == 0)--}}
-{{--                <div class="row p-a">--}}
-{{--                    <div class="col-sm-12">--}}
-{{--                        <div class=" p-a text-center ">--}}
-{{--                            {{ __('backend.noData') }}--}}
-{{--                            <br>--}}
-{{--                            <br>--}}
-{{--                            @if(@Auth::user()->permissionsGroup->add_status)--}}
-{{--                                @foreach($WebmasterBanners as $WebmasterBanner)--}}
-{{--                                    <a class="btn btn-fw primary marginBottom5"--}}
-{{--                                       href="{{route("BannersCreate",$WebmasterBanner->id)}}">--}}
-{{--                                        <i class="material-icons">&#xe02e;</i>--}}
-{{--                                        &nbsp; {!! $WebmasterBanner->{'title_'.@Helper::currentLanguage()->code} !!}</a>--}}
-{{--                                @endforeach--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @endif--}}
+
 
 <div class="container-fluid">
   <form method="get" action="{{route('admin.hotel.list')}}">
       <div class="row">
           <div class="col-md-2">
-              <input name="searchWord" class="form-control" value="{{session('searchWord','')}}">
+              <input name="searchWord" placeholder="Hotel Name" class="form-control" value="{{session('searchWord','')}}">
           </div>
           <div class="col-md-2">
               <select name="city" class="form-control" >
@@ -71,7 +39,7 @@
               </select>
           </div>
           <div class="col-md-2">
-              <button type="submit" class="btn dark btn-block">Filter</button>
+              <button type="submit" class="btn btn-dark btn-block">Filter</button>
           </div>
       </div>
   </form>
@@ -83,11 +51,7 @@
                     <table class="table table-bordered m-a-0">
                         <thead class="dker">
                         <tr>
-{{--                            <th class="width20 dker">--}}
-{{--                                <label class="ui-check m-a-0">--}}
-{{--                                    <input id="checkAll" type="checkbox"><i></i>--}}
-{{--                                </label>--}}
-{{--                            </th>--}}
+
                             <th class=" width50"></th>
                             <th class=" width50">{{ __('backend.name') }}</th>
                             <th class=" width50">{{ __('backend.phone') }}</th>
@@ -241,17 +205,6 @@
                  }})
          }
         }
-        // $("#checkAll").click(function () {
-        //     $('input:checkbox').not(this).prop('checked', this.checked);
-        // });
-        // $("#action").change(function () {
-        //     if (this.value == "delete") {
-        //         $("#submit_all").css("display", "none");
-        //         $("#submit_show_msg").css("display", "inline-block");
-        //     } else {
-        //         $("#submit_all").css("display", "inline-block");
-        //         $("#submit_show_msg").css("display", "none");
-        //     }
-        // });
+
     </script>
 @endpush

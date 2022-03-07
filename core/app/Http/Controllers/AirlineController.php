@@ -56,7 +56,7 @@ class AirlineController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.update'));
+        return redirect(route('admin.cruiseLine.list'))->with('doneMessage', __('backend.update'));
     }
     public function create(Request $request)
     {
@@ -75,6 +75,24 @@ class AirlineController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.addDone'));
+        return redirect(route('admin.cruiseLine.list'))->with('doneMessage', __('backend.addDone'));
+    }
+    public function deleteBulk(Request $request)
+    {
+        airline::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+        if(Request::capture()->expectsJson())
+        {
+            return response()->json(['message'=>"Operation Successful"]);
+        }
+    }
+    public function addView(Request $request)
+    {
+        return view('dashboard.airline.add');
+    }
+    public function updateView(Request $request,$id)
+    {
+        $data['Banner']=airline::find($id);
+        return view('dashboard.airline.edit',$data);
     }
 }
