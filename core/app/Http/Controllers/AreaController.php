@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\area;
 use App\Models\city;
+use App\Models\supplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -75,5 +76,23 @@ class AreaController extends Controller
             $city->save();
         }
         return redirect()->back()->with('doneMessage', __('backend.addDone'));
+    }
+    public function deleteBulk(Request $request)
+    {
+        area::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+        if(Request::capture()->expectsJson())
+        {
+            return response()->json(['message'=>"Operation Successful"]);
+        }
+    }
+    public function addView(Request $request)
+    {
+        return view('dashboard.area.add');
+    }
+    public function updateView(Request $request,$id)
+    {
+        $data['Banner']=area::find($id);
+        return view('dashboard.area.edit',$data);
     }
 }

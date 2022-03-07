@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\city;
 use App\Models\Country;
+use App\Models\supplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -81,5 +82,23 @@ class CountryController extends Controller
             $city->save();
         }
         return redirect()->back()->with('doneMessage', __('backend.addDone'));
+    }
+    public function deleteBulk(Request $request)
+    {
+        Country::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+        if(Request::capture()->expectsJson())
+        {
+            return response()->json(['message'=>"Operation Successful"]);
+        }
+    }
+    public function addView(Request $request)
+    {
+        return view('dashboard.country.add');
+    }
+    public function updateView(Request $request,$id)
+    {
+        $data['Banner']=supplier::find($id);
+        return view('dashboard.country.edit',$data);
     }
 }

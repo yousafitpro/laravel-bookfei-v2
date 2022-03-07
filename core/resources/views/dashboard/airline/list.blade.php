@@ -8,7 +8,7 @@
                 <a href="{{route('admin.airLine.addView')}}">
                     <button class="btn dark pull-left">Add New Air line</button>
                 </a>
-                <a href="javascrip:void" onclick="hotelBulkDelete()">
+                <a href="javascrip:void" onclick="showDeleteModel()">
                     <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>
                 </a>
 
@@ -69,7 +69,7 @@
                         <tr>
 
                             <td class="">
-                                <input type="checkbox"  data-id="{{$Banner->id}}" id="hotelCheckBox" style="zoom:1.2">
+                                <input type="checkbox"  data-id="{{$Banner->id}}" id="myCheckBox" style="zoom:1.2">
                             </td>
                             <td class="text-center">
                                 <img src="{{$Banner->image}}" style="width: 40px">
@@ -148,14 +148,55 @@
         </div>
     </div>
 
+    <!-- .modal -->
+    <div id="bulkDelete" class="modal fade" data-backdrop="true">
+        <div class="modal-dialog" id="animate">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ __('backend.confirmation') }}</h5>
+                </div>
+                <div class="modal-body text-center p-lg">
 
+                    <strong> Are you want to Delete These records ? </strong>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default p-x-md"
+                            data-dismiss="modal">{{ __('backend.cancel') }}</button>
+                    <a href="javascript:void" data-dismiss="modal" onclick="BulkDelete()"
+                       class="btn dark " style="color: white">Ok</a>
+                </div>
+            </div><!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- / .modal -->
 @endsection
 @push("after-scripts")
 
     <script type="text/javascript">
+             function showDeleteModel()
+             {
+                 var checkboxes = document.querySelectorAll('input[id="myCheckBox"]');
+                 var tempArray=[];
+                 for (var checkbox of checkboxes) {
 
-        function hotelBulkDelete() {
-            var checkboxes = document.querySelectorAll('input[id="hotelCheckBox"]');
+                     if (checkbox.checked)
+                     {
+                         tempArray.push(checkbox.getAttribute('data-id'))
+                     }
+
+                 }
+
+                 console.log(tempArray)
+                 if (tempArray.length>0)
+                 {
+                     $("#bulkDelete").modal();
+                 }
+
+             }
+        function BulkDelete() {
+
+            var checkboxes = document.querySelectorAll('input[id="myCheckBox"]');
             var tempArray=[];
             for (var checkbox of checkboxes) {
 
@@ -172,7 +213,7 @@
                 $("#btnHotelRemove").text("Removing...")
                 $.ajax({
                     type:'post',
-                    url:'{{route('admin.cruiseLine.deleteBulk')}}',
+                    url:'{{route('admin.airLine.deleteBulk')}}',
                     data:{"_token":"{{ csrf_token() }}",'data':tempArray},
                     success:function(data){
                         console.log(data)
