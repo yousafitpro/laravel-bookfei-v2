@@ -6,6 +6,7 @@ return array(
     'currencies' => 'Currencies',
     'countries' => 'Countries',
     'areas' => 'Areas',
+    'action' => 'Action',
     'cruiselines' => 'Cruise Lines',
     'lataCode' => 'IATA Code',
     'airlines' => 'Airlines',

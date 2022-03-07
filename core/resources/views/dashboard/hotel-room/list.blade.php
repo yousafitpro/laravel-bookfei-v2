@@ -11,7 +11,7 @@
                             <th class="text-center width50">{{ __('backend.max_guest') }}</th>
                             <th class="text-center width50">Maximum Extra Bed</th>
                             <th class="text-center width50">{{ __('backend.status') }}</th>
-                            <th class="text-center width200">{{ __('backend.options') }}</th>
+                            <th class="text-center width200">{{ __('backend.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -104,6 +104,28 @@
                     </table>
 
                 </div>
+                <!-- .modal -->
+                <div id="removeRoomTypesModel" class="modal fade" data-backdrop="true">
+                    <div class="modal-dialog" id="animate">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">{{ __('backend.confirmation') }}</h5>
+                            </div>
+                            <div class="modal-body text-center p-lg">
+
+                                <strong> Are you want to Delete These records ? </strong>
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default p-x-md"
+                                        data-dismiss="modal">{{ __('backend.cancel') }}</button>
+                                <a href="javascript:void" data-dismiss="modal" onclick="roomTypeBulkDelete()"
+                                   class="btn dark " style="color: white">Ok</a>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div>
+                </div>
+                <!-- / .modal -->
 <script>
     function roomTypeBulkDelete() {
         var checkboxes = document.querySelectorAll('input[id="roomTypeCheckBox"]');

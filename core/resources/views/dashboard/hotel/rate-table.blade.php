@@ -21,7 +21,7 @@
                         <th class=" width50">Effective From</th>
                         <th class=" width50">Effective To</th>
                         <th class=" width50">Special Offer</th>
-                        <th class=" width200">{{ __('backend.options') }}</th>
+                        <th class=" width200">{{ __('backend.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>

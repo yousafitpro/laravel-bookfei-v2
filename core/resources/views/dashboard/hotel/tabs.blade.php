@@ -49,8 +49,9 @@
             <br>
             <div>
                 @if($_GET['tab']=="RoomType")
-                    <a href="javascript:void" >
-                        <button id="btnRoomTypeRemove" onclick="roomTypeBulkDelete()"  class="btn btn-danger pull-right m-r-1">Remove</button>
+                    <a href="javascript:void" data-toggle="modal"
+                       data-target="#removeRoomTypesModel" >
+                        <button id="btnRoomTypeRemove"    class="btn btn-danger pull-right m-r-1">Remove</button>
                     </a>
                     <a href="{{route('admin.hotelRoom.createView',$hotel->id)}}">
                         <button  class="btn dark pull-left m-l-1">Add Room Type</button>

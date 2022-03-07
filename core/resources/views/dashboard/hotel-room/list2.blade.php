@@ -10,7 +10,7 @@
                             <th class="text-center width50">{{ __('backend.default_guest') }}</th>
                             <th class="text-center width50">{{ __('backend.max_guest') }}</th>
                             <th class="text-center width50">{{ __('backend.status') }}</th>
-                            <th class="text-center width200">{{ __('backend.options') }}</th>
+                            <th class="text-center width200">{{ __('backend.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>

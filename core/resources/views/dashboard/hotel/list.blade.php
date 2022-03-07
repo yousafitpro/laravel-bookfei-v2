@@ -62,10 +62,10 @@
           </div>
           <div class="col-md-2">
               <select name="city" class="form-control" >
-                  <option value="{{session('city_id','none')}}">{{session('city_name','City')}}</option>
+{{--                  <option value="{{session('city_id','none')}}">{{session('city_name','City')}}</option>--}}
                   @foreach(\App\Helpers\Helper::Cities() as $c)
-                      <option value="none">All</option>
-                      <option value="{{$c->id}}">{{$c->name}}</option>
+                      <option value="none" {{session('city_id')=='none'?'selected':''}}>All</option>
+                      <option value="{{$c->id}}" {{session('city_id')==$c->id?'selected':''}}>{{$c->name}}</option>
                   @endforeach
 
               </select>
@@ -94,7 +94,7 @@
                             <th class=" width50">{{ __('backend.email') }}</th>
                             <th class=" width50">{{ __('backend.city') }}</th>
                             <th class="text-center width50">{{ __('backend.status') }}</th>
-                            <th class=" width200">{{ __('backend.options') }}</th>
+                            <th class=" width200">{{ __('backend.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
