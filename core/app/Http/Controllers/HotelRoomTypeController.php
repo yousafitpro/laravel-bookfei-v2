@@ -367,7 +367,7 @@ class HotelRoomTypeController extends Controller
         return redirect()->back()->with('doneMessage', __('backend.addDone'));
     }
     public function getDateForSpecificDayBetweenDates($startDate,$endDate,$day_number){
-        dd($day_number);
+//        dd($day_number);
         $endDate = strtotime($endDate);
         $days=array('1'=>'Monday','2' => 'Tuesday','3' => 'Wednesday','4'=>'Thursday','5' =>'Friday','6' => 'Saturday','7'=>'Sunday');
         for($i = strtotime($days[$day_number], strtotime($startDate)); $i <= $endDate; $i = strtotime('+1 week', $i))
