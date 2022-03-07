@@ -23,7 +23,7 @@
 
 
             <div class="container-fluid">
-                <form method="get" action="{{route('admin.cruiseLine.list')}}">
+                <form method="get" action="{{route('admin.airline.list')}}">
                     <div class="row">
                         <div class="col-md-2">
                             <input name="searchWord" placeholder="Airline Name" class="form-control" value="{{session('searchWord','')}}">
