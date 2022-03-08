@@ -163,17 +163,6 @@
         </div>
     </div>
 
-<div id="sampleList">
-    <?php
-    $i=1
-    ?>
-    @while($i!=100)
-        <option value="{{$i}}">{{$i}}</option>
-        <?php
-        $i=$i+1;
-        ?>
-    @endwhile
-</div>
 @endsection
 @push("after-scripts")
 

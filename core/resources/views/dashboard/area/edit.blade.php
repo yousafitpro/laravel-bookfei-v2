@@ -10,7 +10,7 @@
                     <button type="submit"
                             class="btn dark p-x-md pull-right">{{ __('backend.update') }}</button>
                     <small>
-                        <a href="{{route('admin.airline.list')}}">
+                        <a href="{{route('admin.area.list')}}">
                             <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                             Go Back
                         </a>
