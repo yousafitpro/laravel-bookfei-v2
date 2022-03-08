@@ -313,82 +313,16 @@
          var endDate=$("#endDate").val();
 
                var is_true=false;
-         var days = @json($days);
+         var days = @json($empties);
          days =Object.values(days);
 
          console.log(days)
-         var sunday = document.querySelectorAll('input[id="sunday"]');
-         if (sunday[0].checked)
-         {
-             days.forEach(function (el){
-                 if (el.day=="Sunday" && (el.date>=startDate && el.date<=endDate) )
-                 {
-
-
-                    is_true=true;
-                 }
-             })
-         }
-         var monday = document.querySelectorAll('input[id="monday"]');
-         if (monday[0].checked)
-         {
-             days.forEach(function (el){
-                 if (el.day=="Monday" && (el.date>=startDate && el.date<=endDate))
-                 {
-                     is_true=true;
-                 }
-             })
-         }
-         var tuesday = document.querySelectorAll('input[id="tuesday"]');
-         if (tuesday[0].checked)
-         {
-             days.forEach(function (el){
-                 if (el.day=="Tuesday" && (el.date>=startDate && el.date<=endDate))
-                 {
-                     is_true=true;
-                 }
-             })
-         }
-         var wednesday = document.querySelectorAll('input[id="wednesday"]');
-         if (wednesday[0].checked)
-         {
-             days.forEach(function (el){
-                 if (el.day=="Wednesday" && (el.date>=startDate && el.date<=endDate))
-                 {
-                     is_true=true;
-                 }
-             })
-         }
-         var thursday = document.querySelectorAll('input[id="thursday"]');
-         if (thursday[0].checked)
-         {
-             days.forEach(function (el){
-                 if (el.day=="Thursday" && (el.date>=startDate && el.date<=endDate))
-                 {
-                     is_true=true;
-                 }
-             })
-         }
-         var friday = document.querySelectorAll('input[id="friday"]');
-         if (friday[0].checked)
-         {
-             days.forEach(function (el){
-                 if (el.day=="Friday" && (el.date>=startDate && el.date<=endDate))
-                 {
-                     is_true=true;
-                 }
-             })
-         }
-         var saturday = document.querySelectorAll('input[id="saturday"]');
-         if (saturday[0].checked)
-         {
-             days.forEach(function (el){
-                 if (el.day=="Saturday" && (el.date>=startDate && el.date<=endDate))
-                 {
-                     is_true=true;
-                 }
-             })
-         }
+         days.forEach(function (el){
+           if (el.date>=startDate && el.date<=startDate)
+           {
+               is_true=true;
+           }
+         })
 
          if (is_true)
          {
