@@ -17,9 +17,8 @@
                 </small>
             </div>
             <div class="box-header">
-                <label>Hotel:{{$hotel->name}}</label>
-                <br>
-                <small style="color: grey">({{$hotel->name}}-{{$roomType->name}}-{{$rateTable->name}})</small>
+                <label>Hotel: {{$hotel->name}} - {{$roomType->name}} ({{$rateTable->name}})</label>
+
 
             </div>
             <form method="post" id="myForm" action="{{route('admin.hotelRoom.createRateTable')}}" >
@@ -177,7 +176,8 @@
                         <div class="pull-right">
                             <form method="post">
                                 @csrf
-                                <input style="height: 40px; width: 200px" value="{{$sdate?$sdate:''}}" onchange="this.form.submit()" type="month" name="month">
+                                <label>Select Month</label>
+                                <input style="height: 30px; width: 200px" value="{{$sdate?$sdate:''}}" onchange="this.form.submit()" type="month" name="month">
                             </form>
 
                         </div>

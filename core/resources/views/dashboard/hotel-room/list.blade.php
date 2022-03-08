@@ -7,7 +7,7 @@
                             <th class=" width50"></th>
 
                             <th class=" width50">{{ __('backend.name') }}</th>
-                            <th class="text-center width50">{{ __('backend.default_guest') }}</th>
+{{--                            <th class="text-center width50">{{ __('backend.default_guest') }}</th>--}}
                             <th class="text-center width50">{{ __('backend.max_guest') }}</th>
                             <th class="text-center width50">Maximum Extra Bed</th>
                             <th class="text-center width50">{{ __('backend.status') }}</th>
@@ -42,8 +42,8 @@
                                 <td class="">
                                     <label>{{$Banner->name}}</label>
                                </td>
-                                <td class="text-center">
-                                    {{$Banner->default_guest}}                                </td>
+{{--                                <td class="text-center">--}}
+{{--                                    {{$Banner->default_guest}}                                </td>--}}
                                 <td class="text-center">
                                     {{$Banner->max_guest}}                                </td>
                                 <td class="text-center">

@@ -27,7 +27,7 @@
     @if($hotel_id!=0)
     <div class="row">
         <div class="col-md-12 p-l-2">
-            <h6 style="color: grey">{{$hotel->name}}</h6>
+            <h6 style="color: grey">Hotel : {{$hotel->name}}</h6>
         </div>
     </div>
     @endif

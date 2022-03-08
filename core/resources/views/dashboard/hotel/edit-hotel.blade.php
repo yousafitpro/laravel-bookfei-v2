@@ -68,12 +68,12 @@
                         </div>
                         <div class="col-md-3">
                             <select name="adult_age_start" value="{{$hotel->adult_age_start}}" class="form-control">
-                                <option value="{{$hotel->adult_age_start}}">{{$hotel->adult_age_start}}</option>
+
                                 <?php
                                 $i=0
                                 ?>
                                 @while($i!=101)
-                                    <option value="{{$i}}">{{$i}}</option>
+                                    <option value="{{$i}}" {{ $i==$hotel->adult_age_start?'selected':''}}>{{$i}}</option>
                                     <?php
                                     $i=$i+1;
                                     ?>
@@ -81,13 +81,13 @@
                             </select>                                          </div>
                         <div class="col-md-3">
                             <select name="adult_age_end" class="form-control" value="{{old('adult_age_end')}}">
-                                <option value="{{$hotel->adult_age_end}}">{{$hotel->adult_age_end}}</option>
+
 
                                 <?php
                                 $i=0
                                 ?>
                                 @while($i!=101)
-                                    <option value="{{$i}}">{{$i}}</option>
+                                    <option value="{{$i}}" {{ $i==$hotel->adult_age_end?'selected':''}}>{{$i}}</option>
                                     <?php
                                     $i=$i+1;
                                     ?>
@@ -105,13 +105,13 @@
                         </div>
                         <div class="col-md-3">
                             <select name="child_age_start" value="{{old('child_age_start')}}" class="form-control">
-                                <option value="{{$hotel->child_age_start}}">{{$hotel->child_age_start}}</option>
+
 
                                 <?php
                                 $i=0
                                 ?>
                                 @while($i!=101)
-                                    <option value="{{$i}}">{{$i}}</option>
+                                    <option value="{{$i}}" {{ $i==$hotel->child_age_start?'selected':''}}>{{$i}}</option>
                                     <?php
                                     $i=$i+1;
                                     ?>
@@ -119,13 +119,13 @@
                             </select>                                          </div>
                         <div class="col-md-3">
                             <select name="child_age_end" value="{{old('child_age_end')}}" class="form-control">
-                                <option value="{{$hotel->child_age_end}}">{{$hotel->child_age_end}}</option>
+
 
                                 <?php
                                 $i=0
                                 ?>
                                 @while($i!=101)
-                                    <option value="{{$i}}">{{$i}}</option>
+                                    <option value="{{$i}}" {{ $i==$hotel->child_age_end?'selected':''}} >{{$i}}</option>
                                     <?php
                                     $i=$i+1;
                                     ?>
@@ -143,13 +143,13 @@
                         </div>
                         <div class="col-md-3">
                             <select name="toddler_age_start" value="{{old('toddler_age_start')}}" class="form-control">
-                                <option value="{{$hotel->toddler_age_start}}">{{$hotel->toddler_age_start}}</option>
+
 
                                 <?php
                                 $i=0
                                 ?>
                                 @while($i!=101)
-                                    <option value="{{$i}}">{{$i}}</option>
+                                    <option value="{{$i}}" {{ $i==$hotel->toddler_age_start?'selected':''}}>{{$i}}</option>
                                     <?php
                                     $i=$i+1;
                                     ?>
@@ -157,13 +157,13 @@
                             </select>                                          </div>
                         <div class="col-md-3">
                             <select name="toddler_age_end" value="{{old('toddler_age_end')}}" class="form-control">
-                                <option value="{{$hotel->toddler_age_end}}">{{$hotel->toddler_age_end}}</option>
+
 
                                 <?php
                                 $i=0
                                 ?>
                                 @while($i!=101)
-                                    <option value="{{$i}}">{{$i}}</option>
+                                    <option value="{{$i}}" {{ $i==$hotel->toddler_age_end?'selected':''}}>{{$i}}</option>
                                     <?php
                                     $i=$i+1;
                                     ?>
@@ -181,13 +181,13 @@
                         </div>
                         <div class="col-md-3">
                             <select name="infant_age_start" value="{{old('infant_age_start')}}" class="form-control">
-                                <option value="{{$hotel->infant_age_start}}">{{$hotel->infant_age_start}}</option>
+
 
                                 <?php
                                 $i=0
                                 ?>
                                 @while($i!=101)
-                                    <option value="{{$i}}">{{$i}}</option>
+                                    <option value="{{$i}}" {{ $i==$hotel->infant_age_start?'selected':''}}>{{$i}}</option>
                                     <?php
                                     $i=$i+1;
                                     ?>
@@ -195,13 +195,13 @@
                             </select>                                          </div>
                         <div class="col-md-3">
                             <select name="infant_age_end" value="{{old('infant_age_end')}}" class="form-control">
-                                <option value="{{$hotel->infant_age_end}}">{{$hotel->infant_age_end}}</option>
+
 
                                 <?php
                                 $i=0
                                 ?>
                                 @while($i!=101)
-                                    <option value="{{$i}}">{{$i}}</option>
+                                    <option value="{{$i}}" {{ $i==$hotel->infant_age_end?'selected':''}}>{{$i}}</option>
                                     <?php
                                     $i=$i+1;
                                     ?>
@@ -219,13 +219,13 @@
                         </div>
                         <div class="col-md-3">
                             <select name="senior_age_start" value="{{old('senior_age_start')}}" class="form-control">
-                                <option value="{{$hotel->senior_age_start}}">{{$hotel->senior_age_start}}</option>
+
 
                                 <?php
                                 $i=0
                                 ?>
                                 @while($i!=101)
-                                    <option value="{{$i}}">{{$i}}</option>
+                                    <option value="{{$i}}" {{ $i==$hotel->senior_age_start?'selected':''}}>{{$i}}</option>
                                     <?php
                                     $i=$i+1;
                                     ?>
@@ -233,13 +233,13 @@
                             </select>                                          </div>
                         <div class="col-md-3">
                             <select name="senior_age_end" value="{{old('senior_age_end')}}" class="form-control">
-                                <option value="{{$hotel->senior_age_end}}">{{$hotel->senior_age_end}}</option>
+
 
                                 <?php
                                 $i=0
                                 ?>
                                 @while($i!=101)
-                                    <option value="{{$i}}">{{$i}}</option>
+                                    <option value="{{$i}}" {{ $i==$hotel->senior_age_end?'selected':''}}>{{$i}}</option>
                                     <?php
                                     $i=$i+1;
                                     ?>
