@@ -438,14 +438,7 @@ class HotelRoomTypeController extends Controller
             $rr->date=$start_date->toDateString();
             $rr->hotel_room_type_id=$room_type_id;
             $rr->day=$start_date->dayName;
-                $rr->adult=0;
-                $rr->child=0;
-                $rr->toddler=0;
-                $rr->infant=0;
-                $rr->senior=0;
-                $rr->tax_percentage=0;
-                $rr->room_price=0;
-                $rr->tax_amount='0';
+
                 $rr->is_disabled=false;
             $rr->save();
             $start_date->addDay();
