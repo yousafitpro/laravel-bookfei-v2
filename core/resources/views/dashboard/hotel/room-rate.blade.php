@@ -113,7 +113,7 @@
                     <div class="col-md-4">
 
                         <div class="container-fluid">
-                            <h6 class="text-left">Extra Bed</h6><br>
+                            <h6 class="text-left">Extra Bed Price</h6><br>
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Age Group" class="form-control"></div>
                                 <div class="col-md-6"><input readonly   value="Price" class="form-control"></div>
