@@ -32,11 +32,11 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <small>From </small><br>
-                                    <input type="date" name="start" value="{{$rateTable->effective_start_date}}"  class="form-control input-sm">
+                                    <input type="date" id="startDate" name="start" value="{{$rateTable->effective_start_date}}"  class="form-control input-sm">
                                 </div>
                                 <div class="col-md-4">
                                     <small>To</small><br>
-                                    <input type="date" name="end" value="{{$rateTable->effective_end_date}}"  class="form-control">
+                                    <input type="date" id="endDate" name="end" value="{{$rateTable->effective_end_date}}"  class="form-control">
                                 </div>
                                 <div class="col-md-4">
 
@@ -309,6 +309,9 @@
     <script type="text/javascript">
      function checkApply()
      {
+         var startDate=$("#startDate").val();
+         var endDate=$("#endDate").val();
+
                var is_true=false;
          var days = @json($days);
          days =Object.values(days);
@@ -318,8 +321,10 @@
          if (sunday[0].checked)
          {
              days.forEach(function (el){
-                 if (el.day=="Sunday")
+                 if (el.day=="Sunday" && (el.date>=startDate && el.date<=endDate) )
                  {
+
+
                     is_true=true;
                  }
              })
@@ -328,7 +333,7 @@
          if (monday[0].checked)
          {
              days.forEach(function (el){
-                 if (el.day=="Monday")
+                 if (el.day=="Monday" && (el.date>=startDate && el.date<=endDate))
                  {
                      is_true=true;
                  }
@@ -338,7 +343,7 @@
          if (tuesday[0].checked)
          {
              days.forEach(function (el){
-                 if (el.day=="Tuesday")
+                 if (el.day=="Tuesday" && (el.date>=startDate && el.date<=endDate))
                  {
                      is_true=true;
                  }
@@ -348,7 +353,7 @@
          if (wednesday[0].checked)
          {
              days.forEach(function (el){
-                 if (el.day=="Wednesday")
+                 if (el.day=="Wednesday" && (el.date>=startDate && el.date<=endDate))
                  {
                      is_true=true;
                  }
@@ -358,7 +363,7 @@
          if (thursday[0].checked)
          {
              days.forEach(function (el){
-                 if (el.day=="Thursday")
+                 if (el.day=="Thursday" && (el.date>=startDate && el.date<=endDate))
                  {
                      is_true=true;
                  }
@@ -368,7 +373,7 @@
          if (friday[0].checked)
          {
              days.forEach(function (el){
-                 if (el.day=="Friday")
+                 if (el.day=="Friday" && (el.date>=startDate && el.date<=endDate))
                  {
                      is_true=true;
                  }
@@ -378,7 +383,7 @@
          if (saturday[0].checked)
          {
              days.forEach(function (el){
-                 if (el.day=="Saturday")
+                 if (el.day=="Saturday" && (el.date>=startDate && el.date<=endDate))
                  {
                      is_true=true;
                  }

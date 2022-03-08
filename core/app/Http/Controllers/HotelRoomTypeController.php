@@ -251,7 +251,7 @@ class HotelRoomTypeController extends Controller
        $data['roomType']=$roomType;
        $data['rateTable']=$rateTable;
        $data['list']=$list;
-        $days=$list2->select('day')->get()->unique('day');
+        $days=$list2->select(['day','date'])->get()->unique('day');
        $data['days']=$days;
 
 
