@@ -216,10 +216,12 @@ class HotelRoomTypeController extends Controller
     }
     public function rateTable(Request $request,$id)
     {
+
         $list=hotelRoomRate::where("deleted_at",null);
         $roomType=hotelRoomType::find($id);
         $hotel=hotel::find($roomType->hotel_id);
         $rateTable=hotelRateTable::find($roomType->hotel_rate_table_id);
+
         if ($request->has("month"))
         {
 
@@ -260,7 +262,14 @@ class HotelRoomTypeController extends Controller
     }
     public function createRateTable(Request $request)
     {
+        $roomType=hotelRoomType::find($request->hotel_room_type_id);
+        $hotel=hotel::find($roomType->hotel_id);
+        $rateTable=hotelRateTable::find($roomType->hotel_rate_table_id);
 
+        $this->validate($request, [
+            'start'=>'required|after_or_equal:'.$rateTable->effective_start_date,
+            'end'=>'required|before_or_equal:'.$rateTable->effective_end_date
+        ]);
         if (!$request->has('sun') &&
         !$request->has('mon') &&
             !$request->has('tue') &&

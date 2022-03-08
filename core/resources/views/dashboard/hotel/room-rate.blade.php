@@ -32,11 +32,11 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <small>From </small><br>
-                                    <input type="date" name="start" value="{{$rateTable->effective_start_date}}" readonly class="form-control input-sm">
+                                    <input type="date" name="start" value="{{$rateTable->effective_start_date}}"  class="form-control input-sm">
                                 </div>
                                 <div class="col-md-4">
                                     <small>To</small><br>
-                                    <input type="date" name="end" value="{{$rateTable->effective_end_date}}" readonly class="form-control">
+                                    <input type="date" name="end" value="{{$rateTable->effective_end_date}}"  class="form-control">
                                 </div>
                                 <div class="col-md-4">
 
