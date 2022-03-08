@@ -254,20 +254,20 @@ class HotelRoomTypeController extends Controller
        $data['roomType']=$roomType;
        $data['rateTable']=$rateTable;
        $data['list']=$list;
-//        $empties=$list2->select(['date'])
-//
-//                   ->where('room_price','!=','')
-//                    ->where('tax_amount','!=','')
-//                    ->where('tax_percentage','!=','')
-////                    ->where('senior','!=',null)
-//
-//            ->where('hotel_room_type_id',$id)
-//            ->get();
-//       $data['days']=[];
+        $empties=$list2->select(['date'])
+
+                   ->where('room_price','!=','')
+                    ->where('tax_amount','!=','')
+                    ->where('tax_percentage','!=','')
+//                    ->where('senior','!=',null)
+
+            ->where('hotel_room_type_id',$id)
+            ->get();
+       $data['days']=[];
 
 
        $data['sdate']=$request->month;
-       $data['empties']=[];
+       $data['empties']=$empties;
 //dd($data['empties']);
        $data['sdateName']=Carbon::parse($request->month)->format('M Y');
 
