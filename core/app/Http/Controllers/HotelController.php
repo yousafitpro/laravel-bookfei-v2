@@ -85,6 +85,9 @@ class HotelController extends Controller
     }
     public function update(Request $request,$id)
     {
+        $this->validate($request, [
+            'name'=>'required'
+        ]);
 
             if ($request->has("is_adult"))
             {
@@ -267,7 +270,9 @@ class HotelController extends Controller
     }
     public function create(Request $request)
     {
-
+        $this->validate($request, [
+            'name'=>'required'
+        ]);
         if ($request->has("is_adult"))
         {
             $this->validate($request, [

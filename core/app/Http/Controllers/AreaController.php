@@ -7,6 +7,7 @@ use App\Models\city;
 use App\Models\supplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AreaController extends Controller
 {
@@ -22,6 +23,15 @@ class AreaController extends Controller
         if($request->has("status"))
         {
             $list=$list->where('status',$request->status);
+        }
+        if ($request->has('searchWord') && $request->searchWord!="")
+        {
+            $list=$list->where('name', 'LIKE',"%{$request->searchWord}%");
+            Session::put('searchWord',$request->searchWord);
+        }
+        else
+        {
+            Session::put('searchWord','');
         }
         $list=$list->get();
         return view('dashboard.area.list')->with(['list'=>$list]);

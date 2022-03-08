@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\airline;
 use App\Models\Country;
 use App\Models\currency;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CurrencyController extends Controller
 {
@@ -26,6 +28,15 @@ class CurrencyController extends Controller
         foreach ($list as $l)
         {
             $l->image=asset("core/public/".$l->image);
+        }
+        if ($request->has('searchWord') && $request->searchWord!="")
+        {
+            $list=$list->where('name', 'LIKE',"%{$request->searchWord}%");
+            Session::put('searchWord',$request->searchWord);
+        }
+        else
+        {
+            Session::put('searchWord','');
         }
         return view('dashboard.currency.list')->with(['list'=>$list]);
     }
@@ -80,5 +91,23 @@ class CurrencyController extends Controller
             $city->save();
         }
         return redirect()->back()->with('doneMessage', __('backend.addDone'));
+    }
+    public function deleteBulk(Request $request)
+    {
+        currency::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+        if(Request::capture()->expectsJson())
+        {
+            return response()->json(['message'=>"Operation Successful"]);
+        }
+    }
+    public function addView(Request $request)
+    {
+        return view('dashboard.currency.add');
+    }
+    public function updateView(Request $request,$id)
+    {
+        $data['Banner']=airline::find($id);
+        return view('dashboard.currency.edit',$data);
     }
 }
