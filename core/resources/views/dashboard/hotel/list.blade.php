@@ -53,7 +53,7 @@
                         <tr>
 
                             <th class=" width50"></th>
-                            <th class=" width50">{{ __('backend.name') }}</th>
+                            <th class=" width50">Hotel Name</th>
                             <th class=" width50">{{ __('backend.phone') }}</th>
                             <th class=" width50">{{ __('backend.email') }}</th>
                             <th class=" width50">{{ __('backend.city') }}</th>
