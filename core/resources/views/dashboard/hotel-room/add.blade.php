@@ -77,7 +77,7 @@
 
 
         <br>
-
+        <label>No Extra Bed Age Group</label>
         <div class="row p-l-1">
             <div class="col-md-7 box box-body  ">
 
