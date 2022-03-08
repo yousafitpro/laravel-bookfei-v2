@@ -12,6 +12,7 @@ use App\Models\myfile;
 use App\Models\tour;
 use App\Models\tourRate;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -190,6 +191,7 @@ class HotelRoomTypeController extends Controller
         }
 
         $city= hotelRoomType::create($data);
+
         myfile::where('type','roomType')->where('item_id','temp')->update([
             'item_id'=>$city->id
         ]);
@@ -212,6 +214,7 @@ class HotelRoomTypeController extends Controller
     {
 
         hotelRoomType::where('id',$id)->update(['hotel_rate_table_id'=>$table_id]);
+        self::checkRoomRates($table_id,$id);
         return redirect(route('admin.hotelRoom.rateTable',$id));
     }
     public function rateTable(Request $request,$id)
@@ -408,5 +411,27 @@ class HotelRoomTypeController extends Controller
             hotelRoomRate::create($data);
         }
 
+    }
+    public static function  checkRoomRates($rate_table_id,$room_type_id)
+    {
+        $start_date=Carbon::parse(hotelRateTable::find($rate_table_id)->effective_start_date);
+        $end_date=Carbon::parse(hotelRateTable::find($rate_table_id)->effective_end_date);
+        $roomTypes=hotelRoomType::where('hotel_rate_table_id',$rate_table_id)->get();
+        hotelRoomRate::where('date','<',$start_date)->orWhere('date','>',$end_date)->delete();
+
+        while($start_date<=$end_date)
+        {
+            if (!hotelRoomRate::where('date',$start_date)->where('hotel_room_type_id',$room_type_id)->exists())
+            {
+            $rr=new hotelRoomRate();
+            $rr->date=$start_date;
+            $rr->hotel_room_type_id=$room_type_id;
+            $rr->day=$start_date->dayName;
+            $rr->save();
+            $start_date->addDay();
+            }
+
+
+        }
     }
 }
