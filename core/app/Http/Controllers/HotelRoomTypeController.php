@@ -427,6 +427,7 @@ class HotelRoomTypeController extends Controller
             $rr->date=$start_date;
             $rr->hotel_room_type_id=$room_type_id;
             $rr->day=$start_date->dayName;
+                $rr->is_disabled='0';
             $rr->save();
             $start_date->addDay();
             }
