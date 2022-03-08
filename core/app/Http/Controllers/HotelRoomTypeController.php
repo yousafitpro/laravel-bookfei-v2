@@ -425,6 +425,7 @@ class HotelRoomTypeController extends Controller
     public static function  checkRoomRates($rate_table_id,$room_type_id)
     {
         $start_date=Carbon::parse(hotelRateTable::find($rate_table_id)->effective_start_date);
+
         $end_date=Carbon::parse(hotelRateTable::find($rate_table_id)->effective_end_date);
         $roomTypes=hotelRoomType::where('hotel_rate_table_id',$rate_table_id)->get();
         hotelRoomRate::where('date','<',$start_date)->orWhere('date','>',$end_date)->delete();
@@ -434,7 +435,7 @@ class HotelRoomTypeController extends Controller
             if (!hotelRoomRate::where('date',$start_date)->where('hotel_room_type_id',$room_type_id)->exists())
             {
             $rr=new hotelRoomRate();
-            $rr->date=$start_date;
+            $rr->date=$start_date->toDateString();
             $rr->hotel_room_type_id=$room_type_id;
             $rr->day=$start_date->dayName;
                 $rr->adult=0;
