@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.master')
 @section('title', "Add Room Type")
 @section('content')
-    <form method="post" action="{{route('admin.airline.create')}}" enctype="multipart/form-data">
+    <form method="post" action="{{route('admin.city.create')}}" enctype="multipart/form-data">
         @csrf
 
         <div class="padding">
@@ -10,7 +10,7 @@
                     <button type="submit"
                             class="btn dark p-x-md pull-right">{{ __('backend.save') }}</button>
                     <small>
-                        <a href="{{route('admin.airline.list')}}">
+                        <a href="{{route('admin.city.list')}}">
                             <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                             Go Back
                         </a>
