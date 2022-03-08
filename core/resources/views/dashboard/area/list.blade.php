@@ -26,7 +26,7 @@
                 <form method="get" action="{{route('admin.area.list')}}">
                     <div class="row">
                         <div class="col-md-2">
-                            <input name="searchWord" placeholder="Airline Name" class="form-control" value="{{session('searchWord','')}}">
+                            <input name="searchWord" placeholder="Area Name" class="form-control" value="{{session('searchWord','')}}">
                         </div>
 
                         <div class="col-md-2">
@@ -121,7 +121,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn dark-white p-x-md"
                                                 data-dismiss="modal">{{ __('backend.no') }}</button>
-                                        <a href="{{ route("admin.airline.delete",["id"=>$Banner->id]) }}"
+                                        <a href="{{ route("admin.area.delete",["id"=>$Banner->id]) }}"
                                            class="btn danger p-x-md">{{ __('backend.yes') }}</a>
                                     </div>
                                 </div><!-- /.modal-content -->

@@ -108,7 +108,7 @@ class CityController extends Controller
     }
     public function updateView(Request $request,$id)
     {
-        $data['Banner']=supplier::find($id);
+        $data['Banner']=city::find($id);
         return view('dashboard.city.edit',$data);
     }
 }

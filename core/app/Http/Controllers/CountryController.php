@@ -108,7 +108,7 @@ class CountryController extends Controller
     }
     public function updateView(Request $request,$id)
     {
-        $data['Banner']=supplier::find($id);
+        $data['Banner']=Country::find($id);
         return view('dashboard.country.edit',$data);
     }
 }

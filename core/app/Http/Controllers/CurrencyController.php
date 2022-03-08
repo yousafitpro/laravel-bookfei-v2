@@ -107,7 +107,7 @@ class CurrencyController extends Controller
     }
     public function updateView(Request $request,$id)
     {
-        $data['Banner']=airline::find($id);
+        $data['Banner']=currency::find($id);
         return view('dashboard.currency.edit',$data);
     }
 }

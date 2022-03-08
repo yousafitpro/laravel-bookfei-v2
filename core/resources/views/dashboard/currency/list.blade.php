@@ -5,8 +5,8 @@
     <div class="padding">
         <div class="card" style="padding: 4px">
             <div class="box-header ">
-                <a href="{{route('admin.airLine.addView')}}">
-                    <button class="btn dark pull-left">Add New Air line</button>
+                <a href="{{route('admin.currency.addView')}}">
+                    <button class="btn dark pull-left">Add New Currency</button>
                 </a>
                 <a href="javascrip:void" onclick="showDeleteModel()">
                     <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>
@@ -23,10 +23,10 @@
 
 
             <div class="container-fluid">
-                <form method="get" action="{{route('admin.airline.list')}}">
+                <form method="get" action="{{route('admin.currency.list')}}">
                     <div class="row">
                         <div class="col-md-2">
-                            <input name="searchWord" placeholder="Airline Name" class="form-control" value="{{session('searchWord','')}}">
+                            <input name="searchWord" placeholder="currency Name" class="form-control" value="{{session('searchWord','')}}">
                         </div>
 
                         <div class="col-md-2">
@@ -44,8 +44,9 @@
                     <tr>
 
                         <th class=" width50"></th>
-                        <th class="text-center width50">{{ __('backend.image') }}</th>
+
                         <th class=" width50">{{ __('backend.name') }}</th>
+                        <th class=" width50">Exchange Rate</th>
 
 {{--                        <th class="text-center width50">{{ __('backend.currency') }}</th>--}}
 {{--                        <th class="text-center width50">{{ __('backend.supplier') }}</th>--}}
@@ -71,13 +72,13 @@
                             <td class="">
                                 <input type="checkbox"  data-id="{{$Banner->id}}" id="myCheckBox" style="zoom:1.2">
                             </td>
-                            <td class="text-center">
-                                <img src="{{$Banner->image}}" style="width: 40px">
-                            </td>
+
                             <td >
                                 <label>{{$Banner->name}}</label>
                             </td>
-
+                            <td class="text-center">
+                                {{$Banner->exchange_rate}}
+                            </td>
 
                             <td class="text-center">
                                 <i class="fa {{ ($Banner->status==1) ? "fa-check text-success":"fa-times text-danger" }} inline"></i>
@@ -85,7 +86,7 @@
                             <td class="text-center">
                                 @if(@Auth::user()->permissionsGroup->edit_status)
 
-                                    <a href="{{route('admin.airLine.updateView',$Banner->id)}}">
+                                    <a href="{{route('admin.currency.updateView',$Banner->id)}}">
 
                                         <button class="btn btn-sm success" >
                                             <small><i class="fa fa-edit" aria-hidden="true"></i> {{ __('backend.edit') }}
@@ -126,7 +127,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn dark-white p-x-md"
                                                 data-dismiss="modal">{{ __('backend.no') }}</button>
-                                        <a href="{{ route("admin.airline.delete",["id"=>$Banner->id]) }}"
+                                        <a href="{{ route("admin.currency.delete",["id"=>$Banner->id]) }}"
                                            class="btn danger p-x-md">{{ __('backend.yes') }}</a>
                                     </div>
                                 </div><!-- /.modal-content -->
@@ -213,7 +214,7 @@
                 $("#btnHotelRemove").text("Removing...")
                 $.ajax({
                     type:'post',
-                    url:'{{route('admin.airLine.deleteBulk')}}',
+                    url:'{{route('admin.currency.deleteBulk')}}',
                     data:{"_token":"{{ csrf_token() }}",'data':tempArray},
                     success:function(data){
                         console.log(data)
