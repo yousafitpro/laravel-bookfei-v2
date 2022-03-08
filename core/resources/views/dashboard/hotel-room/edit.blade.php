@@ -105,7 +105,7 @@
                         </div>
                         <div class="col-md-3 myflex" style="padding: 10px" >
 
-                            <input name="is_adult" {{$hotel->is_adult=="1"?'checked':""}} disabled  type="checkbox" style="zoom:1.6">
+                            <input name="is_adult" {{$Banner->is_adult=="1"?'checked':""}} {{$hotel->is_adult=="0"?'disabled':""}}  type="checkbox" style="zoom:1.6">
                         </div>
                     </div>
                     <div class="row" style="margin-top: 5px">
@@ -121,7 +121,7 @@
                         </div>
                         <div class="col-md-3 myflex" style="padding: 10px" >
 
-                            <input name="is_child" {{$hotel->is_child=="1"?'checked':""}} disabled   type="checkbox" style="zoom:1.6">
+                            <input name="is_child" {{$Banner->is_child=="1"?'checked':""}} {{$hotel->is_child=="0"?'disabled':""}}   type="checkbox" style="zoom:1.6">
                         </div>
                     </div>
                     <div class="row" style="margin-top: 5px">
@@ -137,7 +137,7 @@
                         </div>
                         <div class="col-md-3 myflex" style="padding: 10px" >
 
-                            <input name="is_toddler" {{$hotel->is_toddler=="1"?'checked':""}} disabled  type="checkbox" style="zoom:1.6">
+                            <input name="is_toddler" {{$Banner->is_toddler=="1"?'checked':""}} {{$hotel->is_toddler=="0"?'disabled':""}}  type="checkbox" style="zoom:1.6">
                         </div>
                     </div>
                     <div class="row" style="margin-top: 5px">
@@ -153,7 +153,7 @@
                         </div>
                         <div class="col-md-3 myflex" style="padding: 10px" >
 
-                            <input name="is_infant" {{$hotel->is_infant=="1"?'checked':""}} disabled   type="checkbox" style="zoom:1.6">
+                            <input name="is_infant" {{$Banner->is_infant=="1"?'checked':""}} {{$hotel->is_infant=="0"?'disabled':""}} type="checkbox" style="zoom:1.6">
                         </div>
                     </div>
                     <div class="row" style="margin-top: 5px">
@@ -170,7 +170,7 @@
                         </div>
                         <div class="col-md-3 myflex" style="padding: 10px" >
 
-                            <input id="12w"  name="is_senior" {{$hotel->is_senior=="1"?'checked':""}} disabled  class="mytoggle"  type="checkbox" style="zoom:1.6">
+                            <input id="12w"  name="is_senior" {{$Banner->is_senior=="1"?'checked':""}} {{$hotel->is_senior=="0"?'disabled':""}}  class="mytoggle"  type="checkbox" style="zoom:1.6">
                         </div>
                     </div>
 
