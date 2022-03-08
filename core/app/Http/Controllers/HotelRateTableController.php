@@ -104,6 +104,11 @@ class HotelRateTableController extends Controller
 
 
         $city= hotelRateTable::where('id',$id)->update($data);
+//        $roomTypes=hotelRoomType::where('hotel_rate_table_id',$id)->get();
+//        foreach ($roomTypes as $rt)
+//        {
+//            HotelRoomTypeController::checkRoomRates($id,$rt->id);
+//        }
 
         if($request->hasFile('file'))
         {
