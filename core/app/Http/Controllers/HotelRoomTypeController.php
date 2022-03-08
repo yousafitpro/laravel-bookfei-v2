@@ -254,20 +254,20 @@ class HotelRoomTypeController extends Controller
        $data['roomType']=$roomType;
        $data['rateTable']=$rateTable;
        $data['list']=$list;
-        $empties=$list2->select(['date'])
-
-                   ->where('room_price','!=','')
-                    ->where('tax_amount','!=','')
-                    ->where('tax_percentage','!=','')
-//                    ->where('senior','!=',null)
-
-            ->where('hotel_room_type_id',$id)
-            ->get();
-       $data['days']=[];
+//        $empties=$list2->select(['date'])
+//
+//                   ->where('room_price','!=','')
+//                    ->where('tax_amount','!=','')
+//                    ->where('tax_percentage','!=','')
+////                    ->where('senior','!=',null)
+//
+//            ->where('hotel_room_type_id',$id)
+//            ->get();
+//       $data['days']=[];
 
 
        $data['sdate']=$request->month;
-       $data['empties']=$empties;
+       $data['empties']=[];
 //dd($data['empties']);
        $data['sdateName']=Carbon::parse($request->month)->format('M Y');
 
@@ -437,7 +437,15 @@ class HotelRoomTypeController extends Controller
             $rr->date=$start_date;
             $rr->hotel_room_type_id=$room_type_id;
             $rr->day=$start_date->dayName;
-                $rr->is_disabled='0';
+                $rr->adult=0;
+                $rr->child=0;
+                $rr->toddler=0;
+                $rr->infant=0;
+                $rr->senior=0;
+                $rr->tax_percentage=0;
+                $rr->room_price=0;
+                $rr->tax_amount='0';
+                $rr->is_disabled=false;
             $rr->save();
             $start_date->addDay();
             }
