@@ -24,7 +24,7 @@ class CurrencyController extends Controller
         {
             $list=$list->where('status',$request->status);
         }
-        $list=$list->get();
+
         foreach ($list as $l)
         {
             $l->image=asset("core/public/".$l->image);
@@ -38,6 +38,7 @@ class CurrencyController extends Controller
         {
             Session::put('searchWord','');
         }
+        $list=$list->get();
         return view('dashboard.currency.list')->with(['list'=>$list]);
     }
     public function delete($id)
