@@ -241,6 +241,7 @@ class HotelRoomTypeController extends Controller
             $list=$list->where('status',$request->status);
         }
         $list2=$list;
+        $list=$list->whereMonth('date',$date->month);
         $list=$list->orderBy('date')->get();
 
 
@@ -253,6 +254,8 @@ class HotelRoomTypeController extends Controller
        $data['rateTable']=$rateTable;
        $data['list']=$list;
 
+        $start=$date->startOfMonth('Y-m-d')->toDateString();
+        $end=$date->endOfMonth('Y-m-d')->toDateString();
         $empties=$list2->select(['date'])
 
                    ->where('room_price','!=','')
@@ -261,7 +264,9 @@ class HotelRoomTypeController extends Controller
 //                    ->where('senior','!=',null)
 
             ->where('hotel_room_type_id',$id)
+
             ->get();
+
        $data['days']=[];
 
 
