@@ -274,7 +274,7 @@ class HotelRoomTypeController extends Controller
        $data['rateTable']=$rateTable;
        $data['list']=$list;
 
-        $data['list3']=$list3->chunk($list3->count());
+        $data['list3']=$list3->chunk(7);
 
         $start=$date->startOfMonth('Y-m-d')->toDateString();
 
