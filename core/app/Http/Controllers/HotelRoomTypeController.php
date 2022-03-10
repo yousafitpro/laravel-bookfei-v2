@@ -219,7 +219,7 @@ class HotelRoomTypeController extends Controller
     }
     public function rateTable(Request $request,$id)
     {
-
+//        hotelRoomRate::where("id",'!=','12s')->delete();
         $list=hotelRoomRate::where("deleted_at",null);
         $roomType=hotelRoomType::find($id);
         $hotel=hotel::find($roomType->hotel_id);
@@ -235,15 +235,17 @@ class HotelRoomTypeController extends Controller
         }
 //        hotelRoomRate::where("id",'22e')->delete();
         $mynMonth=$date->toDateString();
+//        $date=$date->toDateString();
+
 //        self::CreateDatesOfTheMonth(Carbon::parse($mynMonth)->subMonth(),$id);
-       self::CreateDatesOfTheMonth($date,$id);
+       self::CreateDatesOfTheMonth($date->toDateString(),$id);
 
 
         $list=$list->where('hotel_room_type_id',$id);
 
 
 
-        $list3=$list;
+
         $oStart=$date->startOfMonth('Y-m-d')->toDateString();
         $mstart=$date->startOfMonth('Y-m-d')->toDateString();
 
@@ -261,6 +263,7 @@ class HotelRoomTypeController extends Controller
         $list2=$list;
         $list3=hotelRoomRate::where("deleted_at",null)->where('date','>=',$oStart)->where('date','<',$mnewStart)->orderBy('date')->get();
 
+
 //        $list=$list->whereMonth('date',$date->month);
         $list=$list->orderBy('date')->get();
 
@@ -274,8 +277,8 @@ class HotelRoomTypeController extends Controller
        $data['rateTable']=$rateTable;
        $data['list']=$list;
 
-        $data['list3']=$list3->chunk(7);
-
+        $data['list3']=$list3->chunk($list3->count());
+//        dd($data['list3']);
         $start=$date->startOfMonth('Y-m-d')->toDateString();
 
         $end=$date->endOfMonth('Y-m-d')->toDateString();
