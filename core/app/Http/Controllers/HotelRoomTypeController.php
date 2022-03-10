@@ -240,8 +240,22 @@ class HotelRoomTypeController extends Controller
         {
             $list=$list->where('status',$request->status);
         }
+
         $list2=$list;
-        $list=$list->whereMonth('date',$date->month);
+        $mstart=$date->startOfMonth('Y-m-d')->toDateString();
+
+        $mend=$date->endOfMonth('Y-m-d')->toDateString();
+      $mnewStart=Carbon::parse($mstart);
+
+        while ($mnewStart->dayName!="Sunday")
+        {
+            $mstart=$mnewStart->subDay();
+        }
+        $mnewStart=$mnewStart->toDateString();
+
+
+        $list=$list->whereBetween('date',[$mnewStart,$mend]);
+//        $list=$list->whereMonth('date',$date->month);
         $list=$list->orderBy('date')->get();
 
 
@@ -255,6 +269,7 @@ class HotelRoomTypeController extends Controller
        $data['list']=$list;
 
         $start=$date->startOfMonth('Y-m-d')->toDateString();
+
         $end=$date->endOfMonth('Y-m-d')->toDateString();
         $empties=$list2->select(['date'])
 
