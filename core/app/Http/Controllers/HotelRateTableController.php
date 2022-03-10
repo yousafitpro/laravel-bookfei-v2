@@ -206,6 +206,23 @@ class HotelRateTableController extends Controller
     }
     public function updateColumn(Request $request,$id)
     {
+        if ($request->column=="room_price" && $request->val=="")
+        {
+            hotelRoomRate::where('id',$id)->update([
+                $request->column=>$request->val,
+                'is_disabled'=>false
+
+            ]);
+        }
+        if ($request->column=="room_price" && $request->val!="")
+        {
+            hotelRoomRate::where('id',$id)->update([
+                $request->column=>$request->val,
+                'is_disabled'=>true
+
+            ]);
+        }
+
         $t=hotelRoomRate::where('id',$id)->update([
             $request->column=>$request->val
         ]);

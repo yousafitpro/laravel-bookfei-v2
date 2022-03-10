@@ -263,7 +263,7 @@
                             @foreach($l as $i)
                                 <td >
 
-                                        <input onclick="toggleMe('{{$i->id}}')"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
+                                        <input  id="checkBox{{$i->id}}"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
 
 
 
@@ -355,7 +355,7 @@
                             @foreach($l as $i)
                                 <td >
 
-                                        <input onclick="toggleMe('{{$i->id}}')"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
+                                        <input id="checkBox{{$i->id}}"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
 
 
                                 </td>
@@ -425,6 +425,7 @@
      }
          function toggleMe(id)
          {
+
              $.ajax({
                  type:'post',
                  url:'admin/hotel-rate-table/toggle/'+id,
@@ -435,8 +436,18 @@
          }
          function updateMe(id,col,me)
          {
-             if (me.target.value!="")
+             if (col=="room_price")
              {
+                 if (me.target.value!="")
+                 {
+                     $("#checkBox"+id).prop('checked',true)
+                 }
+                 else
+                 {
+                     $("#checkBox"+id).prop('checked',false)
+                 }
+             }
+
                  $.ajax({
                      type:'post',
                      url:'admin/hotel-rate-table/updateColumn/'+id,
@@ -444,7 +455,7 @@
                      success:function(data){
                          // window.location.reload()
                      }})
-             }
+
 
 
          }

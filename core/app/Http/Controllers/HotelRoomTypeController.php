@@ -469,6 +469,14 @@ class HotelRoomTypeController extends Controller
     public function createRateTableEntry($data)
     {
 
+        if ($data['room_price']=="")
+        {
+            $data['is_disabled']=false;
+        }
+        else
+        {
+            $data['is_disabled']=true;
+        }
         $data['day']=Carbon::parse($data['date'])->dayName;
         if (hotelRoomRate::where('hotel_room_type_id',$data['hotel_room_type_id'])->where('date',$data['date'])->exists())
         {
