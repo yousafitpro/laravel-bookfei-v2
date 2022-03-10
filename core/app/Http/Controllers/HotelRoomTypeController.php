@@ -214,7 +214,7 @@ class HotelRoomTypeController extends Controller
     {
 
         hotelRoomType::where('id',$id)->update(['hotel_rate_table_id'=>$table_id]);
-        self::checkRoomRates($table_id,$id);
+//        self::checkRoomRates($table_id,$id);
         return redirect(route('admin.hotelRoom.rateTable',$id));
     }
     public function rateTable(Request $request,$id)
