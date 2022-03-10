@@ -267,7 +267,16 @@ class HotelRoomTypeController extends Controller
 
        $data['empties']=$empties;
 //dd($data['empties']);
-        $data['date']=$request->month;
+        if ($request->has('month'))
+        {
+            $data['mdate']=$request->month;
+        }
+        else
+        {
+            $data['mdate']=$date->toDateString();
+
+        }
+
        $data['sdate']=Carbon::parse($date)->format('M Y');
 
         return view('dashboard.hotel.room-rate',$data);

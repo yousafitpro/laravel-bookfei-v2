@@ -177,7 +177,7 @@
                             <form method="post">
                                 @csrf
                                 <label>Select Month</label>
-                                <input style="height: 30px; width: 200px" value="{{$date?$date:''}}" onchange="this.form.submit()" type="month" name="month">
+                                <input style="height: 30px; width: 200px" value="{{$mdate}}" onchange="this.form.submit()" type="month" name="month">
                             </form>
 
                         </div>
