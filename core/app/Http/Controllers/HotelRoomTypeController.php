@@ -468,7 +468,7 @@ class HotelRoomTypeController extends Controller
     }
     public function createRateTableEntry($data)
     {
-
+//as
         if ($data['room_price']=="")
         {
             $data['is_disabled']=false;
