@@ -224,27 +224,25 @@ class HotelRoomTypeController extends Controller
         $roomType=hotelRoomType::find($id);
         $hotel=hotel::find($roomType->hotel_id);
         $rateTable=hotelRateTable::find($roomType->hotel_rate_table_id);
-
+        $date=null;
         if ($request->has("month"))
         {
-
             $date=Carbon::parse($request->month);
-            $list=$list->whereMonth('created_at',$date->month)->whereYear('created_at',$date->year);
-
         }
+        else
+        {
+            $date=Carbon::now();
+        }
+       self::CreateDatesOfTheMonth($date,$id);
+
         $list=$list->where('hotel_room_type_id',$id);
         if($request->has("status"))
         {
             $list=$list->where('status',$request->status);
         }
         $list2=$list;
-
-//        $days=$list->select('day')->get()->unique('day');
         $list=$list->orderBy('date')->get();
-        foreach ($list as $l)
-        {
-            $l->day_name=Carbon::parse($l->date)->dayName;
-       }
+
 
         $list=$list->chunk(7);
 
@@ -266,10 +264,11 @@ class HotelRoomTypeController extends Controller
        $data['days']=[];
 
 
-       $data['sdate']=$request->month;
+
        $data['empties']=$empties;
 //dd($data['empties']);
-       $data['sdateName']=Carbon::parse($request->month)->format('M Y');
+        $data['date']=$request->month;
+       $data['sdate']=Carbon::parse($date)->format('M Y');
 
         return view('dashboard.hotel.room-rate',$data);
     }
@@ -444,6 +443,34 @@ class HotelRoomTypeController extends Controller
             $start_date->addDay();
             }
 
+
+        }
+    }
+    public static function CreateDatesOfTheMonth($month,$room_type_id)
+    {
+
+        hotelRoomRate::where('id',"!=",'12s')->delete();
+        $month=Carbon::parse($month);
+//dd($month->toDateString());
+        $start=$month->startOfMonth('Y-m-d')->toDateString();
+        $end=$month->endOfMonth('Y-m-d')->toDateString();
+
+
+
+        while($start<=$end)
+        {
+            if (!hotelRoomRate::where('date',$start)->where('hotel_room_type_id',$room_type_id)->exists())
+            {
+                $rr=new hotelRoomRate();
+                $rr->date=$start;
+                $rr->hotel_room_type_id=$room_type_id;
+                $rr->day=Carbon::parse($start)->dayName;
+                $rr->is_disabled=false;
+
+                $rr->save();
+            }
+            $start=Carbon::parse($start)->addDay();
+            $start=$start->toDateString();
 
         }
     }

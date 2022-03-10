@@ -169,15 +169,15 @@
                     <div class="col-md-12">
                         <div class="pull-left">
                             <a onclick="reloadMe()"><small>All Records</small></a>
-                            @if($sdate)
-                            <small>( {{$sdateName}} )</small>
-                                @endif
+
+                            <small>( {{$sdate}} )</small>
+
                         </div>
                         <div class="pull-right">
                             <form method="post">
                                 @csrf
                                 <label>Select Month</label>
-                                <input style="height: 30px; width: 200px" value="{{$sdate?$sdate:''}}" onchange="this.form.submit()" type="month" name="month">
+                                <input style="height: 30px; width: 200px" value="{{$date?$date:''}}" onchange="this.form.submit()" type="month" name="month">
                             </form>
 
                         </div>
@@ -192,7 +192,7 @@
                         <thead>
                         <th style="background:darkgrey;">Date</th>
                         @foreach($l as $i)
-                            <th style="background:darkgrey;">{{\Carbon\Carbon::parse($i->date)->format("y-m-d")}} {{$i->day_name}}</th>
+                            <th style="background:darkgrey;">{{\Carbon\Carbon::parse($i->date)->format("y-m-d")}} {{$i->day}}</th>
                         @endforeach
                         </thead>
                         <tbody>
@@ -200,7 +200,7 @@
                             <tr>
                                 <td style="background: lightgrey; min-width: 180px">Room Price ({{\App\Helpers\Helper::get_Currency($rateTable->currency_id)->name}})</td>
                                 @foreach($l as $i)
-                                    <td><input onkeyup="updateMe('{{$i->id}}','room_price',event)" type="number" class="form-control" value="{{$i->room_price}}"></td>
+                                    <td><input onkeyup="updateMe('{{$i->id}}','room_price',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} type="number" class="form-control" value="{{$i->room_price}}"></td>
                                 @endforeach
                             </tr>
 
@@ -208,7 +208,7 @@
                         <tr>
                             <td style="background: lightgrey; min-width: 180px">Extra Bed Adult {{$hotel->adult_age_start}}-{{$hotel->adult_age_end}}</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" class="form-control" type="number" value="{{$i->adult}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->adult}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -216,7 +216,7 @@
                         <tr>
                             <td style="background: lightgrey;">Extra Bed Child {{$hotel->child_age_start}}-{{$hotel->child_age_end}}</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','child',event)" class="form-control" type="number" value="{{$i->child}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','child',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->child}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -226,7 +226,7 @@
                             <td style="background: lightgrey;">Extra Bed Toddler {{$hotel->toddler_age_start}}-{{$hotel->toddler_age_end}}</td>
                             @foreach($l as $i)
 
-                                <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" class="form-control" type="number" value="{{$i->toddler}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->toddler}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -234,7 +234,7 @@
                         <tr>
                             <td style="background: lightgrey;">Extra Bed Infant {{$hotel->infant_age_start}}-{{$hotel->infant_age_end}}</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" class="form-control" type="number" value="{{$i->infant}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->infant}}"></td>
                             @endforeach
                         </tr>
                         @endif
@@ -242,20 +242,20 @@
                         <tr>
                             <td style="background: lightgrey;">Extra Bed Senior {{$hotel->senior_age_start}}-{{$hotel->senior_age_end}}</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" class="form-control" type="number" value="{{$i->senior}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->senior}}"></td>
                             @endforeach
                         </tr>
                         @endif
                         <tr>
                             <td style="background: lightgrey;">Tax Percentage</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
                             @endforeach
                         </tr>
                         <tr>
                             <td style="background: lightgrey;">Tax Amount</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','tax_amount',event)" class="form-control" type="number" value="{{$i->tax_amount}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_amount',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_amount}}"></td>
                             @endforeach
                         </tr>
                         <tr>
