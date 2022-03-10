@@ -234,7 +234,8 @@ class HotelRoomTypeController extends Controller
             $date=Carbon::now();
         }
 //        hotelRoomRate::where("id",'22e')->delete();
-//        self::CreateDatesOfTheMonth($date->subMonth(),$id);
+        $mynMonth=$date->toDateString();
+        self::CreateDatesOfTheMonth(Carbon::parse($mynMonth)->subMonth(),$id);
        self::CreateDatesOfTheMonth($date,$id);
 
 
