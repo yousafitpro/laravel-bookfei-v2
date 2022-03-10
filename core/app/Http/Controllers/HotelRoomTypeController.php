@@ -242,7 +242,7 @@ class HotelRoomTypeController extends Controller
         $list=$list->where('hotel_room_type_id',$id);
 
 
-        $list2=$list;
+
         $list3=$list;
         $oStart=$date->startOfMonth('Y-m-d')->toDateString();
         $mstart=$date->startOfMonth('Y-m-d')->toDateString();
@@ -258,6 +258,7 @@ class HotelRoomTypeController extends Controller
 
 
         $list=$list->whereBetween('date',[$mnewStart,$mend]);
+        $list2=$list;
         $list3=hotelRoomRate::where("deleted_at",null)->where('date','>=',$oStart)->where('date','<',$mnewStart)->orderBy('date')->get();
 
 //        $list=$list->whereMonth('date',$date->month);
@@ -277,12 +278,30 @@ class HotelRoomTypeController extends Controller
         $start=$date->startOfMonth('Y-m-d')->toDateString();
 
         $end=$date->endOfMonth('Y-m-d')->toDateString();
-        $empties=$list2->select(['date'])
+        $empties=hotelRoomRate::where("deleted_at",null)
+            ->select('date')
+            ->whereBetween('date',[$oStart,$mend])
+            ->where(function ($q)
+        {
+            $q->orWhere('room_price','!=','');
+            $q->orWhere('adult','!=','');
+            $q->orWhere('adult','!=',null);
+            $q->orWhere('child','!=','');
+            $q->orWhere('child','!=',null);
+            $q->orWhere('toddler','!=','');
+            $q->orWhere('toddler','!=',null);
+            $q->orWhere('infant','!=','');
+            $q->orWhere('infant','!=',null);
+            $q->orWhere('senior','!=','');
+            $q->orWhere('senior','!=',null);
+            $q->orWhere('tax_amount','!=','');
+            $q->orWhere('tax_percentage','!=','');
 
-                   ->where('room_price','!=','')
-                    ->where('tax_amount','!=','')
-                    ->where('tax_percentage','!=','')
-//                    ->where('senior','!=',null)
+        })
+
+
+//
+//                    ->where('senior','==',null)
 
             ->where('hotel_room_type_id',$id)
 
@@ -293,6 +312,7 @@ class HotelRoomTypeController extends Controller
 
 
        $data['empties']=$empties;
+//       dd($data['empties']);
 //dd($data['empties']);
         if ($request->has('month'))
         {
