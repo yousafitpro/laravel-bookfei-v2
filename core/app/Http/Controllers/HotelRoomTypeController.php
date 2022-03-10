@@ -219,7 +219,7 @@ class HotelRoomTypeController extends Controller
     }
     public function rateTable(Request $request,$id)
     {
-//        hotelRoomRate::where("id",'!=','12s')->delete();
+
         $list=hotelRoomRate::where("deleted_at",null);
         $roomType=hotelRoomType::find($id);
         $hotel=hotel::find($roomType->hotel_id);
@@ -261,7 +261,7 @@ class HotelRoomTypeController extends Controller
 
         $list=$list->whereBetween('date',[$mnewStart,$mend]);
         $list2=$list;
-        $list3=hotelRoomRate::where("deleted_at",null)->where('date','>=',$oStart)->where('date','<',$mnewStart)->orderBy('date')->get();
+        $list3=hotelRoomRate::where("deleted_at",null)->where('hotel_room_type_id',$id)->where('date','>=',$oStart)->where('date','<',$mnewStart)->orderBy('date')->get();
 
 
 //        $list=$list->whereMonth('date',$date->month);
@@ -509,18 +509,19 @@ class HotelRoomTypeController extends Controller
     public static function CreateDatesOfTheMonth($month,$room_type_id)
     {
 
-
+//        hotelRoomRate::where("id",'!=','12s')->delete();
         $month=Carbon::parse($month);
 
         $start=$month->startOfMonth('Y-m-d')->toDateString();
         $end=$month->endOfMonth('Y-m-d')->toDateString();
 
 
-
+         $i=0;
         while($start<=$end)
         {
             if (!hotelRoomRate::where('date',$start)->where('hotel_room_type_id',$room_type_id)->exists())
             {
+                $i++;
                 $rr=new hotelRoomRate();
                 $rr->date=$start;
                 $rr->hotel_room_type_id=$room_type_id;
@@ -533,6 +534,7 @@ class HotelRoomTypeController extends Controller
             $start=$start->toDateString();
 
         }
+
     }
 }
 //sasa
