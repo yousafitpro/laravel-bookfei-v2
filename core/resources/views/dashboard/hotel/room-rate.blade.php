@@ -262,11 +262,10 @@
                             <td style="background: lightgrey;">Enabled</td>
                             @foreach($l as $i)
                                 <td >
-                                    @if($i->is_disabled==1)
-                                        <input onclick="toggleMe('{{$i->id}}')"  checked style="zoom: 1.8" type="checkbox">
-                                    @else
-                                        <input onclick="toggleMe('{{$i->id}}')" style="zoom: 1.8" type="checkbox">
-                                    @endif
+
+                                        <input onclick="toggleMe('{{$i->id}}')"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
+
+
 
                                 </td>
                             @endforeach
@@ -355,11 +354,9 @@
                             <td style="background: lightgrey;">Enabled</td>
                             @foreach($l as $i)
                                 <td >
-                                    @if($i->is_disabled==1)
-                                        <input onclick="toggleMe('{{$i->id}}')"  checked style="zoom: 1.8" type="checkbox">
-                                    @else
-                                        <input onclick="toggleMe('{{$i->id}}')" style="zoom: 1.8" type="checkbox">
-                                    @endif
+
+                                        <input onclick="toggleMe('{{$i->id}}')"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
+
 
                                 </td>
                             @endforeach
