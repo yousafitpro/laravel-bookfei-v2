@@ -185,6 +185,99 @@
                 </div>
                 <br>
             </div>
+            @foreach($list3 as $l)
+
+                <div class="">
+                    <table class="table ">
+                        <thead>
+                        <th style="background:darkgrey;">Date</th>
+                        @foreach($l as $i)
+                            <th style="background:darkgrey;">{{\Carbon\Carbon::parse($i->date)->format("y-m-d")}} {{strtoupper(Str::limit($i->day,3,''))}}</th>
+                        @endforeach
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td style="background: lightgrey; min-width: 180px">Room Price ({{\App\Helpers\Helper::get_Currency($rateTable->currency_id)->name}})</td>
+                            @foreach($l as $i)
+                                <td><input onkeyup="updateMe('{{$i->id}}','room_price',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} type="number" class="form-control" value="{{$i->room_price}}"></td>
+                            @endforeach
+                        </tr>
+
+                        @if($hotel->is_adult!=0)
+                            <tr>
+                                <td style="background: lightgrey; min-width: 180px">Extra Bed Adult {{$hotel->adult_age_start}}-{{$hotel->adult_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->adult}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($hotel->is_child!=0)
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Child {{$hotel->child_age_start}}-{{$hotel->child_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','child',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->child}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($hotel->is_toddler!=0)
+
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Toddler {{$hotel->toddler_age_start}}-{{$hotel->toddler_age_end}}</td>
+                                @foreach($l as $i)
+
+                                    <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->toddler}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($hotel->is_infant!=0)
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Infant {{$hotel->infant_age_start}}-{{$hotel->infant_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->infant}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($hotel->is_senior!=0)
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Senior {{$hotel->senior_age_start}}-{{$hotel->senior_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->senior}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        <tr>
+                            <td style="background: lightgrey;">Tax Percentage</td>
+                            @foreach($l as $i)
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <td style="background: lightgrey;">Tax Amount</td>
+                            @foreach($l as $i)
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_amount',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_amount}}"></td>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <td style="background: lightgrey;">Enabled</td>
+                            @foreach($l as $i)
+                                <td >
+                                    @if($i->is_disabled==1)
+                                        <input onclick="toggleMe('{{$i->id}}')"  checked style="zoom: 1.8" type="checkbox">
+                                    @else
+                                        <input onclick="toggleMe('{{$i->id}}')" style="zoom: 1.8" type="checkbox">
+                                    @endif
+
+                                </td>
+                            @endforeach
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            @endforeach
             @foreach($list as $l)
 
                 <div class="">

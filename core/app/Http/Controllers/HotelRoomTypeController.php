@@ -240,12 +240,11 @@ class HotelRoomTypeController extends Controller
 
 
         $list=$list->where('hotel_room_type_id',$id);
-        if($request->has("status"))
-        {
-            $list=$list->where('status',$request->status);
-        }
+
 
         $list2=$list;
+        $list3=$list;
+        $oStart=$date->startOfMonth('Y-m-d')->toDateString();
         $mstart=$date->startOfMonth('Y-m-d')->toDateString();
 
         $mend=$date->endOfMonth('Y-m-d')->toDateString();
@@ -253,12 +252,14 @@ class HotelRoomTypeController extends Controller
 
         while ($mnewStart->dayName!="Sunday")
         {
-            $mstart=$mnewStart->subDay();
+            $mstart=$mnewStart->addDay();
         }
         $mnewStart=$mnewStart->toDateString();
 
 
         $list=$list->whereBetween('date',[$mnewStart,$mend]);
+        $list3=hotelRoomRate::where("deleted_at",null)->where('date','>=',$oStart)->where('date','<',$mnewStart)->orderBy('date')->get();
+
 //        $list=$list->whereMonth('date',$date->month);
         $list=$list->orderBy('date')->get();
 
@@ -271,6 +272,7 @@ class HotelRoomTypeController extends Controller
        $data['roomType']=$roomType;
        $data['rateTable']=$rateTable;
        $data['list']=$list;
+        $data['list3']=$list3->chunk(7);
 
         $start=$date->startOfMonth('Y-m-d')->toDateString();
 
