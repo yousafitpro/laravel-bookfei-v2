@@ -252,6 +252,7 @@ class HotelRoomTypeController extends Controller
        $data['roomType']=$roomType;
        $data['rateTable']=$rateTable;
        $data['list']=$list;
+
         $empties=$list2->select(['date'])
 
                    ->where('room_price','!=','')
@@ -278,7 +279,7 @@ class HotelRoomTypeController extends Controller
         }
 
        $data['sdate']=Carbon::parse($date)->format('M Y');
-
+//dd($data);
         return view('dashboard.hotel.room-rate',$data);
     }
     public function createRateTable(Request $request)
@@ -458,7 +459,7 @@ class HotelRoomTypeController extends Controller
     public static function CreateDatesOfTheMonth($month,$room_type_id)
     {
 
-        hotelRoomRate::where('id',"!=",'12s')->delete();
+//        hotelRoomRate::where('id',"!=",'12s')->delete();
         $month=Carbon::parse($month);
 //dd($month->toDateString());
         $start=$month->startOfMonth('Y-m-d')->toDateString();
