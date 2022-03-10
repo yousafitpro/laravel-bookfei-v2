@@ -233,7 +233,10 @@ class HotelRoomTypeController extends Controller
         {
             $date=Carbon::now();
         }
+//        hotelRoomRate::where("id",'22e')->delete();
+//        self::CreateDatesOfTheMonth($date->subMonth(),$id);
        self::CreateDatesOfTheMonth($date,$id);
+
 
         $list=$list->where('hotel_room_type_id',$id);
         if($request->has("status"))
@@ -479,9 +482,9 @@ class HotelRoomTypeController extends Controller
     public static function CreateDatesOfTheMonth($month,$room_type_id)
     {
 
-//        hotelRoomRate::where('id',"!=",'12s')->delete();
+
         $month=Carbon::parse($month);
-//dd($month->toDateString());
+
         $start=$month->startOfMonth('Y-m-d')->toDateString();
         $end=$month->endOfMonth('Y-m-d')->toDateString();
 
