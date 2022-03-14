@@ -8,7 +8,7 @@
 </style>
     <div class="padding">
         <div class="box box-body">
-            <form method="post" action="{{route('admin.tourRate.create')}}" enctype="multipart/form-data">
+            <form method="post" id="myForm" action="{{route('admin.tourRate.create')}}" enctype="multipart/form-data">
                 @csrf
             <div class="container-fluid">
                 <div class="row">
@@ -18,46 +18,43 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <small>From</small><br>
-                                    <input type="date" name="start" value="{{$tour->effective_start_date}}" readonly class="form-control input-sm">
+                                    <input type="date" id="startDate" name="start" value="{{$tour->effective_start_date}}"  class="form-control input-sm">
                                 </div>
                                 <div class="col-md-4">
                                     <small>To</small><br>
-                                    <input type="date" name="end" value="{{$tour->effective_end_date}}" readonly class="form-control">
+                                    <input type="date" id="endDate" name="end" value="{{$tour->effective_end_date}}"  class="form-control">
                                 </div>
-                                <div class="col-md-4">
-                                    <small>Date</small><br>
-                                    <input type="date" name="date" required   class="form-control">
-                                </div>
+
                                 <div class="col-md-4"></div>
                             </div><br><br>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="pull-left">
-                                        <input class="pull-left" value="SUN" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="7" name="sun" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">SUN</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="MON" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="1" name="mon" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">MON</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="TUE" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="2" name="tue" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">TUE</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="WED" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="3" name="wed" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">WED</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="THU" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="4" name="thu" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">THU</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="FRI" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="5" name="fri" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">FRI</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="SAT" name="day" type="radio" style="zoom: 1.4">
+                                        <input class="pull-left" value="6" name="sat" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">SAT</small>
                                     </div>
                                 </div>
@@ -66,11 +63,11 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <small>Tax Percentage % </small><br>
-                                    <input type="number" name="tax_percentage" required value="0"  class="form-control input-sm">
+                                    <input type="number" name="tax_percentage" required   class="form-control input-sm">
                                 </div>
                                 <div class="col-md-4">
                                     <small>Tax Amount</small><br>
-                                    <input type="number" name="tax_amount" required value="0"  class="form-control">
+                                    <input type="number" name="tax_amount" required   class="form-control">
                                 </div>
 
                                 <div class="col-md-4"></div>
@@ -82,8 +79,8 @@
                                         <small class="pull-left " style="margin-left: 5px">Disabled</small>
                                     </div>
                                     <br><br>
-                                    <button type="submit" style="width: 200px"
-                                            class="btn primary p-x-md">{{ __('backend.apply') }}</button>
+                                    <label onclick="checkApply()"  style="width: 200px"
+                                            class="btn primary p-x-md">{{ __('backend.apply') }}</label>
                                 </div>
                             </div><br>
                         </div>
@@ -91,36 +88,47 @@
                     <div class="col-md-4">
 
                         <div class="container-fluid">
-                            <h6 class="text-center">Price</h6><br>
+                            <h6 >Price</h6><br>
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Age Group" class="form-control"></div>
                                 <div class="col-md-6"><input readonly   value="Price" class="form-control"></div>
                             </div>
                             <br>
+                            @if($tour->is_adult!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Adult {{$tour->adult_age_start}}-{{$tour->adult_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input {{$tour->is_adult=="0"?"readonly":""}}  type="number" required value="0" name="adult" class="form-control"></div>
                             </div>
+
                             <br>
+                            @endif
+                                @if($tour->is_child!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Child {{$tour->child_age_start}}-{{$tour->child_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input {{$tour->is_child=="0"?"readonly":""}}  type="number" required value="0" name="child" class="form-control"></div>
                             </div>
                             <br>
+                                @endif
+                                    @if($tour->is_toddler!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Toddler {{$tour->toddler_age_start}}-{{$tour->toddler_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input  type="number" {{$tour->toddler=="0"?"readonly":""}} required value="0" name="toddler" class="form-control"></div>
                             </div>
                             <br>
+                                    @endif
+                                        @if($tour->is_infant!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Infant {{$tour->infant_age_start}}-{{$tour->infant_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input  type="number" {{$tour->is_infant=="0"?"readonly":""}} required value="0" name="infant" class="form-control"></div>
                             </div>
                             <br>
+                                        @endif
+                                            @if($tour->is_senior!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Senior {{$tour->senior_age_start}}-{{$tour->senior_age_end}}" class="form-control"></div>
                                 <div class="col-md-6"><input  type="number" {{$tour->is_senior=="0"?"readonly":""}} required value="0" name="senior" class="form-control"></div>
                             </div>
+                                @endif
                         </div>
 
                     </div>
@@ -328,11 +336,61 @@
 
         </div>
     </div>
+<!-- .modal -->
+<div id="ApplyDiv" class="modal fade" data-backdrop="true">
+    <div class="modal-dialog" id="animate">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ __('backend.confirmation') }}</h5>
+            </div>
+            <div class="modal-body text-center p-lg">
 
+                <strong> Data is Already Existed Are you want to Override ? </strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default p-x-md"
+                        data-dismiss="modal">{{ __('backend.no') }}</button>
+                <a onclick="$('#myForm').submit()"
+                   class="btn dark " style="color: white">{{ __('backend.yes') }}</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+<!-- / .modal -->
 @endsection
 @push("after-scripts")
 
     <script type="text/javascript">
+        function checkApply()
+        {
+            var startDate=$("#startDate").val();
+            var endDate=$("#endDate").val();
+
+            var is_true=false;
+            var days = @json($empties);
+            days =Object.values(days);
+
+            console.log(days)
+            days.forEach(function (el){
+
+
+                if (el.date>=startDate && el.date<=endDate)
+                {
+                    is_true=true;
+                }
+            })
+
+            if (is_true)
+            {
+
+                $("#ApplyDiv").modal();
+            }
+            else
+            {
+                $("#myForm").submit()
+            }
+        }
          function toggleMe(id)
          {
              $.ajax({

@@ -126,25 +126,22 @@ if ($id==0)
 
         $end=$date->endOfMonth('Y-m-d')->toDateString();
         $empties=tourRate::where("deleted_at",null)
-            ->select('date')
+
             ->whereBetween('date',[$oStart,$mend])
             ->where(function ($q)
             {
 
-                $q->orWhere('adult','!=','');
-                $q->orWhere('adult','!=',null);
+                $q->where('adult','!=','');
                 $q->orWhere('child','!=','');
-                $q->orWhere('child','!=',null);
                 $q->orWhere('toddler','!=','');
-                $q->orWhere('toddler','!=',null);
                 $q->orWhere('infant','!=','');
-                $q->orWhere('infant','!=',null);
                 $q->orWhere('senior','!=','');
-                $q->orWhere('senior','!=',null);
+
                 $q->orWhere('tax_amount','!=','');
                 $q->orWhere('tax_percentage','!=','');
 
             })
+            ->select('date')
 
 
 //
@@ -153,6 +150,7 @@ if ($id==0)
             ->where('tour_id',$id)
 
             ->get();
+//        dd($empties);
 
         $data['days']=[];
 
@@ -177,13 +175,13 @@ if ($id==0)
     }
     public function create(Request $request)
     {
-        $roomType=hotelRoomType::find($request->hotel_room_type_id);
-        $hotel=hotel::find($roomType->hotel_id);
-        $rateTable=hotelRateTable::find($roomType->hotel_rate_table_id);
+
+        $tour=tour::find($request->tour_id);
+
 
         $this->validate($request, [
-            'start'=>'required|after_or_equal:'.$rateTable->effective_start_date,
-            'end'=>'required|before_or_equal:'.$rateTable->effective_end_date
+            'start'=>'required|after_or_equal:'.$tour->effective_start_date,
+            'end'=>'required|before_or_equal:'.$tour->effective_end_date
         ]);
         if (!$request->has('sun') &&
             !$request->has('mon') &&
@@ -434,6 +432,22 @@ if ($id==0)
             $city->save();
         }
         return redirect()->back()->with('doneMessage', __('backend.addDone'));
+    }
+    public function createRateTableEntry($data)
+    {
+//as
+
+        $data['day']=Carbon::parse($data['date'])->dayName;
+        if (tourRate::where('tour_id',$data['tour_id'])->where('date',$data['date'])->exists())
+        {
+            tourRate::where('tour_id',$data['tour_id'])->where('date',$data['date'])->update($data);
+
+        }
+        else
+        {
+            tourRate::create($data);
+        }
+
     }
     public static function CreateDatesOfTheMonth($month,$room_type_id)
     {
