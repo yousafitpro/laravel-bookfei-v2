@@ -7,7 +7,9 @@
     }
 </style>
     <div class="padding">
+
         <div class="box box-body">
+
             <form method="post" id="myForm" action="{{route('admin.tourRate.create')}}" enctype="multipart/form-data">
                 @csrf
             <div class="container-fluid">
@@ -16,6 +18,10 @@
                         <div class="container-fluid">
                             <input style="display: none" name="tour_id" value="{{$tour->id}}">
                             <div class="row">
+                                <label>
+                                    Tour : {{$tour->name}}
+                                </label>
+                                <br>
                                 <div class="col-md-4">
                                     <small>From</small><br>
                                     <input type="date" id="startDate" name="start" value="{{$tour->effective_start_date}}"  class="form-control input-sm">
