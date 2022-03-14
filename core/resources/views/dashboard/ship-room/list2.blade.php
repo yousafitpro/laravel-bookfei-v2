@@ -65,7 +65,7 @@
                                                    </small>
                                                </a>
                                            @else
-                                               <a class="btn btn-sm success" href="{{route('admin.hotelRoom.rateTable',$Banner->id)}}">
+                                               <a class="btn btn-sm success" href="{{route('admin.shipRoom.rateTable',$Banner->id)}}">
                                                    <i class="fa fa-edit" aria-hidden="true"></i>Edit
                                                    </small>
                                                </a>

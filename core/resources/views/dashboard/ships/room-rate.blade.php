@@ -1,6 +1,9 @@
 @extends('dashboard.layouts.master')
 @section('title', $title)
 @section('content')
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+
 <style>
     td,th{
         border: solid 5px transparent;
@@ -17,7 +20,7 @@
                 </small>
             </div>
             <div class="box-header">
-                <label>Hotel: {{$ship->name}} - {{$roomType->name}} ({{$rateTable->name}})</label>
+                <label>Cruise Ship: {{$ship->name}} - {{$roomType->name}} ({{$rateTable->name}})</label>
 
 
             </div>
@@ -25,10 +28,10 @@
                 @csrf
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                         <div class="container-fluid">
-                            <input style="display: none" name="hotel_room_type_id" value="{{$roomType->id}}">
-                            <div class="row">
+                            <input style="display: none" name="cruise_ship_room_type_id" value="{{$roomType->id}}">
+                            <div class="row" style="display: none">
                                 <div class="col-md-4">
                                     <small>From </small><br>
                                     <input type="date" id="startDate" name="start" value="{{$rateTable->effective_start_date}}"  class="form-control input-sm">
@@ -37,125 +40,98 @@
                                     <small>To</small><br>
                                     <input type="date" id="endDate" name="end" value="{{$rateTable->effective_end_date}}"  class="form-control">
                                 </div>
-                                <div class="col-md-4">
 
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br><br>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="pull-left">
-                                        <input class="pull-left" value="7" name="sun" id="sunday" type="checkbox" style="zoom: 1.4">
-                                        <small class="pull-left " style="margin-left: 5px">SUN</small>
-                                    </div>
-                                    <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="1" name="mon" id="monday" type="checkbox" style="zoom: 1.4">
-                                        <small class="pull-left " style="margin-left: 5px">MON</small>
-                                    </div>
-                                    <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="2" name="tue" id="tuesday" type="checkbox" style="zoom: 1.4">
-                                        <small class="pull-left " style="margin-left: 5px">TUE</small>
-                                    </div>
-                                    <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="3" name="wed" id="wednesday" type="checkbox" style="zoom: 1.4">
-                                        <small class="pull-left " style="margin-left: 5px">WED</small>
-                                    </div>
-                                    <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="4" name="thu" id="thursday" type="checkbox" style="zoom: 1.4">
-                                        <small class="pull-left " style="margin-left: 5px">THU</small>
-                                    </div>
-                                    <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="5" name="fri" id="friday" type="checkbox" style="zoom: 1.4">
-                                        <small class="pull-left " style="margin-left: 5px">FRI</small>
-                                    </div>
-                                    <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="6" name="sat" id="saturday" type="checkbox" style="zoom: 1.4">
-                                        <small class="pull-left " style="margin-left: 5px">SAT</small>
-                                    </div>
-                                </div>
 
-                            </div><br><br>
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <small>Room Price ({{\App\Helpers\Helper::get_Currency($rateTable->currency_id)->name}}) </small><br>
-                                    <input type="number"  name="room_price"    max="100" class="form-control input-sm">
+                                    <div class="container-fluid">
+
+                                        <div class="row">
+                                            <div class="col-md-6"><input readonly value="Price Label" class="form-control"></div>
+                                            <div class="col-md-6"><input readonly   value="Price" class="form-control"></div>
+                                        </div>
+                                        <br>
+                                        @if($ship->is_adult!=0)
+                                            <div class="row">
+                                                <div class="col-md-6"><input readonly value="Adult {{$ship->adult_age_start}}-{{$ship->adult_age_end}}" class="form-control"></div>
+                                                <div class="col-md-6"><input   type="number" required value="0" name="adult" class="form-control"></div>
+                                            </div>
+                                            <br>
+                                        @endif
+
+                                        @if($ship->is_child!=0)
+                                            <div class="row">
+
+                                                <div class="col-md-6"><input readonly value="Child {{$ship->child_age_start}}-{{$ship->child_age_end}}" class="form-control"></div>
+                                                <div class="col-md-6"><input   type="number" required value="0" name="child" class="form-control"></div>
+                                            </div>
+                                            <br>@endif
+
+                                        @if($ship->is_toddler!=0)
+                                            <div class="row">
+                                                <div class="col-md-6"><input readonly value="Toddler {{$ship->toddler_age_start}}-{{$ship->toddler_age_end}}" class="form-control"></div>
+                                                <div class="col-md-6"><input  type="number"  required value="0" name="toddler" class="form-control"></div>
+                                            </div>
+                                            <br>
+                                        @endif
+                                        @if($ship->is_infant!=0)
+                                            <div class="row">
+                                                <div class="col-md-6"><input readonly value="Infant {{$ship->infant_age_start}}-{{$ship->infant_age_end}}" class="form-control"></div>
+                                                <div class="col-md-6"><input  type="number"  required value="0" name="infant" class="form-control"></div>
+                                            </div>
+                                            <br>
+                                        @endif
+                                        @if($ship->is_senior!=0)
+                                            <div class="row">
+                                                <div class="col-md-6"><input readonly value="Senior {{$ship->senior_age_start}}-{{$ship->senior_age_end}}" class="form-control"></div>
+                                                <div class="col-md-6"><input  type="number"  required value="0" name="senior" class="form-control"></div>
+                                            </div>
+                                        @endif
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-6"><input readonly value="NCCF Per Guest" class="form-control"></div>
+                                            <div class="col-md-6"><input  type="number"  required  name="nccf_per_guest" class="form-control"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-6"><input readonly value="Port Tax Per Guest" class="form-control"></div>
+                                            <div class="col-md-6"><input  type="number"  required  name="port_tax_per_guest" class="form-control"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-6"><input readonly value="Insurance Per Guest" class="form-control"></div>
+                                            <div class="col-md-6"><input  type="number"  required  name="insurance_per_guest" class="form-control"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-6"><input readonly value="Gratuities_per_night" class="form-control"></div>
+                                            <div class="col-md-6"><input  type="number"  required  name="gratuities_per_night" class="form-control"></div>
+                                        </div>
+
+                                    </div>
 
                                 </div>
                             </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <small>Tax Percentage  % </small><br>
-                                    <input type="number"  name="tax_percentage"    max="100" class="form-control input-sm">
 
-                                </div>
-                                <div class="col-md-4">
-                                    <small>Tax Amount</small><br>
-                                    <input type="number" name="tax_amount"  max="100" class="form-control">
-                                </div>
-
-                                <div class="col-md-4"></div>
-                            </div><br><br>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="pull-left">
-                                        <input class="pull-left" value="SUN" name="is_disabled" type="checkbox" style="zoom: 1.4">
-                                        <small class="pull-left " style="margin-left: 5px">Disabled</small>
-                                    </div>
-                                    <br><br>
-                                    <label onclick="checkApply()"   style="width: 200px"
-                                            class="btn dark p-x-md">{{ __('backend.apply') }}</label>
-                                </div>
-                            </div><br>
                         </div>
                     </div>
-                    <div class="col-md-4">
-
-                        <div class="container-fluid">
-                            <h6 class="text-left">Extra Bed Price</h6><br>
-                            <div class="row">
-                                <div class="col-md-6"><input readonly value="Age Group" class="form-control"></div>
-                                <div class="col-md-6"><input readonly   value="Price" class="form-control"></div>
-                            </div>
-                            <br>
-                            @if($ship->is_adult!=0)
-                            <div class="row">
-                                <div class="col-md-6"><input readonly value="Adult {{$ship->adult_age_start}}-{{$ship->adult_age_end}}" class="form-control"></div>
-                                <div class="col-md-6"><input   type="number" required value="0" name="adult" class="form-control"></div>
-                            </div>
-                                <br>
-                            @endif
-
-                            @if($ship->is_child!=0)
-                            <div class="row">
-
-                                <div class="col-md-6"><input readonly value="Child {{$ship->child_age_start}}-{{$ship->child_age_end}}" class="form-control"></div>
-                                <div class="col-md-6"><input   type="number" required value="0" name="child" class="form-control"></div>
-                            </div>
-                            <br>@endif
-
-                                @if($ship->is_toddler!=0)
-                            <div class="row">
-                                <div class="col-md-6"><input readonly value="Toddler {{$ship->toddler_age_start}}-{{$ship->toddler_age_end}}" class="form-control"></div>
-                                <div class="col-md-6"><input  type="number"  required value="0" name="toddler" class="form-control"></div>
-                            </div>
-                            <br>
-                                @endif
-                                    @if($ship->is_infant!=0)
-                            <div class="row">
-                                <div class="col-md-6"><input readonly value="Infant {{$ship->infant_age_start}}-{{$ship->infant_age_end}}" class="form-control"></div>
-                                <div class="col-md-6"><input  type="number"  required value="0" name="infant" class="form-control"></div>
-                            </div>
-                            <br>
-                                    @endif
-                                        @if($ship->is_senior!=0)
-                            <div class="row">
-                                <div class="col-md-6"><input readonly value="Senior {{$ship->senior_age_start}}-{{$ship->senior_age_end}}" class="form-control"></div>
-                                <div class="col-md-6"><input  type="number"  required value="0" name="senior" class="form-control"></div>
-                            </div>
-                                @endif
+                    <div class="col-md-3">
+                        <label>Cruise Date</label>
+                      <textarea style="height: 300px; width: 100%"></textarea>
+                        <br>
+                        <br>
+                        <div class="pull-left">
+                            <input class="pull-left" value="SUN" name="is_disabled" type="checkbox" style="zoom: 1.4">
+                            <small class="pull-left " style="margin-left: 5px">Disabled</small>
                         </div>
+                        <br><br>
+                        <label onclick="checkApply()"   style="width: 200px"
+                               class="btn dark p-x-md">{{ __('backend.apply') }}</label>
+                    </div>
+                    <div class="col-md-3">
 
+                        <div id="datepicker"></div>
                     </div>
                 </div>
             </div>
@@ -197,12 +173,7 @@
                         </thead>
                         <tbody>
 
-                        <tr>
-                            <td style="background: lightgrey; min-width: 180px">Room Price ({{\App\Helpers\Helper::get_Currency($rateTable->currency_id)->name}})</td>
-                            @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','room_price',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} type="number" class="form-control" value="{{$i->room_price}}"></td>
-                            @endforeach
-                        </tr>
+
 
                         @if($ship->is_adult!=0)
                             <tr>
@@ -247,17 +218,30 @@
                             </tr>
                         @endif
                         <tr>
-                            <td style="background: lightgrey;">Tax Percentage</td>
+                            <td style="background: lightgrey;">NCCF Per Guest</td>
                             @foreach($l as $i)
                                 <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
                             @endforeach
                         </tr>
                         <tr>
-                            <td style="background: lightgrey;">Tax Amount</td>
+                            <td style="background: lightgrey;">Port Tax Per Guest</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','tax_amount',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_amount}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
                             @endforeach
                         </tr>
+                        <tr>
+                            <td style="background: lightgrey;">Insurance Per Guest</td>
+                            @foreach($l as $i)
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <td style="background: lightgrey;">Gratuities Per Night</td>
+                            @foreach($l as $i)
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
+                            @endforeach
+                        </tr>
+
                         <tr>
                             <td style="background: lightgrey;">Enabled</td>
                             @foreach($l as $i)
@@ -278,7 +262,6 @@
 
             @endforeach
             @foreach($list as $l)
-
                 <div class="">
                     <table class="table ">
                         <thead>
@@ -289,73 +272,82 @@
                         </thead>
                         <tbody>
 
-                            <tr>
-                                <td style="background: lightgrey; min-width: 180px">Room Price ({{\App\Helpers\Helper::get_Currency($rateTable->currency_id)->name}})</td>
-                                @foreach($l as $i)
-                                    <td><input onkeyup="updateMe('{{$i->id}}','room_price',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} type="number" class="form-control" value="{{$i->room_price}}"></td>
-                                @endforeach
-                            </tr>
+
 
                         @if($ship->is_adult!=0)
-                        <tr>
-                            <td style="background: lightgrey; min-width: 180px">Extra Bed Adult {{$ship->adult_age_start}}-{{$ship->adult_age_end}}</td>
-                            @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->adult}}"></td>
-                            @endforeach
-                        </tr>
+                            <tr>
+                                <td style="background: lightgrey; min-width: 180px">Extra Bed Adult {{$ship->adult_age_start}}-{{$ship->adult_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->adult}}"></td>
+                                @endforeach
+                            </tr>
                         @endif
                         @if($ship->is_child!=0)
-                        <tr>
-                            <td style="background: lightgrey;">Extra Bed Child {{$ship->child_age_start}}-{{$ship->child_age_end}}</td>
-                            @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','child',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->child}}"></td>
-                            @endforeach
-                        </tr>
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Child {{$ship->child_age_start}}-{{$ship->child_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','child',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->child}}"></td>
+                                @endforeach
+                            </tr>
                         @endif
                         @if($ship->is_toddler!=0)
 
-                        <tr>
-                            <td style="background: lightgrey;">Extra Bed Toddler {{$ship->toddler_age_start}}-{{$ship->toddler_age_end}}</td>
-                            @foreach($l as $i)
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Toddler {{$ship->toddler_age_start}}-{{$ship->toddler_age_end}}</td>
+                                @foreach($l as $i)
 
-                                <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->toddler}}"></td>
-                            @endforeach
-                        </tr>
+                                    <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->toddler}}"></td>
+                                @endforeach
+                            </tr>
                         @endif
                         @if($ship->is_infant!=0)
-                        <tr>
-                            <td style="background: lightgrey;">Extra Bed Infant {{$ship->infant_age_start}}-{{$ship->infant_age_end}}</td>
-                            @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->infant}}"></td>
-                            @endforeach
-                        </tr>
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Infant {{$ship->infant_age_start}}-{{$ship->infant_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->infant}}"></td>
+                                @endforeach
+                            </tr>
                         @endif
                         @if($ship->is_senior!=0)
-                        <tr>
-                            <td style="background: lightgrey;">Extra Bed Senior {{$ship->senior_age_start}}-{{$ship->senior_age_end}}</td>
-                            @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->senior}}"></td>
-                            @endforeach
-                        </tr>
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Senior {{$ship->senior_age_start}}-{{$ship->senior_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->senior}}"></td>
+                                @endforeach
+                            </tr>
                         @endif
                         <tr>
-                            <td style="background: lightgrey;">Tax Percentage</td>
+                            <td style="background: lightgrey;">NCCF Per Guest</td>
                             @foreach($l as $i)
                                 <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
                             @endforeach
                         </tr>
                         <tr>
-                            <td style="background: lightgrey;">Tax Amount</td>
+                            <td style="background: lightgrey;">Port Tax Per Guest</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','tax_amount',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_amount}}"></td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
                             @endforeach
                         </tr>
+                        <tr>
+                            <td style="background: lightgrey;">Insurance Per Guest</td>
+                            @foreach($l as $i)
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <td style="background: lightgrey;">Gratuities Per Night</td>
+                            @foreach($l as $i)
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$rateTable->effective_end_date && $i->date>=$rateTable->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
+                            @endforeach
+                        </tr>
+
                         <tr>
                             <td style="background: lightgrey;">Enabled</td>
                             @foreach($l as $i)
                                 <td >
 
-                                        <input id="checkBox{{$i->id}}"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
+                                    <input  id="checkBox{{$i->id}}"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
+
 
 
                                 </td>
@@ -450,7 +442,7 @@
 
                  $.ajax({
                      type:'post',
-                     url:'admin/hotel-rate-table/updateColumn/'+id,
+                     url:'admin/ship-rate-table/updateColumn/'+id,
                      data:{"_token":"{{ csrf_token() }}",'column':col,'val':me.target.value},
                      success:function(data){
                          // window.location.reload()
@@ -473,5 +465,13 @@
                 $("#submit_show_msg").css("display", "none");
             }
         });
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
     </script>
 @endpush
