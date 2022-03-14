@@ -75,6 +75,17 @@ class Helper
         $res=App\Models\city::find($id);
         return $res;
     }
+    static function Cruises()
+    {
+        $list=App\Models\cruiseLine::where('deleted_at',null)->get();
+        return $list;
+    }
+    static function get_Cruise($id)
+    {
+        $res=App\Models\cruiseLine::find($id);
+
+        return $res;
+    }
     static function Currencies()
     {
         $list=App\Models\currency::where('deleted_at',null)->get();

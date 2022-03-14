@@ -246,6 +246,19 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
 
                                 </a>
                             </li>
+                                <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                    <a href="{{ route('admin.cruiseShip.list') }}">
+                  <span class="nav-icon">
+<i class="fa fa-ship" aria-hidden="true"></i>
+                  </span>
+                                        <span class="nav-text">Cruise Ships
+                                            @if( @$webmailsNewCount >0)
+                                                <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
+                                            @endif
+                                    </span>
+
+                                    </a>
+                                </li>
                         @endif
                     @endif
                     @if(Helper::GeneralWebmasterSettings("inbox_status"))

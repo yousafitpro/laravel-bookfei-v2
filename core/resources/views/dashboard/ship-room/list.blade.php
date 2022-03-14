@@ -89,7 +89,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn dark-white p-x-md"
                                                     data-dismiss="modal">{{ __('backend.no') }}</button>
-                                            <a href="{{ route("admin.hotelRoom.delete",["id"=>$Banner->id]) }}"
+                                            <a href="{{ route("admin.shipRoom.delete",["id"=>$Banner->id]) }}"
                                                class="btn danger p-x-md">{{ __('backend.yes') }}</a>
                                         </div>
                                     </div><!-- /.modal-content -->
@@ -128,6 +128,7 @@
                 <!-- / .modal -->
 <script>
     function roomTypeBulkDelete() {
+
         var checkboxes = document.querySelectorAll('input[id="roomTypeCheckBox"]');
         var tempArray=[];
         for (var checkbox of checkboxes) {
@@ -145,7 +146,7 @@
             $("#btnRoomTypeRemove").text("Removing...")
             $.ajax({
                 type:'post',
-                url:'{{route('admin.hotelRoom.deleteBulk')}}',
+                url:'{{route('admin.shipRoom.deleteBulk')}}',
                 data:{"_token":"{{ csrf_token() }}",'data':tempArray},
                 success:function(data){
                     console.log(data)

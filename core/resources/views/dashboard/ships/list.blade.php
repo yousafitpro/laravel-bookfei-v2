@@ -1,17 +1,64 @@
+@extends('dashboard.layouts.master')
+@section('title', $title)
+@section('content')
 
+    <div class="padding">
+        <div class="card" style="padding: 4px">
+            <div class="box-header ">
+                <a href="{{route('admin.cruiseShip.editOrCreate',0).'?tab=Basic'}}">
+                <button class="btn dark pull-left">Add New cruiseShip</button>
+                </a>
+                <a href="javascrip:void" onclick="cruiseShipBulkDelete()">
+                    <button class="btn btn-danger pull-right" id="btncruiseShipRemove">Remove</button>
+                </a>
+
+
+
+
+            </div>
+            <br>
+            <br>
+            <br>
+
+
+
+<div class="container-fluid">
+  <form method="get" action="{{route('admin.cruiseShip.list')}}">
+      <div class="row">
+          <div class="col-md-2">
+              <input name="searchWord" placeholder="cruiseShip Name" class="form-control" value="{{session('searchWord','')}}">
+          </div>
+          <div class="col-md-2">
+              <select name="cruise_line" class="form-control" >
+{{--                  <option value="{{session('city_id','none')}}">{{session('city_name','City')}}</option>--}}
+                  @foreach(\App\Helpers\Helper::Cruises() as $c)
+                      <option value="none" {{session('cruise_line_id')=='none'?'selected':''}}>All</option>
+                      <option value="{{$c->id}}" {{session('cruise_line_id')==$c->id?'selected':''}}>{{$c->name}}</option>
+                  @endforeach
+
+              </select>
+          </div>
+          <div class="col-md-2">
+              <button type="submit" class="btn dark btn-block">Filter</button>
+          </div>
+      </div>
+  </form>
+    <br>
+</div>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered m-a-0" >
+
+                    <table class="table table-bordered m-a-0">
                         <thead class="dker">
                         <tr>
-                            <th class=" width50"></th>
 
-                            <th class=" width50">Room Type Name</th>
-{{--                            <th class="text-center width50">{{ __('backend.default_guest') }}</th>--}}
-                            <th class="text-center width50">{{ __('backend.max_guest') }}</th>
-                            <th class="text-center width50">Maximum Extra Bed</th>
+                            <th class=" width50"></th>
+                            <th class=" width50">cruiseShip Name</th>
+                            <th class=" width50">{{ __('backend.phone') }}</th>
+                            <th class=" width50">{{ __('backend.email') }}</th>
+                            <th class=" width50">Cruise Line</th>
                             <th class="text-center width50">{{ __('backend.status') }}</th>
-                            <th class="text-center width200">{{ __('backend.action') }}</th>
+                            <th class=" width200">{{ __('backend.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -19,7 +66,7 @@
                         $title_var = "title_" . @Helper::currentLanguage()->code;
                         $title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                         ?>
-                        @foreach($roomTypes as $Banner)
+                        @foreach($list as $Banner)
                             <?php
                             if ($Banner->$title_var != "") {
                                 $title = $Banner->$title_var;
@@ -35,30 +82,35 @@
 {{--                                        {!! Form::hidden('row_ids[]',$Banner->id, array('class' => 'form-control row_no')) !!}--}}
 {{--                                    </label>--}}
 {{--                                </td>--}}
-
-                                <td class="text-center">
-                                    <input id="roomTypeCheckBox" data-id="{{$Banner->id}}" type="checkbox" style="zoom: 1.2">
+                                <td class="">
+                                    <input type="checkbox"  data-id="{{$Banner->id}}" id="cruiseShipCheckBox" style="zoom:1.2">
                                 </td>
                                 <td class="">
                                     <label>{{$Banner->name}}</label>
                                </td>
-{{--                                <td class="text-center">--}}
-{{--                                    {{$Banner->default_guest}}                                </td>--}}
-                                <td class="text-center">
-                                    {{$Banner->max_guest}}                                </td>
-                                <td class="text-center">
-                                    {{$Banner->max_extra_bed}}                                </td>
+                                <td class="">
+                                    <label>{{$Banner->phone}}</label>
+                                </td>
+                                <td class="">
+                                    <label>{{$Banner->email}}</label>                                </td>
+                                <td class="">
+                                    <label>{{\App\Helpers\Helper::get_Cruise($Banner->cruise_line_id)->name}}</label>                                </td>
 
                                 <td class="text-center">
                                     <i class="fa {{ ($Banner->status==1) ? "fa-check text-success":"fa-times text-danger" }} inline"></i>
                                 </td>
                                 <td class="text-center">
                                     @if(@Auth::user()->permissionsGroup->edit_status)
-                                        <a href="{{route('admin.shipRoom.updateView',$Banner->id)}}" class="btn btn-sm success">
-                                            <small><i class="material-icons">&#xe3c9;</i> {{ __('backend.edit') }}
-                                            </small>
+
+                                        <a href="{{route('admin.cruiseShip.editOrCreate',$Banner->id).'?tab=Basic'}}">
+
+                                            <button class="btn btn-sm success" >
+                                                <small><i class="fa fa-edit" aria-hidden="true"></i> {{ __('backend.edit') }}
+                                                </small>
+                                            </button>
                                         </a>
                                     @endif
+
 
                                     @if(@Auth::user()->permissionsGroup->delete_status)
                                         <button class="btn btn-sm warning" data-toggle="modal"
@@ -89,7 +141,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn dark-white p-x-md"
                                                     data-dismiss="modal">{{ __('backend.no') }}</button>
-                                            <a href="{{ route("admin.hotelRoom.delete",["id"=>$Banner->id]) }}"
+                                            <a href="{{ route("admin.cruiseShip.delete",["id"=>$Banner->id]) }}"
                                                class="btn danger p-x-md">{{ __('backend.yes') }}</a>
                                         </div>
                                     </div><!-- /.modal-content -->
@@ -104,57 +156,44 @@
                     </table>
 
                 </div>
-                <!-- .modal -->
-                <div id="removeRoomTypesModel" class="modal fade" data-backdrop="true">
-                    <div class="modal-dialog" id="animate">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">{{ __('backend.confirmation') }}</h5>
-                            </div>
-                            <div class="modal-body text-center p-lg">
 
-                                <strong> Are you want to Delete These records ? </strong>
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default p-x-md"
-                                        data-dismiss="modal">{{ __('backend.cancel') }}</button>
-                                <a href="javascript:void" data-dismiss="modal" onclick="roomTypeBulkDelete()"
-                                   class="btn dark " style="color: white">Ok</a>
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div>
-                </div>
-                <!-- / .modal -->
-<script>
-    function roomTypeBulkDelete() {
-        var checkboxes = document.querySelectorAll('input[id="roomTypeCheckBox"]');
-        var tempArray=[];
-        for (var checkbox of checkboxes) {
 
-            if (checkbox.checked)
-            {
-                tempArray.push(checkbox.getAttribute('data-id'))
+
+
+        </div>
+    </div>
+
+@endsection
+@push("after-scripts")
+
+    <script type="text/javascript">
+
+     function cruiseShipBulkDelete() {
+            var checkboxes = document.querySelectorAll('input[id="cruiseShipCheckBox"]');
+         var tempArray=[];
+            for (var checkbox of checkboxes) {
+
+                if (checkbox.checked)
+                {
+                    tempArray.push(checkbox.getAttribute('data-id'))
+                }
+
             }
 
+         console.log(tempArray)
+         if (tempArray.length>0)
+         {
+             $("#btncruiseShipRemove").text("Removing...")
+             $.ajax({
+                 type:'post',
+                 url:'{{route('admin.cruiseShip.deleteBulk')}}',
+                 data:{"_token":"{{ csrf_token() }}",'data':tempArray},
+                 success:function(data){
+                     console.log(data)
+                     window.location.reload()
+                 }})
+         }
         }
 
-        console.log(tempArray)
-        if (tempArray.length>0)
-        {
-            $("#btnRoomTypeRemove").text("Removing...")
-            $.ajax({
-                type:'post',
-                url:'{{route('admin.hotelRoom.deleteBulk')}}',
-                data:{"_token":"{{ csrf_token() }}",'data':tempArray},
-                success:function(data){
-                    console.log(data)
-                    window.location.reload()
-                }})
-        }
-    }
-
-</script>
-
-
-
+    </script>
+@endpush

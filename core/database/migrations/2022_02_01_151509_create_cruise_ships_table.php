@@ -18,9 +18,9 @@ class CreateCruiseShipsTable extends Migration
             $table->string("name")->nullable();
             $table->string("english_name")->nullable();
             $table->bigInteger('cruise_line_id');
-            $table->string('phone');
-            $table->string('email');
-            $table->longText('images');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->longText('images')->nullable();
 
             $table->string("adult_age_start")->nullable();
             $table->string("adult_age_end")->nullable();

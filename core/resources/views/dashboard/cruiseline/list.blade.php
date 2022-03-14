@@ -94,13 +94,6 @@
                                     </a>
                                 @endif
 
-                                        <a href="{{route('admin.cruiseLine.updateView',$Banner->id)}}">
-
-                                            <button class="btn btn-sm success" >
-                                                <small><i class="fa fa-ship" aria-hidden="true"></i> Ships
-                                                </small>
-                                            </button>
-                                        </a>
 
 
                                 @if(@Auth::user()->permissionsGroup->delete_status)

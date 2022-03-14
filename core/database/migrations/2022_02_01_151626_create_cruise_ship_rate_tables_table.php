@@ -26,10 +26,12 @@ class CreateCruiseShipRateTablesTable extends Migration
             $table->boolean("bonus_night")->default(false);
             $table->string("nights");
             $table->string("rule");
-            $table->string("min_nights")->default(1);
-            $table->string("max_nights")->default(1);
+//            $table->string("min_nights")->default(1);
+//            $table->string("max_nights")->default(1);
             $table->string("x_nights")->default(1);
             $table->string("y_nights")->default(1);
+            $table->string("free_guest_rule")->nullable();
+            $table->string("bonus_night_type")->nullable();
             $table->integer("early_bird_before_departure_date")->default(0);
             $table->string("status")->default('1');
             $table->softDeletes();
