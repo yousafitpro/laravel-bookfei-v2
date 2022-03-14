@@ -135,16 +135,16 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="pull-left">
-                            @if($sdate)
-                            <small>{{$sdate}}</small>
-                            @else
-                                <small>All Records</small>
-                                @endif
+                            <a onclick="reloadMe()"><small>All Records</small></a>
+
+                            <small>( {{$sdate}} )</small>
+
                         </div>
                         <div class="pull-right">
                             <form method="post">
                                 @csrf
-                                <input value="{{$sdate?$sdate:''}}" onchange="this.form.submit()" type="month" name="month">
+                                <label>Select Month</label>
+                                <input style="height: 30px; width: 200px" value="{{$mdate}}" onchange="this.form.submit()" type="month" name="month">
                             </form>
 
                         </div>
@@ -152,67 +152,168 @@
                 </div>
                 <br>
             </div>
-            @foreach($list as $l)
+            @foreach($list3 as $l)
+
                 <div class="">
                     <table class="table ">
                         <thead>
                         <th style="background:darkgrey;">Date</th>
                         @foreach($l as $i)
-                            <th style="background:darkgrey;">{{\Carbon\Carbon::parse($i->date)->format("y-m-d")}} {{$i->day}}</th>
+                            <th style="background:darkgrey;">{{\Carbon\Carbon::parse($i->date)->format("y-m-d")}} {{strtoupper(Str::limit($i->day,3,''))}}</th>
                         @endforeach
                         </thead>
                         <tbody>
-                        <tr>
-                            <td style="background: lightgrey;">Adult {{$tour->adult_age_start}}-{{$tour->adult_age_end}}</td>
-                            @foreach($l as $i)
-                                <td>{{$i->adult}}</td>
-                            @endforeach
-                        </tr>
-                        <tr>
-                            <td style="background: lightgrey;">Child {{$tour->child_age_start}}-{{$tour->child_age_end}}</td>
-                            @foreach($l as $i)
-                                <td>{{$i->child}}</td>
-                            @endforeach
-                        </tr>
-                        <tr>
-                            <td style="background: lightgrey;">Toddler {{$tour->toddler_age_start}}-{{$tour->toddler_age_end}}</td>
-                            @foreach($l as $i)
-                                <td>{{$i->toddler}}</td>
-                            @endforeach
-                        </tr>
-                        <tr>
-                            <td style="background: lightgrey;">Infant {{$tour->infant_age_start}}-{{$tour->infant_age_end}}</td>
-                            @foreach($l as $i)
-                                <td>{{$i->infant}}</td>
-                            @endforeach
-                        </tr>
-                        <tr>
-                            <td style="background: lightgrey;">Senior {{$tour->senior_age_start}}-{{$tour->senior_age_end}}</td>
-                            @foreach($l as $i)
-                                <td>{{$i->senior}}</td>
-                            @endforeach
-                        </tr>
+
+
+
+                        @if($tour->is_adult!=0)
+                            <tr>
+                                <td style="background: lightgrey; min-width: 180px">Extra Bed Adult {{$tour->adult_age_start}}-{{$tour->adult_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->adult}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($tour->is_child!=0)
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Child {{$tour->child_age_start}}-{{$tour->child_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','child',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->child}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($tour->is_toddler!=0)
+
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Toddler {{$tour->toddler_age_start}}-{{$tour->toddler_age_end}}</td>
+                                @foreach($l as $i)
+
+                                    <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->toddler}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($tour->is_infant!=0)
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Infant {{$tour->infant_age_start}}-{{$tour->infant_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->infant}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($tour->is_senior!=0)
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Senior {{$tour->senior_age_start}}-{{$tour->senior_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->senior}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
                         <tr>
                             <td style="background: lightgrey;">Tax Percentage</td>
                             @foreach($l as $i)
-                                <td>{{$i->tax_percentage}}</td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
                             @endforeach
                         </tr>
                         <tr>
                             <td style="background: lightgrey;">Tax Amount</td>
                             @foreach($l as $i)
-                                <td>{{$i->tax_amount}}</td>
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_amount',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_amount}}"></td>
                             @endforeach
                         </tr>
                         <tr>
                             <td style="background: lightgrey;">Enabled</td>
                             @foreach($l as $i)
                                 <td >
-                                    @if($i->is_disabled==1)
-                                        <input onclick="toggleMe('{{$i->id}}')"  checked style="zoom: 1.8" type="checkbox">
-                                    @else
-                                        <input onclick="toggleMe('{{$i->id}}')" style="zoom: 1.8" type="checkbox">
-                                    @endif
+
+                                    <input  id="checkBox{{$i->id}}"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
+
+
+
+                                </td>
+                            @endforeach
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            @endforeach
+            @foreach($list as $l)
+
+                <div class="">
+                    <table class="table ">
+                        <thead>
+                        <th style="background:darkgrey;">Date</th>
+                        @foreach($l as $i)
+                            <th style="background:darkgrey;">{{\Carbon\Carbon::parse($i->date)->format("y-m-d")}} {{strtoupper(Str::limit($i->day,3,''))}}</th>
+                        @endforeach
+                        </thead>
+                        <tbody>
+
+
+
+                        @if($tour->is_adult!=0)
+                            <tr>
+                                <td style="background: lightgrey; min-width: 180px">Extra Bed Adult {{$tour->adult_age_start}}-{{$tour->adult_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->adult}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($tour->is_child!=0)
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Child {{$tour->child_age_start}}-{{$tour->child_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','child',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->child}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($tour->is_toddler!=0)
+
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Toddler {{$tour->toddler_age_start}}-{{$tour->toddler_age_end}}</td>
+                                @foreach($l as $i)
+
+                                    <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->toddler}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($tour->is_infant!=0)
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Infant {{$tour->infant_age_start}}-{{$tour->infant_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->infant}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        @if($tour->is_senior!=0)
+                            <tr>
+                                <td style="background: lightgrey;">Extra Bed Senior {{$tour->senior_age_start}}-{{$tour->senior_age_end}}</td>
+                                @foreach($l as $i)
+                                    <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->senior}}"></td>
+                                @endforeach
+                            </tr>
+                        @endif
+                        <tr>
+                            <td style="background: lightgrey;">Tax Percentage</td>
+                            @foreach($l as $i)
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <td style="background: lightgrey;">Tax Amount</td>
+                            @foreach($l as $i)
+                                <td><input onkeyup="updateMe('{{$i->id}}','tax_amount',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_amount}}"></td>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <td style="background: lightgrey;">Enabled</td>
+                            @foreach($l as $i)
+                                <td >
+
+                                    <input id="checkBox{{$i->id}}"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
+
 
                                 </td>
                             @endforeach
