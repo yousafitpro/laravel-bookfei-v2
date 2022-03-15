@@ -407,9 +407,12 @@
          days =Object.values(days);
 
          console.log(days)
+
          days.forEach(function (el){
-           if (el.date>=startDate && el.date<=startDate)
+
+           if (el.date>=startDate && el.date<=endDate)
            {
+
                is_true=true;
            }
          })

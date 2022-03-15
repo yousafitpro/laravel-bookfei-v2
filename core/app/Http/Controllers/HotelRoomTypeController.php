@@ -310,7 +310,7 @@ class HotelRoomTypeController extends Controller
             ->where('hotel_room_type_id',$id)
 
             ->get();
-
+//dd($empties);
        $data['days']=[];
 
 
