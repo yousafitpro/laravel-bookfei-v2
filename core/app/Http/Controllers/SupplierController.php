@@ -42,7 +42,7 @@ class SupplierController extends Controller
     }
     public function delete($id)
     {
-        $city=Country::find($id);
+        $city=supplier::find($id);
         $city->deleted_at=Carbon::now();
         if($city->save())
         {
