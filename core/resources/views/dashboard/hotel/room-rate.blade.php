@@ -405,15 +405,53 @@
                var is_true=false;
          var days = @json($empties);
          days =Object.values(days);
+          var myDays=[]
+
+         if ($("#sunday").prop('checked'))
+         {
+             myDays.push("Sunday")
+         }
+         if ($("#monday").prop('checked'))
+         {
+             myDays.push("Monday")
+         }
+         if ($("#tuesday").prop('checked'))
+         {
+             myDays.push("Tuesday")
+         }
+         if ($("#wednesday").prop('checked'))
+         {
+             myDays.push("Wednesday")
+         }
+         if ($("#thursday").prop('checked'))
+         {
+             myDays.push("Thursday")
+         }
+         if ($("#friday").prop('checked'))
+         {
+             myDays.push("Friday")
+         }
+         if ($("#saturday").prop('checked'))
+         {
+             myDays.push("Saturday")
+         }
 
          console.log(days)
 
          days.forEach(function (el){
 
-           if (el.date>=startDate && el.date<=endDate)
+           if (el.date>=startDate && el.date<=endDate )
            {
 
-               is_true=true;
+               myDays.forEach(function (item){
+
+                   if (item==el.day)
+                   {
+
+                        is_true=true
+                   }
+               })
+
            }
          })
 

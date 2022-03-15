@@ -283,7 +283,7 @@ class HotelRoomTypeController extends Controller
 
         $end=$date->endOfMonth('Y-m-d')->toDateString();
         $empties=hotelRoomRate::where("deleted_at",null)
-            ->select('date')
+
             ->whereBetween('date',[$oStart,$mend])
             ->where(function ($q)
         {
@@ -302,7 +302,7 @@ class HotelRoomTypeController extends Controller
             $q->orWhere('tax_percentage','!=','');
 
         })
-
+            ->select('date','day')
 
 //
 //                    ->where('senior','==',null)
@@ -310,7 +310,7 @@ class HotelRoomTypeController extends Controller
             ->where('hotel_room_type_id',$id)
 
             ->get();
-//dd($empties);
+
        $data['days']=[];
 
 
