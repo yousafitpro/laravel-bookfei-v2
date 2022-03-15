@@ -54,7 +54,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if(@Auth::user()->permissionsGroup->edit_status)
-                                        <a href="{{route('admin.shipRoom.updateView',$Banner->id)}}" class="btn btn-sm success">
+                                        <a href="{{route('admin.hotelRoom.updateView',$Banner->id)}}" class="btn btn-sm success">
                                             <small><i class="material-icons">&#xe3c9;</i> {{ __('backend.edit') }}
                                             </small>
                                         </a>

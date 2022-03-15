@@ -52,12 +52,12 @@ class Helper
     }
     static function Countries()
     {
-        $list=Country::where('deleted_at',null)->get();
+        $list=Country::where('deleted_at',null)->where('status',1)->get();
         return $list;
     }
     static function Areas()
     {
-        $list=App\Models\area::where('deleted_at',null)->get();
+        $list=App\Models\area::where('deleted_at',null)->where('status',1)->get();
         return $list;
     }
     static function get_Area($id)
@@ -67,7 +67,7 @@ class Helper
     }
     static function Cities()
     {
-        $list=App\Models\city::where('deleted_at',null)->get();
+        $list=App\Models\city::where('deleted_at',null)->where('status',1)->get();
         return $list;
     }
     static function get_City($id)
@@ -88,7 +88,7 @@ class Helper
     }
     static function Currencies()
     {
-        $list=App\Models\currency::where('deleted_at',null)->get();
+        $list=App\Models\currency::where('deleted_at',null)->where('status',1)->get();
         return $list;
     }
     static function get_Currency($id)

@@ -13,9 +13,8 @@
             <div class="col-md-4">
                 <label>City</label><br>
                 <select class="form-control" name="city_id">
-                    <option value="{{\App\Helpers\Helper::get_City($hotel->city_id)->id}}" >{{\App\Helpers\Helper::get_City($hotel->city_id)->name}}</option>
                     @foreach(\App\Helpers\Helper::Cities() as $c)
-                        <option value="{{$c->id}}" >{{$c->name}}</option>
+                        <option value="{{$c->id}}" {{$hotel->city_id==$c->id?'selected':''}} >{{$c->name}}</option>
                     @endforeach
                 </select>
             </div>
