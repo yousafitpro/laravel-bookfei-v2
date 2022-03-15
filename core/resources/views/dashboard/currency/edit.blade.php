@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Exchange Rate</label><br>
-                            <input type="number" name="exchange_rate" value="{{$Banner->exchange_rate}}" required class="form-control"><br>
+                            <input type="number" step="any" name="exchange_rate" value="{{$Banner->exchange_rate}}" required class="form-control"><br>
                         </div>
 
                     </div>

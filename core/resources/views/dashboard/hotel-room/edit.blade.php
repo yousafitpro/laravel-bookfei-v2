@@ -18,6 +18,8 @@
 
                 </small>
                 <br>
+                <h2 style="font-weight: bold">Hotel Room</h2>
+                <br>
                 <h6 style="color: grey">
                     <label>Hotel:  {{$hotel->name}}</label><small></small>
 

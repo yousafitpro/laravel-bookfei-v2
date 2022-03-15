@@ -7,7 +7,7 @@
                 <div class="row box-header">
                     @if($_GET['tab']=="Basic" && $table_id==0 )
                     <button onclick="document.getElementById('addRateTable').submit()"
-                            class="btn dark p-x-md pull-right">{{ __('backend.save') }}</button>
+                            class="btn dark p-x-md pull-right" style="min-width: 200px">{{ __('backend.save') }}</button>
                     @endif
                         @if($_GET['tab']=="Basic" && $table_id!=0)
                             <button onclick="document.getElementById('editRateTable').submit()"
@@ -25,10 +25,9 @@
 
                     <div class="row">
                         <div class="col-md-12 p-l-2">
-                            <h6 style="color: grey">
-                                <label>Hotel: </label><small> {{$hotel->name}}</small>
+                            <h5 style="font-weight: bold">Hotel : Rate Table</h5>
+                            <br>
 
-                            </h6>
                         </div>
                     </div>
 
@@ -36,7 +35,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <!-- Tab links -->
-                        <div class="mtab">
+                        <div class="mtab" style="margin-left: 25px">
                             <a href="{{route('admin.hotelRateTable.editOrCreate',$hotel_id).'?tab=Basic&table_id='.$table_id}}">
                                 <button class="mtablinks  {{$_GET['tab']=="Basic"?'active':''}}" >Basic</button>
                             </a>
@@ -46,6 +45,10 @@
 
                         </div>
                         <br>
+                        <h6 style="color: grey; margin-left: 25px">
+                            <label>Hotel: </label><small> {{$hotel->name}}</small>
+
+                        </h6>
                         <!-- Tab content -->
                         <div id="Basic" class="mtabcontent {{$_GET['tab']=="Basic"?'mtabActive':''}}">
 

@@ -8,13 +8,15 @@
         <div class="card ">
             <div class="box-header">
                 <button type="submit"
-                        class="btn dark p-x-md pull-right">{{ __('backend.save') }}</button>
+                        class="btn dark p-x-md pull-right" style="min-width: 200px">{{ __('backend.save') }}</button>
                 <small>
                     <a href="{{route('admin.hotel.editOrCreate',$hotel->id).'?tab=RoomType'}}">
                         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                         Go Back
                     </a>
                 </small>
+                <br>
+                <h2 style="font-weight: bold">Hotel Room</h2>
                 <br>
                         <h6 style="color: grey">
                             <label>Hotel:  {{$hotel->name}}</label><small></small>
