@@ -22,18 +22,16 @@
         <div class="col-md-6">
             <label>Currency</label><br>
             <select class="form-control" name="currency_id">
-                <option value="{{\App\Helpers\Helper::get_Currency($table->currency_id)->id}}" >{{\App\Helpers\Helper::get_Currency($table->currency_id)->name}}</option>
                 @foreach(\App\Helpers\Helper::Currencies() as $c)
-                    <option value="{{$c->id}}" >{{$c->name}}</option>
+                    <option value="{{$c->id}}" {{$table->currency_id==$c->id?'selected':''}}>{{$c->name}}</option>
                 @endforeach
             </select>
         </div>
         <div class="col-md-6">
             <label>Supplier</label><br>
             <select class="form-control" name="supplier_id">
-                <option value="{{\App\Helpers\Helper::get_Supplier($table->supplier_id)->id}}" >{{\App\Helpers\Helper::get_Supplier($table->supplier_id)->name}}</option>
                 @foreach(\App\Helpers\Helper::Suppliers() as $c)
-                    <option value="{{$c->id}}" >{{$c->name}}</option>
+                    <option value="{{$c->id}}" {{$table->supplier_id==$c->id?'selected':''}} >{{$c->name}}</option>
                 @endforeach
             </select>
         </div>
