@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use App\Models\cruiseLine;
+use App\Models\currency;
+use App\Models\hotel;
+use App\Models\hotelRateTable;
 use App\Models\supplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -42,6 +45,10 @@ class SupplierController extends Controller
     }
     public function delete($id)
     {
+        if (hotelRateTable::where('supplier_id',$id)->exists())
+        {
+            return redirect()->back()->with('errorMessage','You cannot Delete this Record It has Related Data');
+        }
         $city=supplier::find($id);
         $city->deleted_at=Carbon::now();
         if($city->save())
@@ -98,7 +105,14 @@ class SupplierController extends Controller
     }
     public function deleteBulk(Request $request)
     {
-        supplier::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+        foreach ($request->data as $id)
+        {
+            if (!hotelRateTable::where('supplier_id',$id)->exists())
+            {
+                supplier::where('id', $id)->update(['deleted_at'=>Carbon::now()]);
+            }
+        }
+
 
         if(Request::capture()->expectsJson())
         {

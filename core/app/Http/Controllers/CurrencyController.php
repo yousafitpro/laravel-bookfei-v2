@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\airline;
 use App\Models\Country;
 use App\Models\currency;
+use App\Models\hotel;
+use App\Models\hotelRateTable;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -43,6 +45,10 @@ class CurrencyController extends Controller
     }
     public function delete($id)
     {
+        if (hotelRateTable::where('currency_id',$id)->exists())
+        {
+            return redirect()->back()->with('errorMessage','You cannot Delete this Record It has Related Data');
+        }
         $city=currency::find($id);
         $city->deleted_at=Carbon::now();
         if($city->save())
@@ -95,7 +101,16 @@ class CurrencyController extends Controller
     }
     public function deleteBulk(Request $request)
     {
-        currency::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+
+        foreach ($request->data as $id)
+        {
+            if (!hotelRateTable::where('currency_id',$id)->exists())
+            {
+                currency::where('id', $id)->update(['deleted_at'=>Carbon::now()]);
+            }
+        }
+
 
         if(Request::capture()->expectsJson())
         {

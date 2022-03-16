@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\city;
+use App\Models\currency;
+use App\Models\hotel;
+use App\Models\hotelRateTable;
 use App\Models\supplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -43,11 +46,15 @@ class CityController extends Controller
     }
     public function delete($id)
     {
+        if (hotel::where('city_id',$id)->exists())
+        {
+            return redirect()->back()->with('doneMessage','You cannot Delete this Record It has Related Data');
+        }
         $city=city::find($id);
         $city->deleted_at=Carbon::now();
         if($city->save())
         {
-            return redirect()->back()->with('doneMessage', __('backend.deleteDone'));
+            return redirect()->back()->with('errorMessage', __('backend.deleteDone'));
         }
     }
     public function update(Request $request,$id)
@@ -95,7 +102,14 @@ class CityController extends Controller
     }
     public function deleteBulk(Request $request)
     {
-        city::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+        foreach ($request->data as $id)
+        {
+            if (!hotel::where('city_id',$id)->exists())
+            {
+                city::where('id', $id)->update(['deleted_at'=>Carbon::now()]);
+            }
+        }
 
         if(Request::capture()->expectsJson())
         {
