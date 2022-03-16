@@ -5,6 +5,12 @@
             <div class="container-fluid">
                 <br>
                 <div class="row box-header">
+                    <small>
+
+                        <a href="{{route('admin.hotel.editOrCreate',$hotel->id).'?tab=RateTable'}}">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                            Go Back</a>
+                    </small>
                     @if($_GET['tab']=="Basic" && $table_id==0 )
                     <button onclick="document.getElementById('addRateTable').submit()"
                             class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
@@ -13,14 +19,7 @@
                             <button onclick="document.getElementById('editRateTable').submit()"
                                     class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.update') }}</button>
                         @endif
-                    <div class="col-md-12">
-                        <small>
 
-                            <a href="{{route('admin.hotel.editOrCreate',$hotel->id).'?tab=RateTable'}}">
-                                <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-                                Go Back</a>
-                        </small>
-                    </div>
                 </div>
 
                     <div class="row">

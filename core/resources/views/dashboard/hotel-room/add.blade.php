@@ -1,20 +1,23 @@
 @extends('dashboard.layouts.master')
 @section('title', "Add Room Type")
 @section('content')
-    <form method="post" action="{{route('admin.hotelRoom.create')}}" enctype="multipart/form-data">
+    <form method="post" id="addRoomForm" action="{{route('admin.hotelRoom.create')}}" enctype="multipart/form-data">
         @csrf
         <input hidden name="hotel_id" value="{{$hotel->id}}" required class="form-control">
     <div class="padding">
         <div class="card ">
             <div class="box-header">
-                <button type="submit"
-                        class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
                 <small>
                     <a href="{{route('admin.hotel.editOrCreate',$hotel->id).'?tab=RoomType'}}">
                         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                         Go Back
                     </a>
                 </small>
+                <button  type="submit"
+                        class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
+
+
+
                 <br>
                 <h2 style="font-weight: bold">Hotel Room</h2>
                 <br>

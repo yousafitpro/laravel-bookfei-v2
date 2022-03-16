@@ -6,9 +6,6 @@
     <div class="padding">
         <div class="card ">
             <div class="box-header">
-                <button type="submit"
-                        class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.update') }}</button>
-
                 <small>
                     <a href="{{route('admin.hotel.editOrCreate',$Banner->hotel_id).'?tab=RoomType'}}">
                         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
@@ -17,6 +14,10 @@
                     <br>
 
                 </small>
+                <button type="submit"
+                        class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.update') }}</button>
+
+
                 <br>
                 <h2 style="font-weight: bold">Hotel Room</h2>
                 <br>
