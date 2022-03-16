@@ -7,11 +7,11 @@
     <div class="row box-header">
         @if($_GET['tab']=="Basic" && $tour_id==0 )
             <button onclick="document.getElementById('tourAddForm').submit()"
-                    class="btn dark p-x-md pull-right">{{ __('backend.save') }}</button>
+                    class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
         @endif
             @if($_GET['tab']=="Basic" && $tour_id!=0 )
                 <button onclick="document.getElementById('tourUpdateForm').submit()"
-                        class="btn dark p-x-md pull-right">{{ __('backend.update') }}</button>
+                        class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.update') }}</button>
             @endif
 
 

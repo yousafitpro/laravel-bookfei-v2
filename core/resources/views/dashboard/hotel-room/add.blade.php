@@ -8,7 +8,7 @@
         <div class="card ">
             <div class="box-header">
                 <button type="submit"
-                        class="btn dark p-x-md pull-right" style="min-width: 200px">{{ __('backend.save') }}</button>
+                        class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
                 <small>
                     <a href="{{route('admin.hotel.editOrCreate',$hotel->id).'?tab=RoomType'}}">
                         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>

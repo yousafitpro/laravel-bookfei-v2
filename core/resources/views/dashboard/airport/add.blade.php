@@ -8,7 +8,7 @@
             <div class="card ">
                 <div class="box-header">
                     <button type="submit"
-                            class="btn dark p-x-md pull-right">{{ __('backend.save') }}</button>
+                            class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
                     <small>
                         <a href="{{route('admin.airport.list')}}">
                             <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
