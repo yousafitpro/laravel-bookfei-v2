@@ -111,7 +111,7 @@
                                 $title = $Banner->$title_var2;
                             }
                             ?>
-                            @if($table_id!=$Banner->hotel_rate_table_id)
+                            @if($table_id!=$Banner->hotel_rate_table_id && $Banner->hotel_rate_table_id==null)
                                 <tr>
 
 
