@@ -528,7 +528,7 @@ class HotelRoomTypeController extends Controller
                 $rr->date=$start;
                 $rr->hotel_room_type_id=$room_type_id;
                 $rr->day=Carbon::parse($start)->dayName;
-                $rr->is_disabled=false;
+                $rr->is_disabled=true;
 
                 $rr->save();
             }

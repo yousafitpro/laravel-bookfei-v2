@@ -223,8 +223,6 @@ class HotelRateTableController extends Controller
             ]);
         }
 
-        $t=hotelRoomRate::where('id',$id)->update([
-            $request->column=>$request->val
-        ]);
+        $t=hotelRoomRate::where('id',$id)->update([$request->column=>$request->val]);
     }
 }
