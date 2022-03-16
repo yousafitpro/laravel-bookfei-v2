@@ -99,7 +99,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="pull-left">
-                                        <input class="pull-left" value="SUN" name="is_disabled" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left"  name="is_disabled" type="checkbox" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">Disabled</small>
                                     </div>
                                     <br><br>
