@@ -263,7 +263,7 @@
                             @foreach($l as $i)
                                 <td >
 
-                                        <input  id="checkBox{{$i->id}}"  {{$i->is_disabled==1?'checked':''}} style="zoom: 1.8" type="checkbox">
+                                        <input  id="checkBox{{$i->id}}"  {{$i->is_disabled==0?'checked':''}} style="zoom: 1.8" type="checkbox">
 
 
 
@@ -355,7 +355,7 @@
                             @foreach($l as $i)
                                 <td >
 
-                                        <input id="checkBox{{$i->id}}"  {{$i->is_disabled==1?'checked':''}} style="zoom: 1.8" type="checkbox">
+                                        <input id="checkBox{{$i->id}}"  {{$i->is_disabled==0?'checked':''}} style="zoom: 1.8" type="checkbox">
 
 
                                 </td>
