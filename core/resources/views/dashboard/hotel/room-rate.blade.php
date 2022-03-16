@@ -263,7 +263,7 @@
                             @foreach($l as $i)
                                 <td >
 
-                                        <input  id="checkBox{{$i->id}}" onclick="toggleMe('{{$i->id}}')"  {{$i->room_price==null || $i->room_price==''?'':$i->is_disabled==0?'checked':''}} style="zoom: 1.8" type="checkbox">
+                                        <input  id="checkBox{{$i->id}}" onclick="toggleMe('{{$i->id}}')"  {{($i->room_price==null || $i->room_price=='')?'':$i->is_disabled==0?'checked':''}} style="zoom: 1.8" type="checkbox">
 
 
 
@@ -355,7 +355,7 @@
                             @foreach($l as $i)
                                 <td >
 
-                                        <input id="checkBox{{$i->id}}" onclick="toggleMe('{{$i->id}}')"  {{$i->room_price==null || $i->room_price==''?'':$i->is_disabled==0?'checked':''}} style="zoom: 1.8" type="checkbox">
+                                        <input id="checkBox{{$i->id}}" onclick="toggleMe('{{$i->id}}')"  {{($i->room_price==null || $i->room_price==''?)'':$i->is_disabled==0?'checked':''}} style="zoom: 1.8" type="checkbox">
 
 
                                 </td>
