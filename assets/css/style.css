@@ -46,3 +46,7 @@
     color: grey;
     border-bottom: solid 1px grey;
 }
+:root {
+    --mBtnDefaultWidth:200px;
+    --white: #ffffff;
+}
