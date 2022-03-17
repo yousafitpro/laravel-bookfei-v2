@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="container-fluid">
-                            <input style="display: none" name="hotel_room_type_id" value="{{$roomType->id}}">
+                            <input style="display: none" name="hotel_room_type_id" value="{{$id}}">
                             <div class="row">
                                 <div class="col-md-4">
                                     <small>From </small><br>

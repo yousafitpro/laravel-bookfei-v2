@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Models\area;
 use App\Models\hotel;
 use App\Models\hotelRateTable;
+use App\Models\hotelRateTableRoomType;
 use App\Models\hotelRoomRate;
 use App\Models\hotelRoomType;
 use App\Models\tour;
@@ -134,11 +135,14 @@ class HotelRateTableController extends Controller
         if ($id!=0)
         {
             $data['rateTables']=hotelRateTable::where("deleted_at",null)->get();
-            $data['roomTypes']=hotelRoomType::where("deleted_at",null)->where("hotel_id",$id)->get();
+            $data['roomTypes']=hotelRateTableRoomType::where("deleted_at",null)->where("hotel_rate_table_id",$request->table_id)->get();
             $data['hotel']=hotel::find($id);
             $data['table']=hotelRateTable::find($_GET['table_id']);
         }
-
+foreach ($data['roomTypes'] as $i)
+{
+    $i->roomType=hotelRoomType::find($i->hotel_room_type_id);
+}
 
         return view('dashboard.hotel.rate-table-tabs',$data);
     }
@@ -172,7 +176,16 @@ class HotelRateTableController extends Controller
             $data['bonus_night']=1;
         }
 
-        $city= hotelRateTable::create($data);
+       $city= hotelRateTable::create($data);
+        $roomTypes=hotelRoomType::where(['hotel_id'=>$request->hotel_id])->get();
+        foreach ($roomTypes as $i)
+        {
+              hotelRateTableRoomType::create([
+                  'user_id'=>auth()->user()->id,
+                  'hotel_rate_table_id'=>$city->id,
+                  'hotel_room_type_id'=>$i->id
+              ]);
+        }
 
         if($request->hasFile('file'))
         {

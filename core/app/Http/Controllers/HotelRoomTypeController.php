@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Models\area;
 use App\Models\hotel;
 use App\Models\hotelRateTable;
+use App\Models\hotelRateTableRoomType;
 use App\Models\hotelRoomRate;
 use App\Models\hotelRoomType;
 use App\Models\myfile;
@@ -221,9 +222,10 @@ class HotelRoomTypeController extends Controller
     {
 
         $list=hotelRoomRate::where("deleted_at",null);
-        $roomType=hotelRoomType::find($id);
+        $roomType=hotelRoomType::find(hotelRateTableRoomType::find($id)->hotel_room_type_id);
+
         $hotel=hotel::find($roomType->hotel_id);
-        $rateTable=hotelRateTable::find($roomType->hotel_rate_table_id);
+        $rateTable=hotelRateTable::find(hotelRateTableRoomType::find($id)->hotel_rate_table_id);
         $date=null;
         if ($request->has("month"))
         {
@@ -275,6 +277,7 @@ class HotelRoomTypeController extends Controller
        $data['hotel']=$hotel;
        $data['roomType']=$roomType;
        $data['rateTable']=$rateTable;
+        $data['id']=$id;
        $data['list']=$list;
 
         $data['list3']=$list3->chunk($list3->count());
@@ -334,9 +337,9 @@ class HotelRoomTypeController extends Controller
     }
     public function createRateTable(Request $request)
     {
-        $roomType=hotelRoomType::find($request->hotel_room_type_id);
+        $roomType=hotelRoomType::find(hotelRateTableRoomType::find($request->hotel_room_type_id)->hotel_room_type_id);
         $hotel=hotel::find($roomType->hotel_id);
-        $rateTable=hotelRateTable::find($roomType->hotel_rate_table_id);
+        $rateTable=hotelRateTable::find(hotelRateTableRoomType::find($request->hotel_room_type_id)->hotel_rate_table_id);
 
         $this->validate($request, [
             'start'=>'required|after_or_equal:'.$rateTable->effective_start_date,
