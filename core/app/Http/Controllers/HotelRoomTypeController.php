@@ -289,8 +289,26 @@ class HotelRoomTypeController extends Controller
        $data['rateTable']=$rateTable;
         $data['id']=$id;
        $data['list']=$list;
+       $loop=7-$list3->count();
+       $nv=$list3[0]->replicate();
 
-        $data['list3']=$list3->chunk($list3->count());
+       for ($k=1; $k<=$loop; $k++)
+       {
+           $nv->date=null;
+           $nv->adult=null;
+           $nv->child=null;
+           $nv->toddler=null;
+           $nv->infant=null;
+           $nv->senior=null;
+           $nv->tax_amount=null;
+           $nv->tax_percentage=null;
+           $nv->room_price=null;
+           $nv->senior=null;
+           $list3->prepend($nv);
+       }
+
+//       dd($list3);
+        $data['list3']=$list3->chunk(7);
 //        dd($data['list3']);
         $start=$date->startOfMonth('Y-m-d')->toDateString();
 

@@ -192,7 +192,7 @@
                         <thead>
                         <th style="background:darkgrey;">Date</th>
                         @foreach($l as $i)
-                            <th style="background:darkgrey;">{{\Carbon\Carbon::parse($i->date)->format("y-m-d")}} {{strtoupper(Str::limit($i->day,3,''))}}</th>
+                            <th style="background:darkgrey;">{{$i->date!=null?(\Carbon\Carbon::parse($i->date)->format("y-m-d")):''}} {{$i->date!=null?strtoupper(Str::limit($i->day,3,'')):''}}</th>
                         @endforeach
                         </thead>
                         <tbody>
