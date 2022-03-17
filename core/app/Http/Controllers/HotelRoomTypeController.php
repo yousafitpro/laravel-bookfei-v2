@@ -291,7 +291,7 @@ class HotelRoomTypeController extends Controller
        $data['list']=$list;
        $loop=7-$list3->count();
        $nv=$list3[0]->replicate();
-
+//as
        for ($k=1; $k<=$loop; $k++)
        {
            $nv->date=null;
