@@ -19,7 +19,7 @@
                         ?>
                         @foreach($roomTypes as $Banner)
 
-                           @if($Banner->roomType->status=='1')
+                           @if($Banner->roomType->status=='1' || $Banner->roomType->deleted_at==null)
 
                           <tr>
 
