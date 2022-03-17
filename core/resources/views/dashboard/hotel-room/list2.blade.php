@@ -19,6 +19,7 @@
                         ?>
                         @foreach($roomTypes as $Banner)
 
+                           @if($Banner->roomType->status=='1')
 
                           <tr>
 
@@ -49,7 +50,7 @@
 
                               </td>
                           </tr>
-
+                          @endif
                         @endforeach
                         <!-- .modal -->
 

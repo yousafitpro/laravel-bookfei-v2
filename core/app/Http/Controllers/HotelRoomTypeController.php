@@ -191,7 +191,17 @@ class HotelRoomTypeController extends Controller
             $data['is_senior']=1;
         }
 
+
+         $tables=hotelRateTable::where(['hotel_id'=>$request->hotel_id])->get();
         $city= hotelRoomType::create($data);
+        foreach ($tables as $t)
+        {
+            hotelRateTableRoomType::create([
+               'hotel_rate_table_id'=>$t->id,
+               'hotel_room_type_id'=>$city->id,
+                'user_id'=>auth()->user()->id,
+            ]);
+        }
 
         myfile::where('type','roomType')->where('item_id','temp')->update([
             'item_id'=>$city->id
