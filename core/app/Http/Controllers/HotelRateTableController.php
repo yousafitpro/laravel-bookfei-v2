@@ -50,6 +50,23 @@ class HotelRateTableController extends Controller
           $ntb=$tb->replicate();
             $ntb->created_at = Carbon::now();
             $ntb->save();
+            $roomTypes=hotelRateTableRoomType::where('hotel_rate_table_id',$tb->id)->get();
+            foreach ($roomTypes as $rt)
+            {
+                $nrt=$rt->replicate();
+                $nrt->hotel_rate_table_id=$ntb->id;
+                $nrt->created_at = Carbon::now();
+                $nrt->save();
+               $rtr= hotelRoomRate::where('hotel_room_type_id',$rt->id)->get();
+               foreach ($rtr as $i)
+               {
+                   $i2=$i->replicate();
+                   $i2->hotel_room_type_id=$nrt->id;
+                   $i2->save();
+               }
+
+            }
+
 
         }
 
