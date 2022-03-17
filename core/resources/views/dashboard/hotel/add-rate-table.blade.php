@@ -64,7 +64,7 @@
                         <div class="pull-left" >
                             <span onclick="early_bird()">
                                                          <input id="early_bird" name="early_bird" type="checkbox" style="zoom:1"   >
-
+{{--asas--}}
                             </span>
                             <label  >Early Bird</label>
                         </div>
