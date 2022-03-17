@@ -65,11 +65,17 @@
     <div class="row">
         <div class="col-md-6">
             <div class="pull-left m-l-2">
-                <input {{$table->early_bird=="1"?'checked':""}} name="early_bird" type="checkbox" style="zoom:1"   >
+                <span onclick="early_bird()">
+                                    <input {{$table->early_bird=="1"?'checked':""}} id="early_bird" name="early_bird" type="checkbox" style="zoom:1"   >
+
+                </span>
                 <label>Early Bird</label>
             </div>
             <div class="pull-left m-l-2">
-                <input {{$table->bonus_night=="1"?'checked':""}} name="bonus_night" type="checkbox" style="zoom:1"   >
+                <span onclick="bonus_night()">
+                                    <input {{$table->bonus_night=="1"?'checked':""}} id="bonus_night" name="bonus_night" type="checkbox" style="zoom:1"   >
+
+                </span>
                 <label>Bonus Night</label>
             </div>
             <br>
@@ -81,7 +87,7 @@
         </div>
         <div class="col-md-6">
             <label>Early Bird Before Chek in Date</label><br>
-            <input name="early_bird_before_departure_date" value="{{$table->early_bird_before_departure_date}}"  type="number" class="form-control">
+            <input id="early_bird_before_departure_date" name="early_bird_before_departure_date" value="{{$table->early_bird_before_departure_date}}"  type="number" class="form-control">
         </div>
 
 
@@ -95,7 +101,7 @@
             <label>Bonus Night Type </label><br>
 
 
-            <select class="form-control" name="bonus_night_type"  >
+            <select class="form-control" name="bonus_night_type" id="bonus_night_type"  >
 {{--                <option value="{{$table->bonus_night_type}}">{{$table->bonus_night_type}}</option>--}}
                 <option value="Accumulated" {{$table->bonus_night_type=="Accumulated"?'selected':''}}>Accumulated</option>
                 <option value="Once" {{$table->bonus_night_type=="Once"?'selected':''}}>Once</option>
@@ -119,11 +125,11 @@
         </div>
         <div class="col-md-3">
             <label>Buy X Nights</label><br>
-            <input name="x_nights" value="{{$table->x_nights}}"  type="number" class="form-control">
+            <input name="x_nights" id="x_nights" value="{{$table->x_nights}}"  type="number" class="form-control">
         </div>
         <div class="col-md-3">
             <label>Get Y Free Nights</label><br>
-            <input name="y_nights" value="{{$table->y_nights}}"  type="number" class="form-control">
+            <input name="y_nights" id="y_nights" value="{{$table->y_nights}}"  type="number" class="form-control">
         </div>
 
     </div>
@@ -149,3 +155,34 @@
 
 </div>
 </form>
+<script>
+    function early_bird()
+    {
+
+        if ($("#early_bird").prop('checked'))
+        {
+            $("#bonus_night_type").prop("disabled",false)
+            $("#x_nights").prop("disabled",false)
+            $("#y_nights").prop("disabled",false)
+        }
+        else
+        {
+            $("#bonus_night_type").prop("disabled",true)
+            $("#x_nights").prop("disabled",true)
+            $("#y_nights").prop("disabled",true)
+        }
+    }
+    function bonus_night()
+    {
+
+        if ($("#bonus_night").prop('checked'))
+        {
+            $("#early_bird_before_departure_date").prop("disabled",false)
+        }
+        else
+        {
+            $("#early_bird_before_departure_date").prop("disabled",false)
+        }
+    }
+
+</script>

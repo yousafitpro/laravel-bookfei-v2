@@ -159,9 +159,10 @@
     }
     function bonus_night()
     {
+
         if ($("#bonus_night").prop('checked'))
         {
-            $("#early_bird_before_departure_date").prop("disabled",true)
+            $("#early_bird_before_departure_date").prop("disabled",false)
         }
         else
         {
