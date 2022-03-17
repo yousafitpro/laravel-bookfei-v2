@@ -78,6 +78,8 @@
             alert("ok")
             document.getElementById('addRateTable').submit();
         }
+
     </script>
+
 @endsection
 
