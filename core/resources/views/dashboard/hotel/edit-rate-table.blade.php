@@ -87,7 +87,7 @@
         </div>
         <div class="col-md-6">
             <label>Early Bird Before Chek in Date</label><br>
-            <input id="early_bird_before_departure_date" name="early_bird_before_departure_date" value="{{$table->early_bird_before_departure_date}}"  type="number" class="form-control">
+            <input {{$table->early_bird=="0"?'disabled':""}} id="early_bird_before_departure_date" name="early_bird_before_departure_date" value="{{$table->early_bird_before_departure_date}}"  type="number" class="form-control">
         </div>
 
 
@@ -101,7 +101,7 @@
             <label>Bonus Night Type </label><br>
 
 
-            <select class="form-control" name="bonus_night_type" id="bonus_night_type"  >
+            <select class="form-control" name="bonus_night_type" id="bonus_night_type" {{$table->bonus_night=="0"?'disabled':""}}  >
 {{--                <option value="{{$table->bonus_night_type}}">{{$table->bonus_night_type}}</option>--}}
                 <option value="Accumulated" {{$table->bonus_night_type=="Accumulated"?'selected':''}}>Accumulated</option>
                 <option value="Once" {{$table->bonus_night_type=="Once"?'selected':''}}>Once</option>
@@ -125,11 +125,11 @@
         </div>
         <div class="col-md-3">
             <label>Buy X Nights</label><br>
-            <input name="x_nights" id="x_nights" value="{{$table->x_nights}}"  type="number" class="form-control">
+            <input name="x_nights" id="x_nights" {{$table->bonus_night=="0"?'disabled':""}} value="{{$table->x_nights}}"  type="number" class="form-control">
         </div>
         <div class="col-md-3">
             <label>Get Y Free Nights</label><br>
-            <input name="y_nights" id="y_nights" value="{{$table->y_nights}}"  type="number" class="form-control">
+            <input name="y_nights" id="y_nights" {{$table->bonus_night=="0"?'disabled':""}} value="{{$table->y_nights}}"  type="number" class="form-control">
         </div>
 
     </div>
@@ -175,13 +175,14 @@
     function bonus_night()
     {
 
+
         if ($("#bonus_night").prop('checked'))
         {
             $("#early_bird_before_departure_date").prop("disabled",false)
         }
         else
         {
-            $("#early_bird_before_departure_date").prop("disabled",false)
+            $("#early_bird_before_departure_date").prop("disabled",true)
         }
     }
 
