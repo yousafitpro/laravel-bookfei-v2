@@ -279,9 +279,27 @@ class HotelRoomTypeController extends Controller
 //        $list=$list->whereMonth('date',$date->month);
         $list=$list->orderBy('date')->get();
 
+         $endpoint=$list->count()/7;
 
         $list=$list->chunk(7);
+        $lcount=7-$list[floor($endpoint)]->count();
+        $nv2=$list3[0]->replicate();
+        for ($k=1; $k<=$lcount; $k++)
+        {
 
+            $nv2->date=null;
+            $nv2->adult=null;
+            $nv2->child=null;
+            $nv2->toddler=null;
+            $nv2->infant=null;
+            $nv2->senior=null;
+            $nv2->tax_amount=null;
+            $nv2->tax_percentage=null;
+            $nv2->room_price=null;
+            $nv2->senior=null;
+            $list[floor($endpoint)]->push($nv2);
+        }
+//        dd($list[floor($endpoint)]->count());
        $data=null;
 
        $data['hotel']=$hotel;
