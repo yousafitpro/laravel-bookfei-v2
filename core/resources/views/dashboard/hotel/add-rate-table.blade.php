@@ -146,15 +146,13 @@
 
        if ($("#early_bird").prop('checked'))
        {
-           $("#bonus_night_type").prop("disabled",false)
-           $("#x_nights").prop("disabled",false)
-           $("#y_nights").prop("disabled",false)
+           $("#early_bird_before_departure_date").prop("disabled",false)
+
        }
        else
        {
-           $("#bonus_night_type").prop("disabled",true)
-           $("#x_nights").prop("disabled",true)
-           $("#y_nights").prop("disabled",true)
+           $("#early_bird_before_departure_date").prop("disabled",false)
+
        }
     }
     function bonus_night()
@@ -162,11 +160,15 @@
 
         if ($("#bonus_night").prop('checked'))
         {
-            $("#early_bird_before_departure_date").prop("disabled",false)
+            $("#bonus_night_type").prop("disabled",false)
+            $("#x_nights").prop("disabled",false)
+            $("#y_nights").prop("disabled",false)
         }
         else
         {
-            $("#early_bird_before_departure_date").prop("disabled",false)
+            $("#bonus_night_type").prop("disabled",true)
+            $("#x_nights").prop("disabled",true)
+            $("#y_nights").prop("disabled",true)
         }
     }
 
