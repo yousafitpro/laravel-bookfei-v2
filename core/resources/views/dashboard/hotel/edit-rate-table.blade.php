@@ -166,7 +166,7 @@
         }
         else
         {
-            $("#early_bird_before_departure_date").prop("disabled",false)
+            $("#early_bird_before_departure_date").prop("disabled",true)
 
         }
     }
