@@ -105,7 +105,7 @@
                             @if($tour->is_adult!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Adult {{$tour->adult_age_start}}-{{$tour->adult_age_end}}" class="form-control"></div>
-                                <div class="col-md-6"><input {{$tour->is_adult=="0"?"readonly":""}}  type="number" required value="0" name="adult" class="form-control"></div>
+                                <div class="col-md-6"><input {{$tour->is_adult=="0"?"readonly":""}}  type="number" required  name="adult" class="form-control"></div>
                             </div>
 
                             <br>
@@ -113,28 +113,28 @@
                                 @if($tour->is_child!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Child {{$tour->child_age_start}}-{{$tour->child_age_end}}" class="form-control"></div>
-                                <div class="col-md-6"><input {{$tour->is_child=="0"?"readonly":""}}  type="number" required value="0" name="child" class="form-control"></div>
+                                <div class="col-md-6"><input {{$tour->is_child=="0"?"readonly":""}}  type="number" required  name="child" class="form-control"></div>
                             </div>
                             <br>
                                 @endif
                                     @if($tour->is_toddler!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Toddler {{$tour->toddler_age_start}}-{{$tour->toddler_age_end}}" class="form-control"></div>
-                                <div class="col-md-6"><input  type="number" {{$tour->toddler=="0"?"readonly":""}} required value="0" name="toddler" class="form-control"></div>
+                                <div class="col-md-6"><input  type="number" {{$tour->toddler=="0"?"readonly":""}} required  name="toddler" class="form-control"></div>
                             </div>
                             <br>
                                     @endif
                                         @if($tour->is_infant!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Infant {{$tour->infant_age_start}}-{{$tour->infant_age_end}}" class="form-control"></div>
-                                <div class="col-md-6"><input  type="number" {{$tour->is_infant=="0"?"readonly":""}} required value="0" name="infant" class="form-control"></div>
+                                <div class="col-md-6"><input  type="number" {{$tour->is_infant=="0"?"readonly":""}} required  name="infant" class="form-control"></div>
                             </div>
                             <br>
                                         @endif
                                             @if($tour->is_senior!=0)
                             <div class="row">
                                 <div class="col-md-6"><input readonly value="Senior {{$tour->senior_age_start}}-{{$tour->senior_age_end}}" class="form-control"></div>
-                                <div class="col-md-6"><input  type="number" {{$tour->is_senior=="0"?"readonly":""}} required value="0" name="senior" class="form-control"></div>
+                                <div class="col-md-6"><input  type="number" {{$tour->is_senior=="0"?"readonly":""}} required  name="senior" class="form-control"></div>
                             </div>
                                 @endif
                         </div>
@@ -175,7 +175,7 @@
                         <thead>
                         <th style="background:darkgrey;">Date</th>
                         @foreach($l as $i)
-                            <th style="background:darkgrey;">{{\Carbon\Carbon::parse($i->date)->format("y-m-d")}} {{strtoupper(Str::limit($i->day,3,''))}}</th>
+                            <th style="background:darkgrey;">{{$i->date!=null?(\Carbon\Carbon::parse($i->date)->format("y-m-d")):''}} {{$i->date!=null?strtoupper(Str::limit($i->day,3,'')):''}}</th>
                         @endforeach
                         </thead>
                         <tbody>
@@ -241,7 +241,7 @@
                             @foreach($l as $i)
                                 <td >
 
-                                    <input  id="checkBox{{$i->id}}"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
+                                    <input  id="checkBox{{$i->id}}"  {{($i->date==null || ($i->date>$tour->effective_end_date || $i->date<$tour->effective_start_date))?'disabled':''}} onclick="toggleMe('{{$i->id}}')"  {{($i->is_disabled==0 && $i->date!=null && ($i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date))?'checked':''}} style="zoom: 1.8" type="checkbox">
 
 
 
@@ -262,7 +262,7 @@
                         <thead>
                         <th style="background:darkgrey;">Date</th>
                         @foreach($l as $i)
-                            <th style="background:darkgrey;">{{\Carbon\Carbon::parse($i->date)->format("y-m-d")}} {{strtoupper(Str::limit($i->day,3,''))}}</th>
+                            <th style="background:darkgrey;">{{$i->date!=null?(\Carbon\Carbon::parse($i->date)->format("y-m-d")):''}} {{$i->date!=null?strtoupper(Str::limit($i->day,3,'')):''}}</th>
                         @endforeach
                         </thead>
                         <tbody>
@@ -328,7 +328,7 @@
                             @foreach($l as $i)
                                 <td >
 
-                                    <input id="checkBox{{$i->id}}"  {{$i->room_price!=null && $i->room_price!='' ?'checked':''}} style="zoom: 1.8" type="checkbox">
+                                    <input id="checkBox{{$i->id}}"   {{($i->date==null || ($i->date>$tour->effective_end_date || $i->date<$tour->effective_start_date))?'disabled':''}} onclick="toggleMe('{{$i->id}}')"  {{($i->is_disabled==0 &&  ($i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date)?'checked':'')}} style="zoom: 1.8" type="checkbox">
 
 
                                 </td>

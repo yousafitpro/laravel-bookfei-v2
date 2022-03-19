@@ -111,8 +111,25 @@ if ($id==0)
 //        $list=$list->whereMonth('date',$date->month);
         $list=$list->orderBy('date')->get();
 
-
+        $endpoint=$list->count()/7;
         $list=$list->chunk(7);
+        $lcount=7-$list[floor($endpoint)]->count();
+        $nv2=$list3[0]->replicate();
+        for ($k=1; $k<=$lcount; $k++)
+        {
+
+            $nv2->date=null;
+            $nv2->adult=null;
+            $nv2->child=null;
+            $nv2->toddler=null;
+            $nv2->infant=null;
+            $nv2->senior=null;
+            $nv2->tax_amount=null;
+            $nv2->tax_percentage=null;
+            $nv2->room_price=null;
+            $nv2->senior=null;
+            $list[floor($endpoint)]->push($nv2);
+        }
 
         $data=null;
 
@@ -120,7 +137,26 @@ if ($id==0)
         $data['rateTable']=$rateTable;
         $data['list']=$list;
 
-        $data['list3']=$list3->chunk($list3->count());
+        $loop=7-$list3->count();
+        $nv=$list3[0]->replicate();
+//as
+        for ($k=1; $k<=$loop; $k++)
+        {
+            $nv->date=null;
+            $nv->adult=null;
+            $nv->child=null;
+            $nv->toddler=null;
+            $nv->infant=null;
+            $nv->senior=null;
+            $nv->tax_amount=null;
+            $nv->tax_percentage=null;
+            $nv->room_price=null;
+            $nv->senior=null;
+            $list3->prepend($nv);
+        }
+
+//       dd($list3);
+        $data['list3']=$list3->chunk(7);
 //        dd($data['list3']);
         $start=$date->startOfMonth('Y-m-d')->toDateString();
 
