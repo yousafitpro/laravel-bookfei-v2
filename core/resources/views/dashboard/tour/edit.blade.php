@@ -50,12 +50,15 @@
                 <div class="row">
                     <div class="col-md-4">
 
-                        <input {{$tour->early_bird=="1"?'checked':""}} name="early_bird" type="checkbox" style="zoom:1"   >
+                       <span onclick="early_bird()">
+                            <input {{$tour->early_bird=="1"?'checked':""}} id="early_bird" name="early_bird" type="checkbox" style="zoom:1"   >
+
+                       </span>
                         <label>Early Bird</label>
                     </div>
                     <div class="col-md-4">
                         <label>Early Bird Before Chek in Date</label><br>
-                        <input name="early_bird_before_departure_date" value="{{$tour->early_bird_before_departure_date}}" required type="number" class="form-control">
+                        <input {{$tour->early_bird=="0"?'disabled':""}} id="early_bird_before_departure_date" name="early_bird_before_departure_date" value="{{$tour->early_bird_before_departure_date}}" required type="number" class="form-control">
                     </div>
                     <div class="col-md-4">
 
@@ -301,3 +304,19 @@
             </div>
 
 </form>
+<script>
+    function early_bird()
+    {
+
+        if ($("#early_bird").prop('checked'))
+        {
+            $("#early_bird_before_departure_date").prop("disabled",false)
+
+        }
+        else
+        {
+            $("#early_bird_before_departure_date").prop("disabled",true)
+
+        }
+    }
+</script>

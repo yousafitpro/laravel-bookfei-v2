@@ -162,27 +162,24 @@ if ($id==0)
 
         $end=$date->endOfMonth('Y-m-d')->toDateString();
         $empties=tourRate::where("deleted_at",null)
-
             ->whereBetween('date',[$oStart,$mend])
             ->where(function ($q)
             {
-
-                $q->where('adult','!=','');
+                $q->orWhere('adult','!=','');
+//                $q->orWhere('adult','==',null);
                 $q->orWhere('child','!=','');
+//                $q->orWhere('child','!=',null);
                 $q->orWhere('toddler','!=','');
+//                $q->orWhere('toddler','!=',null);
                 $q->orWhere('infant','!=','');
+//                $q->orWhere('infant','!=',null);
                 $q->orWhere('senior','!=','');
-
+//                $q->orWhere('senior','!=',null);
                 $q->orWhere('tax_amount','!=','');
                 $q->orWhere('tax_percentage','!=','');
 
             })
-            ->select('date')
-
-
-//
-//                    ->where('senior','==',null)
-
+            ->select('date','day')
             ->where('tour_id',$id)
 
             ->get();
@@ -484,6 +481,14 @@ if ($id==0)
             tourRate::create($data);
         }
 
+    }
+    public function updateColumn(Request $request,$id)
+    {
+
+
+
+
+        $t=tourRate::where('id',$id)->update([$request->column=>$request->val]);
     }
     public static function CreateDatesOfTheMonth($month,$room_type_id)
     {

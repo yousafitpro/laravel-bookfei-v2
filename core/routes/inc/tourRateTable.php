@@ -8,5 +8,6 @@ Route::middleware('auth')
         Route::post("update/{id}",[App\Http\Controllers\TourRateController::class,'update'])->name('admin.tourRate.update');
         Route::get("delete/{id}",[App\Http\Controllers\TourRateController::class,'delete'])->name('admin.tourRate.delete');
         Route::post("toggle/{id}",[App\Http\Controllers\TourRateController::class,'toggle'])->name('admin.tourRate.toggle');
+        Route::post("updateColumn/{id}",[App\Http\Controllers\TourRateController::class,'updateColumn'])->name('admin.tourRate.update');
 
     });

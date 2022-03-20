@@ -11,7 +11,14 @@
     <div class="padding">
 
         <div class="box box-body">
-
+            <div class="box-header">
+                <small>
+                    <a href="{{route('admin.tour.editOrCreate',$tour->id).'?tab=Basic'}}">
+                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                        Go Back
+                    </a>
+                </small>
+            </div>
             <form method="post" id="myForm" action="{{route('admin.tourRate.create')}}" enctype="multipart/form-data">
                 @csrf
             <div class="container-fluid">
@@ -38,31 +45,31 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="pull-left">
-                                        <input class="pull-left" value="7" name="sun" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="7" name="sun" type="checkbox" id="sunday" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">SUN</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="1" name="mon" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="1" name="mon" type="checkbox" id="monday" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">MON</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="2" name="tue" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="2" name="tue" type="checkbox" id="tuesday" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">TUE</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="3" name="wed" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="3" name="wed" type="checkbox" id="wednesday" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">WED</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="4" name="thu" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="4" name="thu" type="checkbox" id="thursday" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">THU</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="5" name="fri" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="5" name="fri" type="checkbox" id="friday" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">FRI</small>
                                     </div>
                                     <div class="pull-left" style="margin-left: 10px">
-                                        <input class="pull-left" value="6" name="sat" type="checkbox" style="zoom: 1.4">
+                                        <input class="pull-left" value="6" name="sat" type="checkbox" id="saturday" style="zoom: 1.4">
                                         <small class="pull-left " style="margin-left: 5px">SAT</small>
                                     </div>
                                 </div>
@@ -378,20 +385,58 @@
             var is_true=false;
             var days = @json($empties);
             days =Object.values(days);
+            var myDays=[]
+
+            if ($("#sunday").prop('checked'))
+            {
+                myDays.push("Sunday")
+            }
+            if ($("#monday").prop('checked'))
+            {
+                myDays.push("Monday")
+            }
+            if ($("#tuesday").prop('checked'))
+            {
+                myDays.push("Tuesday")
+            }
+            if ($("#wednesday").prop('checked'))
+            {
+                myDays.push("Wednesday")
+            }
+            if ($("#thursday").prop('checked'))
+            {
+                myDays.push("Thursday")
+            }
+            if ($("#friday").prop('checked'))
+            {
+                myDays.push("Friday")
+            }
+            if ($("#saturday").prop('checked'))
+            {
+                myDays.push("Saturday")
+            }
 
             console.log(days)
+
             days.forEach(function (el){
 
-
-                if (el.date>=startDate && el.date<=endDate)
+                if (el.date>=startDate && el.date<=endDate )
                 {
-                    is_true=true;
+
+                    myDays.forEach(function (item){
+
+                        if (item==el.day)
+                        {
+
+                            is_true=true
+                        }
+                    })
+
                 }
             })
 
             if (is_true)
             {
-
                 $("#ApplyDiv").modal();
             }
             else
@@ -423,5 +468,20 @@
                 $("#submit_show_msg").css("display", "none");
             }
         });
+        function updateMe(id,col,me)
+        {
+
+
+            $.ajax({
+                type:'post',
+                url:'admin/tourRateTable/updateColumn/'+id,
+                data:{"_token":"{{ csrf_token() }}",'column':col,'val':me.target.value},
+                success:function(data){
+                    // window.location.reload()
+                }})
+
+
+
+        }
     </script>
 @endpush

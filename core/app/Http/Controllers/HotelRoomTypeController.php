@@ -352,10 +352,6 @@ class HotelRoomTypeController extends Controller
 
         })
             ->select('date','day')
-
-//
-//                    ->where('senior','==',null)
-
             ->where('hotel_room_type_id',$id)
 
             ->get();

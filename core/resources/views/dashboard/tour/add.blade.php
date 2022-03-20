@@ -49,8 +49,9 @@
                 <br>
                 <div class="row">
                     <div class="col-md-4">
-
-                        <input name="early_bird" type="checkbox" style="zoom:1"   >
+ <span onclick="early_bird()">
+                        <input id="early_bird" name="early_bird" type="checkbox" style="zoom:1"   >
+ </span>
                         <label>Early Bird</label>
                     </div>
                     <div class="col-md-4">
@@ -278,3 +279,19 @@
 
     </form>
 
+<script>
+    function early_bird()
+    {
+
+        if ($("#early_bird").prop('checked'))
+        {
+            $("#early_bird_before_departure_date").prop("disabled",false)
+
+        }
+        else
+        {
+            $("#early_bird_before_departure_date").prop("disabled",true)
+
+        }
+    }
+</script>
