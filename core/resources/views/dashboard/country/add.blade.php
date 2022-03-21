@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.master')
-@section('title', "Add Room Type")
+@section('title', "Add Country")
 @section('content')
     <form method="post" action="{{route('admin.country.create')}}" enctype="multipart/form-data">
         @csrf

@@ -1,3 +1,5 @@
+
+
 <form method="post" id="addHotel" action="{{route('admin.hotel.create')}}" enctype="multipart/form-data">
     @csrf
     <div class="container-fluid">

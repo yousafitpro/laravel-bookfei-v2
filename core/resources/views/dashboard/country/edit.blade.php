@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.master')
-@section('title', "Add Room Type")
+@section('title', "Update Country")
 @section('content')
     <form method="post" action="{{route('admin.country.update',$Banner->id)}}" enctype="multipart/form-data">
         @csrf

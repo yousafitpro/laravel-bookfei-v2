@@ -1,4 +1,6 @@
 @extends('dashboard.layouts.master')
+@section('title', 'Hotel Rate Table')
+
 @section('content')
     <div class="padding">
         <div class="card ">

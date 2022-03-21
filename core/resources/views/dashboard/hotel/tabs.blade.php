@@ -1,4 +1,5 @@
 @extends('dashboard.layouts.master')
+@section('title', 'Hotel')
 @section('content')
     <div class="padding">
 <div class="card ">
@@ -70,20 +71,23 @@
                     @endif
 
             </div>
-            <br>
-<br>
+
             <!-- Tab content -->
             <div id="Basic" class="mtabcontent {{$_GET['tab']=="Basic"?'mtabActive':''}}">
 
                 @if($hotel_id==0)
+
                 @include('dashboard.hotel.add-hotel')
                 @else
+
                 @include('dashboard.hotel.edit-hotel')
                 @endif
             </div>
 
             <div id="RoomType" class="mtabcontent {{$_GET['tab']=="RoomType"?'mtabActive':''}}">
+
                 @if($hotel_id!=0)
+
              @include('dashboard.hotel-room.list')
                    @endif
             </div>
@@ -91,6 +95,7 @@
             <div id="RateTable" class="mtabcontent {{$_GET['tab']=="RateTable"?'mtabActive':''}}">
                 @if($hotel_id!=0)
            @include('dashboard.hotel.rate-table')
+                    @section('title', 'Hotel Rate Tables')
                 @endif
             </div>
 

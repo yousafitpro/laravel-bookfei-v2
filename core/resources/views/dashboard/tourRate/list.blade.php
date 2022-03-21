@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.master')
-@section('title', $title)
+@section('title', 'Tour Rate Table')
 @section('content')
 <style>
     td,th{
@@ -248,7 +248,7 @@
                             @foreach($l as $i)
                                 <td >
 
-                                    <input  id="checkBox{{$i->id}}"  {{($i->date==null || ($i->date>$tour->effective_end_date || $i->date<$tour->effective_start_date))?'disabled':''}} onclick="toggleMe('{{$i->id}}')"  {{($i->is_disabled==0 && $i->date!=null && ($i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date))?'checked':''}} style="zoom: 1.8" type="checkbox">
+                                    <input  id="checkBox{{$i->id}}"  {{($i->date==null || ($i->date>$tour->effective_end_date || $i->date<$tour->effective_start_date))?'disabled':''}} onclick="toggleMe('{{$i->id}}')"  {{(($i->is_disabled==0 && $i->date!=null && ($i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date)) && ($i->adult!='' || $i->child!='' || $i->toddler!='' || $i->infant!='' || $i->senior!='')  )?'checked':''}} style="zoom: 1.8" type="checkbox">
 
 
 
@@ -335,7 +335,7 @@
                             @foreach($l as $i)
                                 <td >
 
-                                    <input id="checkBox{{$i->id}}"   {{($i->date==null || ($i->date>$tour->effective_end_date || $i->date<$tour->effective_start_date))?'disabled':''}} onclick="toggleMe('{{$i->id}}')"  {{($i->is_disabled==0 &&  ($i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date)?'checked':'')}} style="zoom: 1.8" type="checkbox">
+                                    <input id="checkBox{{$i->id}}"   {{($i->date==null || ($i->date>$tour->effective_end_date || $i->date<$tour->effective_start_date))?'disabled':''}} onclick="toggleMe('{{$i->id}}')"   {{(($i->is_disabled==0 && $i->date!=null && ($i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date)) && ($i->adult!='' || $i->child!='' || $i->toddler!='' || $i->infant!='' || $i->senior!='')  )?'checked':''}} style="zoom: 1.8" type="checkbox">
 
 
                                 </td>

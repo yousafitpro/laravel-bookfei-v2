@@ -1,5 +1,5 @@
 @extends('dashboard.layouts.master')
-@section('title', $title)
+@section('title', "Cities")
 @section('content')
 
     <div class="padding">

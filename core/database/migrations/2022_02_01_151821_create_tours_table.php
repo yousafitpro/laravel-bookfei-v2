@@ -22,7 +22,7 @@ class CreateToursTable extends Migration
             $table->date("effective_start_date");
             $table->date("effective_end_date");
             $table->boolean("early_bird")->default(false);
-            $table->integer("early_bird_before_departure_date")->default(0);
+            $table->integer("early_bird_before_departure_date")->nullable()->default(0);
 
             $table->string("adult_age_start")->nullable();
             $table->string("adult_age_end")->nullable();

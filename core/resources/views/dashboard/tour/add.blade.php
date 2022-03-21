@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-md-4">
                         <label>Early Bird Before Chek in Date</label><br>
-                        <input name="early_bird_before_departure_date" value="{{old('early_bird_before_departure_date')}}" required type="number" class="form-control">
+                        <input disabled name="early_bird_before_departure_date" id="early_bird_before_departure_date" value="{{old('early_bird_before_departure_date')}}" required type="number" class="form-control">
                     </div>
                     <div class="col-md-4">
 

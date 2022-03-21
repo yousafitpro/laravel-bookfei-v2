@@ -1,3 +1,4 @@
+
 <form method="post" id="editHotel" action="{{route('admin.hotel.update',$hotel->id)}}" enctype="multipart/form-data">
     @csrf
     <div class="container-fluid">

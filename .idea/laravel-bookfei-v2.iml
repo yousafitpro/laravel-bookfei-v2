@@ -160,5 +160,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="zeropayd" />
+    <orderEntry type="module" module-name="laravel-8-auth" />
   </component>
 </module>

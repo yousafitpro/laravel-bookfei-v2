@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../laravel-mageye-voternews/.idea/laravel-8-auth.iml" filepath="$PROJECT_DIR$/../laravel-mageye-voternews/.idea/laravel-8-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/laravel-bookfei-v2.iml" filepath="$PROJECT_DIR$/.idea/laravel-bookfei-v2.iml" />
       <module fileurl="file://$PROJECT_DIR$/../zeropayd/.idea/zeropayd.iml" filepath="$PROJECT_DIR$/../zeropayd/.idea/zeropayd.iml" />
     </modules>

@@ -1,10 +1,20 @@
 @extends('dashboard.layouts.master')
+@section('title')
+@section('title', 'Tour')
+@endsection
 @section('content')
     <div class="padding">
 <div class="card ">
 <div class="container-fluid">
-    <br>
+
     <div class="row box-header">
+
+        <small>
+            <a href="{{route('admin.tour.list')}}">
+                <i class="fa fa-arrow-circle-left pull-left" aria-hidden="true"></i>
+                Go Back
+            </a>
+        </small>
         @if($_GET['tab']=="Basic" && $tour_id==0 )
             <button onclick="document.getElementById('tourAddForm').submit()"
                     class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
@@ -14,15 +24,14 @@
                         class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.update') }}</button>
             @endif
 
+        <div class="row">
+            <div class="col-md-12 p-l-2">
+                <h5 style="font-weight: bold">Tour : Rate Table</h5>
 
-        <div class="col-md-12">
-            <small>
-                <a href="{{route('admin.tour.list')}}">
-                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-                    Go Back
-                </a>
-            </small>
+
+            </div>
         </div>
+
     </div>
 
 
@@ -43,8 +52,7 @@
 
 
             </div>
-            <br>
-<br>
+
             <!-- Tab content -->
             <div id="Basic" class="mtabcontent {{$_GET['tab']=="Basic"?'mtabActive':''}}">
 

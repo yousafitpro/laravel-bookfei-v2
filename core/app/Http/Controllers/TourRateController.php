@@ -215,6 +215,9 @@ if ($id==0)
         $this->validate($request, [
             'start'=>'required|after_or_equal:'.$tour->effective_start_date,
             'end'=>'required|before_or_equal:'.$tour->effective_end_date
+        ],[
+            'start.after_or_equal'=>'Start must be equal or after than Effective start date',
+            'end.before_or_equal'=>'End  must be equal or before than Effective end date'
         ]);
         if (!$request->has('sun') &&
             !$request->has('mon') &&
