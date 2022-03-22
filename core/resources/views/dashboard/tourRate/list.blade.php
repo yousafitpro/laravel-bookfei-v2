@@ -195,7 +195,7 @@
                             <tr>
                                 <td style="background: lightgrey; min-width: 180px">Extra Bed Adult {{$tour->adult_age_start}}-{{$tour->adult_age_end}}</td>
                                 @foreach($l as $i)
-                                    <td><input onkeyup="updateMe('{{$i->id}}','adult',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->adult}}"></td>
+                                    <td><input id="adult{{$i->id}}" onkeyup="updateMe('{{$i->id}}','adult',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->adult}}"></td>
                                 @endforeach
                             </tr>
                         @endif
@@ -203,7 +203,7 @@
                             <tr>
                                 <td style="background: lightgrey;">Extra Bed Child {{$tour->child_age_start}}-{{$tour->child_age_end}}</td>
                                 @foreach($l as $i)
-                                    <td><input onkeyup="updateMe('{{$i->id}}','child',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->child}}"></td>
+                                    <td><input id="child{{$i->id}}" onkeyup="updateMe('{{$i->id}}','child',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->child}}"></td>
                                 @endforeach
                             </tr>
                         @endif
@@ -213,7 +213,7 @@
                                 <td style="background: lightgrey;">Extra Bed Toddler {{$tour->toddler_age_start}}-{{$tour->toddler_age_end}}</td>
                                 @foreach($l as $i)
 
-                                    <td><input onkeyup="updateMe('{{$i->id}}','toddler',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->toddler}}"></td>
+                                    <td><input id="toddler{{$i->id}}" onkeyup="updateMe('{{$i->id}}','toddler',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->toddler}}"></td>
                                 @endforeach
                             </tr>
                         @endif
@@ -221,7 +221,7 @@
                             <tr>
                                 <td style="background: lightgrey;">Extra Bed Infant {{$tour->infant_age_start}}-{{$tour->infant_age_end}}</td>
                                 @foreach($l as $i)
-                                    <td><input onkeyup="updateMe('{{$i->id}}','infant',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->infant}}"></td>
+                                    <td><input id="infant{{$i->id}}" onkeyup="updateMe('{{$i->id}}','infant',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->infant}}"></td>
                                 @endforeach
                             </tr>
                         @endif
@@ -229,20 +229,20 @@
                             <tr>
                                 <td style="background: lightgrey;">Extra Bed Senior {{$tour->senior_age_start}}-{{$tour->senior_age_end}}</td>
                                 @foreach($l as $i)
-                                    <td><input onkeyup="updateMe('{{$i->id}}','senior',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->senior}}"></td>
+                                    <td><input id="senior{{$i->id}}" onkeyup="updateMe('{{$i->id}}','senior',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->senior}}"></td>
                                 @endforeach
                             </tr>
                         @endif
                         <tr>
                             <td style="background: lightgrey;">Tax Percentage</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
+                                <td><input id="tax" onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
                             @endforeach
                         </tr>
                         <tr>
                             <td style="background: lightgrey;">Tax Amount</td>
                             @foreach($l as $i)
-                                <td><input onkeyup="updateMe('{{$i->id}}','tax_amount',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_amount}}"></td>
+                                <td><input id="amount{{$i->id}}" onkeyup="updateMe('{{$i->id}}','tax_amount',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_amount}}"></td>
                             @endforeach
                         </tr>
                         <tr>
