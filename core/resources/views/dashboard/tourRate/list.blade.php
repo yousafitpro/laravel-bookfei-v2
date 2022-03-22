@@ -236,7 +236,7 @@
                         <tr>
                             <td style="background: lightgrey;">Tax Percentage</td>
                             @foreach($l as $i)
-                                <td><input id="tax" onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
+                                <td><input id="tax{{$i->id}}" onkeyup="updateMe('{{$i->id}}','tax_percentage',event)" {{$i->date<=$tour->effective_end_date && $i->date>=$tour->effective_start_date ?'':'disabled'}} class="form-control" type="number" value="{{$i->tax_percentage}}"></td>
                             @endforeach
                         </tr>
                         <tr>
