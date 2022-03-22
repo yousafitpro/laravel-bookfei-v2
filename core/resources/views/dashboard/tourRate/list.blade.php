@@ -495,6 +495,14 @@
             {
                 metrue=true;
             }
+            if($("#tax"+id).val()!=undefined && $("#tax"+id).val()!='')
+            {
+                metrue=true;
+            }
+            if($("#amount"+id).val()!=undefined && $("#amount"+id).val()!='')
+            {
+                metrue=true;
+            }
 
 
             if (metrue)
