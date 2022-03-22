@@ -112,8 +112,11 @@ if ($id==0)
         $list=$list->orderBy('date')->get();
 
         $endpoint=$list->count()/7;
+
         $list=$list->chunk(7);
-        $lcount=7-$list[floor($endpoint)]->count();
+
+        $lcount=7-$list[ceil($endpoint)-1]->count();
+
         $nv2=$list3[0]->replicate();
         for ($k=1; $k<=$lcount; $k++)
         {
