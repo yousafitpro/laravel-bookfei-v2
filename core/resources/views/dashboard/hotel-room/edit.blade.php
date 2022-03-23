@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.master')
 @section('title', "Edit Room Type")
 @section('content')
-    <form method="post" action="{{route('admin.hotelRoom.update',$Banner->id)}}" enctype="multipart/form-data">
+    <form method="post" id="editRoom" action="{{route('admin.hotelRoom.update',$Banner->id)}}" enctype="multipart/form-data">
         @csrf
     <div class="padding">
         <div class="card ">
@@ -14,9 +14,11 @@
                     <br>
 
                 </small>
-                <button type="submit"
-                        class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.update') }}</button>
+                <button  onclick="updateRoom('{{route('admin.hotel.editOrCreate',$Banner->hotel_id).'?tab=RoomType'}}')"
+                         class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
 
+                <button onclick="updateRoom('')"
+                        class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
 
                 <br>
                 <h2 style="font-weight: bold">Hotel Room</h2>
@@ -26,6 +28,7 @@
 
                 </h6>
             </div>
+            <input name="redirectUrl" id="redirectUrl" value="" hidden class="form-control">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
@@ -203,4 +206,13 @@
         </div>
     </div>
     </form>
+    <script>
+        function updateRoom(url)
+        {
+
+
+            $("#redirectUrl").val(url)
+            document.getElementById('editRoom').submit()
+        }
+    </script>
 @endsection

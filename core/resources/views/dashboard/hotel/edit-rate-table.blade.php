@@ -4,6 +4,7 @@
     <input hidden  name="hotel_id" value="{{$hotel_id}}">
 <div class="container-fluid">
     <div class="row">
+        <input id="redirectUrl" name="redirectUrl" hidden value=""  class="form-control">
 
         <div class="col-md-6 ">
             <label>Rate Table Name</label><br>

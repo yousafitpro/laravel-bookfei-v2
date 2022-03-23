@@ -2,7 +2,7 @@
     <form method="post" id="tourAddForm" action="{{route('admin.tour.create')}}" enctype="multipart/form-data">
         @csrf
 
-
+        <input id="redirectUrl" name="redirectUrl" hidden value=""  class="form-control">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">

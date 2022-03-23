@@ -4,6 +4,7 @@
 <form method="post" id="addRateTable" action="{{route('admin.hotelRateTable.create')}}" enctype="multipart/form-data">
     @csrf
 <input hidden  name="hotel_id" value="{{$hotel_id}}">
+    <input id="redirectUrl" name="redirectUrl" hidden value=""  class="form-control">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">

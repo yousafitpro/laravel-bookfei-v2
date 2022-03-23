@@ -14,12 +14,19 @@
                             Go Back</a>
                     </small>
                     @if($_GET['tab']=="Basic" && $table_id==0 )
-                    <button onclick="document.getElementById('addRateTable').submit()"
+                        <button  onclick="addRatetable('')"
+                                 class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
+
+                        <button onclick="document.getElementById('addRateTable').submit()"
                             class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
                     @endif
                         @if($_GET['tab']=="Basic" && $table_id!=0)
-                            <button onclick="document.getElementById('editRateTable').submit()"
-                                    class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.update') }}</button>
+                        <button  onclick="submitRatetable('{{route('admin.hotel.editOrCreate',$hotel->id).'?tab=RateTable'}}')"
+                                 class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
+
+                        <button onclick="submitRatetable('')"
+                                class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
+
                         @endif
 
                 </div>
@@ -81,6 +88,22 @@
             document.getElementById('addRateTable').submit();
         }
 
+    </script>
+    <script>
+        function submitRatetable(url)
+        {
+
+
+            $("#redirectUrl").val(url)
+            document.getElementById('editRateTable').submit()
+        }
+        function addRatetable(url)
+        {
+
+
+            $("#redirectUrl").val(url)
+            document.getElementById('addRateTable').submit()
+        }
     </script>
 
 @endsection

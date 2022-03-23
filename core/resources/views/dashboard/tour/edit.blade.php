@@ -1,7 +1,7 @@
 
 <form method="post" id="tourUpdateForm" action="{{route('admin.tour.update',$tour->id)}}" enctype="multipart/form-data">
     @csrf
-
+    <input id="redirectUrl" name="redirectUrl" hidden value=""  class="form-control">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">

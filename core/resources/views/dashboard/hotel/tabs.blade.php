@@ -7,12 +7,19 @@
     <br>
     <div class="row box-header">
         @if($_GET['tab']=="Basic" && $hotel_id==0 )
-            <button onclick="document.getElementById('addHotel').submit()"
+            <button  onclick="addHotel('{{route('admin.hotel.list')}}')"
+                     class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save')  }} & Close </button>
+
+            <button onclick="addHotel('')"
                     class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
         @endif
             @if($_GET['tab']=="Basic" && $hotel_id!=0 )
-                <button onclick="document.getElementById('editHotel').submit()"
-                        class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.update') }}</button>
+
+                <button  onclick="submitHotel('{{route('admin.hotel.list')}}')"
+                        class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
+
+                <button onclick="submitHotel('')"
+                        class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
             @endif
 
 
@@ -105,5 +112,21 @@
 
 </div>
     </div>
+    <script>
+        function submitHotel(url)
+        {
+
+
+            $("#redirectUrl").val(url)
+            document.getElementById('editHotel').submit()
+        }
+        function addHotel(url)
+        {
+
+
+            $("#redirectUrl").val(url)
+            document.getElementById('addHotel').submit()
+        }
+    </script>
 @endsection
 

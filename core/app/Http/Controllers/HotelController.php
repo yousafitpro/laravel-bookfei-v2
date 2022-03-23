@@ -197,7 +197,7 @@ class HotelController extends Controller
 
         }
 
-        $data=$request->except(['file','_token']);
+        $data=$request->except(['file','_token','redirectUrl']);
 
 
         if (!$request->has("is_adult"))
@@ -264,8 +264,11 @@ class HotelController extends Controller
 
             $city->save();
         }
-
-        return redirect(route('admin.hotel.editOrCreate',$id).'?tab=Basic')->with('doneMessage', __('backend.updateDone'));
+if ($request->redirectUrl=='')
+{
+    return redirect()->back()->with('doneMessage', __('backend.updateDone'));
+}
+        return redirect($request->redirectUrl);
 
     }
     public function create(Request $request)
@@ -381,7 +384,7 @@ class HotelController extends Controller
 
         }
 
-        $data=$request->except('file');
+        $data=$request->except('file','redirectUrl');
 
         if (!$request->has("is_adult"))
         {
@@ -447,7 +450,12 @@ class HotelController extends Controller
 
             $city->save();
         }
+        if ($request->redirectUrl=='')
+        {
+            return redirect(route('admin.hotel.editOrCreate',$city->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
 
+        }
+        return redirect($request->redirectUrl);
         return redirect(route('admin.hotel.editOrCreate',$city->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
 
     }

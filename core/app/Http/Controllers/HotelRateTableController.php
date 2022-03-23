@@ -97,7 +97,7 @@ class HotelRateTableController extends Controller
         {
             return redirect()->back()->with('errorMessage', 'Code Already Existed');
         }
-        $data=$request->except(['file','_token']);
+        $data=$request->except(['file','_token','redirectUrl']);
 
         if (!$request->has("early_bird"))
         {
@@ -139,7 +139,12 @@ class HotelRateTableController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.updateDone'));
+        if ($request->redirectUrl=='')
+        {
+            return redirect()->back()->with('doneMessage', __('backend.updateDone'));
+        }
+        return redirect($request->redirectUrl);
+//        return redirect()->back()->with('doneMessage', __('backend.updateDone'));
     }
     public function editOrCreate(Request $request,$id)
     {
@@ -170,7 +175,7 @@ foreach ($data['roomTypes'] as $i)
             'effective_end_date' => 'after_or_equal:effective_start_date',
             'code'=>'unique:hotel_rate_tables,code'
         ]);
-        $data=$request->except('file');
+        $data=$request->except('file','redirectUrl');
 
         if (!$request->has("early_bird"))
         {
@@ -215,7 +220,13 @@ foreach ($data['roomTypes'] as $i)
 
             $city->save();
         }
-        return redirect(route('admin.hotelRateTable.editOrCreate',$request->hotel_id).'?tab=RoomType&table_id='.$city->id)->with('doneMessage', __('backend.addDone'));
+        if ($request->redirectUrl=='')
+        {
+            return redirect(route('admin.hotelRateTable.editOrCreate',$request->hotel_id).'?tab=RoomType&table_id='.$city->id)->with('doneMessage', __('backend.addDone'));
+
+        }
+        return redirect($request->redirectUrl);
+//        return redirect(route('admin.hotelRateTable.editOrCreate',$request->hotel_id).'?tab=RoomType&table_id='.$city->id)->with('doneMessage', __('backend.addDone'));
 
     }
     public function toggle(Request $request,$id)

@@ -1,10 +1,12 @@
 
 <form method="post" id="editHotel" action="{{route('admin.hotel.update',$hotel->id)}}" enctype="multipart/form-data">
+
     @csrf
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
                 <label>Hotel Name</label><br>
+                <input id="redirectUrl" name="redirectUrl" hidden value=""  class="form-control">
                 <input name="name" value="{{$hotel->name}}" required class="form-control">
             </div>
             <div class="col-md-4">

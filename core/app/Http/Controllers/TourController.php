@@ -182,7 +182,7 @@ class TourController extends Controller
         $this->validate($request, [
             'effective_end_date' => 'after_or_equal:effective_start_date'
         ]);
-        $data=$request->except(['file','_token']);
+        $data=$request->except(['file','_token','redirectUrl']);
 
         if (!$request->has("early_bird"))
         {
@@ -258,7 +258,12 @@ class TourController extends Controller
 
             $city->save();
         }
+        if ($request->redirectUrl=='')
+        {
         return redirect()->back()->with('doneMessage', __('backend.updateDone'));
+        }
+        return redirect($request->redirectUrl);
+//        return redirect()->back()->with('doneMessage', __('backend.updateDone'));
     }
     public function create(Request $request)
     {
@@ -372,7 +377,7 @@ class TourController extends Controller
         $this->validate($request, [
             'effective_end_date' => 'after_or_equal:effective_start_date'
         ]);
-        $data=$request->except('file');
+        $data=$request->except('file','redirectUrl');
 
         if (!$request->has("early_bird"))
         {
@@ -448,7 +453,12 @@ class TourController extends Controller
 
             $city->save();
         }
+        if ($request->redirectUrl=='')
+        {
         return redirect(route('admin.tour.editOrCreate',$city->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
+        }
+        return redirect($request->redirectUrl);
+//        return redirect(route('admin.tour.editOrCreate',$city->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
     }
     public function deleteBulk(Request $request)
     {

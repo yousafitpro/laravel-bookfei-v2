@@ -62,7 +62,7 @@ class HotelRoomTypeController extends Controller
         $this->validate($request, [
             'effective_end_date' => 'after_or_equal:effective_start_date'
         ]);
-        $data=$request->except(['file','_token','myImage']);
+        $data=$request->except(['file','_token','myImage','redirectUrl']);
 
 
         if (!$request->has("is_adult"))
@@ -117,8 +117,12 @@ class HotelRoomTypeController extends Controller
         }
 
         hotelRoomType::where('id',$id)->update($data);
-
-        return redirect(route('admin.hotel.editOrCreate',hotelRoomType::find($id)->hotel_id).'?tab=RoomType')->with('doneMessage', __('backend.updateDone'));
+        if ($request->redirectUrl=='')
+        {
+            return redirect()->back()->with('doneMessage', __('backend.updateDone'));
+        }
+        return redirect($request->redirectUrl);
+//        return redirect(route('admin.hotel.editOrCreate',hotelRoomType::find($id)->hotel_id).'?tab=RoomType')->with('doneMessage', __('backend.updateDone'));
     }
     public function create(Request $request)
     {
