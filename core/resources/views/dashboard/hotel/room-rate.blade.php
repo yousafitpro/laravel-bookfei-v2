@@ -11,10 +11,15 @@
             <div class="box-header">
                 <small>
                     <a href="{{route('admin.hotelRateTable.editOrCreate',$hotel->id).'?tab=RoomType&table_id='.$rateTable->id}}">
-                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                        <i class="fa fa-arrow-circle-left pull-left" aria-hidden="true"></i>
                         Go Back
                     </a>
                 </small>
+                <a href="{{route('admin.hotelRateTable.editOrCreate',$hotel->id).'?tab=RoomType&table_id='.$rateTable->id}}">
+                    <button class="btn dark pull-right">Close</button>
+
+                </a>
+
             </div>
             <div class="box-header">
                 <label>Hotel: {{$hotel->name}} - {{$roomType->name}} ({{$rateTable->name}})</label>

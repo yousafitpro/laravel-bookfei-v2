@@ -117,7 +117,7 @@ if ($id==0)
 
         $lcount=7-$list[ceil($endpoint)-1]->count();
 
-        $nv2=$list3[0]->replicate();
+        $nv2=$list[0][0]->replicate();
         for ($k=1; $k<=$lcount; $k++)
         {
 
@@ -141,7 +141,7 @@ if ($id==0)
         $data['list']=$list;
 
         $loop=7-$list3->count();
-        $nv=$list3[0]->replicate();
+        $nv=$list[0][0]->replicate();
 //as
         for ($k=1; $k<=$loop; $k++)
         {

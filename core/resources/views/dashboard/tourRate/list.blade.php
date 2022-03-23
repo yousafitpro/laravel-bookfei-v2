@@ -12,14 +12,22 @@
 
         <div class="box box-body">
             <div class="box-header">
+                <a href="{{route('admin.tour.editOrCreate',$tour->id).'?tab=Basic'}}">
+                    <button class="btn dark pull-right">Close</button>
+
+                </a>
                 <small>
-                    <a href="{{route('admin.tour.editOrCreate',$tour->id).'?tab=Basic'}}">
+                    <a href="{{route('admin.tour.editOrCreate',$tour->id).'?tab=Basic'}}" class="pull-left">
                         <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                         Go Back
                     </a>
-                </small><br>
 
-                        <h6 style="font-weight: bold; margin-left: 10px">Tour Rate Table</h6>
+                </small>
+
+                <br>
+                <br>
+
+                        <h6 style="font-weight: bold; margin-left: 10px">Tour: Rate Table</h6>
 
 
 
@@ -96,8 +104,8 @@
                                         <small class="pull-left " style="margin-left: 5px">Disabled</small>
                                     </div>
                                     <br><br>
-                                    <label onclick="checkApply()"  style="width: 200px"
-                                            class="btn primary p-x-md">{{ __('backend.apply') }}</label>
+                                    <label onclick="checkApply()"  style="width: 200px;"
+                                            class="btn dark p-x-md">{{ __('backend.apply') }}</label>
                                 </div>
                             </div><br>
                         </div>

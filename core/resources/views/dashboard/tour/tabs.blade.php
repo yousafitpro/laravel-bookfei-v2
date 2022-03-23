@@ -26,7 +26,7 @@
 
         <div class="row">
             <div class="col-md-12 p-l-2">
-                <h5 style="font-weight: bold">Tour : Rate Table</h5>
+                <h5 style="font-weight: bold">Tour: Rate Table </h5>
 
 
             </div>
