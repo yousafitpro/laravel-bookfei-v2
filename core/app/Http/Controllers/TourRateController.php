@@ -139,27 +139,34 @@ if ($id==0)
         $data['tour']=$tour;
         $data['rateTable']=$rateTable;
         $data['list']=$list;
-
-        $loop=7-$list3->count();
-        $nv=$list[0][0]->replicate();
+if ($list3->count()>0)
+{
+    $loop=7-$list3->count();
+    $nv=$list3[0]->replicate();
 //as
-        for ($k=1; $k<=$loop; $k++)
-        {
-            $nv->date=null;
-            $nv->adult=null;
-            $nv->child=null;
-            $nv->toddler=null;
-            $nv->infant=null;
-            $nv->senior=null;
-            $nv->tax_amount=null;
-            $nv->tax_percentage=null;
-            $nv->room_price=null;
-            $nv->senior=null;
-            $list3->prepend($nv);
-        }
+    for ($k=1; $k<=$loop; $k++)
+    {
+        $nv->date=null;
+        $nv->adult=null;
+        $nv->child=null;
+        $nv->toddler=null;
+        $nv->infant=null;
+        $nv->senior=null;
+        $nv->tax_amount=null;
+        $nv->tax_percentage=null;
+        $nv->room_price=null;
+        $nv->senior=null;
+        $list3->prepend($nv);
+    }
 
 //       dd($list3);
-        $data['list3']=$list3->chunk(7);
+    $data['list3']=$list3->chunk(7);
+}
+else
+        {
+            $data['list3']=[];
+        }
+
 //        dd($data['list3']);
         $start=$date->startOfMonth('Y-m-d')->toDateString();
 
