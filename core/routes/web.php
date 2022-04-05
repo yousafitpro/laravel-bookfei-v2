@@ -34,6 +34,11 @@ include "inc/cruiseRoom.php";
 include "inc/cruise-rate-table.php";
 include "inc/config.php";
 include "inc/myfile-uploader.php";
+include "inc/category.php";
+include "inc/destination.php";
+include "inc/tag.php";
+include "inc/offer.php";
+include "inc/travel_product.php";
 // Language Route
 Route::post('/lang', [LanguageController::class, 'index'])->middleware('LanguageSwitcher')->name('lang');
 // For Language direct URL link

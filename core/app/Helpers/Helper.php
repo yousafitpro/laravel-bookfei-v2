@@ -65,6 +65,36 @@ class Helper
         $res=App\Models\area::find($id);
         return $res;
     }
+    static function tags()
+    {
+        $list=App\Models\Tag::where('deleted_at',null)->where('status',1)->get();
+        return $list;
+    }
+    static function get_tag($id)
+    {
+        $res=App\Models\Tag::find($id);
+        return $res;
+    }
+    static function Categories()
+    {
+        $list=App\Models\Category::where('deleted_at',null)->where('status',1)->get();
+        return $list;
+    }
+    static function get_Category($id)
+    {
+        $res=App\Models\Category::find($id);
+        return $res;
+    }
+    static function Destinations()
+    {
+        $list=App\Models\Destination::where('deleted_at',null)->where('status',1)->get();
+        return $list;
+    }
+    static function get_Destination($id)
+    {
+        $res=App\Models\Destination::find($id);
+        return $res;
+    }
     static function Cities()
     {
         $list=App\Models\city::where('deleted_at',null)->where('status',1)->get();

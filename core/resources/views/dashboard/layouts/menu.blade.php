@@ -213,6 +213,48 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                             $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
                             ?>
                             <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                <a href="{{ route('admin.travel_product.list') }}">
+                  <span class="nav-icon">
+<i class="fa fa-car" aria-hidden="true"></i>
+                  </span>
+                                    <span class="nav-text">{{ __('backend.travel_products') }}
+                                        @if( @$webmailsNewCount >0)
+                                            <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
+                                        @endif
+                                    </span>
+
+                                </a>
+                            </li>
+                        @endif
+                    @endif
+                    @if(Helper::GeneralWebmasterSettings("inbox_status"))
+                        @if(@Auth::user()->permissionsGroup->inbox_status)
+                            <?php
+                            $currentFolder = "webmails"; // Put folder name here
+                            $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
+                            ?>
+                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                <a href="{{ route('admin.offer.list') }}">
+                  <span class="nav-icon">
+<i class="fa fa-car" aria-hidden="true"></i>
+                  </span>
+                                    <span class="nav-text">{{ __('backend.offers') }}
+                                        @if( @$webmailsNewCount >0)
+                                            <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
+                                        @endif
+                                    </span>
+
+                                </a>
+                            </li>
+                        @endif
+                    @endif
+                    @if(Helper::GeneralWebmasterSettings("inbox_status"))
+                        @if(@Auth::user()->permissionsGroup->inbox_status)
+                            <?php
+                            $currentFolder = "webmails"; // Put folder name here
+                            $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
+                            ?>
+                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
                                 <a href="{{ route('admin.hotel.list') }}">
                   <span class="nav-icon">
 <i class="fa fa-home" aria-hidden="true"></i>
@@ -437,6 +479,69 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                 <i class="fa fa-usd" aria-hidden="true"></i>
                   </span>
                                     <span class="nav-text">{{ __('backend.currencies') }}
+                                        @if( @$webmailsNewCount >0)
+                                            <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
+                                        @endif
+                                    </span>
+
+                                </a>
+                            </li>
+                        @endif
+                    @endif
+                    @if(Helper::GeneralWebmasterSettings("inbox_status"))
+                        @if(@Auth::user()->permissionsGroup->inbox_status)
+                            <?php
+                            $currentFolder = "webmails"; // Put folder name here
+                            $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
+                            ?>
+                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                <a href="{{ route('admin.destination.list') }}">
+                  <span class="nav-icon">
+                <i class="fa fa-usd" aria-hidden="true"></i>
+                  </span>
+                                    <span class="nav-text">{{ __('backend.destinations') }}
+                                        @if( @$webmailsNewCount >0)
+                                            <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
+                                        @endif
+                                    </span>
+
+                                </a>
+                            </li>
+                        @endif
+                    @endif
+                    @if(Helper::GeneralWebmasterSettings("inbox_status"))
+                        @if(@Auth::user()->permissionsGroup->inbox_status)
+                            <?php
+                            $currentFolder = "webmails"; // Put folder name here
+                            $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
+                            ?>
+                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                <a href="{{ route('admin.category.list') }}">
+                  <span class="nav-icon">
+                <i class="fa fa-usd" aria-hidden="true"></i>
+                  </span>
+                                    <span class="nav-text">{{ __('backend.categories') }}
+                                        @if( @$webmailsNewCount >0)
+                                            <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
+                                        @endif
+                                    </span>
+
+                                </a>
+                            </li>
+                        @endif
+                    @endif
+                    @if(Helper::GeneralWebmasterSettings("inbox_status"))
+                        @if(@Auth::user()->permissionsGroup->inbox_status)
+                            <?php
+                            $currentFolder = "webmails"; // Put folder name here
+                            $PathCurrentFolder = substr($urlAfterRoot, 0, strlen($currentFolder));
+                            ?>
+                            <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
+                                <a href="{{ route('admin.tag.list') }}">
+                  <span class="nav-icon">
+                <i class="fa fa-usd" aria-hidden="true"></i>
+                  </span>
+                                    <span class="nav-text">{{ __('backend.tags') }}
                                         @if( @$webmailsNewCount >0)
                                             <badge class="label warn m-l-xs">{{ @$webmailsNewCount }}</badge>
                                         @endif
