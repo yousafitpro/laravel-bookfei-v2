@@ -23,28 +23,36 @@
 
 
             <div class="container-fluid">
-                <form method="get" action="{{route('admin.tour.list')}}">
+                <form method="get" action="{{route('admin.travel_product.list')}}">
                     <div class="row">
                         <div class="col-md-2">
-                            <input name="searchWord" placeholder="Tour Name" class="form-control" value="{{session('searchWord','')}}">
+                            <input name="searchWord" placeholder="Travel Product Name" class="form-control" value="{{session('searchWord','')}}">
                         </div>
                         <div class="col-md-2">
-                            <input name="code" placeholder="Code" class="form-control" value="{{session('searchWord','')}}">
+                            <input name="searchCode" placeholder="Code" class="form-control" value="{{session('searchCode','')}}">
                         </div>
                         <div class="col-md-2">
-                            <select class="form-control dark" name="sort_type">
+                            <select class="form-control dark" name="searchType">
                                 <option value="none" >Product Type</option>
-
+                                @foreach(['Multi Offers','Single Offer'] as $c)
+                                    <option value="{{$c}}" {{session('searchType','')==$c?'selected':''}} >{{$c}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <select class="form-control dark" name="sort_type">
+                            <select class="form-control dark" name="searchCategory">
                                 <option value="none" >Category</option>
+                                @foreach(\App\Helpers\Helper::Categories() as $c)
+                                    <option value="{{$c->id}}" {{session('searchCategory','')==$c->id?'selected':''}} >{{$c->name}}</option>
+                                @endforeach
 
                             </select>                        </div>
                         <div class="col-md-2">
-                            <select class="form-control dark" name="sort_type">
+                            <select class="form-control dark" name="searchDestination">
                                 <option value="none" >Destination</option>
+                                @foreach(\App\Helpers\Helper::Destinations() as $c)
+                                    <option value="{{$c->id}}" {{session('searchDestination','')==$c->id?'selected':''}} >{{$c->name}}</option>
+                                @endforeach
 
                             </select>                        </div>
                         <div class="col-md-2">
@@ -102,10 +110,15 @@
                                 <label>{{$Banner->type}}</label>
                             </td>
                             <td class="text-center">
-                                <label>{{\App\Helpers\Helper::get_Category($Banner->category)->name}}</label>
+                                @foreach($Banner->category as $c)
+                                <label>{{\App\Helpers\Helper::get_Category($c)->name}}</label>
+                                @endforeach
                             </td>
                             <td class="text-center">
-                                <label>{{\App\Helpers\Helper::get_Destination($Banner->destination)->name}}</label>
+                                @foreach($Banner->destination as $c)
+
+                                <label>{{\App\Helpers\Helper::get_Destination($c)->name}}</label>
+                                @endforeach
                             </td>
 {{--                            <td class="text-center">--}}
 {{--                                <label>{{$Banner->code}}</label>--}}
@@ -123,7 +136,7 @@
                             <td class="text-center">
                                 @if(@Auth::user()->permissionsGroup->edit_status)
 
-                                    <a href="{{route('admin.tour.editOrCreate',$Banner->id).'?tab=Basic'}}">
+                                    <a href="{{route('admin.travel_product.editOrCreate',$Banner->id).'?tab=Basic'}}">
 
                                         <button class="btn btn-sm success" >
                                             <small><i class="fa fa-edit" aria-hidden="true"></i> {{ __('backend.edit') }}
@@ -162,7 +175,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn dark-white p-x-md"
                                                 data-dismiss="modal">{{ __('backend.no') }}</button>
-                                        <a href="{{ route("admin.tour.delete",["id"=>$Banner->id]) }}"
+                                        <a href="{{ route("admin.travel_product.delete",["id"=>$Banner->id]) }}"
                                            class="btn danger p-x-md">{{ __('backend.yes') }}</a>
                                     </div>
                                 </div><!-- /.modal-content -->

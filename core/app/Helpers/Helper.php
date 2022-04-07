@@ -88,6 +88,7 @@ class Helper
     static function Destinations()
     {
         $list=App\Models\Destination::where('deleted_at',null)->where('status',1)->get();
+
         return $list;
     }
     static function get_Destination($id)

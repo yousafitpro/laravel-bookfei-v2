@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <label>Travel Product Name</label><br>
-                        <input name="name" value="{{old('name')}}" required class="form-control">
+                        <input name="name"  value="{{old('name')}}" required class="form-control">
                     </div>
                     <div class="col-md-1">
                     </div>
@@ -30,18 +30,18 @@
                     </div>
                     <div class="col-md-3">
                         <label>Effective Date (Start)</label><br>
-                        <input name="effective_date_start" value="{{old('effective_date_start')}}" required class="form-control">
+                        <input name="effective_date_start" type="date" value="{{old('effective_date_start')}}" required class="form-control">
                     </div>
                     <div class="col-md-3">
                         <label>Effective Date (End)</label><br>
-                        <input name="effective_date_end" value="{{old('effective_date_end')}}" required class="form-control">
+                        <input name="effective_date_end" type="date" value="{{old('effective_date_end')}}" required class="form-control">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-md-5">
                         <label>Destination</label><br>
-                        <select class="form-control" name="type">
+                        <select class="form-control js-select-basic-single" name="destination[]" multiple>
                             @foreach(\App\Helpers\Helper::Destinations() as $c)
                                 <option value="{{$c->id}}" >{{$c->name}}</option>
                             @endforeach
@@ -66,7 +66,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Category</label><br>
-                        <select class="form-control" name="currency_id">
+                        <select class="form-control js-select-basic-single" multiple name="category[]" >
                             @foreach(\App\Helpers\Helper::Categories() as $c)
                                 <option value="{{$c->id}}" >{{$c->name}}</option>
                             @endforeach

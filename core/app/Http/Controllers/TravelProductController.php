@@ -33,7 +33,46 @@ class TravelProductController extends Controller
         {
             Session::put('searchWord','');
         }
+        if ($request->has('searchCode') && $request->searchCode!="")
+        {
+            $list=$list->where('code', 'LIKE',"%{$request->searchCode}%");
+            Session::put('searchCode',$request->searchCode);
+        }
+        else
+        {
+            Session::put('searchCode','');
+        }
+        if ($request->has('searchType') && $request->searchType!="none")
+        {
+            $list=$list->where('type',$request->searchType);
+            Session::put('searchType',$request->searchType);
+        }
+        else
+        {
+            Session::put('searchType','none');
+        }
+        if ($request->has('searchCategory') && $request->searchCategory!="none")
+        {
+            $list=$list->where('category', 'LIKE',"%{$request->searchCategory}%");
+
+            Session::put('searchCategory',$request->searchCategory);
+        }
+        else
+        {
+            Session::put('searchCategory','none');
+        }
+        if ($request->has('searchDestination') && $request->searchDestination!="none")
+        {
+            $list=$list->where('destination', 'LIKE',"%{$request->searchDestination}%");
+
+            Session::put('searchDestination',$request->searchDestination);
+        }
+        else
+        {
+            Session::put('searchDestination','none');
+        }
         $list=$list->get();
+
         return view('dashboard.travel_product.list')->with(['list'=>$list]);
     }
     public function editOrCreate(Request $request,$id)
@@ -65,395 +104,50 @@ class TravelProductController extends Controller
     }
     public function update(Request $request,$id)
     {
-
-        if ($request->has("is_adult"))
-        {
-            $this->validate($request, [
-                'adult_age_end'=>'required|gt:adult_age_start'
-            ]);
-        }
-        if ($request->has("is_child"))
-        {
-            $this->validate($request, [
-                'child_age_end'=>'required|gt:child_age_start'
-            ]);
-        }
-        if ($request->has("is_toddler"))
-        {
-            $this->validate($request, [
-                'toddler_age_end'=>'required|gt:toddler_age_start'
-            ]);
-        }
-        if ($request->has("is_infant"))
-        {
-            $this->validate($request, [
-                'infant_age_end'=>'required|gt:infant_age_start'
-            ]);
-        }
-
-
-        if ($request->has("is_senior"))
-        {
-            $this->validate($request, [
-                'senior_age_end'=>'required|gt:senior_age_start'
-            ]);
-        }
-        if ($request->has("is_child") && $request->has("is_adult"))
-        {
-            $this->validate($request, [
-                'child_age_end'=>'required|in:'.($request->adult_age_start-1).'',
-                'adult_age_start'=>'required|gt:child_age_end',
-            ]);
-        }
-        if ($request->has("is_toddler") && $request->has("is_child"))
-        {
-            $this->validate($request, [
-                'toddler_age_end'=>'required|in:'.($request->child_age_start-1).'',
-                'child_age_start'=>'required|gt:toddler_age_end',
-            ]);
-        }
-        if ($request->has("is_infant") && $request->has("is_toddler"))
-        {
-            $this->validate($request, [
-                'infant_age_end'=>'required|in:'.($request->toddler_age_start-1).'',
-                'toddler_age_start'=>'required|gt:infant_age_end',
-            ]);
-        }
-        if ($request->has("is_senior") && $request->has("is_adult"))
-        {
-            $this->validate($request, [
-                'senior_age_start'=>'required|in:'.($request->adult_age_end+1).'',
-            ]);
-        }
-        if ($request->has("is_adult"))
-        {
-            if ($request->has("is_child"))
-            {
-                $this->validate($request, [
-                    'adult_age_start'=>'required|gt:child_age_end',
-                ]);
-            }
-            if ($request->has("is_toddler"))
-            {
-                $this->validate($request, [
-                    'adult_age_start'=>'required|gt:toddler_age_end',
-                ]);
-            }
-            if ($request->has("is_infant"))
-            {
-                $this->validate($request, [
-                    'adult_age_start'=>'required|gt:infant_age_end',
-                ]);
-            }
-
-        }
-        if ($request->has("is_child"))
-        {
-            if ($request->has("is_toddler"))
-            {
-                $this->validate($request, [
-                    'child_age_start'=>'required|gt:toddler_age_end',
-                ]);
-            }
-            if ($request->has("is_infant"))
-            {
-                $this->validate($request, [
-                    'child_age_start'=>'required|gt:infant_age_end',
-                ]);
-            }
-
-        }
-        if ($request->has("is_toddler"))
-        {
-            if ($request->has("is_infant"))
-            {
-                $this->validate($request, [
-                    'toddler_age_start'=>'required|gt:infant_age_end',
-                ]);
-            }
-
-        }
-
-        $this->validate($request, [
-            'effective_end_date' => 'after_or_equal:effective_start_date'
+        $request->validate([
+            'name'=>'required',
+            'code'=>'required',
+            'type'=>'required',
+            'effective_date_start'=>'required',
+            'effective_date_end'=>'required',
+            'sort_type'=>'required',
+            'sort_number'=>'required',
+            'category'=>'required',
+            'destination'=>'required',
         ]);
-        $data=$request->except(['file','_token','redirectUrl']);
+        $data=$request->except(['_token','redirectUrl']);
 
-        if (!$request->has("early_bird"))
-        {
-
-            $data['early_bird']=0;
-
-        }
-        else
-        {
-            $data['early_bird']=1;
-        }
-        if (!$request->has("is_adult"))
-        {
-
-            $data['is_adult']=0;
-
-        }
-        else
-        {
-            $data['is_adult']=1;
-        }
-        if (!$request->has("is_child"))
-        {
-
-            $data['is_child']=0;
-
-        }
-        else
-        {
-            $data['is_child']=1;
-        }
-        if (!$request->has("is_toddler"))
-        {
-
-            $data['is_toddler']=0;
-
-        }
-        else
-        {
-            $data['is_toddler']=1;
-        }
-        if (!$request->has("is_infant"))
-        {
-
-            $data['is_infant']=0;
-
-        }
-        else
-        {
-            $data['is_infant']=1;
-        }
-        if (!$request->has("is_senior"))
-        {
-
-            $data['is_senior']=0;
-
-        }
-        else
-        {
-            $data['is_senior']=1;
-        }
-
-        $city= travelProduct::where('id',$id)->update($data);
-
-        if($request->hasFile('file'))
-        {
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension();
-            Storage::disk('public')->delete($city->image);
-            $path = $request->file('file')->storeAs($this->uploadPath,$city->id.'.'.$extension);
-
-            $city->image= $path;
-
-            $city->save();
-        }
+        $city=travelProduct::where('id',$id)->update($data);
         if ($request->redirectUrl=='')
         {
-            return redirect()->back()->with('doneMessage', __('backend.updateDone'));
+            return redirect(route('admin.travel_product.editOrCreate',$id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
         }
         return redirect($request->redirectUrl);
-//        return redirect()->back()->with('doneMessage', __('backend.updateDone'));
     }
     public function create(Request $request)
     {
-        if ($request->has("is_adult"))
-        {
-            $this->validate($request, [
-                'adult_age_end'=>'required|gt:adult_age_start'
-            ]);
-        }
-        if ($request->has("is_child"))
-        {
-            $this->validate($request, [
-                'child_age_end'=>'required|gt:child_age_start'
-            ]);
-        }
-        if ($request->has("is_toddler"))
-        {
-            $this->validate($request, [
-                'toddler_age_end'=>'required|gt:toddler_age_start'
-            ]);
-        }
-        if ($request->has("is_infant"))
-        {
-            $this->validate($request, [
-                'infant_age_end'=>'required|gt:infant_age_start'
-            ]);
-        }
 
-
-        if ($request->has("is_senior"))
-        {
-            $this->validate($request, [
-                'senior_age_end'=>'required|gt:senior_age_start'
-            ]);
-        }
-        if ($request->has("is_child") && $request->has("is_adult"))
-        {
-            $this->validate($request, [
-                'child_age_end'=>'required|in:'.($request->adult_age_start-1).'',
-                'adult_age_start'=>'required|gt:child_age_end',
-            ]);
-        }
-        if ($request->has("is_toddler") && $request->has("is_child"))
-        {
-            $this->validate($request, [
-                'toddler_age_end'=>'required|in:'.($request->child_age_start-1).'',
-                'child_age_start'=>'required|gt:toddler_age_end',
-            ]);
-        }
-        if ($request->has("is_infant") && $request->has("is_toddler"))
-        {
-            $this->validate($request, [
-                'infant_age_end'=>'required|in:'.($request->toddler_age_start-1).'',
-                'toddler_age_start'=>'required|gt:infant_age_end',
-            ]);
-        }
-        if ($request->has("is_senior") && $request->has("is_adult"))
-        {
-            $this->validate($request, [
-                'senior_age_start'=>'required|in:'.($request->adult_age_end+1).'',
-            ]);
-        }
-        if ($request->has("is_adult"))
-        {
-            if ($request->has("is_child"))
-            {
-                $this->validate($request, [
-                    'adult_age_start'=>'required|gt:child_age_end',
-                ]);
-            }
-            if ($request->has("is_toddler"))
-            {
-                $this->validate($request, [
-                    'adult_age_start'=>'required|gt:toddler_age_end',
-                ]);
-            }
-            if ($request->has("is_infant"))
-            {
-                $this->validate($request, [
-                    'adult_age_start'=>'required|gt:infant_age_end',
-                ]);
-            }
-
-        }
-        if ($request->has("is_child"))
-        {
-            if ($request->has("is_toddler"))
-            {
-                $this->validate($request, [
-                    'child_age_start'=>'required|gt:toddler_age_end',
-                ]);
-            }
-            if ($request->has("is_infant"))
-            {
-                $this->validate($request, [
-                    'child_age_start'=>'required|gt:infant_age_end',
-                ]);
-            }
-
-        }
-        if ($request->has("is_toddler"))
-        {
-            if ($request->has("is_infant"))
-            {
-                $this->validate($request, [
-                    'toddler_age_start'=>'required|gt:infant_age_end',
-                ]);
-            }
-
-        }
-        $this->validate($request, [
-            'effective_end_date' => 'after_or_equal:effective_start_date'
+        $request->validate([
+           'name'=>'required',
+            'code'=>'required',
+            'type'=>'required',
+            'effective_date_start'=>'required',
+            'effective_date_end'=>'required',
+            'sort_type'=>'required',
+            'sort_number'=>'required',
+            'category'=>'required',
+            'destination'=>'required',
         ]);
-        $data=$request->except('file','redirectUrl');
-
-        if (!$request->has("early_bird"))
-        {
-
-            $data['early_bird']=0;
-
-        }
-        else
-        {
-            $data['early_bird']=1;
-        }
-        if (!$request->has("is_adult"))
-        {
-
-            $data['is_adult']=0;
-
-        }
-        else
-        {
-            $data['is_adult']=1;
-        }
-        if (!$request->has("is_child"))
-        {
-
-            $data['is_child']=0;
-
-        }
-        else
-        {
-            $data['is_child']=1;
-        }
-        if (!$request->has("is_toddler"))
-        {
-
-            $data['is_toddler']=0;
-
-        }
-        else
-        {
-            $data['is_toddler']=1;
-        }
-        if (!$request->has("is_infant"))
-        {
-
-            $data['is_infant']=0;
-
-        }
-        else
-        {
-            $data['is_infant']=1;
-        }
-        if (!$request->has("is_senior"))
-        {
-
-            $data['is_senior']=0;
-
-        }
-        else
-        {
-            $data['is_senior']=1;
-        }
-
-        $city= travelProduct::create($data);
-
-        if($request->hasFile('file'))
-        {
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension();
-            Storage::disk('public')->delete($city->image);
-            $path = $request->file('file')->storeAs($this->uploadPath,$city->id.'.'.$extension);
-
-            $city->image= $path;
-
-            $city->save();
-        }
+        $data=$request->except(['_token']);
+        $data['destination']=$data['destination'];
+        $data['category']=$data['category'];
+        $new= travelProduct::create($data);
         if ($request->redirectUrl=='')
         {
-            return redirect(route('admin.travelProduct.editOrCreate',$city->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
-        }
-        return redirect($request->redirectUrl);
-//        return redirect(route('admin.travelProduct.editOrCreate',$city->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
+        return redirect(route('admin.travel_product.editOrCreate',$new->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
+    }
+return redirect($request->redirectUrl);
+
     }
     public function deleteBulk(Request $request)
     {

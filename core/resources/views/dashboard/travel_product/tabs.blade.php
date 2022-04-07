@@ -10,20 +10,20 @@
     <div class="row box-header">
 
         <small>
-            <a href="{{route('admin.tour.list')}}">
+            <a href="{{url('admin/travel-product/list')}}">
                 <i class="fa fa-arrow-circle-left pull-left" aria-hidden="true"></i>
                 Go Back
             </a>
         </small>
         @if($_GET['tab']=="Basic" && $product_id==0 )
-            <button  onclick="addTour('{{route('admin.tour.list')}}')"
+            <button  onclick="addTour('{{url('admin/travel-product/list')}}')"
                      class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
 
             <button onclick="addTour('')"
                     class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
         @endif
             @if($_GET['tab']=="Basic" && $product_id!=0 )
-            <button  onclick="editTour('{{route('admin.tour.list')}}')"
+            <button  onclick="editTour('{{url('admin/travel-product/list')}}')"
                      class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
 
             <button onclick="editTour('')"
