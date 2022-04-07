@@ -45,17 +45,17 @@
         <div class="col-md-12">
             <!-- Tab links -->
             <div class="mtab">
-                <a href="{{route('admin.tour.editOrCreate',$product_id).'?tab=Basic'}}">
+                <a href="{{route('admin.travel_product.editOrCreate',$product_id).'?tab=Basic'}}">
                     <button class="mtablinks  {{$_GET['tab']=="Basic"?'active':''}}" >Basic</button>
                 </a>
-                <a href="{{route('admin.tourRate.list',$product_id)}}">
-                    <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Offers</button>
+                <a href="{{route('admin.travel_product.list',$product_id)}}">
+                    <button class="mtablinks {{$_GET['tab']=="Basic"?'active':''}} ">Offers</button>
                 </a>
-                <a href="{{route('admin.tourRate.list',$product_id)}}">
-                    <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Content</button>
+                <a href="{{route('admin.travel_product.list',$product_id)}}">
+                    <button class="mtablinks {{$_GET['tab']=="Basic"?'active':''}} ">Content</button>
                 </a>
-                <a href="{{route('admin.tourRate.list',$product_id)}}">
-                    <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Image</button>
+                <a href="{{route('admin.travel_product.editOrCreate',$product_id).'?tab=Image'}}">
+                    <button class="mtablinks {{$_GET['tab']=="Image"?'active':''}} ">Image</button>
                 </a>
             </div>
             <br>
@@ -73,6 +73,9 @@
                 @else
                 @include('dashboard.travel_product.edit')
                 @endif
+            </div>
+            <div id="Basic" class="mtabcontent {{$_GET['tab']=="Image"?'mtabActive':''}}">
+                @include('fileUploader.image-card',['type'=>'travel_product','item_id'=>"temp"])
             </div>
 
 
