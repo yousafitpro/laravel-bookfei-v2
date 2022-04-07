@@ -49,10 +49,10 @@
                     <button class="mtablinks  {{$_GET['tab']=="Basic"?'active':''}}" >Basic</button>
                 </a>
                 <a href="{{route('admin.travel_product.list',$product_id)}}">
-                    <button class="mtablinks {{$_GET['tab']=="Basic"?'active':''}} ">Offers</button>
+                    <button class="mtablinks {{$_GET['tab']=="Basic1"?'active':''}} ">Offers</button>
                 </a>
                 <a href="{{route('admin.travel_product.list',$product_id)}}">
-                    <button class="mtablinks {{$_GET['tab']=="Basic"?'active':''}} ">Content</button>
+                    <button class="mtablinks {{$_GET['tab']=="Basic2"?'active':''}} ">Content</button>
                 </a>
                 <a href="{{route('admin.travel_product.editOrCreate',$product_id).'?tab=Image'}}">
                     <button class="mtablinks {{$_GET['tab']=="Image"?'active':''}} ">Image</button>
@@ -75,7 +75,12 @@
                 @endif
             </div>
             <div id="Basic" class="mtabcontent {{$_GET['tab']=="Image"?'mtabActive':''}}">
+                @if($product_id==0)
                 @include('fileUploader.image-card',['type'=>'travel_product','item_id'=>"temp"])
+                @else
+                    @include('fileUploader.image-card',['type'=>'travel_product','item_id'=>$product_id])
+
+                @endif
             </div>
 
 
