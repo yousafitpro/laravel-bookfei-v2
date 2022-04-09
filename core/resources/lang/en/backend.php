@@ -7,6 +7,8 @@ return array(
     'countries' => 'Countries',
     'areas' => 'Areas',
     'action' => 'Action',
+    'offer_type'=>'Offer Type',
+    'tag'=>'Tag',
     'cruiselines' => 'Cruise Lines',
     'lataCode' => 'IATA Code',
     'airlines' => 'Airlines',
