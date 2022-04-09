@@ -1,5 +1,5 @@
 
-    <form method="post" id="tourAddForm" action="{{route('admin.travel_product.create')}}" enctype="multipart/form-data">
+    <form method="post" id="tourAddForm" action="{{route('admin.offer.create')}}" enctype="multipart/form-data">
         @csrf
 
         <input id="redirectUrl" name="redirectUrl" hidden value=""  class="form-control">
@@ -30,11 +30,11 @@
                     </div>
                     <div class="col-md-3">
                         <label>Minimum Guest</label><br>
-                        <input name="min_guest" value="{{old('effective_date_start')}}" required class="form-control">
+                        <input name="min_guest" type="number" value="{{old('effective_date_start')}}" required class="form-control">
                     </div>
                     <div class="col-md-3">
                         <label>Effective Date (End)</label><br>
-                        <input name="max_guest" value="{{old('effective_date_end')}}" required class="form-control">
+                        <input name="max_guest" type="number" value="{{old('effective_date_end')}}" required class="form-control">
                     </div>
                 </div>
                 <br>
@@ -43,12 +43,12 @@
                         <div style="width: 100%">
                             <div style="width: 49%; float: left">
                                 <label>Effective Date (Start)</label><br>
-                                <input name="effective_date_start" value="{{old('effective_date_start')}}" required class="form-control">
+                                <input name="effective_date_start" type="date" value="{{old('effective_date_start')}}" required class="form-control">
 
                             </div>
                             <div style="width: 49%; float: left; margin-left:2%">
                                 <label>Effective Date (End)</label><br>
-                                <input name="effective_date_end" value="{{old('effective_date_end')}}" required class="form-control">
+                                <input name="effective_date_end" type="date" value="{{old('effective_date_end')}}" required class="form-control">
 
                             </div>
                         </div>
@@ -59,11 +59,11 @@
                     </div>
                     <div class="col-md-3">
                         <label>Departure Date (Start)</label><br>
-                        <input name="departure_date_start" value="{{old('effective_date_start')}}" required class="form-control">
+                        <input name="departure_date_start" type="date" value="{{old('effective_date_start')}}" required class="form-control">
                     </div>
                     <div class="col-md-3">
                         <label>Departure Date (End)</label><br>
-                        <input name="departure_date_end" value="{{old('effective_date_end')}}" required class="form-control">
+                        <input name="departure_date_end" type="date" value="{{old('effective_date_end')}}" required class="form-control">
                     </div>
                 </div>
                 <br>
@@ -72,12 +72,12 @@
                         <div style="width: 100%">
                             <div style="width: 49%; float: left">
                                 <label>Booking Date (Start)</label><br>
-                                <input name="booking_date_start" value="{{old('effective_date_start')}}" required class="form-control">
+                                <input name="booking_date_start" type="date" value="{{old('effective_date_start')}}" required class="form-control">
 
                             </div>
                             <div style="width: 49%; float: left; margin-left:2%">
                                 <label>Booking Date (End)</label><br>
-                                <input name="booking_date_end" value="{{old('effective_date_end')}}" required class="form-control">
+                                <input name="booking_date_end" type="date" value="{{old('effective_date_end')}}" required class="form-control">
 
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <label>Markup Type</label><br>
-                        <select class="form-control" name="type">
+                        <select class="form-control" name="markup_type">
                             @foreach(['Percentage (%)','Amount($)'] as $c)
                                 <option value="{{$c}}" >{{$c}}</option>
                             @endforeach
@@ -118,7 +118,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <label>Agent Commission</label><br>
-                        <select class="form-control" name="type">
+                        <select class="form-control" name="agent_commission">
                             @foreach(['Percentage (%)','Amount($)','None'] as $c)
                                 <option value="{{$c}}" >{{$c}}</option>
                             @endforeach
@@ -128,11 +128,11 @@
                     </div>
                     <div class="col-md-3">
                         <label>Commission Percentage</label><br>
-                        <input name="markup_percentage" type="number" value="{{old('effective_date_start')}}" required class="form-control">
+                        <input name="commission_percentage" type="number" value="{{old('effective_date_start')}}" required class="form-control">
                     </div>
                     <div class="col-md-3">
                         <label>Commission Amount</label><br>
-                        <input name="markup_amount" type="number" value="{{old('effective_date_end')}}" required class="form-control">
+                        <input name="commission_amount" type="number" value="{{old('effective_date_end')}}" required class="form-control">
                     </div>
                 </div>
                 <br>
@@ -140,7 +140,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Tag</label><br>
-                        <select class="form-control" name="currency_id">
+                        <select class="form-control js-select-basic-single" name="tag[]" multiple>
                             @foreach(\App\Helpers\Helper::tags() as $c)
                                 <option value="{{$c->id}}" >{{$c->name}}</option>
                             @endforeach

@@ -8,9 +8,6 @@
                 <a href="{{route('admin.offer.editOrCreate',0).'?tab=Basic'}}">
                     <button class="btn dark pull-left">Add New Offer</button>
                 </a>
-                <a style="margin-left: 5px" href="{{route('admin.travel_product.editOrCreate',0).'?tab=Basic'}}">
-                    <button class="btn dark ">Batch Markup</button>
-                </a>
                 <a href="javascrip:void" onclick="hotelBulkDelete()">
                     <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>
                 </a>
@@ -26,30 +23,41 @@
 
 
             <div class="container-fluid">
-                <form method="get" action="{{route('admin.tour.list')}}">
+                <form method="get" action="{{route('admin.offer.list')}}">
                     <div class="row">
                         <div class="col-md-2">
                             <input name="searchWord" placeholder="Offer Name" class="form-control" value="{{session('searchWord','')}}">
                         </div>
                         <div class="col-md-2">
-                            <input name="code" placeholder="Code" class="form-control" value="{{session('searchWord','')}}">
+                            <input name="searchCode" placeholder="Code" class="form-control" value="{{session('searchCode','')}}">
                         </div>
                         <div class="col-md-2">
-                            <select class="form-control dark" name="sort_type">
+                            <select class="form-control dark" name="searchType">
                                 <option value="none" >Offer Type</option>
-
+                                @foreach(['Hotel','Multi Hotel','Cruise'] as $c)
+                                    <option value="{{$c}}" {{session('searchType','')==$c?'selected':''}} >{{$c}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <select class="form-control dark" name="sort_type">
-                                <option value="none" >Category</option>
+                            <select class="form-control dark" name="searchTag">
+                                <option value="none" >Tag</option>
+                                @foreach(\App\Helpers\Helper::Tags() as $c)
+                                    <option value="{{$c->id}}" {{session('searchTag','')==$c->id?'selected':''}} >{{$c->name}}</option>
+                                @endforeach
 
-                            </select>                        </div>
-                        <div class="col-md-2">
-                            <select class="form-control dark" name="sort_type">
-                                <option value="none" >Destination</option>
+                            </select>
 
-                            </select>                        </div>
+                        </div>
+{{--                        <div class="col-md-2">--}}
+{{--                            <select class="form-control dark" name="searchDestination">--}}
+{{--                                <option value="none" >Destination</option>--}}
+{{--                                @foreach(\App\Helpers\Helper::Destinations() as $c)--}}
+{{--                                    <option value="{{$c->id}}" {{session('searchDestination','')==$c->id?'selected':''}} >{{$c->name}}</option>--}}
+{{--                                @endforeach--}}
+
+{{--                            </select>     --}}
+{{--                        </div>--}}
                         <div class="col-md-2">
                             <button type="submit" class="btn dark btn-block">Filter</button>
                         </div>
@@ -67,12 +75,12 @@
                         <th class=" width50"></th>
                         <th class="text-center width50">{{ __('backend.name') }}</th>
                         <th class="text-center width50">{{ __('backend.code') }}</th>
-                        <th class="text-center width50">{{ __('backend.product_type') }}</th>
-                        <th class="text-center width50">{{ __('backend.category') }}</th>
-                        <th class="text-center width50">{{ __('backend.destination') }}</th>
-{{--                        <th class="text-center width50">{{ __('backend.code') }}</th>--}}
-{{--                        <th class="text-center width50">{{ __('backend.currency') }}</th>--}}
-{{--                        <th class="text-center width50">{{ __('backend.supplier') }}</th>--}}
+                        <th class="text-center width50">{{ __('backend.offer_type') }}</th>
+                        <th class="text-center width50">{{ __('backend.tag') }}</th>
+{{--                        <th class="text-center width50">{{ __('backend.destination') }}</th>--}}
+                        {{--                        <th class="text-center width50">{{ __('backend.code') }}</th>--}}
+                        {{--                        <th class="text-center width50">{{ __('backend.currency') }}</th>--}}
+                        {{--                        <th class="text-center width50">{{ __('backend.supplier') }}</th>--}}
                         <th class="text-center width50">{{ __('backend.status') }}</th>
                         <th class="text-center width200">{{ __('backend.action') }}</th>
                     </tr>
@@ -105,20 +113,25 @@
                                 <label>{{$Banner->type}}</label>
                             </td>
                             <td class="text-center">
-                                <label>{{\App\Helpers\Helper::get_Category($Banner->category)->name}}</label>
+                                @foreach($Banner->tag as $c)
+                                    <label>{{\App\Helpers\Helper::get_Tag($c)->name}}</label>
+                                @endforeach
                             </td>
-                            <td class="text-center">
-                                <label>{{\App\Helpers\Helper::get_Destination($Banner->destination)->name}}</label>
-                            </td>
 {{--                            <td class="text-center">--}}
-{{--                                <label>{{$Banner->code}}</label>--}}
+{{--                                @foreach($Banner->destination as $c)--}}
+
+{{--                                    <label>{{\App\Helpers\Helper::get_Destination($c)->name}}</label>--}}
+{{--                                @endforeach--}}
 {{--                            </td>--}}
-{{--                            <td class="text-center">--}}
-{{--                                <label>{{\App\Helpers\Helper::get_Currency($Banner->currency_id)->name}}</label>--}}
-{{--                            </td>--}}
-{{--                            <td class="text-center">--}}
-{{--                                <label>{{\App\Helpers\Helper::get_Supplier($Banner->supplier_id)->name}}</label>--}}
-{{--                            </td>--}}
+                            {{--                            <td class="text-center">--}}
+                            {{--                                <label>{{$Banner->code}}</label>--}}
+                            {{--                            </td>--}}
+                            {{--                            <td class="text-center">--}}
+                            {{--                                <label>{{\App\Helpers\Helper::get_Currency($Banner->currency_id)->name}}</label>--}}
+                            {{--                            </td>--}}
+                            {{--                            <td class="text-center">--}}
+                            {{--                                <label>{{\App\Helpers\Helper::get_Supplier($Banner->supplier_id)->name}}</label>--}}
+                            {{--                            </td>--}}
 
                             <td class="text-center">
                                 <i class="fa {{ ($Banner->status==1) ? "fa-check text-success":"fa-times text-danger" }} inline"></i>
@@ -126,7 +139,7 @@
                             <td class="text-center">
                                 @if(@Auth::user()->permissionsGroup->edit_status)
 
-                                    <a href="{{route('admin.tour.editOrCreate',$Banner->id).'?tab=Basic'}}">
+                                    <a href="{{route('admin.offer.editOrCreate',$Banner->id).'?tab=Basic'}}">
 
                                         <button class="btn btn-sm success" >
                                             <small><i class="fa fa-edit" aria-hidden="true"></i> {{ __('backend.edit') }}
@@ -165,7 +178,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn dark-white p-x-md"
                                                 data-dismiss="modal">{{ __('backend.no') }}</button>
-                                        <a href="{{ route("admin.tour.delete",["id"=>$Banner->id]) }}"
+                                        <a href="{{ route("admin.offer.delete",["id"=>$Banner->id]) }}"
                                            class="btn danger p-x-md">{{ __('backend.yes') }}</a>
                                     </div>
                                 </div><!-- /.modal-content -->

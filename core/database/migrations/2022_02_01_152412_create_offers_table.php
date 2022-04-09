@@ -20,7 +20,8 @@ class CreateOffersTable extends Migration
             $table->string('name')->nullable();
             $table->string('code')->nullable();
             $table->string('type')->nullable();
-            $table->string('mini_guest')->nullable();
+            $table->string('sort_number')->nullable();
+            $table->string('min_guest')->nullable();
             $table->string('max_guest')->nullable();
             $table->string('effective_date_start')->nullable();
             $table->string('effective_date_end')->nullable();
@@ -35,6 +36,7 @@ class CreateOffersTable extends Migration
             $table->string('commission_percentage')->nullable();
             $table->string('commission_amount')->nullable();
             $table->longText('tag')->nullable();
+            $table->string('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

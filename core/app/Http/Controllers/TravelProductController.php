@@ -139,8 +139,6 @@ class TravelProductController extends Controller
             'destination'=>'required',
         ]);
         $data=$request->except(['_token']);
-        $data['destination']=$data['destination'];
-        $data['category']=$data['category'];
         $new= travelProduct::create($data);
         if ($request->redirectUrl=='')
         {
