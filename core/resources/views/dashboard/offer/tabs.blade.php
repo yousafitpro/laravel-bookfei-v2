@@ -10,7 +10,7 @@
     <div class="row box-header">
 
         <small>
-            <a href="{{route('admin.tour.list')}}">
+            <a href="{{route('admin.offer.list')}}">
                 <i class="fa fa-arrow-circle-left pull-left" aria-hidden="true"></i>
                 Go Back
             </a>
