@@ -30,7 +30,7 @@
             <button onclick="editTour('')"
                         class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
             @endif
-
+<br>
         <div class="row">
             <div class="col-md-12 p-l-2">
                 <h5 style="font-weight: bold">Travel Product </h5>
@@ -41,7 +41,7 @@
 
     </div>
 
-    <br>    <br>
+
     <div class="row">
         <div class="col-md-12">
             <!-- Tab links -->
