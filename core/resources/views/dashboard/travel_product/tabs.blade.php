@@ -15,6 +15,7 @@
                 Go Back
             </a>
         </small>
+        <br>
         @if($_GET['tab']=="Basic" && $product_id==0 )
             <button  onclick="addTour('{{url('admin/travel-product/list')}}')"
                      class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
