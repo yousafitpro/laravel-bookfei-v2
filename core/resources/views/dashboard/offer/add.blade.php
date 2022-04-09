@@ -33,7 +33,7 @@
                         <input name="min_guest" type="number" value="{{old('effective_date_start')}}" required class="form-control">
                     </div>
                     <div class="col-md-3">
-                        <label>Effective Date (End)</label><br>
+                        <label>Maximum Guest</label><br>
                         <input name="max_guest" type="number" value="{{old('effective_date_end')}}" required class="form-control">
                     </div>
                 </div>
