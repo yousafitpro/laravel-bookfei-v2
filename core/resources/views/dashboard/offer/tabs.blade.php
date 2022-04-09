@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master')
 @section('title')
-@section('title', 'Tour')
+@section('title', 'Offer')
 @endsection
 @section('content')
     <div class="padding">
