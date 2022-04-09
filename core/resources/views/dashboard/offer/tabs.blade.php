@@ -45,7 +45,7 @@
         <div class="col-md-12">
             <!-- Tab links -->
             <div class="mtab">
-                <a href="{{route('admin.tour.editOrCreate',$offer_id).'?tab=Basic'}}">
+                <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Basic'}}">
                     <button class="mtablinks  {{$_GET['tab']=="Basic"?'active':''}}" >Basic</button>
                 </a>
                 <a href="{{route('admin.tourRate.list',$offer_id)}}">
@@ -62,8 +62,8 @@
                 </a>
                 <a href="{{route('admin.tourRate.list',$offer_id)}}">
                     <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Content</button>
-                </a>     <a href="{{route('admin.tourRate.list',$offer_id)}}">
-                    <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Image</button>
+                </a>     <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Image'}}">
+                    <button class="mtablinks {{$_GET['tab']=="Image"?'active':''}} ">Image</button>
                 </a>
 
             </div>
@@ -81,6 +81,14 @@
                 @include('dashboard.offer.add')
                 @else
                 @include('dashboard.offer.edit')
+                @endif
+            </div>
+            <div id="Image" class="mtabcontent {{$_GET['tab']=="Image"?'mtabActive':''}}">
+                @if($offer_id==0)
+                    @include('fileUploader.image-card',['type'=>'offer','item_id'=>"temp"])
+                @else
+                    @include('fileUploader.image-card',['type'=>'offer','item_id'=>$offer_id])
+
                 @endif
             </div>
 

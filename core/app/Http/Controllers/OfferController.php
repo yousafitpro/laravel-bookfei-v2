@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\myfile;
 use App\Models\offer;
 
 use App\Models\travelProduct;
@@ -157,6 +158,9 @@ class OfferController extends Controller
         ]);
         $data=$request->except(['_token']);
         $new= offer::create($data);
+        myfile::where('type','offer')->where('item_id','temp')->update([
+            'item_id'=>$new->id
+        ]);
         if ($request->redirectUrl=='')
         {
             return redirect(route('admin.offer.editOrCreate',$new->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));

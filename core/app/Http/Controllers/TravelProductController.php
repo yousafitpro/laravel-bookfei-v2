@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\myfile;
 use App\Models\travelProduct;
 
 use Carbon\Carbon;
@@ -140,6 +141,9 @@ class TravelProductController extends Controller
         ]);
         $data=$request->except(['_token']);
         $new= travelProduct::create($data);
+        myfile::where('type','travel_product')->where('item_id','temp')->update([
+            'item_id'=>$new->id
+        ]);
         if ($request->redirectUrl=='')
         {
         return redirect(route('admin.travel_product.editOrCreate',$new->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
