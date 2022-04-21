@@ -215,7 +215,7 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                             <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
                                 <a href="{{ route('admin.travel_product.list') }}">
                   <span class="nav-icon">
-<i class="fa fa-car" aria-hidden="true"></i>
+<i class="fa fa-product-hunt" aria-hidden="true"></i>
                   </span>
                                     <span class="nav-text">{{ __('backend.travel_products') }}
                                         @if( @$webmailsNewCount >0)
@@ -236,7 +236,7 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                             <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
                                 <a href="{{ route('admin.offer.list') }}">
                   <span class="nav-icon">
-<i class="fa fa-car" aria-hidden="true"></i>
+<i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>
                   </span>
                                     <span class="nav-text">{{ __('backend.offers') }}
                                         @if( @$webmailsNewCount >0)
@@ -497,7 +497,7 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                             <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
                                 <a href="{{ route('admin.destination.list') }}">
                   <span class="nav-icon">
-                <i class="fa fa-usd" aria-hidden="true"></i>
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
                   </span>
                                     <span class="nav-text">{{ __('backend.destinations') }}
                                         @if( @$webmailsNewCount >0)
@@ -518,7 +518,7 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                             <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
                                 <a href="{{ route('admin.category.list') }}">
                   <span class="nav-icon">
-                <i class="fa fa-usd" aria-hidden="true"></i>
+                <i class="fa fa-database" aria-hidden="true"></i>
                   </span>
                                     <span class="nav-text">{{ __('backend.categories') }}
                                         @if( @$webmailsNewCount >0)
@@ -539,7 +539,7 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                             <li {{ ($PathCurrentFolder==$currentFolder) ? 'class=active' : '' }}>
                                 <a href="{{ route('admin.tag.list') }}">
                   <span class="nav-icon">
-                <i class="fa fa-usd" aria-hidden="true"></i>
+                <i class="fa fa-tags" aria-hidden="true"></i>
                   </span>
                                     <span class="nav-text">{{ __('backend.tags') }}
                                         @if( @$webmailsNewCount >0)
