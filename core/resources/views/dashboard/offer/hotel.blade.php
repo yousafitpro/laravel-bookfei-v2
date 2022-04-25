@@ -90,7 +90,7 @@
         <div class="row">
             <div class="col-md-4">
                 <label>Hotel</label>
-                <select   class="form-control bg-dark" id="hotel_id" name="hotel_id">
+                <select readonly  class="form-control bg-dark" id="hotel_id" name="hotel_id">
                     <option value="none">{{\App\Models\hotel::find($h->hotel_id)->name}}</option>
 
 
