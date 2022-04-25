@@ -15,7 +15,14 @@
                 Go Back
             </a>
         </small>
+        @if($_GET['tab']=="Content" && $offer_id!=0 )
+            <button
+                     class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
 
+            <button
+                    class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
+
+        @endif
         @if($_GET['tab']=="Hotel" && $offer_id!=0 )
             <button  onclick="HotelRedirect('{{url("admin/offer/list")}}')"
                      class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
@@ -70,7 +77,7 @@
                     <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Tour</button>
                 </a>
                 <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Content'}}">
-                    <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Content</button>
+                    <button class="mtablinks {{$_GET['tab']=="Content"?'active':''}} ">Content</button>
                 </a>     <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Image'}}">
                     <button class="mtablinks {{$_GET['tab']=="Image"?'active':''}} ">Image</button>
                 </a>
@@ -102,6 +109,11 @@
             </div>
             <div id="Hotel" class="mtabcontent {{$_GET['tab']=="Hotel"?'mtabActive':''}}">
              @include('dashboard.offer.hotel')
+                <br>
+                <br>
+            </div>
+            <div id="Hotel" class="mtabcontent {{$_GET['tab']=="Content"?'mtabActive':''}}">
+                @include('dashboard.offer.content')
                 <br>
                 <br>
             </div>
