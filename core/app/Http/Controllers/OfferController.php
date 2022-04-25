@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\hotelRateTable;
 use App\Models\myfile;
 use App\Models\offer;
 
+use App\Models\offerHotel;
 use App\Models\travelProduct;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -83,10 +85,12 @@ class OfferController extends Controller
             return redirect()->back()->with('errorMessage', "Please Create a Hotel first");
         }
         $data['offer_id']=$id;
+        $data['hotels']=[];
         if ($id!=0)
         {
-
+            $data['hotels']=offerHotel::where(['offer_id'=>$id,'deleted_at'=>null])->get();
             $data['offer']=offer::find($id);
+
 
         }
 
@@ -175,5 +179,50 @@ class OfferController extends Controller
         {
             return response()->json(['message'=>"Operation Successful"]);
         }
+    }
+    public function UpdateHotelRateTableList(Request $request)
+    {
+        $data['list']=[];
+        if ($request->id!='none')
+        {
+            $data['list']=hotelRateTable::where(['deleted_at'=>null,'hotel_id'=>$request->id])->get();
+
+        }
+        return view('dashboard.offer.hotelratetablelist',$data);
+    }
+    public function addHotel(Request $request)
+    {
+        $request->validate([
+           'rate_table_id'=>'required',
+            'total_num_of_hotels'=>'required',
+            'hotel_group'=>'required',
+            'nights'=>'required'
+        ],[
+            'rate_table_id.required'=>"Hotel Table is required"
+        ]);
+        if ($request->hotel_id=='none')
+        {
+            return redirect()->back()->with('doneMessage', "Please Select a Hotel First");
+        }
+       $data=$request->except(['_token','tab']);
+        if ($request->has('is_compulsory'))
+        {
+            $data['is_compulsory']='true';
+        }
+
+        offerHotel::create($data);
+
+
+        return  redirect($request->redirectUrl)->with(['doneMessage'=>"Hotel has been Added"]);
+
+
+
+    }
+    public function removeHotel(Request $request,$id)
+    {
+        offerHotel::where('id',$id)->update([
+            'deleted_at'=>Carbon::now()
+        ]);
+        return redirect()->back()->with('doneMessage', "Hotel has been Removed");
     }
 }

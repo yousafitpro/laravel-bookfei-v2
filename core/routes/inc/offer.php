@@ -8,6 +8,9 @@ Route::middleware('auth')
         Route::get("delete/{id}",[App\Http\Controllers\OfferController::class,'delete'])->name('admin.offer.delete');
         Route::post("deleteBulk",[App\Http\Controllers\OfferController::class,'deleteBulk'])->name('admin.offer.deleteBulk');
         Route::get("editOrCreate/{id}",[App\Http\Controllers\OfferController::class,'editOrCreate'])->name('admin.offer.editOrCreate');
+        Route::get("UpdateHotelRateTableList",[App\Http\Controllers\OfferController::class,'UpdateHotelRateTableList'])->name('admin.offer.UpdateHotelRateTableList');
+        Route::post("addHotel",[App\Http\Controllers\OfferController::class,'addHotel'])->name('admin.offer.addHotel');
+        Route::get("removeHotel/{id}",[App\Http\Controllers\OfferController::class,'removeHotel'])->name('admin.offer.removeHotel');
 
 
     });

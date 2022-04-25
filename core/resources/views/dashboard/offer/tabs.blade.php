@@ -15,20 +15,29 @@
                 Go Back
             </a>
         </small>
-        @if($_GET['tab']=="Basic" && $offer_id==0 )
-            <button  onclick="addTour('{{route('admin.tour.list')}}')"
+
+        @if($_GET['tab']=="Hotel" && $offer_id!=0 )
+            <button  onclick="HotelRedirect('{{url("admin/offer/list")}}')"
                      class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
 
-            <button onclick="addTour('')"
+            <button onclick="HotelRedirect('{{route('admin.offer.editOrCreate',$offer_id).'?tab=Hotel'}}')"
                     class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
+
         @endif
             @if($_GET['tab']=="Basic" && $offer_id!=0 )
-            <button  onclick="editTour('{{route('admin.tour.list')}}')"
+            <button  onclick="editOffer('')"
                      class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
 
-            <button onclick="editTour('')"
+            <button onclick="editOffer('{{route('admin.offer.editOrCreate',$offer_id).'?tab=Basic'}}')"
                         class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
             @endif
+        @if($_GET['tab']=="Basic" && $offer_id==0 )
+            <button  onclick="addOffer('')"
+                     class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
+
+            <button onclick="addOffer('{{route('admin.offer.editOrCreate',$offer_id).'?tab=Basic'}}')"
+                    class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
+        @endif
 <br>
         <div class="row">
             <div class="col-md-12 p-l-2">
@@ -48,21 +57,21 @@
                 <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Basic'}}">
                     <button class="mtablinks  {{$_GET['tab']=="Basic"?'active':''}}" >Basic</button>
                 </a>
-                <a href="{{route('admin.tourRate.list',$offer_id)}}">
-                    <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Hotel</button>
+                <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Hotel'}}">
+                    <button class="mtablinks {{$_GET['tab']=="Hotel"?'active':''}} ">Hotel</button>
                 </a>
-                <a href="{{route('admin.tourRate.list',$offer_id)}}">
-                    <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Flight</button>
+                <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Flight'}}">
+                    <button class="mtablinks {{$_GET['tab']=="Flight"?'active':''}} ">Flight</button>
                 </a>
-                <a href="{{route('admin.tourRate.list',$offer_id)}}">
+                <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Cruise'}}">
                     <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Cruise</button>
                 </a>
-                <a href="{{route('admin.tourRate.list',$offer_id)}}">
+                <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Tour'}}">
                     <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Tour</button>
                 </a>
-                <a href="{{route('admin.tourRate.list',$offer_id)}}">
+                <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Content'}}">
                     <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Content</button>
-                </a>     <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Image'}}">
+                </a>     <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Content'}}">
                     <button class="mtablinks {{$_GET['tab']=="Image"?'active':''}} ">Image</button>
                 </a>
 
@@ -91,6 +100,11 @@
 
                 @endif
             </div>
+            <div id="Hotel" class="mtabcontent {{$_GET['tab']=="Hotel"?'mtabActive':''}}">
+             @include('dashboard.offer.hotel')
+                <br>
+                <br>
+            </div>
 
 
 
@@ -101,19 +115,29 @@
 </div>
     </div>
     <script>
-        function editTour(url)
+
+        function addOffer(url)
+        {
+
+
+            $("#redirectUrl").val(url)
+            document.getElementById('tourAddForm').submit()
+        }
+        function editOffer(url)
         {
 
 
             $("#redirectUrl").val(url)
             document.getElementById('tourUpdateForm').submit()
         }
-        function addTour(url)
+
+        function HotelRedirect(url)
         {
 
 
-            $("#redirectUrl").val(url)
-            document.getElementById('tourAddForm').submit()
+            $("#redirectUrlforHotel").val(url)
+
+            document.getElementById('hotelForm').submit()
         }
     </script>
 @endsection
