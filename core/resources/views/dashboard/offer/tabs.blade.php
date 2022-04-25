@@ -71,7 +71,7 @@
                 </a>
                 <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Content'}}">
                     <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Content</button>
-                </a>     <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Content'}}">
+                </a>     <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Image'}}">
                     <button class="mtablinks {{$_GET['tab']=="Image"?'active':''}} ">Image</button>
                 </a>
 
