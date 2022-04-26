@@ -12,5 +12,9 @@ Route::middleware('auth')
         Route::post("addHotel",[App\Http\Controllers\OfferController::class,'addHotel'])->name('admin.offer.addHotel');
         Route::get("removeHotel/{id}",[App\Http\Controllers\OfferController::class,'removeHotel'])->name('admin.offer.removeHotel');
 
+        Route::post("addFlight",[App\Http\Controllers\OfferController::class,'addFlight'])->name('admin.offer.addFlight');
+        Route::get("removeFlight/{id}",[App\Http\Controllers\OfferController::class,'removeFlight'])->name('admin.offer.removeFlight');
+        Route::post("addTour",[App\Http\Controllers\OfferController::class,'addTour'])->name('admin.offer.addTour');
+        Route::post("removeTour",[App\Http\Controllers\OfferController::class,'removeTour'])->name('admin.offer.removeTour');
 
     });

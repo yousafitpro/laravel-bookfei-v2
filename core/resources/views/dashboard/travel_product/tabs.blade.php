@@ -49,8 +49,8 @@
                 <a href="{{route('admin.travel_product.editOrCreate',$product_id).'?tab=Basic'}}">
                     <button class="mtablinks  {{$_GET['tab']=="Basic"?'active':''}}" >Basic</button>
                 </a>
-                <a href="{{route('admin.travel_product.list',$product_id)}}">
-                    <button class="mtablinks {{$_GET['tab']=="Basic1"?'active':''}} ">Offers</button>
+                <a href="{{route('admin.travel_product.editOrCreate',$product_id).'?tab=Offers'}}">
+                    <button class="mtablinks {{$_GET['tab']=="Offers"?'active':''}} ">Offers</button>
                 </a>
                 <a href="{{route('admin.travel_product.list',$product_id)}}">
                     <button class="mtablinks {{$_GET['tab']=="Basic2"?'active':''}} ">Content</button>
@@ -65,7 +65,13 @@
 
 
             </div>
+            <!-- Tab content -->
+            <div id="Basic" class="mtabcontent {{$_GET['tab']=="Offers"?'mtabActive':''}}">
 
+
+                    @include('dashboard.travel_product.offers')
+
+            </div>
             <!-- Tab content -->
             <div id="Basic" class="mtabcontent {{$_GET['tab']=="Basic"?'mtabActive':''}}">
 

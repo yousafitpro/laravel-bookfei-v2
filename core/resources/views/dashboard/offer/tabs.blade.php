@@ -31,6 +31,14 @@
                     class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
 
         @endif
+        @if($_GET['tab']=="Flight" && $offer_id!=0 )
+            <button  onclick="flightRedirect('{{url("admin/offer/list")}}')"
+                     class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
+
+            <button onclick="flightRedirect('{{route('admin.offer.editOrCreate',$offer_id).'?tab=Flight'}}')"
+                    class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
+
+        @endif
             @if($_GET['tab']=="Basic" && $offer_id!=0 )
             <button  onclick="editOffer('')"
                      class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
@@ -71,10 +79,10 @@
                     <button class="mtablinks {{$_GET['tab']=="Flight"?'active':''}} ">Flight</button>
                 </a>
                 <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Cruise'}}">
-                    <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Cruise</button>
+                    <button class="mtablinks {{$_GET['tab']=="Cruise"?'active':''}} ">Cruise</button>
                 </a>
                 <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Tour'}}">
-                    <button class="mtablinks {{$_GET['tab']=="RateTable"?'active':''}} ">Tour</button>
+                    <button class="mtablinks {{$_GET['tab']=="Tour"?'active':''}} ">Tour</button>
                 </a>
                 <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Content'}}">
                     <button class="mtablinks {{$_GET['tab']=="Content"?'active':''}} ">Content</button>
@@ -109,6 +117,16 @@
             </div>
             <div id="Hotel" class="mtabcontent {{$_GET['tab']=="Hotel"?'mtabActive':''}}">
              @include('dashboard.offer.hotel')
+                <br>
+                <br>
+            </div>
+            <div id="Hotel" class="mtabcontent {{$_GET['tab']=="Flight"?'mtabActive':''}}">
+                @include('dashboard.offer.flight')
+                <br>
+                <br>
+            </div>
+            <div id="Hotel" class="mtabcontent {{$_GET['tab']=="Tour"?'mtabActive':''}}">
+                @include('dashboard.offer.tour')
                 <br>
                 <br>
             </div>
@@ -150,6 +168,14 @@
             $("#redirectUrlforHotel").val(url)
 
             document.getElementById('hotelForm').submit()
+        }
+        function flightRedirect(url)
+        {
+
+
+            $("#redirectUrlforFlight").val(url)
+
+            document.getElementById('flightForm').submit()
         }
     </script>
 @endsection

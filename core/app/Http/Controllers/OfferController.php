@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\hotel;
 use App\Models\hotelRateTable;
 use App\Models\myfile;
 use App\Models\offer;
 
+use App\Models\offerFlight;
 use App\Models\offerHotel;
+use App\Models\offerTour;
 use App\Models\travelProduct;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -86,9 +89,13 @@ class OfferController extends Controller
         }
         $data['offer_id']=$id;
         $data['hotels']=[];
+        $data['flights']=[];
+        $data['tours']=[];
         if ($id!=0)
         {
             $data['hotels']=offerHotel::where(['offer_id'=>$id,'deleted_at'=>null])->get();
+            $data['flights']=offerFlight::where(['offer_id'=>$id,'deleted_at'=>null])->get();
+            $data['tours']=offerTour::where(['offer_id'=>$id,'deleted_at'=>null])->get();
             $data['offer']=offer::find($id);
 
 
@@ -224,5 +231,57 @@ class OfferController extends Controller
             'deleted_at'=>Carbon::now()
         ]);
         return redirect()->back()->with('doneMessage', "Hotel has been Removed");
+    }
+    public function addFlight(Request $request)
+    {
+        $request->validate([
+            'flight_route_type'=>'required',
+            'arrival_airport'=>'required',
+            'departure_airport'=>'required',
+            'airline'=>'required',
+            'class'=>'required'
+        ]);
+
+        $data=$request->except(['_token','tab']);
+
+
+        offerFlight::create($data);
+
+
+        return  redirect($request->redirectUrl)->with(['doneMessage'=>"Flight has been Added"]);
+
+
+
+    }
+    public function removeFlight(Request $request,$id)
+    {
+        offerFlight::where('id',$id)->update([
+            'deleted_at'=>Carbon::now()
+        ]);
+        return redirect()->back()->with('doneMessage', "Flight has been Removed");
+    }
+    public function addTour(Request $request)
+    {
+        $request->validate([
+            'tour_id'=>'required',
+        ]);
+
+        $data=$request->except(['_token','tab']);
+
+
+        offerTour::create($data);
+
+
+        return  redirect()->back()->with(['doneMessage'=>"Tour has been Added"]);
+
+    }
+    public function removeTour(Request $request)
+    {
+        offerTour::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+        if(Request::capture()->expectsJson())
+        {
+            return response()->json(['message'=>"Operation Successful"]);
+        }
     }
 }
