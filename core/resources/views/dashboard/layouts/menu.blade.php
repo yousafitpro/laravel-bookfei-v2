@@ -11,11 +11,11 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
 
 <div id="aside" class="app-aside modal fade folded md nav-expand">
     <div class="left navside dark dk" layout="column">
-        <div class="navbar navbar-md no-radius">
+        <div class="navbar navbar-md no-radius" >
             <!-- brand -->
             <a class="navbar-brand" href="{{ route('adminHome') }}">
-                <img src="{{ asset('assets/dashboard/images/logo.png') }}" alt="Control">
-                <span class="hidden-folded inline">{{ __('backend.control') }}</span>
+{{--                <img src="{{ asset('assets/dashboard/images/logo.png') }}" alt="Control">--}}
+                <span class="hidden-folded inline">Bookfei</span>
             </a>
             <!-- / brandsss -->
         </div>
