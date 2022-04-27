@@ -17,7 +17,7 @@ $mnu_title_var2 = "title_" . env('DEFAULT_LANGUAGE');
                 <img src="{{ asset('assets/dashboard/images/logo.png') }}" alt="Control">
                 <span class="hidden-folded inline">{{ __('backend.control') }}</span>
             </a>
-            <!-- / brand -->
+            <!-- / brandsss -->
         </div>
         <div flex class="hide-scroll">
             <nav class="scroll nav-active-primary">
