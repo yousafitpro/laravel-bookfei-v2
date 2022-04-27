@@ -45,9 +45,7 @@
 
                         <th class=" width50"></th>
                         <th class="text-center width50">{{ __('backend.name') }}</th>
-{{--                        <th class="text-center width50">{{ __('backend.code') }}</th>--}}
-{{--                        <th class="text-center width50">{{ __('backend.currency') }}</th>--}}
-{{--                        <th class="text-center width50">{{ __('backend.supplier') }}</th>--}}
+
                         <th class="text-center width50">{{ __('backend.status') }}</th>
                         <th class="text-center width200">{{ __('backend.action') }}</th>
                     </tr>

@@ -8,6 +8,8 @@ Route::middleware('auth')
         Route::get("delete/{id}",[App\Http\Controllers\TravelProductController::class,'delete'])->name('admin.travel_product.delete');
         Route::post("deleteBulk",[App\Http\Controllers\TravelProductController::class,'deleteBulk'])->name('admin.travel_product.deleteBulk');
         Route::get("editOrCreate/{id}",[App\Http\Controllers\TravelProductController::class,'editOrCreate'])->name('admin.travel_product.editOrCreate');
+        Route::get("addOffer",[App\Http\Controllers\TravelProductController::class,'addOffer'])->name('admin.travel_product.addOffer');
+        Route::post("deleteOffers",[App\Http\Controllers\TravelProductController::class,'deleteOffers'])->name('admin.travel_product.deleteOffers');
 
 
     });

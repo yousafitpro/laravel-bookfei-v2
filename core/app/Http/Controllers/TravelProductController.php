@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\myfile;
+use App\Models\offer;
+use App\Models\travel_product_offer;
 use App\Models\travelProduct;
 
 use Carbon\Carbon;
@@ -83,11 +85,13 @@ class TravelProductController extends Controller
             return redirect()->back()->with('errorMessage', "Please Create a Hotel first");
         }
         $data['product_id']=$id;
+        $data['offers']=[];
         if ($id!=0)
         {
 
             $data['travelProduct']=travelProduct::find($id);
-
+            $data['offers']=travel_product_offer::where(['deleted_at'=>null,'travel_product_id'=>$id])->get();
+            $data['oldoffers']=offer::where(['deleted_at'=>null])->get();
         }
 
 
@@ -154,6 +158,27 @@ return redirect($request->redirectUrl);
     public function deleteBulk(Request $request)
     {
         travelProduct::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
+
+        if(Request::capture()->expectsJson())
+        {
+            return response()->json(['message'=>"Operation Successful"]);
+        }
+    }
+    public function addOffer(Request $request)
+    {
+
+        if (travel_product_offer::where(['travel_product_id'=>$request->travel_product_id,'offer_id'=>$request->offer_id,'deleted_at'=>null])->exists())
+        {
+            return response()->json(['message'=>"Offer Already Added",'code'=>'0']);
+        }
+        $data=$request->except(['_token']);
+            travel_product_offer::create($data);
+        return response()->json(['message'=>"Operation Successful",'code'=>'1']);
+
+    }
+    public function deleteOffers(Request $request)
+    {
+        travel_product_offer::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
 
         if(Request::capture()->expectsJson())
         {
