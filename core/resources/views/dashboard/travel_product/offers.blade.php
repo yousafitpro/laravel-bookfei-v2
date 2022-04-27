@@ -152,10 +152,10 @@
                     </div>
                 </div>
                 <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-secondary"
+                    <button onclick="reloadOfferPage()" type="button" class="btn btn-secondary"
                             data-dismiss="modal"> Cancel
                     </button>
-                    <button  type="submit" form="service-suggestion"
+                    <button onclick="reloadOfferPage()" data-dismiss="modal"  type="submit" form="service-suggestion"
                             class="btn btn-primary"> Ok
                     </button>
                 </div>
