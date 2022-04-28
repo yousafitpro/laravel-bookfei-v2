@@ -31,13 +31,15 @@
                         class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
             @endif
 <br>
+        @if($product_id!=0)
         <div class="row">
             <div class="col-md-12 p-l-2">
-                <h5 style="font-weight: bold">Travel Product </h5>
+                <h5 style="font-weight: bold">Travel Product: {{$travelProduct->name}} </h5>
 
 
             </div>
         </div>
+            @endif
 
     </div>
 
@@ -68,8 +70,9 @@
             <!-- Tab content -->
             <div id="Basic" class="mtabcontent {{$_GET['tab']=="Offers"?'mtabActive':''}}">
 
-
+                @if($product_id!=0)
                     @include('dashboard.travel_product.offers')
+                @endif
 
             </div>
             <!-- Tab content -->

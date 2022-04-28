@@ -44,7 +44,7 @@
                         <div style="width: 100%">
                             <div style="width: 49%; float: left">
                                 <label>Effective Date (Start)</label><br>
-                                <input name="effective_date_start" type="date" value="{{old('effective_date_start')}}" required class="form-control">
+                                <input name="effective_date_start" type="date" value="{{old('effective_date_start')?old('effective_date_start'):\Carbon\Carbon::now()->toDateString()}}" required class="form-control">
 
                             </div>
                             <div style="width: 49%; float: left; margin-left:2%">

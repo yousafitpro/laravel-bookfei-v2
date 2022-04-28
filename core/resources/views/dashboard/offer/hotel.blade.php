@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-4">
                 <label>Hotel</label>
-                <select required onchange="updateList()" class="form-control" id="hotel_id" name="hotel_id">
+                <select required onchange="updateList()" class="form-control js-select-basic-single" id="hotel_id" name="hotel_id">
                     <option value="none">Select Hotel</option>
                     @foreach(\App\Models\hotel::where("deleted_at",null)->get() as $h)
                         <option value="{{$h->id}}">{{$h->name}}</option>

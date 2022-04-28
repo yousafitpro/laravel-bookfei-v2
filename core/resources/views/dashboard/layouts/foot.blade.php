@@ -57,6 +57,9 @@
             $('#myTable').DataTable();
 
         $('.js-select-basic-single').select2();
+        $('.selectSearch1').select2();
+        $('.selectSearch2').select2();
+        $('.selectSearch3').select2();
     });
 </script>
 {!! Helper::SaveVisitorInfo("Dashboard &raquo; ".trim($__env->yieldContent('title'))) !!}

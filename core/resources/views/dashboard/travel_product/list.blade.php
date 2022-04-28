@@ -70,7 +70,7 @@
                     <tr>
 
                         <th class=" width50"></th>
-                        <th class="text-center width50">{{ __('backend.name') }}</th>
+                        <th class="text-center width50">Product Name</th>
                         <th class="text-center width50">{{ __('backend.code') }}</th>
                         <th class="text-center width50">{{ __('backend.product_type') }}</th>
                         <th class="text-center width50">{{ __('backend.category') }}</th>

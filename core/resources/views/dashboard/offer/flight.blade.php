@@ -19,9 +19,9 @@
         <div class="row">
             <div class="col-md-5">
                 <label>Departure Airport</label><br>
-                <select class="dark form-control" name="departure_airport">
+                <select class="dark form-control selectSearch1" name="departure_airport">
                    @foreach(\App\Models\airport::where(["deleted_at"=>null,'status'=>'1'])->get() as $a)
-                        <option value="{{$a->id}}">{{$a->name}}</option>
+                        <option value="{{$a->id}}">{{$a->name}} ({{$a->english_name}}-{{$a->IATA_code}})</option>
                     @endforeach
 
                 </select>
@@ -31,9 +31,9 @@
             </div>
             <div class="col-md-5">
                 <label>Arrival Airport</label><br>
-                <select class="dark form-control" name="arrival_airport">
+                <select class="dark form-control selectSearch2" name="arrival_airport">
                     @foreach(\App\Models\airport::where(["deleted_at"=>null,'status'=>'1'])->get() as $a)
-                        <option value="{{$a->id}}">{{$a->name}}</option>
+                        <option value="{{$a->id}}">{{$a->name}} ({{$a->english_name}}-{{$a->IATA_code}})</option>
                     @endforeach
                 </select>
 
@@ -47,7 +47,7 @@
         <div class="row">
             <div class="col-md-5">
                 <label>Airline</label><br>
-                <select class="dark form-control js-select-basic-single" name="airline[]" multiple >
+                <select class="dark form-control selectSearch3" name="airline[]" multiple >
                     @foreach(\App\Models\airline::where(["deleted_at"=>null,'status'=>'1'])->get() as $a)
                         <option value="{{$a->id}}">{{$a->name}}</option>
                     @endforeach
@@ -57,7 +57,7 @@
             </div>
             <div class="col-md-5">
                 <label>Booking Class</label><br>
-                <input required type="number" class="form-control" name="class">
+                <input required  class="form-control" name="class">
             </div>
         </div>
 
@@ -127,7 +127,7 @@
         <div class="row">
             <div class="col-md-5">
                 <label>Departure Airport</label><br>
-                <select class="dark form-control" name="departure_airport">
+                <select class="dark form-control js-select-basic-single" name="departure_airport">
                     <option value="Round">{{\App\Models\airport::find($h->departure_airport)->name}}</option>
 
                 </select>
@@ -137,7 +137,7 @@
             </div>
             <div class="col-md-5">
                 <label>Arrival Airport</label><br>
-                <select class="dark form-control" name="arrival_airport">
+                <select class="dark form-control js-select-basic-single" name="arrival_airport">
                     <option value="{{\App\Models\airport::find($h->arrival_airport)->id}}">{{\App\Models\airport::find($h->arrival_airport)->name}}</option>
                 </select>
 

@@ -120,21 +120,21 @@ class OfferController extends Controller
             'name'=>'required',
             'code'=>'required',
             'type'=>'required',
-            'min_guest'=>'required',
-            'max_guest'=>'required',
+//            'min_guest'=>'required',
+//            'max_guest'=>'required',
             'effective_date_start'=>'required',
             'effective_date_end'=>'required',
             'departure_date_start'=>'required',
             'departure_date_end'=>'required',
-            'booking_date_start'=>'required',
-            'booking_date_end'=>'required',
-            'sort_number'=>'required',
-            'markup_percentage'=>'required',
-            'markup_amount'=>'required',
-            'agent_commission'=>'required',
-            'commission_percentage'=>'required',
-            'commission_amount'=>'required',
-            'tag'=>'required',
+//            'booking_date_start'=>'required',
+//            'booking_date_end'=>'required',
+//            'sort_number'=>'required',
+//            'markup_percentage'=>'required',
+//            'markup_amount'=>'required',
+//            'agent_commission'=>'required',
+//            'commission_percentage'=>'required',
+//            'commission_amount'=>'required',
+//            'tag'=>'required',
         ]);
         $data=$request->except(['_token','redirectUrl']);
         $new= offer::where('id',$id)->update($data);
@@ -151,21 +151,21 @@ class OfferController extends Controller
             'name'=>'required',
             'code'=>'required',
             'type'=>'required',
-            'min_guest'=>'required',
-            'max_guest'=>'required',
+//            'min_guest'=>'required',
+//            'max_guest'=>'required',
             'effective_date_start'=>'required',
             'effective_date_end'=>'required',
             'departure_date_start'=>'required',
             'departure_date_end'=>'required',
-            'booking_date_start'=>'required',
-            'booking_date_end'=>'required',
-            'sort_number'=>'required',
-            'markup_percentage'=>'required',
-            'markup_amount'=>'required',
-            'agent_commission'=>'required',
-            'commission_percentage'=>'required',
-            'commission_amount'=>'required',
-            'tag'=>'required',
+//            'booking_date_start'=>'required',
+//            'booking_date_end'=>'required',
+//            'sort_number'=>'required',
+//            'markup_percentage'=>'required',
+//            'markup_amount'=>'required',
+//            'agent_commission'=>'required',
+//            'commission_percentage'=>'required',
+//            'commission_amount'=>'required',
+//            'tag'=>'required',
         ]);
         $data=$request->except(['_token']);
         $new= offer::create($data);
@@ -207,10 +207,20 @@ class OfferController extends Controller
         ],[
             'rate_table_id.required'=>"Hotel Table is required"
         ]);
+        $ratetable=hotelRateTable::find($request->rate_table_id);
+        $offer=offer::find($request->offer_id);
+
         if ($request->hotel_id=='none')
         {
             return redirect()->back()->with('doneMessage', "Please Select a Hotel First");
         }
+
+        if ($ratetable->effective_end_date>$offer->departure_date_end || $ratetable->effective_start_date<$offer->departure_date_start)
+        {
+
+            return  redirect()->back()->with(['errorMessage'=>"Rate table effective dates should be between Departure Date of office"]);
+        }
+
        $data=$request->except(['_token','tab']);
         if ($request->has('is_compulsory'))
         {

@@ -86,6 +86,7 @@ class TravelProductController extends Controller
         }
         $data['product_id']=$id;
         $data['offers']=[];
+        $data['oldoffers']=[];
         if ($id!=0)
         {
 
