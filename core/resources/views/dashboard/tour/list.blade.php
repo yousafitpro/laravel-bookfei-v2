@@ -6,7 +6,7 @@
         <div class="card" style="padding: 4px">
             <div class="box-header ">
                 <a href="{{route('admin.tour.editOrCreate',0).'?tab=Basic'}}">
-                    <button class="btn dark pull-left">Add New Tour</button>
+                    <button class="btn dark pull-left">Add Tour</button>
                 </a>
                 <a href="javascrip:void" onclick="hotelBulkDelete()">
                     <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>
@@ -44,7 +44,7 @@
                     <tr>
 
                         <th class=" width50"></th>
-                        <th class="text-center width50">{{ __('backend.name') }}</th>
+                        <th class="text-left width50">{{ __('backend.name') }}</th>
 
                         <th class="text-center width50">{{ __('backend.status') }}</th>
                         <th class="text-center width200">{{ __('backend.action') }}</th>
@@ -68,7 +68,7 @@
                             <td class="">
                                 <input type="checkbox"  data-id="{{$Banner->id}}" id="hotelCheckBox" style="zoom:1.2">
                             </td>
-                            <td class="text-center">
+                            <td class="text-left">
                                 <label>{{$Banner->name}}</label>
                             </td>
 {{--                            <td class="text-center">--}}

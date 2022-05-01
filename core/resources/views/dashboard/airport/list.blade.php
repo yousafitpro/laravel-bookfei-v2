@@ -6,7 +6,7 @@
         <div class="card" style="padding: 4px">
             <div class="box-header ">
                 <a href="{{route('admin.airport.addView')}}">
-                    <button class="btn dark pull-left">Add New Airport</button>
+                    <button class="btn dark pull-left">Add Airport</button>
                 </a>
                 <a href="javascrip:void" onclick="hotelBulkDelete()">
                     <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>

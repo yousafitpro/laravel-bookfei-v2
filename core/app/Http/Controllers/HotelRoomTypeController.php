@@ -279,7 +279,7 @@ class HotelRoomTypeController extends Controller
         $list2=$list;
         $list3=hotelRoomRate::where("deleted_at",null)->where('hotel_room_type_id',$id)->where('date','>=',$oStart)->where('date','<',$mnewStart)->orderBy('date')->get();
 
-
+dd($list3);
 //        $list=$list->whereMonth('date',$date->month);
         $list=$list->orderBy('date')->get();
 
@@ -287,6 +287,7 @@ class HotelRoomTypeController extends Controller
 
         $list=$list->chunk(7);
         $lcount=7-$list[floor($endpoint)]->count();
+     //error
         $nv2=$list3[0]->replicate();
         for ($k=1; $k<=$lcount; $k++)
         {
@@ -312,6 +313,7 @@ class HotelRoomTypeController extends Controller
         $data['id']=$id;
        $data['list']=$list;
        $loop=7-$list3->count();
+
        $nv=$list3[0]->replicate();
 //as
        for ($k=1; $k<=$loop; $k++)

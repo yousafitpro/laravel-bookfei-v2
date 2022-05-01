@@ -78,6 +78,15 @@ class TravelProductController extends Controller
 
         return view('dashboard.travel_product.list')->with(['list'=>$list]);
     }
+    public function clear_filter()
+    {
+        Session::put('searchWord','');
+        Session::put('searchCategory','none');
+        Session::put('searchDestination','none');
+        Session::put('searchType','none');
+        Session::put('searchCode','');
+        return redirect(url('admin/travel-product/list'));
+    }
     public function editOrCreate(Request $request,$id)
     {
         if ($id==0 && $request->tab!="Basic")

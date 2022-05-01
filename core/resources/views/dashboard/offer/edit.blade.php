@@ -143,12 +143,14 @@
                 <select class="form-control js-select-basic-single" name="tag[]" multiple>
                     @foreach(\App\Helpers\Helper::tags() as $c)
                         <option value="{{$c->id}}"
+                                @if($offer->tag!=null )
                         @foreach($offer->tag as $item)
                             @if($item==$c->id)
                                 {{'selected'}}
                                 @endif
 
                             @endforeach
+                        @endif
                         >{{$c->name}}</option>
                     @endforeach
                 </select>

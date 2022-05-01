@@ -6,7 +6,7 @@
         <div class="card" style="padding: 4px">
             <div class="box-header ">
                 <a href="{{route('admin.currency.addView')}}">
-                    <button class="btn dark pull-left">Add New Currency</button>
+                    <button class="btn dark pull-left">Add Currency</button>
                 </a>
                 <a href="javascrip:void" onclick="showDeleteModel()">
                     <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>

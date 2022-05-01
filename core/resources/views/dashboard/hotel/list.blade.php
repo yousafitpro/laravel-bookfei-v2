@@ -6,7 +6,7 @@
         <div class="card" style="padding: 4px">
             <div class="box-header ">
                 <a href="{{route('admin.hotel.editOrCreate',0).'?tab=Basic'}}">
-                <button class="btn dark pull-left">Add New Hotel</button>
+                <button class="btn dark pull-left">Add Hotel</button>
                 </a>
                 <a href="javascrip:void" onclick="hotelBulkDelete()">
                     <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>

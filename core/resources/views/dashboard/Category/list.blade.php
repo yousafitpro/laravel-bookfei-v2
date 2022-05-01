@@ -6,7 +6,7 @@
         <div class="card" style="padding: 4px">
             <div class="box-header ">
                 <a href="{{route('admin.category.addView')}}">
-                    <button class="btn dark pull-left">Add New Category</button>
+                    <button class="btn dark pull-left">Add Category</button>
                 </a>
                 <a href="javascrip:void" onclick="showDeleteModel()">
                     <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>

@@ -6,7 +6,7 @@
         <div class="card" style="padding: 4px">
             <div class="box-header ">
                 <a href="{{route('admin.supplier.addView')}}">
-                    <button class="btn dark pull-left">Add New Supplier</button>
+                    <button class="btn dark pull-left">Add Supplier</button>
                 </a>
                 <a href="javascrip:void" onclick="showDeleteModel()">
                     <button class="btn btn-danger pull-right" id="btnRemove">Remove</button>

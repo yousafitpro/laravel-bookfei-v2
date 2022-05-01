@@ -5,8 +5,10 @@
     <div class="padding">
         <div class="card" style="padding: 4px">
             <div class="box-header ">
+                <h2 style="color: grey">Travel Product Listing</h2>
+                <br>
                 <a href="{{route('admin.travel_product.editOrCreate',0).'?tab=Basic'}}">
-                    <button class="btn dark pull-left">Add New Travel Product</button>
+                    <button class="btn dark pull-left">Add Travel Product</button>
                 </a>
                 <a href="javascrip:void" onclick="hotelBulkDelete()">
                     <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>
@@ -28,7 +30,7 @@
                         <div class="col-md-2">
                             <input name="searchWord" placeholder="Travel Product Name" class="form-control" value="{{session('searchWord','')}}">
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <input name="searchCode" placeholder="Code" class="form-control" value="{{session('searchCode','')}}">
                         </div>
                         <div class="col-md-2">
@@ -58,6 +60,9 @@
                         <div class="col-md-2">
                             <button type="submit" class="btn dark btn-block">Filter</button>
                         </div>
+                        <div class="col-md-1">
+                            <a href="{{route('admin.travel_product.clear_filter')}}" class="btn dark btn-block">Clear</a>
+                        </div>
                     </div>
                 </form>
                 <br>
@@ -70,7 +75,7 @@
                     <tr>
 
                         <th class=" width50"></th>
-                        <th class="text-center width50">Product Name</th>
+                        <th class="text-center width50">Travel Product Name</th>
                         <th class="text-center width50">{{ __('backend.code') }}</th>
                         <th class="text-center width50">{{ __('backend.product_type') }}</th>
                         <th class="text-center width50">{{ __('backend.category') }}</th>
@@ -100,7 +105,7 @@
                             <td class="">
                                 <input type="checkbox"  data-id="{{$Banner->id}}" id="hotelCheckBox" style="zoom:1.2">
                             </td>
-                            <td class="text-center">
+                            <td class="text-left">
                                 <label>{{$Banner->name}}</label>
                             </td>
                             <td class="text-center">
@@ -221,7 +226,7 @@
                 $("#btnHotelRemove").text("Removing...")
                 $.ajax({
                     type:'post',
-                    url:'{{route('admin.tour.deleteBulk')}}',
+                    url:'{{route('admin.travel_product.deleteBulk')}}',
                     data:{"_token":"{{ csrf_token() }}",'data':tempArray},
                     success:function(data){
                         console.log(data)

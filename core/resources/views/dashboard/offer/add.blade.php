@@ -98,8 +98,8 @@
                 <div class="row">
                     <div class="col-md-5">
                         <label>Markup Type</label><br>
-                        <select class="form-control" name="markup_type">
-                            @foreach(['Percentage (%)','Amount($)'] as $c)
+                        <select onchange="ChangeMarkup()" class="form-control" id="markup_type" name="markup_type">
+                            @foreach(['Percentage (%)','Amount($)','Percentage (%) + Amount($)'] as $c)
                                 <option value="{{$c}}" >{{$c}}</option>
                             @endforeach
                         </select>
@@ -108,11 +108,11 @@
                     </div>
                     <div class="col-md-3">
                         <label>Markup Percentage</label><br>
-                        <input name="markup_percentage" type="number" value="{{old('effective_date_start')}}" required class="form-control">
+                        <input id="markup_percentage" name="markup_percentage" type="number" value="{{old('effective_date_start')}}" required class="form-control">
                     </div>
                     <div class="col-md-3">
                         <label>Markup Amount</label><br>
-                        <input name="markup_amount" type="number" value="{{old('effective_date_end')}}" required class="form-control">
+                        <input disabled id="markup_amount" name="markup_amount" type="number" value="{{old('effective_date_end')}}" required class="form-control">
                     </div>
                 </div>
                 <br>
@@ -164,6 +164,29 @@
     </form>
 
 <script>
+
+    function ChangeMarkup()
+    {
+        $val=$("#markup_type").val()
+        if ($val=='Percentage (%)')
+        {
+            $("#markup_percentage").prop("disabled",false)
+            $("#markup_amount").prop("value",'')
+            $("#markup_amount").prop("disabled",true)
+        }
+        else if ($val=='Amount($)')
+        {
+            $("#markup_amount").prop("disabled",false)
+            $("#markup_percentage").prop("value",'')
+            $("#markup_percentage").prop("disabled",true)
+        }
+        else
+        {
+            $("#markup_amount").prop("disabled",false)
+            $("#markup_percentage").prop("disabled",false)
+        }
+
+    }
     function early_bird()
     {
 

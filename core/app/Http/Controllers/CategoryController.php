@@ -90,7 +90,12 @@ class CategoryController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.addDone'));
+
+        if ($request->redirectUrl=='')
+        {
+            return redirect()->back()->with('doneMessage', __('backend.addDone'));
+        }
+        return redirect($request->redirectUrl)->with('doneMessage', __('backend.addDone'));
     }
     public function deleteBulk(Request $request)
     {

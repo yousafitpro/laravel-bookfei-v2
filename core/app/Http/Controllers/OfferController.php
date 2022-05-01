@@ -85,7 +85,7 @@ class OfferController extends Controller
     {
         if ($id==0 && $request->tab!="Basic")
         {
-            return redirect()->back()->with('errorMessage', "Please Create a Hotel first");
+            return redirect()->back()->with('errorMessage', "Please Create an Offer first");
         }
         $data['offer_id']=$id;
         $data['hotels']=[];
@@ -120,8 +120,8 @@ class OfferController extends Controller
             'name'=>'required',
             'code'=>'required',
             'type'=>'required',
-//            'min_guest'=>'required',
-//            'max_guest'=>'required',
+            'min_guest'=>'nullable|number',
+            'max_guest'=>'nullable|number',
             'effective_date_start'=>'required',
             'effective_date_end'=>'required',
             'departure_date_start'=>'required',
@@ -149,10 +149,10 @@ class OfferController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'code'=>'required',
+            'code'=>'required|unique',
             'type'=>'required',
-//            'min_guest'=>'required',
-//            'max_guest'=>'required',
+            'min_guest'=>'nullable|number',
+            'max_guest'=>'nullable|number',
             'effective_date_start'=>'required',
             'effective_date_end'=>'required',
             'departure_date_start'=>'required',

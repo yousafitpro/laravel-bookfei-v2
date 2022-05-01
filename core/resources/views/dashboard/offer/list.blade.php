@@ -6,7 +6,7 @@
         <div class="card" style="padding: 4px">
             <div class="box-header ">
                 <a href="{{route('admin.offer.editOrCreate',0).'?tab=Basic'}}">
-                    <button class="btn dark pull-left">Add New Offer</button>
+                    <button class="btn dark pull-left">Add Offer</button>
                 </a>
                 <a href="javascrip:void" onclick="hotelBulkDelete()">
                     <button class="btn btn-danger pull-right" id="btnHotelRemove">Remove</button>
@@ -42,6 +42,7 @@
                         <div class="col-md-2">
                             <select class="form-control dark" name="searchTag">
                                 <option value="none" >Tag</option>
+
                                 @foreach(\App\Helpers\Helper::Tags() as $c)
                                     <option value="{{$c->id}}" {{session('searchTag','')==$c->id?'selected':''}} >{{$c->name}}</option>
                                 @endforeach
@@ -113,9 +114,11 @@
                                 <label>{{$Banner->type}}</label>
                             </td>
                             <td class="text-center">
+                                @if($Banner->tag!=null )
                                 @foreach($Banner->tag as $c)
                                     <label>{{\App\Helpers\Helper::get_Tag($c)->name}}</label>
                                 @endforeach
+                                    @endif
                             </td>
 {{--                            <td class="text-center">--}}
 {{--                                @foreach($Banner->destination as $c)--}}

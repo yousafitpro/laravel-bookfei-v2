@@ -6,7 +6,7 @@
         <div class="card" style="padding: 4px">
             <div class="box-header ">
                 <a href="{{route('admin.cruiseShip.editOrCreate',0).'?tab=Basic'}}">
-                <button class="btn dark pull-left">Add New cruiseShip</button>
+                <button class="btn dark pull-left">Add cruiseShip</button>
                 </a>
                 <a href="javascrip:void" onclick="cruiseShipBulkDelete()">
                     <button class="btn btn-danger pull-right" id="btncruiseShipRemove">Remove</button>
