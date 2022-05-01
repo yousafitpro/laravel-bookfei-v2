@@ -1,25 +1,33 @@
 @extends('dashboard.layouts.master')
 @section('title', "Add Room Type")
 @section('content')
-    <form method="post" action="{{route('admin.airline.update',$Banner->id)}}" enctype="multipart/form-data">
-        @csrf
 
         <div class="padding">
             <div class="card ">
                 <div class="box-header">
-                    <button type="submit"
-                            class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.update') }}</button>
                     <small>
-                        <a href="{{route('admin.airline.list')}}">
+                        <a href="{{route('admin.category.list')}}">
                             <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                             Go Back
                         </a>
                     </small>
                     <br>
+                    <button onclick="addAirline('{{url("admin/airline/list")}}')"
+                            class="btn dark p-x-md pull-right m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close</button>
+
+                    <button onclick="addAirline('')"
+                            class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
+
+
+                    <br>
 
 
                 </div>
-                <div class="container-fluid">
+                <br>
+                <form method="post" id="EditAirline" action="{{route('admin.airline.update',$Banner->id)}}" enctype="multipart/form-data">
+                    @csrf
+                    <input hidden id="redirectUrl" name="redirectUrl">
+                    <div class="container-fluid">
                     <div class="row">
 
                         <div class="col-md-6 text-left">
@@ -56,7 +64,16 @@
                     <br>
 
                 </div>
+                </form>
             </div>
         </div>
-    </form>
+<script>
+    function addAirline(url)
+    {
+
+
+        $("#redirectUrl").val(url)
+        document.getElementById('EditAirline').submit()
+    }
+</script>
 @endsection

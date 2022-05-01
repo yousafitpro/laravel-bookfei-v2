@@ -34,8 +34,16 @@ class AirportController extends Controller
             Session::put('searchWord','');
         }
         $list=$list->get();
-
+        foreach ($list as $l)
+        {
+            $l->image=asset("core/public/".$l->image);
+        }
         return view('dashboard.airport.list')->with(['list'=>$list]);
+    }
+    public function clear()
+    {
+        Session::put('searchWord','');
+        return redirect(url("admin/airport/list"));
     }
     public function delete($id)
     {
@@ -69,6 +77,12 @@ class AirportController extends Controller
     public function create(Request $request)
     {
 
+        $request->validate([
+            'IATA_code'=>'required|unique:airports'
+        ],[
+            'IATA_code.required'=>'IATA code is required',
+            'IATA_code.unique'=>'IATA code Should be Unique'
+        ]);
         $data=$request->except('file');
 
         $city= airport::create($data);

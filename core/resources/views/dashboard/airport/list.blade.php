@@ -25,12 +25,16 @@
             <div class="container-fluid">
                 <form method="get" action="{{route('admin.airport.list')}}">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <input name="searchWord" placeholder="Airport Name" class="form-control" value="{{session('searchWord','')}}">
                         </div>
 
                         <div class="col-md-2">
                             <button type="submit" class="btn dark btn-block">Filter</button>
+                        </div>
+
+                        <div class="col-md-2">
+                            <a href="{{route('admin.airport.clear')}}" class="btn dark btn-block">Clear</a>
                         </div>
                     </div>
                 </form>
@@ -46,6 +50,8 @@
                         <th class=" width50"></th>
 
                         <th class=" width50">{{ __('backend.name') }}</th>
+                        <th class=" width50">English Name</th>
+
                         <th class="text-center width50">IATA Code</th>
 
 {{--                        <th class="text-center width50">{{ __('backend.currency') }}</th>--}}
@@ -75,6 +81,9 @@
 
                             <td >
                                 <label>{{$Banner->name}}</label>
+                            </td>
+                            <td >
+                                <label>{{$Banner->english_name}}</label>
                             </td>
                             <td class="text-center">
                                 {{$Banner->IATA_code}}

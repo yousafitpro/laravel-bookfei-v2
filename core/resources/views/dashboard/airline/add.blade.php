@@ -1,24 +1,33 @@
 @extends('dashboard.layouts.master')
 @section('title', "Add Room Type")
 @section('content')
-    <form method="post" action="{{route('admin.airline.create')}}" enctype="multipart/form-data">
-        @csrf
+f
 
         <div class="padding">
             <div class="card ">
                 <div class="box-header">
-                    <button type="submit"
-                            class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
                     <small>
-                        <a href="{{route('admin.airline.list')}}">
+                        <a href="{{route('admin.category.list')}}">
                             <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
                             Go Back
                         </a>
                     </small>
                     <br>
+                    <button onclick="addAirline('{{url("admin/airline/list")}}')"
+                            class="btn dark p-x-md pull-right m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close</button>
+
+                    <button onclick="addAirline('')"
+                            class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
+
+
+                    <br>
 
 
                 </div>
+                <br>
+                <form method="post" id="AddAirline" action="{{route('admin.airline.create')}}" enctype="multipart/form-data">
+                    @csrf
+                    <input hidden id="redirectUrl" name="redirectUrl">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6">
@@ -69,7 +78,17 @@
                     </div>
                     <br>
                 </div>
+                </form>
             </div>
         </div>
-    </form>
+
+    <script>
+        function addAirline(url)
+        {
+
+
+            $("#redirectUrl").val(url)
+            document.getElementById('AddAirline').submit()
+        }
+    </script>
 @endsection
