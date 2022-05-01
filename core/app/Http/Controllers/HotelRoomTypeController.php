@@ -234,20 +234,25 @@ class HotelRoomTypeController extends Controller
     }
     public function rateTable(Request $request,$id)
     {
+        $rateTable=hotelRateTable::find(hotelRateTableRoomType::find($id)->hotel_rate_table_id);
+
+        self::CreateDatesOfTheMonth($rateTable->effective_start_date,$id);
 
         $list=hotelRoomRate::where("deleted_at",null);
+        $templist=hotelRoomRate::where("deleted_at",null)->get();
         $roomType=hotelRoomType::find(hotelRateTableRoomType::find($id)->hotel_room_type_id);
 
         $hotel=hotel::find($roomType->hotel_id);
-        $rateTable=hotelRateTable::find(hotelRateTableRoomType::find($id)->hotel_rate_table_id);
+
         $date=null;
+
         if ($request->has("month"))
         {
             $date=Carbon::parse($request->month);
         }
         else
         {
-            $date=Carbon::now();
+            $date=Carbon::parse($rateTable->effective_start_date);
         }
 //        hotelRoomRate::where("id",'22e')->delete();
         $mynMonth=$date->toDateString();
@@ -267,19 +272,22 @@ class HotelRoomTypeController extends Controller
 
         $mend=$date->endOfMonth('Y-m-d')->toDateString();
       $mnewStart=Carbon::parse($mstart);
-
+       $haveDays=false;
         while ($mnewStart->dayName!="Sunday")
         {
             $mstart=$mnewStart->addDay();
+            $haveDays=true;
         }
         $mnewStart=$mnewStart->toDateString();
 
 
         $list=$list->whereBetween('date',[$mnewStart,$mend]);
         $list2=$list;
+
+//        $list3=hotelRoomRate::where("deleted_at",null)->where('hotel_room_type_id',$id)->where('date','>=',$oStart)->where('date','<',$mnewStart)->orderBy('date')->get();
         $list3=hotelRoomRate::where("deleted_at",null)->where('hotel_room_type_id',$id)->where('date','>=',$oStart)->where('date','<',$mnewStart)->orderBy('date')->get();
 
-dd($list3);
+
 //        $list=$list->whereMonth('date',$date->month);
         $list=$list->orderBy('date')->get();
 
@@ -288,7 +296,9 @@ dd($list3);
         $list=$list->chunk(7);
         $lcount=7-$list[floor($endpoint)]->count();
      //error
-        $nv2=$list3[0]->replicate();
+
+        $nv2=$templist[0]->replicate();
+
         for ($k=1; $k<=$lcount; $k++)
         {
 
@@ -312,9 +322,11 @@ dd($list3);
        $data['rateTable']=$rateTable;
         $data['id']=$id;
        $data['list']=$list;
+
        $loop=7-$list3->count();
 
-       $nv=$list3[0]->replicate();
+       $nv=$templist[0]->replicate();
+
 //as
        for ($k=1; $k<=$loop; $k++)
        {
@@ -328,7 +340,11 @@ dd($list3);
            $nv->tax_percentage=null;
            $nv->room_price=null;
            $nv->senior=null;
-           $list3->prepend($nv);
+           if ($haveDays)
+           {
+               $list3->prepend($nv);
+           }
+
        }
 
 //       dd($list3);
