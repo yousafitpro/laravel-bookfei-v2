@@ -224,7 +224,7 @@
                 $("#btnHotelRemove").text("Removing...")
                 $.ajax({
                     type:'post',
-                    url:'{{route('admin.tour.deleteBulk')}}',
+                    url:'{{route('admin.offer.deleteBulk')}}',
                     data:{"_token":"{{ csrf_token() }}",'data':tempArray},
                     success:function(data){
                         console.log(data)

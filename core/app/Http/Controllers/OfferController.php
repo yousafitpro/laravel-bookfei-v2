@@ -174,6 +174,7 @@ class OfferController extends Controller
         ]);
         if ($request->redirectUrl=='')
         {
+
             return redirect(route('admin.offer.editOrCreate',$new->id).'?tab=Basic')->with('doneMessage', __('backend.addDone'));
         }
         return redirect($request->redirectUrl);

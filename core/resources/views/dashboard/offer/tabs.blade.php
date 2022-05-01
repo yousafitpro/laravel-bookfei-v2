@@ -40,17 +40,17 @@
 
         @endif
             @if($_GET['tab']=="Basic" && $offer_id!=0 )
-            <button  onclick="editOffer('')"
+            <button  onclick="editOffer('{{url("admin/offer/list")}}')"
                      class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
 
             <button onclick="editOffer('{{route('admin.offer.editOrCreate',$offer_id).'?tab=Basic'}}')"
                         class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
             @endif
         @if($_GET['tab']=="Basic" && $offer_id==0 )
-            <button  onclick="addOffer('')"
+            <button  onclick="addOffer('{{url("admin/offer/list")}}')"
                      class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
 
-            <button onclick="addOffer('{{route('admin.offer.editOrCreate',$offer_id).'?tab=Basic'}}')"
+            <button onclick="addOffer('')"
                     class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
         @endif
 <br>
