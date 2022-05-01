@@ -7,6 +7,7 @@
                 <div class="box-header">
                     <button onclick="addCategory('{{url("admin/category/list")}}')"
                             class="btn dark p-x-md pull-right m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close</button>
+
                     <button onclick="addCategory('')"
                             class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
                     <small>

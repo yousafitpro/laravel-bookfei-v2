@@ -55,6 +55,11 @@ class HotelController extends Controller
         $list=$list->get();
         return view('dashboard.hotel.list')->with(['list'=>$list]);
     }
+    public function clear()
+    {
+        Session::put('searchWord','');
+        return redirect(url("admin/tag/list"));
+    }
     public function editOrCreate(Request $request,$id)
     {
         if ($id==0 && $request->tab!="Basic")

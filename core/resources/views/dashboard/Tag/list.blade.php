@@ -25,12 +25,15 @@
             <div class="container-fluid">
                 <form method="get" action="{{route('admin.tag.list')}}">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <input name="searchWord" placeholder="tag Name" class="form-control" value="{{session('searchWord','')}}">
                         </div>
 
                         <div class="col-md-2">
                             <button type="submit" class="btn dark btn-block">Filter</button>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="{{route('admin.tag.clear')}}" class="btn dark btn-block">Clear</a>
                         </div>
                     </div>
                 </form>
@@ -86,7 +89,7 @@
 
                                     <a href="{{route('admin.tag.updateView',$Banner->id)}}">
 
-                                        <button class="btn btn-sm success" >
+                                        <button class="btn btn-sm dark" >
                                             <small><i class="fa fa-edit" aria-hidden="true"></i> {{ __('backend.edit') }}
                                             </small>
                                         </button>
@@ -96,14 +99,14 @@
 
 
 
-                                @if(@Auth::user()->permissionsGroup->delete_status)
-                                    <button class="btn btn-sm warning" data-toggle="modal"
-                                            data-target="#m-{{ $Banner->id }}" ui-toggle-class="bounce"
-                                            ui-target="#animate">
-                                        <small><i class="material-icons">&#xe872;</i> {{ __('backend.delete') }}
-                                        </small>
-                                    </button>
-                                @endif
+{{--                                @if(@Auth::user()->permissionsGroup->delete_status)--}}
+{{--                                    <button class="btn btn-sm warning" data-toggle="modal"--}}
+{{--                                            data-target="#m-{{ $Banner->id }}" ui-toggle-class="bounce"--}}
+{{--                                            ui-target="#animate">--}}
+{{--                                        <small><i class="material-icons">&#xe872;</i> {{ __('backend.delete') }}--}}
+{{--                                        </small>--}}
+{{--                                    </button>--}}
+{{--                                @endif--}}
 
                             </td>
                         </tr>
@@ -222,4 +225,5 @@
         }
 
     </script>
+
 @endpush

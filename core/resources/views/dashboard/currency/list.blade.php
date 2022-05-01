@@ -88,7 +88,7 @@
 
                                     <a href="{{route('admin.currency.updateView',$Banner->id)}}">
 
-                                        <button class="btn btn-sm success" >
+                                        <button class="btn btn-sm dark" >
                                             <small><i class="fa fa-edit" aria-hidden="true"></i> {{ __('backend.edit') }}
                                             </small>
                                         </button>
@@ -98,14 +98,14 @@
 
 
 
-                                @if(@Auth::user()->permissionsGroup->delete_status)
-                                    <button class="btn btn-sm warning" data-toggle="modal"
-                                            data-target="#m-{{ $Banner->id }}" ui-toggle-class="bounce"
-                                            ui-target="#animate">
-                                        <small><i class="material-icons">&#xe872;</i> {{ __('backend.delete') }}
-                                        </small>
-                                    </button>
-                                @endif
+{{--                                @if(@Auth::user()->permissionsGroup->delete_status)--}}
+{{--                                    <button class="btn btn-sm warning" data-toggle="modal"--}}
+{{--                                            data-target="#m-{{ $Banner->id }}" ui-toggle-class="bounce"--}}
+{{--                                            ui-target="#animate">--}}
+{{--                                        <small><i class="material-icons">&#xe872;</i> {{ __('backend.delete') }}--}}
+{{--                                        </small>--}}
+{{--                                    </button>--}}
+{{--                                @endif--}}
 
                             </td>
                         </tr>

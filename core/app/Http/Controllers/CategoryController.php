@@ -42,6 +42,11 @@ class CategoryController extends Controller
         $list=$list->get();
         return view('dashboard.Category.list')->with(['list'=>$list]);
     }
+    public function clear()
+    {
+        Session::put('searchWord','');
+        return redirect(url("admin/category/list"));
+    }
     public function delete($id)
     {
 //        if (hotelRateTable::where('Category_id',$id)->exists())

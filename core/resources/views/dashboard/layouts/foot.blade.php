@@ -52,6 +52,12 @@
 //        // alert($('#'+e.target.id).attr("checked"))
 //
 //    })
+function submitMyForm(form,url,UrlInputBox='#redirectUrl')
+{
+    $(returnUrl).val(url)
+    var form=document.getElementById(form);
+    form.submit()
+}
     $(document).ready(function() {
 
             $('#myTable').DataTable();

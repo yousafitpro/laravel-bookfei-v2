@@ -40,6 +40,11 @@ class TagController extends Controller
         $list=$list->get();
         return view('dashboard.Tag.list')->with(['list'=>$list]);
     }
+    public function clear()
+    {
+        Session::put('searchWord','');
+        return redirect(url("admin/tag/list"));
+    }
     public function delete($id)
     {
 //        if (hotelRateTable::where('Tag_id',$id)->exists())
@@ -56,7 +61,8 @@ class TagController extends Controller
     public function update(Request $request,$id)
     {
 
-        $data=$request->except(['_token']);
+
+        $data=$request->except(['_token','redirectUrl']);
         $city=Tag::where('id',$id)->update($data);
         if($request->hasFile('file'))
         {
@@ -69,11 +75,18 @@ class TagController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.update'));
+        if ($request->redirectUrl=="")
+        {
+            return redirect()->back()->with('doneMessage', __('backend.update'));
+        }
+
+        return redirect($request->redirectUrl);
     }
     public function create(Request $request)
     {
-
+$request->validate([
+    'name'=>'required'
+]);
         $data=$request->except('file');
         $city= Tag::create($data);
 
@@ -88,7 +101,12 @@ class TagController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.addDone'));
+        if ($request->redirectUrl=='')
+        {
+            return redirect()->back()->with('doneMessage', __('backend.addDone'));
+        }
+        return redirect($request->redirectUrl);
+
     }
     public function deleteBulk(Request $request)
     {

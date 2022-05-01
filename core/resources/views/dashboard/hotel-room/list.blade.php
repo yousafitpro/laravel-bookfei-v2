@@ -54,20 +54,20 @@
                                 </td>
                                 <td class="text-center">
                                     @if(@Auth::user()->permissionsGroup->edit_status)
-                                        <a href="{{route('admin.hotelRoom.updateView',$Banner->id)}}" class="btn btn-sm success">
+                                        <a href="{{route('admin.hotelRoom.updateView',$Banner->id)}}" class="btn btn-sm dark">
                                             <small><i class="material-icons">&#xe3c9;</i> {{ __('backend.edit') }}
                                             </small>
                                         </a>
                                     @endif
 
-                                    @if(@Auth::user()->permissionsGroup->delete_status)
-                                        <button class="btn btn-sm warning" data-toggle="modal"
-                                                data-target="#m-{{ $Banner->id }}" ui-toggle-class="bounce"
-                                                ui-target="#animate">
-                                            <small><i class="material-icons">&#xe872;</i> {{ __('backend.delete') }}
-                                            </small>
-                                        </button>
-                                    @endif
+{{--                                    @if(@Auth::user()->permissionsGroup->delete_status)--}}
+{{--                                        <button class="btn btn-sm warning" data-toggle="modal"--}}
+{{--                                                data-target="#m-{{ $Banner->id }}" ui-toggle-class="bounce"--}}
+{{--                                                ui-target="#animate">--}}
+{{--                                            <small><i class="material-icons">&#xe872;</i> {{ __('backend.delete') }}--}}
+{{--                                            </small>--}}
+{{--                                        </button>--}}
+{{--                                    @endif--}}
 
                                 </td>
                             </tr>
