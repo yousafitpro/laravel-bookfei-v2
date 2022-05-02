@@ -149,10 +149,10 @@ class OfferController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'code'=>'required|unique',
+            'code'=>'required|unique:offers',
             'type'=>'required',
-            'min_guest'=>'nullable|number',
-            'max_guest'=>'nullable|number',
+            'min_guest'=>'nullable|integer',
+            'max_guest'=>'nullable|integer',
             'effective_date_start'=>'required',
             'effective_date_end'=>'required',
             'departure_date_start'=>'required',

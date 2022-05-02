@@ -50,10 +50,19 @@ class CountryController extends Controller
             return redirect()->back()->with('doneMessage', __('backend.deleteDone'));
         }
     }
+    public function clear()
+    {
+        Session::put('searchWord','');
+        return redirect(url("admin/country/list"));
+    }
     public function update(Request $request,$id)
     {
 
-
+        $request->validate([
+            'name'=>'required',
+            'english_name'=>'required',
+            'file'=>'required',
+        ]);
         $city=Country::find($id);
 
         $city->name=$request->name;
@@ -72,12 +81,21 @@ class CountryController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.update'));
+        if ($request->redirectUrl=='')
+        {
+            return redirect()->back()->with('doneMessage', __('backend.update'));
+
+        }
+        return redirect($request->redirectUrl)->with('doneMessage', __('backend.addDone'));
     }
     public function create(Request $request)
     {
-
-         $data=$request->except('file');
+          $request->validate([
+              'name'=>'required',
+              'english_name'=>'required',
+              'file'=>'required',
+          ]);
+         $data=$request->except(['file','_token','redirectUrl']);
         $city= Country::create($data);
 
         if($request->hasFile('file'))
@@ -91,7 +109,12 @@ class CountryController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.addDone'));
+        if ($request->redirectUrl=='')
+        {
+            return redirect()->back()->with('doneMessage', __('backend.update'));
+
+        }
+        return redirect($request->redirectUrl)->with('doneMessage', __('backend.addDone'));
     }
     public function deleteBulk(Request $request)
     {

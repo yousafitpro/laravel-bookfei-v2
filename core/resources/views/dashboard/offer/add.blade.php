@@ -119,8 +119,8 @@
                 <div class="row">
                     <div class="col-md-5">
                         <label>Agent Commission</label><br>
-                        <select class="form-control" name="agent_commission">
-                            @foreach(['Percentage (%)','Amount($)','None'] as $c)
+                        <select id="commission" onchange="ChangeCommission()"  class="form-control" name="agent_commission">
+                            @foreach(['Percentage (%)','Amount($)','Percentage (%) + Amount($)','None'] as $c)
                                 <option value="{{$c}}" >{{$c}}</option>
                             @endforeach
                         </select>
@@ -129,11 +129,11 @@
                     </div>
                     <div class="col-md-3">
                         <label>Commission Percentage</label><br>
-                        <input name="commission_percentage" type="number" value="{{old('effective_date_start')}}" required class="form-control">
+                        <input id="c_percentage" name="commission_percentage" type="number" value="{{old('effective_date_start')}}" required class="form-control">
                     </div>
                     <div class="col-md-3">
                         <label>Commission Amount</label><br>
-                        <input name="commission_amount" type="number" value="{{old('effective_date_end')}}" required class="form-control">
+                        <input id="c_amount" disabled name="commission_amount" type="number" value="{{old('effective_date_end')}}" required class="form-control">
                     </div>
                 </div>
                 <br>
@@ -187,6 +187,36 @@
         }
 
     }
+    function ChangeCommission()
+    {
+        $val=$("#commission").val()
+        if ($val=='Percentage (%)')
+        {
+            $("#c_percentage").prop("disabled",false)
+            $("#c_amount").prop("value",'')
+            $("#c_amount").prop("disabled",true)
+        }
+        else if ($val=='Amount($)')
+        {
+            $("#c_amount").prop("disabled",false)
+            $("#c_percentage").prop("value",'')
+            $("#c_percentage").prop("disabled",true)
+        }
+        else if ($val="Percentage (%) + Amount($)")
+        {
+            $("#c_amount").prop("disabled",false)
+            $("#c_percentage").prop("disabled",false)
+        }
+        else
+        {
+            $("#c_amount").prop("value",'')
+            $("#c_amount").prop("disabled",true)
+            $("#c_percentage").prop("value",'')
+            $("#c_percentage").prop("disabled",true)
+        }
+
+    }
+
     function early_bird()
     {
 

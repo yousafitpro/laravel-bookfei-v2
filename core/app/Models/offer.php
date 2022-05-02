@@ -15,7 +15,7 @@ class offer extends Model
         'effective_date_start','effective_date_end',
         'departure_date_start','departure_date_end',
         'booking_date_start','booking_date_end',
-        'min_guest','max_guest',
+        'min_guest','max_guest','markup_type',
         'markup_percentage','markup_amount',
         'effective_date_start','effective_date_end',
         'agent_commission','status',

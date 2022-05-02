@@ -1,14 +1,11 @@
 @extends('dashboard.layouts.master')
 @section('title', "Add Area")
 @section('content')
-    <form method="post" action="{{route('admin.area.create')}}" enctype="multipart/form-data">
-        @csrf
+
 
         <div class="padding">
             <div class="card ">
                 <div class="box-header">
-                    <button type="submit"
-                            class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
                     <small>
                         <a href="{{route('admin.area.list')}}">
                             <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
@@ -16,9 +13,21 @@
                         </a>
                     </small>
                     <br>
+                    <button onclick="add('{{url("admin/area/list")}}')"
+                            class="btn dark p-x-md pull-right m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close</button>
+
+                    <button onclick="add('')"
+                            class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
+
+
+                    <br>
 
 
                 </div>
+                <br>
+                <form method="post" id="Add" action="{{route('admin.area.create')}}" enctype="multipart/form-data">
+                    @csrf
+                <input hidden id="redirectUrl" name="redirectUrl">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6">
@@ -69,7 +78,17 @@
                     </div>
                     <br>
                 </div>
+    </form>
             </div>
         </div>
-    </form>
+
+        <script>
+            function add(url)
+            {
+
+
+                $("#redirectUrl").val(url)
+                document.getElementById('Add').submit()
+            }
+        </script>
 @endsection

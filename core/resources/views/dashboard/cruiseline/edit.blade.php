@@ -1,14 +1,11 @@
 @extends('dashboard.layouts.master')
 @section('title', "Add Room Type")
 @section('content')
-    <form method="post" action="{{route('admin.cruiseLine.update',$Banner->id)}}" enctype="multipart/form-data">
-        @csrf
+
 
         <div class="padding">
             <div class="card ">
                 <div class="box-header">
-                    <button type="submit"
-                            class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.update') }}</button>
                     <small>
                         <a href="{{route('admin.cruiseLine.list')}}">
                             <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
@@ -16,9 +13,21 @@
                         </a>
                     </small>
                     <br>
+                    <button onclick="add('{{url("admin/cruiseLine/list")}}')"
+                            class="btn dark p-x-md pull-right m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close</button>
+
+                    <button onclick="add('')"
+                            class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
+
+
+                    <br>
 
 
                 </div>
+                <br>
+                <form method="post" id="Edit" action="{{route('admin.cruiseLine.update',$Banner->id)}}" enctype="multipart/form-data">
+                    @csrf
+                    <input id="redirectUrl" hidden name="redirectUrl">
                 <div class="container-fluid">
                     <div class="row">
 
@@ -56,7 +65,16 @@
                     <br>
 
                 </div>
+                </form>
             </div>
         </div>
-    </form>
+        <script>
+            function add(url)
+            {
+
+
+                $("#redirectUrl").val(url)
+                document.getElementById('Edit').submit()
+            }
+        </script>
 @endsection

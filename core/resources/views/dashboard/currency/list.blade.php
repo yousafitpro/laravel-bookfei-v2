@@ -25,12 +25,15 @@
             <div class="container-fluid">
                 <form method="get" action="{{route('admin.currency.list')}}">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <input name="searchWord" placeholder="currency Name" class="form-control" value="{{session('searchWord','')}}">
                         </div>
 
                         <div class="col-md-2">
                             <button type="submit" class="btn dark btn-block">Filter</button>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="{{route('admin.currency.list')}}" class="btn dark btn-block">Clear</a>
                         </div>
                     </div>
                 </form>

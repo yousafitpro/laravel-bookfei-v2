@@ -25,12 +25,15 @@
             <div class="container-fluid">
                 <form method="get" action="{{route('admin.country.list')}}">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <input name="searchWord" placeholder="country Name" class="form-control" value="{{session('searchWord','')}}">
                         </div>
 
                         <div class="col-md-2">
                             <button type="submit" class="btn dark btn-block">Filter</button>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="{{route('admin.country.clear')}}" class="btn dark btn-block">Clear</a>
                         </div>
                     </div>
                 </form>
@@ -44,8 +47,10 @@
                     <tr>
 
                         <th class=" width50"></th>
-                        <th class="text-center width50">{{ __('backend.image') }}</th>
+
                         <th class=" width50">{{ __('backend.name') }}</th>
+                        <th class=" width50">English Name</th>
+                        <th class="text-center width50">{{ __('backend.image') }}</th>
 
 {{--                        <th class="text-center width50">{{ __('backend.currency') }}</th>--}}
 {{--                        <th class="text-center width50">{{ __('backend.supplier') }}</th>--}}
@@ -71,14 +76,16 @@
                             <td class="">
                                 <input type="checkbox"  data-id="{{$Banner->id}}" id="myCheckBox" style="zoom:1.2">
                             </td>
-                            <td class="text-center">
-                                <img src="{{$Banner->image}}" style="width: 40px">
-                            </td>
+
                             <td >
                                 <label>{{$Banner->name}}</label>
                             </td>
-
-
+                            <td >
+                                <label>{{$Banner->english_name}}</label>
+                            </td>
+                            <td class="text-center">
+                                <img src="{{$Banner->image}}" style="width: 40px">
+                            </td>
                             <td class="text-center">
                                 <i class="fa {{ ($Banner->status==1) ? "fa-check text-success":"fa-times text-danger" }} inline"></i>
                             </td>

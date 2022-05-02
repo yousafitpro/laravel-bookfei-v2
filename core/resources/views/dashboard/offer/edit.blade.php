@@ -97,8 +97,8 @@
         <div class="row">
             <div class="col-md-5">
                 <label>Markup Type</label><br>
-                <select class="form-control" name="type">
-                    @foreach(['Percentage (%)','Amount($)'] as $c)
+                <select id="markup_type" class="form-control" name="markup_type" onchange="ChangeMarkup()">
+                    @foreach(['Percentage (%)','Amount($)','Percentage (%) + Amount($)'] as $c)
                         <option value="{{$c}}" {{$offer->type==$c?'selected':''}} >{{$c}}</option>
                     @endforeach
                 </select>
@@ -106,20 +106,20 @@
             <div class="col-md-1">
             </div>
             <div class="col-md-3">
-                <label>Markup Percentage</label><br>
-                <input name="markup_percentage" type="number"  value="{{$offer->markup_percentage}}" required class="form-control">
+                <label>Markup Percentage </label><br>
+                <input {{$offer->markup_type=='Amount($)'?'disabled':''}} id="markup_percentage" name="markup_percentage" type="number"  value="{{$offer->markup_percentage}}" required class="form-control">
             </div>
             <div class="col-md-3">
                 <label>Markup Amount</label><br>
-                <input name="markup_amount" type="number" value="{{$offer->markup_amount}}" required class="form-control">
+                <input {{$offer->markup_type=='Percentage (%)'?'disabled':''}} id="markup_amount" name="markup_amount" type="number" value="{{$offer->markup_amount}}" required class="form-control">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-md-5">
                 <label>Agent Commission</label><br>
-                <select class="form-control" name="agent_commission">
-                    @foreach(['Percentage (%)','Amount($)','None'] as $c)
+                <select id="commission" class="form-control" name="agent_commission" onchange="ChangeCommission()">
+                    @foreach(['Percentage (%)','Amount($)','Percentage (%) + Amount($)','None'] as $c)
                         <option value="{{$c}}" {{$offer->agent_commission==$c?'selected':''}} >{{$c}}</option>
                     @endforeach
                 </select>
@@ -128,11 +128,11 @@
             </div>
             <div class="col-md-3">
                 <label>Commission Percentage</label><br>
-                <input name="commission_percentage" type="number" value="{{$offer->commission_percentage}}" required class="form-control">
+                <input {{$offer->agent_commission=='Amount($)'?'disabled':''}} id="c_percentage" name="commission_percentage" type="number" value="{{$offer->commission_percentage}}" required class="form-control">
             </div>
             <div class="col-md-3">
                 <label>Commission Amount</label><br>
-                <input name="commission_amount" type="number" value="{{$offer->commission_amount}}" required class="form-control">
+                <input {{$offer->agent_commission=='Percentage (%)'?'disabled':''}} id="c_amount" name="commission_amount" type="number" value="{{$offer->commission_amount}}" required class="form-control">
             </div>
         </div>
         <br>
@@ -172,6 +172,59 @@
 </form>
 
 <script>
+    function ChangeMarkup()
+    {
+
+        $val=$("#markup_type").val()
+
+        if ($val=='Percentage (%)')
+        {
+            $("#markup_percentage").prop("disabled",false)
+            $("#markup_amount").prop("value",'')
+            $("#markup_amount").prop("disabled",true)
+        }
+        else if ($val=='Amount($)')
+        {
+            $("#markup_amount").prop("disabled",false)
+            $("#markup_percentage").prop("value",'')
+            $("#markup_percentage").prop("disabled",true)
+        }
+        else
+        {
+            $("#markup_amount").prop("disabled",false)
+            $("#markup_percentage").prop("disabled",false)
+        }
+
+    }
+    function ChangeCommission()
+    {
+        $val=$("#commission").val()
+        if ($val=='Percentage (%)')
+        {
+            $("#c_percentage").prop("disabled",false)
+            $("#c_amount").prop("value",'')
+            $("#c_amount").prop("disabled",true)
+        }
+        else if ($val=='Amount($)')
+        {
+            $("#c_amount").prop("disabled",false)
+            $("#c_percentage").prop("value",'')
+            $("#c_percentage").prop("disabled",true)
+        }
+        else if ($val="Percentage (%) + Amount($)")
+        {
+            $("#c_amount").prop("disabled",false)
+            $("#c_percentage").prop("disabled",false)
+        }
+        else
+        {
+            $("#c_amount").prop("value",'')
+            $("#c_amount").prop("disabled",true)
+            $("#c_percentage").prop("value",'')
+            $("#c_percentage").prop("disabled",true)
+        }
+
+    }
     function early_bird()
     {
 

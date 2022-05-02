@@ -66,7 +66,12 @@ class AreaController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.update'));
+        if ($request->redirectUrl=='')
+        {
+            return redirect()->back()->with('doneMessage', __('backend.update'));
+
+        }
+        return redirect($request->redirectUrl)->with('doneMessage', __('backend.addDone'));
     }
     public function create(Request $request)
     {
@@ -85,7 +90,12 @@ class AreaController extends Controller
 
             $city->save();
         }
-        return redirect()->back()->with('doneMessage', __('backend.addDone'));
+        if ($request->redirectUrl=='')
+        {
+            return redirect()->back()->with('doneMessage', __('backend.update'));
+
+        }
+        return redirect($request->redirectUrl)->with('doneMessage', __('backend.addDone'));
     }
     public function deleteBulk(Request $request)
     {

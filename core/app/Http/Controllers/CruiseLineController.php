@@ -54,8 +54,13 @@ class CruiseLineController extends Controller
     }
     public function update(Request $request,$id)
     {
-
-        $data=$request->except(['file','_token']);
+        $request->validate([
+            'name'=>'required',
+            'english_name'=>'required',
+            'status'=>'required',
+            'file'=>'required'
+        ]);
+        $data=$request->except(['file','redirectUrl','_token']);
         cruiseLine::where('id',$id)->update($data);
         $city=cruiseLine::find($id);
         if($request->hasFile('file'))
@@ -69,12 +74,23 @@ class CruiseLineController extends Controller
 
             $city->save();
         }
-        return redirect(route('admin.cruiseLine.list'))->with('doneMessage', __('backend.update'));
+        if ($request->redirectUrl=='')
+        {
+            return redirect()->back()->with('doneMessage', __('backend.update'));
+
+        }
+        return redirect($request->redirectUrl)->with('doneMessage', __('backend.addDone'));
     }
     public function create(Request $request)
     {
 
-        $data=$request->except('file');
+        $request->validate([
+            'name'=>'required',
+            'english_name'=>'required',
+            'status'=>'required',
+            'file'=>'required'
+        ]);
+        $data=$request->except(['file','redirectUrl']);
         $city= cruiseLine::create($data);
 
         if($request->hasFile('file'))
@@ -88,8 +104,12 @@ class CruiseLineController extends Controller
 
             $city->save();
         }
-        return redirect(route('admin.cruiseLine.list'))->with('doneMessage', __('backend.addDone'));
-    }
+        if ($request->redirectUrl=='')
+        {
+            return redirect()->back()->with('doneMessage', __('backend.update'));
+
+        }
+        return redirect($request->redirectUrl)->with('doneMessage', __('backend.addDone'));    }
     public function deleteBulk(Request $request)
     {
         cruiseLine::whereIn('id', $request->data)->update(['deleted_at'=>Carbon::now()]);
