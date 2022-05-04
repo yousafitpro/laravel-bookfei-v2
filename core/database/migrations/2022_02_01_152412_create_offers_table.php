@@ -17,6 +17,7 @@ class CreateOffersTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('travel_product_id');
+            $table->string('total_num_of_hotels')->nullable()->default('0');
             $table->string('name')->nullable();
             $table->string('code')->nullable();
             $table->string('type')->nullable();

@@ -20,8 +20,8 @@
         <div class="row">
             <div class="col-md-5">
                 <label>Promotion Offer Type</label><br>
-                <select class="form-control" name="type">
-                    @foreach(['Hotel','Multi Hotel','Cruise'] as $c)
+                <select id="OfferType" onchange="ChangeLayout()" class="form-control" name="type">
+                    @foreach(['Hotel','Multi Hotel','Tour','Cruise','Cruise + Hotel','Cruise + Multi Hotel'] as $c)
                         <option value="{{$c}}" {{$offer->type==$c?'selected':''}} >{{$c}}</option>
                     @endforeach
                 </select>
@@ -195,6 +195,45 @@
             $("#markup_percentage").prop("disabled",false)
         }
 
+    }
+    function ChangeLayout()
+    {
+        var type=$("#OfferType").val();
+
+        HideAll()
+        if (type=="Multi Hotel")
+        {
+            $("#HotelTab").css('display','block')
+        }
+        if (type=="Cruise + Hotel")
+        {
+            $("#HotelTab").css('display','block')
+            $("#CruiseTab").css('display','block')
+        }
+        if (type=="Cruise + Multi Hotel")
+        {
+            $("#HotelTab").css('display','block')
+            $("#CruiseTab").css('display','block')
+        }
+        if (type=="Hotel")
+        {
+            $("#HotelTab").css('display','block')
+        }
+        if (type=="Cruise")
+        {
+            $("#CruiseTab").css('display','block')
+        }
+        if (type=="Tour")
+        {
+            $("#TourTab").css('display','block')
+        }
+
+    }
+    function HideAll()
+    {
+        $("#HotelTab").css('display','none')
+        $("#TourTab").css('display','none')
+        $("#CruiseTab").css('display','none')
     }
     function ChangeCommission()
     {

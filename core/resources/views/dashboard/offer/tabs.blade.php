@@ -3,6 +3,15 @@
 @section('title', 'Offer')
 @endsection
 @section('content')
+    <?php
+        if ($offer==null)
+            {
+
+                $offer=new \App\Models\offer();
+                $offer->type="Hotel";
+            }
+
+    ?>
     <div class="padding">
 <div class="card ">
 <div class="container-fluid">
@@ -72,16 +81,16 @@
                 <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Basic'}}">
                     <button class="mtablinks  {{$_GET['tab']=="Basic"?'active':''}}" >Basic</button>
                 </a>
-                <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Hotel'}}">
+                <a id="HotelTab" style="display: {{($offer->type!='Tour' && $offer->type!='Cruise')?'block':'none'}}" href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Hotel'}}">
                     <button class="mtablinks {{$_GET['tab']=="Hotel"?'active':''}} ">Hotel</button>
                 </a>
-                <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Flight'}}">
+                <a id="FlightTab"  href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Flight'}}">
                     <button class="mtablinks {{$_GET['tab']=="Flight"?'active':''}} ">Flight</button>
                 </a>
-                <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Cruise'}}">
+                <a id="CruiseTab" style="display: {{($offer->type=='Tour' || $offer->type=='Hotel' || $offer->type=='Multi Hotel')?'none':'block'}}" href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Cruise'}}">
                     <button class="mtablinks {{$_GET['tab']=="Cruise"?'active':''}} ">Cruise</button>
                 </a>
-                <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Tour'}}">
+                <a id="TourTab" style="display: {{($offer->type=='Cruise' || $offer->type=='Hotel' || $offer->type=='Multi Hotel')?'none':'block'}}" href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Tour'}}">
                     <button class="mtablinks {{$_GET['tab']=="Tour"?'active':''}} ">Tour</button>
                 </a>
                 <a href="{{route('admin.offer.editOrCreate',$offer_id).'?tab=Content'}}">

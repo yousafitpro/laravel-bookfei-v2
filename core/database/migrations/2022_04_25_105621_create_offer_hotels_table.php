@@ -21,6 +21,8 @@ class CreateOfferHotelsTable extends Migration
             $table->string('total_num_of_hotels')->nullable();
             $table->string('hotel_group')->nullable();
             $table->string('nights')->nullable();
+            $table->string('min_nights')->nullable();
+            $table->string('max_nights')->nullable();
             $table->string('is_compulsory')->nullable()->default('false');
             $table->softDeletes();
             $table->timestamps();

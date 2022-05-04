@@ -81,16 +81,26 @@ class OfferController extends Controller
 
         return view('dashboard.offer.list')->with(['list'=>$list]);
     }
+    public function updateTotalHotel(Request $request)
+    {
+        $offer=offer::find($request->offer_id);
+        $offer->total_num_of_hotels=$request->total_num_of_hotels;
+        $offer->save();
+        return redirect()->back()->with('doneMessage', "Total number of hotels updated");
+    }
     public function editOrCreate(Request $request,$id)
     {
+
         if ($id==0 && $request->tab!="Basic")
         {
             return redirect()->back()->with('errorMessage', "Please Create an Offer first");
         }
+
         $data['offer_id']=$id;
         $data['hotels']=[];
         $data['flights']=[];
         $data['tours']=[];
+        $data['offer']=null;
         if ($id!=0)
         {
             $data['hotels']=offerHotel::where(['offer_id'=>$id,'deleted_at'=>null])->get();
@@ -200,16 +210,43 @@ class OfferController extends Controller
     }
     public function addHotel(Request $request)
     {
-        $request->validate([
-           'rate_table_id'=>'required',
-            'total_num_of_hotels'=>'required',
-            'hotel_group'=>'required',
-            'nights'=>'required'
-        ],[
-            'rate_table_id.required'=>"Hotel Table is required"
-        ]);
-        $ratetable=hotelRateTable::find($request->rate_table_id);
+
         $offer=offer::find($request->offer_id);
+        if ($offer->type=="Hotel")
+        {
+
+            $request->validate([
+                'rate_table_id'=>'required',
+                'min_nights'=>'required|integer',
+                'max_nights'=>'required|integer'
+            ],[
+                'rate_table_id.required'=>"Hotel Table is required"
+            ]);
+            if (offerHotel::where(['offer_id'=>$offer->id,'deleted_at'=>null])->exists())
+            {
+
+                return  redirect()->back()->with(['errorMessage'=>"Sorry Can have only One Hotel With Offer Type `Hotel`"]);
+
+            }
+        }
+        else
+        {
+            $request->validate([
+                'rate_table_id'=>'required',
+                'hotel_group'=>'required',
+                'nights'=>'required'
+            ],[
+                'rate_table_id.required'=>"Hotel Table is required"
+            ]);
+            if ($offer->total_num_of_hotels==offerHotel::where(['offer_id'=>$offer->id,'deleted_at'=>null])->get()->count())
+            {
+                return  redirect()->back()->with(['errorMessage'=>"You cannot add hotel more than total`"]);
+
+            }
+        }
+
+        $ratetable=hotelRateTable::find($request->rate_table_id);
+
 
         if ($request->hotel_id=='none')
         {

@@ -13,6 +13,7 @@ class offer extends Model
     ];
     protected $fillable=['name','code','type','tag','sort_number',
         'effective_date_start','effective_date_end',
+        'total_num_of_hotels',
         'departure_date_start','departure_date_end',
         'booking_date_start','booking_date_end',
         'min_guest','max_guest','markup_type',

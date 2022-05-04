@@ -16,5 +16,6 @@ Route::middleware('auth')
         Route::get("removeFlight/{id}",[App\Http\Controllers\OfferController::class,'removeFlight'])->name('admin.offer.removeFlight');
         Route::post("addTour",[App\Http\Controllers\OfferController::class,'addTour'])->name('admin.offer.addTour');
         Route::post("removeTour",[App\Http\Controllers\OfferController::class,'removeTour'])->name('admin.offer.removeTour');
+        Route::post("updateTotalHotel",[App\Http\Controllers\OfferController::class,'updateTotalHotel'])->name('admin.offer.updateTotalHotel');
 
     });
