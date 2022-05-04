@@ -231,6 +231,7 @@ class OfferController extends Controller
         }
         else
         {
+            //asas
             $request->validate([
                 'rate_table_id'=>'required',
                 'hotel_group'=>'required',
