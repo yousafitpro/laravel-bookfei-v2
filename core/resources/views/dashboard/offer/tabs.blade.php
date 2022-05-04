@@ -33,10 +33,10 @@
 
         @endif
         @if($_GET['tab']=="Hotel" && $offer_id!=0 )
-            <button  onclick="HotelRedirect('{{url("admin/offer/list")}}')"
+            <button  onclick="HotelRedirectMe('{{url("admin/offer/list")}}')"
                      class="btn dark p-x-md pull-right  m-l-1" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }} & Close </button>
 
-            <button onclick="HotelRedirect('{{route('admin.offer.editOrCreate',$offer_id).'?tab=Hotel'}}')"
+            <button onclick="HotelRedirectMe('{{route('admin.offer.editOrCreate',$offer_id).'?tab=Hotel'}}')"
                     class="btn dark p-x-md pull-right" style="min-width: var(--mBtnDefaultWidth)">{{ __('backend.save') }}</button>
 
         @endif
@@ -154,7 +154,14 @@
 </div>
     </div>
     <script>
+        function HotelRedirectMe(url)
+        {
 
+
+            $("#redirectUrlforHotel").val(url)
+
+            document.getElementById('hotelForm34').submit()
+        }
         function addOffer(url)
         {
 
@@ -170,14 +177,7 @@
             document.getElementById('tourUpdateForm').submit()
         }
 
-        function HotelRedirect(url)
-        {
 
-
-            $("#redirectUrlforHotel").val(url)
-
-            document.getElementById('hotelForm34').submit()
-        }
         function flightRedirect(url)
         {
 
