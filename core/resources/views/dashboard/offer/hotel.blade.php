@@ -18,8 +18,9 @@
         </div>
         <br>
     </div>
-</form>
 
+@endif
+</form>
     <form action="{{route('admin.offer.addHotel')}}" method="post" id="hotelForm34">
         @csrf
         <input id="redirectUrlforHotel" name="redirectUrl" hidden value="">
