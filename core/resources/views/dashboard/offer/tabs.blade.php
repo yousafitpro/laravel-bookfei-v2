@@ -176,7 +176,7 @@
 
             $("#redirectUrlforHotel").val(url)
 
-            document.getElementById('hotelForm').submit()
+            document.getElementById('hotelForm34').submit()
         }
         function flightRedirect(url)
         {
