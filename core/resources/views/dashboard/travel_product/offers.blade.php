@@ -49,25 +49,25 @@
          <input type="checkbox" id="otCheckBox" data-id="{{$o->id}}"  style="zoom: 1.5">
             </div>
             <div class="col-md-2">
-                <input readonly class="form-control bg-dark" style="font-size: 10px" value="{{$offer->name}}">
+                <input readonly class="form-control bg-dark" style="font-size: 10px" value="{{$o->name}}">
             </div>
             <div class="col-md-1">
-                <input readonly class="form-control bg-dark" style="font-size: 10px"  value="{{$offer->code}}">
+                <input readonly class="form-control bg-dark" style="font-size: 10px"  value="{{$o->code}}">
             </div>
             <div class="col-md-1">
-                <input readonly class="form-control bg-dark" style="font-size: 10px" value="{{$offer->type}}">
+                <input readonly class="form-control bg-dark" style="font-size: 10px" value="{{$o->type}}">
             </div>
             <div class="col-md-1">
                 <input readonly class="form-control bg-dark" style="font-size: 10px" value="Category">
             </div>
             <div class="col-md-1">
-                <input readonly class="form-control bg-dark" style="font-size: 10px" value="{{$offer->markup_percentage}}">
+                <input readonly class="form-control bg-dark" style="font-size: 10px" value="{{$o->markup_percentage}}">
             </div>
             <div class="col-md-1">
-                <input readonly class="form-control bg-dark" style="font-size: 10px" value="{{$offer->markup_amount}}">
+                <input readonly class="form-control bg-dark" style="font-size: 10px" value="{{$o->markup_amount}}">
             </div>
             <div class="col-md-1">
-                <input readonly class="form-control bg-dark" style="font-size: 10px" value="{{$offer->status=='1'?'Active':'Unactive'}}">
+                <input readonly class="form-control bg-dark" style="font-size: 10px" value="{{$o->status=='1'?'Active':'Unactive'}}">
             </div>
             <div class="col-md-1">
                 <a class="btn dark" style="color: white">Edit</a>
