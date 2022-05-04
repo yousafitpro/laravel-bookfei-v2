@@ -154,14 +154,7 @@
 </div>
     </div>
     <script>
-        function HotelRedirectMe(url)
-        {
 
-
-            $("#redirectUrlforHotel").val(url)
-
-            document.getElementById('hotelForm34').submit()
-        }
         function addOffer(url)
         {
 
