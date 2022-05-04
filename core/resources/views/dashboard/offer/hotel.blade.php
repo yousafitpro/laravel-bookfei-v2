@@ -184,14 +184,7 @@
     </div>
 @endforeach
 <script>
-    function HotelRedirectMe(url)
-    {
 
-
-        $("#redirectUrlforHotel").val(url)
-
-        document.getElementById('hotelForm34').submit()
-    }
 function updateList()
 {
     var hote_id=$("#hotel_id").val()
