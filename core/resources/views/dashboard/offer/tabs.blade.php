@@ -160,7 +160,7 @@
 
             $("#redirectUrlforHotel").val(url)
 
-            $('#hotelForm34').submit()
+            document.getElementById('hotelForm34').submit()
         }
         function addOffer(url)
         {
