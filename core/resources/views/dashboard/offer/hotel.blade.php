@@ -19,10 +19,10 @@
         <br>
     </div>
 </form>
-@endif
+
     <form action="{{route('admin.offer.addHotel')}}" method="post" id="hotelForm34">
         @csrf
-        <input id="redirectUrlforHotel" name="redirectUrl"  value="">
+        <input id="redirectUrlforHotel" name="redirectUrl" hidden value="">
         <input name="offer_id" id="offer_id"  hidden value="{{$offer_id}}">
     <div class="container-fluid">
         <input hidden name="tab" value="{{@request('tab')}}">
