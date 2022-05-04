@@ -214,11 +214,12 @@ class OfferController extends Controller
         $offer=offer::find($request->offer_id);
         if ($offer->type=="Hotel")
         {
-
+//sasasas
             $request->validate([
                 'rate_table_id'=>'required',
                 'min_nights'=>'required|integer',
-                'max_nights'=>'required|integer'
+                'max_nights'=>'required|integer',
+                'max_nights'=>'gt:min_nights'
             ],[
                 'rate_table_id.required'=>"Hotel Table is required"
             ]);
