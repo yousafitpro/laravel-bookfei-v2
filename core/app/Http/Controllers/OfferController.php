@@ -84,9 +84,17 @@ class OfferController extends Controller
     public function updateTotalHotel(Request $request)
     {
         $offer=offer::find($request->offer_id);
-        $offer->total_num_of_hotels=$request->total_num_of_hotels;
-        $offer->save();
-        return redirect()->back()->with('doneMessage', "Total number of hotels updated");
+        if ($offer->total_num_of_hotels==offerHotel::where(['offer_id'=>$offer->id,'deleted_at'=>null])->get()->count())
+        {
+return "0";
+        }
+        offerHotel::create([
+            'offer_id'=>$request->offer_id
+        ]);
+//        $offer=offer::find($request->offer_id);
+//        $offer->total_num_of_hotels=$request->total_num_of_hotels;
+//        $offer->save();
+        return "1";
     }
     public function editOrCreate(Request $request,$id)
     {
@@ -261,7 +269,7 @@ class OfferController extends Controller
             return  redirect()->back()->with(['errorMessage'=>"Rate table effective dates should be between Departure Date of office"]);
         }
 
-       $data=$request->except(['_token','tab']);
+       $data=$request->except(['_token','tab','total_num_of_hotels']);
         if ($request->has('is_compulsory'))
         {
             $data['is_compulsory']='true';
@@ -269,11 +277,20 @@ class OfferController extends Controller
 
         offerHotel::create($data);
 
-
+        $offer=offer::find($request->offer_id);
+        $offer->total_num_of_hotels=$request->total_num_of_hotels;
+        $offer->save();
         return  redirect($request->redirectUrl)->with(['doneMessage'=>"Hotel has been Added"]);
 
 
 
+    }
+    public function updateOfferHotelColumn(Request $request)
+    {
+        offerHotel::where(['id'=>$request->hotel_id])->update([
+            $request->column=> $request->value
+        ]);
+        return "ok";
     }
     public function removeHotel(Request $request,$id)
     {
